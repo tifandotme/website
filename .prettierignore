@@ -1,8 +1,11 @@
-# Ignore artifacts:
-build
-coverage
+# important for prettier -w ., but not for lint-staged as it uses glob patterns
 
-public
-**/.next
-**/.vercel
-**/pnpm-lock.*
+/build
+/coverage
+
+/.husky
+/.next
+/.vercel
+/public
+
+pnpm-lock.*

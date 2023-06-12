@@ -1,0 +1,15 @@
+// eslint:recommended = https://eslint.org/docs/latest/rules/
+// eslint-config-next = https://github.com/vercel/next.js/blob/canary/packages/eslint-config-next/index.js
+
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "next/core-web-vitals",
+    "prettier"
+  ],
+  "rules": {
+    "prefer-const": "error",
+    "no-undef": "off"
+  }
+}
