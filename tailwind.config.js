@@ -4,7 +4,10 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
   darkMode: ["class"],
-  content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
+  content: {
+    relative: true,
+    files: ["./src/app/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
+  },
   theme: {
     container: {
       center: true,
