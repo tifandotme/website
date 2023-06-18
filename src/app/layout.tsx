@@ -5,9 +5,13 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "tifan.me",
+  title: {
+    template: "%s - tifan.me",
+    default: "tifan.me",
+  },
   description: "A blog",
   creator: "Tifan Dwi Avianto",
+  generator: "Next.js",
 };
 
 export default function RootLayout({

@@ -1,9 +1,7 @@
-import { Button } from "@/components/ui/button";
-
 export default function Home() {
   return (
     <main>
-      <Button>Submit</Button>
+      <h1>Homepage</h1>
     </main>
   );
 }

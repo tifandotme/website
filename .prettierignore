@@ -1,11 +1,12 @@
 # important for prettier -w ., but not for lint-staged as it uses glob patterns
 
-/build
-/coverage
+build
+coverage
 
-/.husky
-/.next
-/.vercel
-/public
+.husky
+.next
+.vercel
+public
+.contentlayer
 
 pnpm-lock.*
