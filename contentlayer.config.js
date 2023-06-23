@@ -4,57 +4,38 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files";
 const computedFields = {
   slug: {
     type: "string",
-    resolve: (doc) => `/${doc._raw.flattenedPath}`,
+    resolve: (doc) => `/blog/${doc._raw.flattenedPath}`,
   },
   slugAsParams: {
     type: "string",
-    resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
+    resolve: (doc) => doc._raw.flattenedPath.replace(/blog\/?/, ""),
   },
 };
 
-const Page = defineDocumentType(() => ({
-  name: "Page",
-  filePathPattern: `pages/**/*.mdx`,
-  contentType: "mdx",
-  fields: {
-    title: {
-      type: "string",
-      required: true,
-    },
-    description: {
-      type: "string",
-    },
-  },
-  computedFields,
-}));
-
 const Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: `posts/**/*.mdx`,
+  filePathPattern: `**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
       type: "string",
+      description: "Title of the post",
       required: true,
     },
     description: {
       type: "string",
+      description: "Description of the post (for SEO)",
     },
     date: {
       type: "date",
+      description: "Date of publication",
       required: true,
-    },
-    tags: {
-      type: "list",
-      of: {
-        type: "string",
-      },
     },
   },
   computedFields,
 }));
 
 export default makeSource({
-  contentDirPath: "./content",
-  documentTypes: [Post, Page],
+  contentDirPath: "posts",
+  documentTypes: [Post],
 });
