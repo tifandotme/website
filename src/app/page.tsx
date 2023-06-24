@@ -6,7 +6,7 @@ import Link from "next/link";
 
 function PostCard(post: Post) {
   return (
-    <Link href={post.slug}>
+    <Link href={post.url}>
       <div className="mb-5 rounded-2xl border bg-gray-100 p-5 hover:bg-gray-200">
         <h3 className="text-xl font-semibold">{post.title}</h3>
         <time dateTime={post.date}>
@@ -23,7 +23,7 @@ export default function Home() {
     compareDesc(new Date(a.date), new Date(b.date))
   );
 
-  console.log(posts);
+  console.log(allPosts.map((post) => ({ slug: post.slug })));
 
   return (
     <>
