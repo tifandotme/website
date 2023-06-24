@@ -36,3 +36,6 @@ next-env.d.ts
 
 # contentlayer
 .contentlayer
+
+# shadcn-ui cli
+components.json

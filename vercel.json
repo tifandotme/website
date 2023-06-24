@@ -12,6 +12,14 @@
   ],
   "redirects": [
     {
+      "source": "/li",
+      "destination": "https://www.linkedin.com/in/tifandotme"
+    },
+    {
+      "source": "/tw",
+      "destination": "https://twitter.com/tifandotme"
+    },
+    {
       "source": "/gh",
       "destination": "https://github.com/tifandotme"
     },

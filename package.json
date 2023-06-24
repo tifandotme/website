@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier -w .",
+    "commit": "cz",
     "postinstall": "husky install"
   },
   "dependencies": {
@@ -17,7 +18,7 @@
     "contentlayer": "^0.3.3",
     "cva": "npm:class-variance-authority@^0.6.0",
     "date-fns": "^2.30.0",
-    "lucide-react": "^0.248.0",
+    "lucide-react": "latest",
     "next": "^13.4.7",
     "next-contentlayer": "^0.3.3",
     "react": "^18.2.0",
@@ -26,10 +27,15 @@
     "zustand": "^4.3.8"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
+    "@commitlint/cz-commitlint": "^17.5.0",
+    "@commitlint/types": "^17.4.4",
     "@types/node": "^20.3.1",
-    "@types/react": "^18.2.13",
+    "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "autoprefixer": "^10.4.14",
+    "commitizen": "^4.3.0",
     "eslint": "^8.43.0",
     "eslint-config-next": "^13.4.7",
     "eslint-config-prettier": "^8.8.0",
@@ -45,8 +51,13 @@
   "pnpm": {
     "peerDependencyRules": {
       "allowAny": [
-        "esbuild"
+        "contentlayer"
       ]
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
     }
   }
 }

@@ -2,13 +2,15 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files";
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
-  slug: {
+  url: {
+    description: "URL of the post (e.g. /blog/my-post)",
     type: "string",
     resolve: (doc) => `/blog/${doc._raw.flattenedPath}`,
   },
-  slugAsParams: {
+  slug: {
+    description: "Slug of the post (e.g. my-post)",
     type: "string",
-    resolve: (doc) => doc._raw.flattenedPath.replace(/blog\/?/, ""),
+    resolve: (doc) => doc._raw.flattenedPath,
   },
 };
 
@@ -24,7 +26,7 @@ const Post = defineDocumentType(() => ({
     },
     description: {
       type: "string",
-      description: "Description of the post (for SEO)",
+      description: "Description of the post (Max ... characters)",
     },
     date: {
       type: "date",
