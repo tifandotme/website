@@ -23,8 +23,6 @@ export default function Home() {
     compareDesc(new Date(a.date), new Date(b.date))
   );
 
-  console.log(allPosts.map((post) => ({ slug: post.slug })));
-
   return (
     <>
       <div className="mt-16">

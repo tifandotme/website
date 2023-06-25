@@ -1,3 +1,5 @@
+// https://github.com/tsconfig/bases/blob/main/bases/next.json
+
 {
   "compilerOptions": {
     // Target
@@ -32,7 +34,7 @@
       }
     ],
 
-    "baseUrl": ".",
+    // "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
