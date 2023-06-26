@@ -1,9 +1,11 @@
-import "./globals.css";
 import { type Metadata } from "next";
-import { Inter } from "next/font/google";
-import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+import { fontMono, fontSans } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
+import { BreakpointIndicator } from "@/components/breakpoint-indicator";
+import { ThemeProvider } from "@/components/theme-provider";
+
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
@@ -11,8 +13,19 @@ export const metadata: Metadata = {
     default: "tifan.me",
   },
   description: "A blog",
+  keywords: ["blog", "web development", "javascript", "typescript", "react"],
   creator: "Tifan Dwi Avianto",
-  generator: "Next.js",
+  authors: [
+    {
+      name: "Tifan Dwi Avianto",
+      url: "https://twitter.com/tifandotme",
+    },
+  ],
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "light" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+  colorScheme: "dark light",
 };
 
 export default function RootLayout({
@@ -21,29 +34,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" suppressHydrationWarning>
       {/* <script
         async
         src="https://analytics.tifan.me/script.js"
         data-website-id="7edd9838-f991-48d3-aa41-c7fe0cd55d36"
       /> */}
-      <body>
-        <div className="mx-auto max-w-2xl px-4 py-10">
-          <header className="mt-32 flex flex-col items-start">
-            <h1 className="mb-4 text-4xl font-extrabold">
-              <Link href="/">Tifan</Link>
-            </h1>
-            <p className="mb-4 text-lg">
-              Welcome to my online hideout where I share my insights on all
-              things web development.
-            </p>
-            <p className="text-lg">
-              Find me on: <a href="https://twitter.com/tifandotme">Twitter</a>{" "}
-              or <a href="https://github.com/tifandotme/">GitHub</a>
-            </p>
-          </header>
-          <main>{children}</main>
-        </div>
+      <body
+        className={cn(
+          "min-h-screen font-sans antialiased",
+          fontSans.variable,
+          fontMono.variable
+        )}
+      >
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <main className="mx-auto max-w-2xl px-4 py-10">{children}</main>
+          <BreakpointIndicator />
+        </ThemeProvider>
       </body>
     </html>
   );

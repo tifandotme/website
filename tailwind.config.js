@@ -6,7 +6,7 @@ module.exports = {
   content: [
     "./src/app/**/*.{ts,tsx}",
     "./src/components/**/*.{ts,tsx}",
-    "./posts/**/*.mdx",
+    "./content/**/*.mdx",
   ],
   theme: {
     container: {
@@ -18,7 +18,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
+        sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
+        mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -76,5 +77,6 @@ module.exports = {
       },
     },
   },
+  // @ts-ignore
   plugins: [require("tailwindcss-animate")],
 };
