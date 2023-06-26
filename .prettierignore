@@ -1,12 +1,12 @@
-# important for prettier -w ., but not for lint-staged as it uses glob patterns
+# used in `prettier -w .`, but not for lint-staged as it uses glob patterns
 
-build
-coverage
+/build
+/coverage
 
-.husky
-.next
-.vercel
-public
-.contentlayer
+/.contentlayer
+/.husky
+/.next
+/.vercel
+/public
 
 pnpm-lock.*
