@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# If commit message is already provided, exit without doing anything (-m "..")
+if [ -n "$2" ]; then
+  exit 0
+fi
+
+exec </dev/tty && pnpm exec git-cz --hook
