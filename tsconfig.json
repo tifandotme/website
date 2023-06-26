@@ -14,7 +14,9 @@
     "incremental": true,
     "skipLibCheck": true,
     "isolatedModules": true,
-    "allowJs": false,
+
+    "allowJs": true,
+    "checkJs": true,
 
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -34,18 +36,21 @@
       }
     ],
 
-    // "baseUrl": ".",
+    "baseUrl": ".", // needed by contentlayer
     "paths": {
       "@/*": ["./src/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
   "include": [
+    ".contentlayer/generated",
+    ".next/types/**/*.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    ".contentlayer/generated"
+    "**/*.js",
+    "**/*.mjs",
+    "**/*.cjs"
   ],
   "exclude": ["node_modules"]
 }
