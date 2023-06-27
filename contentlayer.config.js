@@ -52,6 +52,7 @@ const Post = defineDocumentType(() => ({
   computedFields,
 }));
 
+// TODO add rehype plugins
 export default makeSource({
   contentDirPath: "content",
   documentTypes: [Post],

@@ -1,3 +1,5 @@
+// haven't found a use case for this yet
+
 import { create } from "zustand";
 
 type State = {
