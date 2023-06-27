@@ -14,11 +14,10 @@
     "postinstall": "husky install"
   },
   "dependencies": {
-    "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
     "contentlayer": "^0.3.3",
     "cva": "npm:class-variance-authority@^0.6.0",
-    "date-fns": "^2.30.0",
+    "dayjs": "^1.11.8",
     "lucide-react": "latest",
     "next": "^13.4.7",
     "next-contentlayer": "^0.3.3",
