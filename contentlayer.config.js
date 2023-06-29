@@ -3,7 +3,7 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files";
 /** @type {import("contentlayer/source-files").ComputedFields} */
 const computedFields = {
   url: {
-    description: "URL of the post (e.g. blog/my-post)",
+    description: "URL path of the post (e.g. /blog/my-post)",
     type: "string",
     resolve: (doc) => {
       const segments = doc._raw.flattenedPath.split("/");
@@ -11,7 +11,13 @@ const computedFields = {
       // remove in-between segments (e.g. 2023)
       segments.splice(1, segments.length - 2);
 
-      return segments.join("/").replace(/\s+/g, "-").toLowerCase();
+      const final = "/" + segments.join("/");
+
+      return final
+        .replace(/\s+/g, "-")
+        .replace(/--+/g, "-")
+        .replace(/[^\w/-]+/g, "")
+        .toLowerCase();
     },
   },
   slug: {
@@ -20,7 +26,13 @@ const computedFields = {
     resolve: (doc) => {
       const segments = doc._raw.flattenedPath.split("/");
 
-      return segments[segments.length - 1].replace(/\s+/g, "-").toLowerCase();
+      const final = segments[segments.length - 1];
+
+      return final
+        .replace(/\s+/g, "-")
+        .replace(/--+/g, "-")
+        .replace(/[^\w/-]+/g, "")
+        .toLowerCase();
     },
   },
 };
