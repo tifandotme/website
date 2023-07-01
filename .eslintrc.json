@@ -13,7 +13,8 @@
   "rules": {
     "prefer-const": "error",
     "no-undef": "off",
-    "@next/next/no-html-link-for-pages": "off" // this rule only works on pagesDir
+    "@next/next/no-html-link-for-pages": "off", // this rule only works on pagesDir
+    "tailwindcss/classnames-order": "off"
   },
   "settings": {
     "tailwindcss": {
