@@ -2,7 +2,7 @@ import { clsx, type ClassValue } from "clsx";
 import { allPosts, type Post } from "contentlayer/generated";
 import { twMerge } from "tailwind-merge";
 
-export function cn(...inputs: ClassValue[]) {
+export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));
 }
 
