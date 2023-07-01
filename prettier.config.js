@@ -1,6 +1,5 @@
 /** @type {import("@ianvs/prettier-plugin-sort-imports").PluginConfig} */
 const importConfig = {
-  // TODO: refine import order
   importOrder: [
     "",
     "^(react/(.*)$)|^(react$)",
