@@ -1,7 +1,11 @@
-import { allPosts } from "contentlayer/generated";
 import { type Metadata } from "next";
+import { notFound } from "next/navigation";
+import { allPosts } from "contentlayer/generated";
 import { getMDXComponent } from "next-contentlayer/hooks";
 
+import { getPost } from "@/lib/utils";
+
+//#region Static Generation
 export async function generateStaticParams() {
   return allPosts.map((post) => ({ slug: post.slug }));
 }
@@ -11,19 +15,19 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
+  const post = getPost(params.slug);
 
-  if (!post) throw new Error(`Failed to find post with slug: ${params.slug}`);
-
-  return { title: post.title };
+  return {
+    title: post?.title,
+    description: post?.description,
+  };
 }
+//#endregion
 
-export default function Post({ params }: { params: { slug: string } }) {
-  const post = allPosts.find((post) => post.slug === params.slug);
+export default function PostPage({ params }: { params: { slug: string } }) {
+  const post = getPost(params.slug);
 
-  if (!post) {
-    return;
-  }
+  if (!post) notFound();
 
   const Content = getMDXComponent(post.body.code);
 

@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 
-import { fontMono, fontSans } from "@/lib/fonts";
+import { fontMono, fontSans, fontSerif } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { BreakpointIndicator } from "@/components/breakpoint-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -9,7 +9,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s - tifan.me",
+    template: "%s | tifan.me",
     default: "tifan.me",
   },
   description: "A blog",
@@ -44,11 +44,12 @@ export default function RootLayout({
         className={cn(
           "min-h-screen font-sans antialiased",
           fontSans.variable,
-          fontMono.variable
+          fontMono.variable,
+          fontSerif.variable
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <main className="mx-auto max-w-2xl px-4 py-10">{children}</main>
+          {children}
           <BreakpointIndicator />
         </ThemeProvider>
       </body>

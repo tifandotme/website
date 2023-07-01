@@ -1,11 +1,11 @@
-export default function BlogLayout({
+export default function PostLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <>
-      <h1>This is a blog layout</h1>
+      <h1>This is a post layout</h1>
       {children}
     </>
   );
