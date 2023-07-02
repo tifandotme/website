@@ -1,4 +1,5 @@
 import { type Metadata } from "next";
+import Script from "next/script";
 
 import { fontMono, fontSans, fontSerif } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
@@ -35,11 +36,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* <script
-        async
-        src="https://analytics.tifan.me/script.js"
-        data-website-id="7edd9838-f991-48d3-aa41-c7fe0cd55d36"
-      /> */}
       <body
         className={cn(
           "min-h-screen font-sans antialiased",
@@ -52,6 +48,11 @@ export default function RootLayout({
           {children}
           <BreakpointIndicator />
         </ThemeProvider>
+        <Script
+          async
+          src="https://analytics.tifan.me/script.js"
+          data-website-id="7edd9838-f991-48d3-aa41-c7fe0cd55d36"
+        />
       </body>
     </html>
   );
