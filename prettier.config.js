@@ -11,6 +11,7 @@ const importConfig = {
     "^@/config/(.*)$",
     "^@/lib/(.*)$",
     "^@/hooks/(.*)$",
+    "^@/public/(.*)$",
     "^@/components/ui/(.*)$",
     "^@/components/(.*)$",
     "^@/app/(.*)$",
