@@ -11,19 +11,23 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
-      // screens: {
-      //   "lg": defaultTheme.screens["2xl"],
-      //   // "2xl": "1400px",
-      // },
+      // padding: "2rem",
+      screens: {
+        // "lg": defaultTheme.screens["2xl"],
+        "2xl": "1400px",
+      },
     },
     extend: {
+      // cursor: {
+      //   external: "url('/external-cursor.png'), auto",
+      // },
       fontFamily: {
         sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
         mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],
         serif: ["var(--font-serif)", ...defaultTheme.fontFamily.serif],
       },
       colors: {
+        accent: "hsl(var(--accent))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

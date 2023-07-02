@@ -34,6 +34,9 @@
     --ring: 0 0% 63.9%;
 
     --radius: 0.5rem;
+
+    /* my own */
+    --accent: 209 100% 50%;
   }
 
   .dark {
@@ -76,6 +79,6 @@
     @apply bg-background text-foreground;
   }
   em {
-    @apply font-serif text-[113%];
+    @apply font-serif text-[115%];
   }
 }
