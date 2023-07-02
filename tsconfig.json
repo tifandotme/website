@@ -37,6 +37,7 @@
     "baseUrl": ".", // needed by contentlayer
     "paths": {
       "@/*": ["./src/*"],
+      "@/public/*": ["./public/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
