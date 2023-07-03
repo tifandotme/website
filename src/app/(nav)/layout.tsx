@@ -12,11 +12,11 @@ export default function HomeLayout({
       <nav className="container flow-root p-6 pt-10 sm:p-10 lg:p-16 ">
         <Link
           href="/"
-          className="absolute select-none text-5xl font-semibold leading-9  text-gray-500 transition hover:text-gray-700 active:translate-y-0.5 lg:fixed"
+          className="absolute select-none text-5xl font-semibold leading-9  text-gray-400 transition hover:text-gray-700 active:translate-y-0.5 lg:fixed"
         >
           T
         </Link>
-        <div className="float-right inline-flex gap-5 text-lg font-medium text-gray-500">
+        <div className="float-right inline-flex gap-5 text-lg font-medium text-gray-400">
           <Navigation />
         </div>
       </nav>

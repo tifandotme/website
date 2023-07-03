@@ -21,7 +21,7 @@ export function Navigation() {
           href={href}
           className={cn(
             "px-2 py-1 transition hover:text-gray-900 active:translate-y-0.5",
-            pathname === href && "font-semibold text-gray-900"
+            pathname === href && "font-semibold text-gray-700"
           )}
         >
           {name}
