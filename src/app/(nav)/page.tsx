@@ -30,7 +30,7 @@ export default function HomePage() {
           Outside of programming, I&apos;m also passionate about <em>science fiction</em> and <em>philosophy</em>.
         </p>
 
-        <section className="mb-16 mt-9 flex w-full justify-around gap-3 sm:justify-center sm:gap-6">
+        <section className="mb-20 mt-9 flex w-full justify-around gap-3 sm:justify-center sm:gap-6">
           <ExternalLink
             icon={FaNewspaper}
             href="https://tifan.me/resume.pdf"
