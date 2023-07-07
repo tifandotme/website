@@ -1,7 +1,15 @@
+import { type Metadata } from "next";
+
+import { MainContainer } from "@/components/main-container";
+
+export const metadata: Metadata = {
+  title: "Projects",
+};
+
 export default function ProjectsPage() {
   return (
-    <>
-      <div className="mt-16">Projects page</div>
-    </>
+    <MainContainer>
+      <p>Projects page</p>
+    </MainContainer>
   );
 }
