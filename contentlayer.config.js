@@ -53,7 +53,7 @@ const Post = defineDocumentType(() => ({
     },
     date: {
       type: "date",
-      description: "Date of publication",
+      description: "Date of publication", // TODO: add last modification date, fetched from git history?
       required: true,
     },
     // TODO: Implement Draft Mode: https://nextjs.org/docs/app/building-your-application/configuring/draft-mode
