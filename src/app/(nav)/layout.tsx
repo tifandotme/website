@@ -9,7 +9,7 @@ export default function HomeLayout({
 }) {
   return (
     <>
-      <nav className="container flow-root p-6 pt-10 sm:p-10 lg:p-16 ">
+      <nav className="container flow-root px-6 py-16 sm:px-10 lg:px-16">
         <Link
           href="/"
           className="absolute select-none text-5xl font-semibold leading-9  text-gray-400 transition hover:text-gray-700 active:translate-y-0.5 lg:fixed"
@@ -20,7 +20,7 @@ export default function HomeLayout({
           <Navigation />
         </div>
       </nav>
-      <main className="mx-auto my-10 max-w-3xl p-3 sm:p-5">{children}</main>
+      {children}
     </>
   );
 }

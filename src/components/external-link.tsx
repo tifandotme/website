@@ -17,7 +17,7 @@ export function ExternalLink({
 
   return (
     <a
-      className="group inline-flex flex-col items-center justify-center gap-2 rounded-md border border-gray-300 p-4 transition hover:-translate-y-1 active:scale-95 sm:flex-row sm:gap-3 sm:px-5"
+      className="group inline-flex flex-col items-center justify-center gap-2 rounded-lg border border-gray-300 px-6 py-4 transition hover:-translate-y-1 active:scale-95 sm:flex-row sm:gap-3 sm:px-5"
       target="_blank"
       rel="noopener noreferrer"
       href={href}
