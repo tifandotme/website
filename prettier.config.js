@@ -1,5 +1,5 @@
-/** @type {import("@ianvs/prettier-plugin-sort-imports").PluginConfig} */
-const importConfig = {
+/** @type {import("@ianvs/prettier-plugin-sort-imports").PrettierConfig} */
+const config = {
   importOrder: [
     "",
     "^(react/(.*)$)|^(react$)",
@@ -18,21 +18,10 @@ const importConfig = {
     "",
     "^[.]",
   ],
-};
-
-const prettierConfig = {
-  tabWidth: 2,
-  singleQuote: false,
-  semi: true,
-  useTabs: false,
-  printWidth: 80,
-};
-
-module.exports = {
-  ...importConfig,
-  ...prettierConfig,
   plugins: [
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss",
   ],
 };
+
+module.exports = config;
