@@ -10,11 +10,23 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | tifan.me",
-    default: "tifan.me",
+    template: "%s — Tifan Dwi Avianto",
+    default: "Tifan Dwi Avianto",
   },
-  description: "A blog",
-  keywords: ["blog", "web development", "javascript", "typescript", "react"],
+  description:
+    "A blog and portfolio site by Tifan. Follow my journey in web development through insightful articles and inspiring projects.",
+  keywords: [
+    "tifan dwi avianto",
+    "tifan",
+    "tifandotme",
+    "portfolio",
+    "blog",
+    "personal site",
+    "web development",
+    "javascript",
+    "typescript",
+    "react",
+  ],
   creator: "Tifan Dwi Avianto",
   authors: [
     {
@@ -57,3 +69,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+// TODO: add icon, apple-icon

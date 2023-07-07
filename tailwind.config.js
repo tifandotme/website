@@ -83,7 +83,6 @@ module.exports = {
       // },
     },
   },
-  // TODO: figure out wtf is this
   // @ts-ignore
   plugins: [require("tailwindcss-animate")],
 };
