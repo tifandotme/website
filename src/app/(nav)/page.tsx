@@ -1,16 +1,20 @@
-import Image from "next/image";
-import { FaGithub, FaNewspaper, FaTwitter } from "react-icons/fa6";
+import Image from "next/image"
+import { baseUrlDynamic } from "@/config"
+import { FaGithub, FaNewspaper, FaTwitter } from "react-icons/fa6"
 
-import potrait from "@/public//profile-picture.png";
-import { ExternalLink } from "@/components/external-link";
-import { MainContainer } from "@/components/main-container";
-import { PostList } from "@/components/post-list";
+import potrait from "@/public/profile-picture.png"
+import { MainContainer } from "@/components/main-container"
+import { PostList } from "@/components/post-list"
+import { SocialButton } from "@/components/social-button"
 
 export default function HomePage() {
   return (
     <>
       <MainContainer>
-        <header className="mt-4 text-left text-lg leading-8 text-gray-700  sm:text-justify">
+        <header
+          id="header"
+          className="text-left text-lg leading-8 text-gray-700 sm:text-justify"
+        >
           <Image
             className="float-right m-1 ml-5 hidden rounded-3xl grayscale hover:grayscale-0 sm:block"
             src={potrait}
@@ -39,17 +43,18 @@ export default function HomePage() {
           </p>
 
           <section className="mb-20 mt-9 flex w-full justify-around gap-3 sm:justify-center sm:gap-6">
-            <ExternalLink
+            <SocialButton
               icon={FaNewspaper}
-              href="https://tifan.me/resume.pdf"
+              href={baseUrlDynamic + "/resume.pdf"}
               text="Resume"
+              download
             />
-            <ExternalLink
+            <SocialButton
               icon={FaGithub}
               href="https://github.com/tifandotme"
               text="GitHub"
             />
-            <ExternalLink
+            <SocialButton
               icon={FaTwitter}
               href="https://twitter.com/tifandotme"
               text="Twitter"
@@ -60,5 +65,5 @@ export default function HomePage() {
         <PostList />
       </MainContainer>
     </>
-  );
+  )
 }
