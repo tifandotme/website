@@ -1,28 +1,28 @@
-import Link from "next/link";
-import { allPosts } from "contentlayer/generated";
+import Link from "next/link"
+import { allPosts } from "contentlayer/generated"
 
 export function PostList() {
   const posts = allPosts.sort((a, b) =>
-    new Intl.Collator().compare(b.date, a.date)
-  );
+    new Intl.Collator().compare(b.date, a.date),
+  )
 
   return (
     <article className="mx-auto flex max-w-screen-sm flex-col">
       {posts.map((post) => {
-        const postYear = new Date(post.date).getFullYear();
-        const currentYear = new Date().getFullYear();
+        const postYear = new Date(post.date).getFullYear()
+        const currentYear = new Date().getFullYear()
 
-        let options: Intl.DateTimeFormatOptions;
+        let options: Intl.DateTimeFormatOptions
 
         if (postYear < currentYear || postYear > currentYear) {
-          options = { dateStyle: "medium" };
+          options = { dateStyle: "medium" }
         } else {
-          options = { month: "short", day: "numeric" };
+          options = { month: "short", day: "numeric" }
         }
 
         const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
-          new Date(post.date)
-        );
+          new Date(post.date),
+        )
 
         return (
           <Link
@@ -40,8 +40,8 @@ export function PostList() {
               {formattedDate}
             </time>
           </Link>
-        );
+        )
       })}
     </article>
-  );
+  )
 }

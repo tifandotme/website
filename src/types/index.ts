@@ -1,4 +1,4 @@
 export type NavLink = {
-  readonly title: string;
-  readonly url: string;
-};
+  readonly title: string
+  readonly url: string
+}

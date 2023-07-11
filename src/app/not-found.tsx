@@ -1,4 +1,4 @@
-import { FaArrowLeft } from "react-icons/fa6";
+import { FaArrowLeft } from "react-icons/fa6"
 
 export default function NotFound() {
   return (
@@ -19,5 +19,5 @@ export default function NotFound() {
         </a>
       </main>
     </>
-  );
+  )
 }
