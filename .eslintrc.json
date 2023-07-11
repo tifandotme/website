@@ -8,6 +8,7 @@
     "eslint:recommended",
     "next/core-web-vitals",
     "plugin:tailwindcss/recommended",
+    "plugin:mdx/recommended",
     "prettier"
   ],
   "rules": {
@@ -19,6 +20,7 @@
   "settings": {
     "tailwindcss": {
       "callees": ["cn"] // ??
-    }
+    },
+    "mdx/code-blocks": true
   }
 }
