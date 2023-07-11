@@ -1,15 +1,13 @@
-import { type Metadata } from "next";
-
-import { MainContainer } from "@/components/main-container";
+import { type Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Projects",
-};
+}
 
 export default function ProjectsPage() {
   return (
-    <MainContainer>
+    <main className="container-main">
       <p>Projects page</p>
-    </MainContainer>
-  );
+    </main>
+  )
 }
