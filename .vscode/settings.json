@@ -3,5 +3,5 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
 
   "tailwind-fold.autoFold": false,
-  "editor.wordWrap": "bounded"
+  "editor.wordWrap": "on"
 }
