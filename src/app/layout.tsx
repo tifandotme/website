@@ -1,12 +1,12 @@
-import { type Metadata } from "next";
-import Script from "next/script";
+import { type Metadata } from "next"
+import Script from "next/script"
+import cn from "clsx"
 
-import { fontMono, fontSans, fontSerif } from "@/lib/fonts";
-import { cn } from "@/lib/utils";
-import { BreakpointIndicator } from "@/components/breakpoint-indicator";
-import { ThemeProvider } from "@/components/theme-provider";
+import { fontMono, fontSans, fontSerif } from "@/lib/fonts"
+import { BreakpointIndicator } from "@/components/breakpoint-indicator"
+import { ThemeProvider } from "@/components/theme-provider"
 
-import "./globals.css";
+import "./globals.css"
 
 export const metadata: Metadata = {
   title: {
@@ -39,12 +39,12 @@ export const metadata: Metadata = {
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
   colorScheme: "dark light",
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -53,7 +53,7 @@ export default function RootLayout({
           "min-h-screen font-sans antialiased",
           fontSans.variable,
           fontMono.variable,
-          fontSerif.variable
+          fontSerif.variable,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
@@ -67,7 +67,8 @@ export default function RootLayout({
         />
       </body>
     </html>
-  );
+  )
 }
 
 // TODO: add icon, apple-icon
+// TODO: add blog to blogs.hn and ooh.directory
