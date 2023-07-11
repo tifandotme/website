@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently -k -n contentlayer,next 'contentlayer dev' 'next dev'",
-    "build": "contentlayer build & next build",
+    "build": "concurrently -k 'contentlayer build' 'next build'",
     "start": "next start",
     "lint": "eslint --cache --cache-strategy content --cache-location=node_modules/.cache/eslint/.eslint-cache src",
     "format": "prettier --check --cache --cache-strategy content .",
