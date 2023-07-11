@@ -40,7 +40,7 @@ const computedFields: ComputedFields = {
     resolve: (doc) => {
       const segments = doc._raw.flattenedPath.split("/")
 
-      const final = segments[segments.length - 1]
+      const final = segments[segments.length - 1]!
 
       return final
         .replace(/\s+/g, "-")
