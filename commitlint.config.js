@@ -1,9 +1,8 @@
 // https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
 // https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-conventional/index.js
 
-/** @type {import("@commitlint/types").QualifiedConfig} */
-module.exports = {
-  // TODO: refine custom rules
+/** @type {import("@commitlint/types").UserConfig} */
+const config = {
   rules: {
     "body-leading-blank": [1, "always"],
     "body-max-line-length": [2, "always", 100],
@@ -75,4 +74,6 @@ module.exports = {
       },
     },
   },
-};
+}
+
+export default config
