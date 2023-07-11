@@ -1,7 +1,7 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
+import defaultTheme from "tailwindcss/defaultTheme"
 
 /** @type {import("tailwindcss").Config} */
-module.exports = {
+const config = {
   darkMode: ["class"],
   content: [
     "./src/app/**/*.{ts,tsx}",
@@ -11,15 +11,22 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      // padding: "2rem",
       screens: {
         // "lg": defaultTheme.screens["2xl"],
         "2xl": "1400px",
       },
     },
     extend: {
-      // cursor: {
-      //   external: "url('/external-cursor.png'), auto",
+      // typography default css: https://github.com/tailwindlabs/tailwindcss-typography/blob/master/src/styles.js
+      // typography: {
+      //   DEFAULT: {
+      //     css: {
+      //       "h1 a, h2 a, h3 a, h4 a": {
+      //         textDecoration: "none", // because rehype-autolink-headings adds a link to headings
+      //         color: "red",
+      //       },
+      //     },
+      //   },
       // },
       fontFamily: {
         sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
@@ -84,5 +91,7 @@ module.exports = {
     },
   },
   // @ts-ignore
-  plugins: [require("tailwindcss-animate")],
-};
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+}
+
+export default config
