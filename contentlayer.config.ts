@@ -12,6 +12,9 @@ import rehypeExternalLinks, {
 import rehypePrettyCode, {
   type Options as PrettyCodeOptions,
 } from "rehype-pretty-code"
+import rehypeShiftHeading, {
+  type Options as ShiftHeadingOptions,
+} from "rehype-shift-heading"
 import rehypeSlug, { type Options as SlugOptions } from "rehype-slug"
 import remarkGfm, { type Options as GfmOptions } from "remark-gfm"
 
@@ -84,7 +87,7 @@ export default makeSource({
   mdx: {
     remarkPlugins: [[remarkGfm, {} satisfies GfmOptions]],
     rehypePlugins: [
-      [rehypeSlug, {} satisfies SlugOptions],
+      [rehypeSlug, {} satisfies SlugOptions], // must be before autolink headings
       [
         rehypeAutolinkHeadings,
         {
@@ -105,6 +108,12 @@ export default makeSource({
         {
           rel: ["nofollow", "noopener"],
         } satisfies ExternalLinksOptions,
+      ],
+      [
+        rehypeShiftHeading,
+        {
+          shift: 1,
+        } satisfies ShiftHeadingOptions,
       ],
     ],
   },
