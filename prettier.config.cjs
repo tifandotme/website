@@ -1,7 +1,13 @@
 // prettier 3.0 will introduce config changes
 
-/** @type {import("@ianvs/prettier-plugin-sort-imports").PrettierConfig} */
-const config = {
+/** @type {import("prettier-plugin-tailwindcss").PluginOptions} */
+const tailwindConfig = {
+  tailwindFunctions: ["cn", "clsx"],
+  tailwindAttributes: ["className", "class"],
+}
+
+/** @type {import("@ianvs/prettier-plugin-sort-imports").PluginConfig} */
+const importConfig = {
   importOrder: [
     "",
     "^(react/(.*)$)|^(react$)",
@@ -19,12 +25,21 @@ const config = {
     "",
     "^[.]",
   ],
+}
+
+const config = {
   semi: false,
-  trailingComma: "all",
+  trailingComma: "all", // in v3 this will be default
+  
+  ...importConfig,
+  ...tailwindConfig,
+
   plugins: [
     "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-tailwindcss",
+    "prettier-plugin-tailwindcss", // must be loaded last: https://github.com/tailwindlabs/prettier-plugin-tailwindcss#compatibility-with-other-prettier-plugins
   ],
+
+  pluginSearchDirs: false,
 }
 
 module.exports = config
