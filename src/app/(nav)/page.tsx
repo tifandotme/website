@@ -3,15 +3,17 @@ import { FaGithub, FaNewspaper, FaTwitter } from "react-icons/fa6"
 
 import potrait from "@/public/profile-picture.png"
 import { baseUrlDynamic } from "@/config"
+import { NameToggle } from "@/components/name-toggle"
 import { PostList } from "@/components/post-list"
+import { ScrollUpWhenMounted } from "@/components/scroll-fix"
 import { SocialButton } from "@/components/social-button"
 
 export default function HomePage() {
   return (
     <main className="container-main">
-      <header className="text-justify text-lg leading-8 text-gray-700">
+      <header className="text-left text-lg leading-8 sm:text-justify">
         <Image
-          className="float-right m-1 ml-5 hidden rounded-3xl grayscale hover:grayscale-0 sm:block"
+          className="float-right m-1 ml-5 hidden rounded-3xl grayscale hover:grayscale-0 dark:brightness-90 sm:block"
           src={potrait}
           alt="Self potrait of the author"
           width={120}
@@ -19,14 +21,10 @@ export default function HomePage() {
           placeholder="blur"
         />
         <p>
-          Hi, I&apos;m{" "}
-          <em>
-            <strong>Tifan</strong>
-          </em>
-          , a software engineer based in Indonesia. I&apos;m currently focused
-          on building with the React ecosystem and exploring various aspects of
-          web development. I also share interesting insights that I discovered
-          throughout my learning journey.
+          Hi, I&apos;m <NameToggle />, a software engineer based in Indonesia.
+          I&apos;m currently focused on building with the React ecosystem and
+          exploring various aspects of web development. I also share interesting
+          insights that I discovered throughout my learning journey.
         </p>
         <p className="my-6">
           My ambition is to create an <em>efficient</em> and <em>elegant</em>{" "}
@@ -58,6 +56,8 @@ export default function HomePage() {
       </header>
 
       <PostList />
+
+      <ScrollUpWhenMounted />
     </main>
   )
 }
