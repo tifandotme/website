@@ -15,7 +15,7 @@
     "postinstall": "husky install"
   },
   "dependencies": {
-    "clsx": "^1.2.1",
+    "clsx": "^2.0.0",
     "contentlayer": "^0.3.4",
     "next": "^13.4.10",
     "next-contentlayer": "^0.3.4",
