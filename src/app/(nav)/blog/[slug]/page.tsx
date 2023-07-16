@@ -78,6 +78,13 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         className={cn(
           "prose mx-auto !max-w-screen-md dark:prose-invert lg:-mt-24",
 
+          // H2
+          "prose-h2:before:mb-4 prose-h2:before:block prose-h2:before:h-[3px] prose-h2:before:w-[1.5rem] prose-h2:before:bg-foreground prose-h2:before:content-['']",
+          "prose-h2:mt-[1.7em] prose-h2:font-serif prose-h2:text-3xl prose-h2:font-medium",
+
+          // H3
+          "prose-h3:mt-[1.3em] prose-h3:text-2xl prose-h3:font-medium",
+
           "grid grid-cols-[min(63ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
         )}
       >
