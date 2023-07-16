@@ -3,7 +3,6 @@ import { FaGithub, FaNewspaper, FaTwitter } from "react-icons/fa6"
 
 import potrait from "@/public/profile-picture.png"
 import { baseUrlDynamic } from "@/config"
-import { NameToggle } from "@/components/name-toggle"
 import { PostList } from "@/components/post-list"
 import { ScrollUpWhenMounted } from "@/components/scroll-fix"
 import { SocialButton } from "@/components/social-button"
@@ -21,10 +20,12 @@ export default function HomePage() {
           placeholder="blur"
         />
         <p>
-          Hi, I&apos;m <NameToggle />, a software engineer based in Indonesia.
-          I&apos;m currently focused on building with the React ecosystem and
-          exploring various aspects of web development. I also share interesting
-          insights that I discovered throughout my learning journey.
+          Hi, I&apos;m{" "}
+          <span className="font-serif text-xl font-semibold">Tifan</span>, a
+          software engineer based in Indonesia. I&apos;m currently focused on
+          building with the React ecosystem and exploring various aspects of web
+          development. I also share interesting insights that I discovered
+          throughout my learning journey.
         </p>
         <p className="my-6">
           My ambition is to create an <em>efficient</em> and <em>elegant</em>{" "}
