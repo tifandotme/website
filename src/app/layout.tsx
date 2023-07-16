@@ -2,7 +2,7 @@ import { type Metadata } from "next"
 import Script from "next/script"
 import cn from "clsx"
 
-import { fontMono, fontSans, fontSerif } from "@/lib/fonts"
+import { fontMono, fontSans, fontSerif, fontSerifSlanted } from "@/lib/fonts"
 import { BreakpointIndicator } from "@/components/breakpoint-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
@@ -38,7 +38,9 @@ export const metadata: Metadata = {
     { media: "(prefers-color-scheme: light)", color: "light" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
-  colorScheme: "dark light",
+  other: {
+    "darkreader-lock": "_", // disable Dark Reader
+  },
 }
 
 export default function RootLayout({
@@ -50,13 +52,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen font-sans antialiased",
           fontSans.variable,
           fontMono.variable,
           fontSerif.variable,
+          fontSerifSlanted.variable,
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+        <ThemeProvider attribute="class" enableSystem>
           {children}
           <BreakpointIndicator />
         </ThemeProvider>
@@ -70,5 +72,5 @@ export default function RootLayout({
   )
 }
 
-// TODO: add icon, apple-icon
+// TODO: add icon, apple-icon, refine favicon
 // TODO: add blog to blogs.hn and ooh.directory
