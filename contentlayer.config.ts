@@ -18,6 +18,8 @@ import rehypeShiftHeading, {
 import rehypeSlug, { type Options as SlugOptions } from "rehype-slug"
 import remarkGfm, { type Options as GfmOptions } from "remark-gfm"
 
+import { type HeadingsField } from "@/types"
+
 const computedFields: ComputedFields = {
   url: {
     description: "URL path of the post (e.g. /blog/my-post)",
@@ -30,11 +32,7 @@ const computedFields: ComputedFields = {
 
       const final = "/" + segments.join("/")
 
-      return final
-        .replace(/\s+/g, "-")
-        .replace(/--+/g, "-")
-        .replace(/[^\w/-]+/g, "")
-        .toLowerCase()
+      return slugify(final)
     },
   },
   slug: {
@@ -45,11 +43,24 @@ const computedFields: ComputedFields = {
 
       const final = segments[segments.length - 1]!
 
-      return final
-        .replace(/\s+/g, "-")
-        .replace(/--+/g, "-")
-        .replace(/[^\w/-]+/g, "")
-        .toLowerCase()
+      return slugify(final)
+    },
+  },
+  headings: {
+    type: "json",
+    resolve: async (doc) => {
+      // should this be async?
+      const regex = /\n(?<flag>#{1})\s+(?<content>.+)/g
+      const headings = Array.from<[string, string, string]>(
+        doc.body.raw.matchAll(regex),
+      ).map((group) => {
+        return {
+          text: group[2],
+          slug: slugify(group[2]),
+        } satisfies HeadingsField[number]
+      })
+
+      return headings
     },
   },
 }
@@ -119,9 +130,17 @@ export default makeSource({
   },
 })
 
-/*
-https://github.github.com/gfm/
-https://unpkg.com/browse/shiki@0.14.2/themes/
-https://rehype-pretty-code.netlify.app/
+function slugify(text: string): string {
+  return text
+    .replace(/\s+/g, "-")
+    .replace(/--+/g, "-")
+    .replace(/[^\w/-]+/g, "")
+    .toLowerCase()
+}
 
-*/
+/*
+  REFERENCES:
+  https://github.github.com/gfm/
+  https://unpkg.com/browse/shiki@0.14.2/themes/
+  https://rehype-pretty-code.netlify.app/
+  */
