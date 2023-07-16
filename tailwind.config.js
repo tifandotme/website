@@ -34,10 +34,28 @@ const config = {
           large: "var(--muted-large-text)",
         },
       },
-      typography: () => ({
+      typography: {
         // node_modules/@tailwindcss/typography/src/styles.js
         DEFAULT: {
           css: {
+            // discard prose-pre styles, because I handcraft my own with rehype-pretty-code
+            pre: {
+              backgroundColor: null,
+              color: null,
+              overflowX: null,
+              fontWeight: null,
+              fontSize: null,
+              lineHeight: null,
+              marginTop: null,
+              marginBottom: null,
+              borderRadius: null,
+              paddingTop: null,
+              paddingRight: null,
+              paddingBottom: null,
+              paddingLeft: null,
+            },
+
+            // custom prose colors
             "--tw-prose-body": "var(--foreground)",
             "--tw-prose-headings": "var(--heading)",
             "--tw-prose-lead": colors.zinc[600],
@@ -50,8 +68,8 @@ const config = {
             "--tw-prose-quote-borders": colors.zinc[200],
             "--tw-prose-captions": colors.zinc[500],
             "--tw-prose-code": colors.zinc[900],
-            "--tw-prose-pre-code": colors.zinc[200],
-            "--tw-prose-pre-bg": colors.zinc[800],
+            "--tw-prose-pre-code": colors.red[200],
+            "--tw-prose-pre-bg": "var(--codeblock)",
             "--tw-prose-th-borders": colors.zinc[300],
             "--tw-prose-td-borders": colors.zinc[200],
 
@@ -67,13 +85,13 @@ const config = {
             "--tw-prose-invert-quote-borders": colors.zinc[700],
             "--tw-prose-invert-captions": colors.zinc[400],
             "--tw-prose-invert-code": colors.white,
-            "--tw-prose-invert-pre-code": colors.zinc[300],
-            "--tw-prose-invert-pre-bg": "rgb(0 0 0 / 50%)",
+            "--tw-prose-invert-pre-code": colors.red[300],
+            "--tw-prose-invert-pre-bg": "var(--codeblock)",
             "--tw-prose-invert-th-borders": colors.zinc[600],
             "--tw-prose-invert-td-borders": colors.zinc[700],
           },
         },
-      }),
+      },
       fontFamily: {
         sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
         mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],
