@@ -80,6 +80,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
           // H2
           "prose-h2:before:mb-4 prose-h2:before:block prose-h2:before:h-[3px] prose-h2:before:w-[1.5rem] prose-h2:before:bg-foreground prose-h2:before:content-['']",
+
           "prose-h2:mt-[1.7em] prose-h2:font-serif prose-h2:text-3xl prose-h2:font-medium",
 
           // H3

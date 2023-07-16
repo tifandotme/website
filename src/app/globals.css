@@ -123,6 +123,10 @@ pre > code {
   @apply w-[calc(var(--line-numbering-width)-2px)];
 }
 
+[data-highlighted-chars] {
+  @apply border-blue-300 bg-primary px-[5px] py-[2px] font-semibold !text-white;
+}
+
 /* #endregion */
 
 /* rehype-autolink-headings */
