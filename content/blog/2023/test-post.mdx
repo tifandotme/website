@@ -1,16 +1,40 @@
 ---
-title: "2023 Resolution: What to expect from now and my plan for the future"
+title: "The quick brown fox jumps over the lazy dog"
 description: Sed non justo quis odio faucibus convallis nec a sapien. Fusce libero mauris, tincidunt vel blandit quis, tempor eget orci. Quisque sollicitudin velit sit amet felis ornare efficitur.
 date: 2023-06-30
 ---
 
-á Praesent **mattis ipsum ut** justo _tincidunt_ tincidunt. Suspendisse nec arcu sem. Vivamus vel odio sit amet velit ultricies suscipit sed porta orci. Morbi consectetur quis urna non vestibulum. Quisque quis rutrum nisi. Ut tempor sodales elit. Sed euismod justo ante, eu sodales dolor accumsan sit amet. Praesent viverra, diam eu euismod tempor, orci nunc placerat nisi, ut iaculis nulla nulla ac nunc. Ut rutrum, sapien quis efficitur euismod, massa eros finibus lorem, a malesuada nisl velit at tortor. Nam venenatis nibh at velit pellentesque fringilla. In id fringilla lectus. Maecenas sollicitudin congue felis a elementum. Aliquam aliquam, risus et pretium feugiat, orci nisl tempus sapien, at viverra nibh risus a nulla.
+```html title="foo.html"
+<article class="prose">
+  <h1>
+    Garlic bread with cheese: What the science tells us science tells science
+    tells
+  </h1>
+</article>
+```
+
+```html {2-3}
+<article class="prose">
+  <h1>
+    Garlic bread with cheese: What the science tells us What the science tells
+    us What the science tells us
+  </h1>
+</article>
+```
+
+```js showLineNumbers {1}
+export default makeSource({
+  contentDirPath: "content",
+})
+```
+
+Praesent **mattis ipsum ut** justo _tincidunt_ tincidunt. Suspendisse nec arcu sem. Vivamus vel odio sit amet velit ultricies suscipit sed porta orci. Morbi consectetur quis urna non vestibulum. Quisque quis rutrum nisi. Ut tempor sodales elit. Sed euismod justo ante, eu sodales dolor accumsan sit amet. Praesent viverra, diam eu euismod tempor, orci nunc placerat nisi, ut iaculis nulla nulla ac nunc. Ut rutrum, sapien quis efficitur euismod, massa eros finibus lorem, a malesuada nisl velit at tortor. Nam venenatis nibh at velit pellentesque fringilla. In id fringilla lectus. Maecenas sollicitudin congue felis a elementum. Aliquam aliquam, risus et pretium feugiat, orci nisl tempus sapien, at viverra nibh risus a nulla.
 
 Sed non justo quis odio faucibus convallis nec a sapien. Fusce libero mauris, tincidunt vel blandit quis, tempor eget orci. Quisque sollicitudin velit sit amet felis ornare efficitur. Sed nulla lacus, cursus in felis id, egestas finibus ligula. Vivamus a dui et urna ultrices bibendum. Curabitur egestas fermentum aliquet. Duis lacinia pulvinar tortor eget dictum. Praesent suscipit metus eu nibh laoreet, id ultricies mauris volutpat. Etiam in magna eget leo pretium posuere. Aliquam faucibus, lorem quis accumsan venenatis, ante quam volutpat turpis, ac vestibulum tellus ligula nec tortor. Mauris iaculis magna ut mi dignissim pretium.
 
 Aenean hendrerit id lectus ut vulputate. Ut sem ligula, lobortis sed magna sed, accumsan dictum lectus. Morbi interdum eleifend tristique. Mauris vitae facilisis nibh. Maecenas eu molestie augue, quis tempor justo. Pellentesque nec feugiat velit, in vulputate lorem. In hac habitasse platea dictumst. Morbi luctus, mauris ultrices faucibus pulvinar, est mi ornare risus, vitae placerat erat felis at dolor. Duis at metus dolor.
 
-# Heading 1
+# Aenean
 
 Aenean hendrerit id lectus ut vulputate.
 
@@ -34,11 +58,11 @@ Aenean hendrerit id lectus ut vulputate.
 
 ~single~ ~~double~~
 
-# Heading 1 anoiher
+# Vulputate luctus
 
 asdasd
 
-# Heading 1 another 2
+# Faucibus pulvinar
 
 asdas
 
@@ -88,19 +112,9 @@ The `@tailwindcss/typography` plugin is our attempt to give you what you _actual
 
 It adds a new `prose` class that you can slap on any block of vanilla HTML content and turn it into a beautiful, well-formatted document:
 
-```html
+```html {2} title="foo.rs"
 <article class="prose">
   <h1>Garlic bread with cheese: What the science tells us</h1>
-  <p>
-    For years parents have espoused the health benefits of eating garlic bread
-    with cheese to their children, with the food earning such an iconic status
-    in our culture that kids will often dress up as warm, cheesy loaf for
-    Halloween.
-  </p>
-  <p>
-    But a recent study shows that the celebrated appetizer may be linked to a
-    series of rabies cases springing up around the country.
-  </p>
 </article>
 ```
 
@@ -174,7 +188,7 @@ I think most people are going to use [highlight.js](https://highlightjs.org/) or
 
 Here's what a default `tailwind.config.js` file looks like at the time of writing:
 
-```js {1-2,4} title="asd" showLineNumbers
+```js showLineNumbers
 export default makeSource({
   contentDirPath: "content",
   documentTypes: [Post],
