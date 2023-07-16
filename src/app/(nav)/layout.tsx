@@ -91,12 +91,12 @@ export default function HomeLayout({
 
       {children}
 
-      <footer className="container py-24 text-center font-mono font-semibold text-muted-large">
+      <footer className="container py-24 text-center font-mono font-semibold uppercase text-muted-large">
         {/* TODO: swap this once the blog has enough content */}
         {/* CC BY-NC-SA 4.0 2023-PRESENT
         <span className="relative top-[4px] text-[24px]"> © </span>Tifan Dwi
         Avianto */}
-        {":)"}
+        {"Built w/ Next, Tailwind, MDX & Contentlayer"}
       </footer>
     </>
   )

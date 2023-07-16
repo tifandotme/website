@@ -91,7 +91,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
       >
         <header
           className={cn(
-            "not-prose !col-span-full mb-8 [&+h2]:mt-5",
+            "not-prose !col-span-full mb-10 [&+h2]:mt-5",
 
             "grid grid-cols-[min(63ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
           )}
