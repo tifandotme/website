@@ -12,6 +12,7 @@ export function PostList() {
         const postYear = new Date(post.date).getFullYear()
         const currentYear = new Date().getFullYear()
 
+        // XXX: JS will add Temporal in the future
         let options: Intl.DateTimeFormatOptions
 
         if (postYear < currentYear || postYear > currentYear) {
@@ -28,17 +29,20 @@ export function PostList() {
           <Link
             key={post.url}
             href={post.url}
-            className="mb-6 inline-flex flex-col items-start gap-0.5 rounded-lg border border-gray-300 p-5 transition hover:bg-gray-50 active:scale-[.98]"
+            className="mb-6 rounded-xl border p-5 hover:bg-neutral-100 hover:transition active:scale-[.98] dark:hover:bg-neutral-900"
           >
-            <h3 className="line-clamp-3 text-xl font-medium leading-8 text-gray-700">
+            <h3 className="line-clamp-3 font-serif text-xl font-semibold leading-8">
               {post.title}
             </h3>
             <time
               dateTime={post.date}
-              className="whitespace-nowrap font-medium text-gray-400"
+              className="whitespace-nowrap font-mono font-medium text-muted"
             >
               {formattedDate}
             </time>
+            {post.description && (
+              <p className="mt-5 line-clamp-3">{post.description}</p>
+            )}
           </Link>
         )
       })}
