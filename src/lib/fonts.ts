@@ -1,5 +1,8 @@
 import { Inter, JetBrains_Mono, Lora, Newsreader } from "next/font/google"
 
+// https://fonts.google.com/variablefonts
+// https://fontsource.org/
+
 export const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -10,13 +13,13 @@ export const fontMono = JetBrains_Mono({
   variable: "--font-mono",
 })
 
-export const fontSerif = Newsreader({
+export const fontSerif = Lora({
   subsets: ["latin"],
-  style: "italic",
   variable: "--font-serif",
 })
 
-export const fontHeading = Lora({
+export const fontSerifSlanted = Newsreader({
   subsets: ["latin"],
-  variable: "--font-heading",
+  style: "italic",
+  variable: "--font-serif-slanted",
 })
