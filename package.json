@@ -30,8 +30,7 @@
     "rehype-shift-heading": "^1.0.2",
     "rehype-slug": "^5.1.0",
     "remark-gfm": "^3.0.1",
-    "shiki": "^0.14.3",
-    "zustand": "^4.3.9"
+    "shiki": "^0.14.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.6",
