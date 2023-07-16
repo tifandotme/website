@@ -5,7 +5,7 @@ import cn from "clsx"
 import { BiUpArrowAlt } from "react-icons/bi"
 import { useWindowScroll } from "react-use"
 
-export function ScrollToTopButton({ path }: { path: string }) {
+export function BackToTopButton({ path }: { path: string }) {
   const { y } = useWindowScroll()
 
   const isScrolled = y > window.innerHeight

@@ -8,7 +8,7 @@ import { useMDXComponent } from "next-contentlayer/hooks"
 
 import { type HeadingsField } from "@/types"
 import { getPost } from "@/lib/utils"
-import { ScrollToTopButton } from "@/components/scroll-to-top"
+import { BackToTopButton } from "@/components/back-to-top"
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({ slug: post.slug }))
@@ -70,7 +70,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           </a>
         ))}
         <hr className="my-3" />
-        <ScrollToTopButton path={post.url} />
+        <BackToTopButton path={post.url} />
       </aside>
 
       {/* adjust 63 ch if font is changed from inter to something else */}
