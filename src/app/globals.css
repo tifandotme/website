@@ -55,9 +55,6 @@
 @layer components {
   .container-main {
     @apply mx-auto max-w-screen-md px-3 duration-75 animate-in fade-in-60 sm:px-5;
-
-    /* temp */
-    @apply mb-[100px];
   }
 }
 

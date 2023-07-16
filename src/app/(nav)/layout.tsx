@@ -20,8 +20,6 @@ export default function HomeLayout({
   const [mounted, setMounted] = React.useState(false)
   const { theme, setTheme } = useTheme()
 
-  const ref = React.useRef<HTMLElement>(null)
-
   const pathname = usePathname()
 
   // https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch
@@ -34,13 +32,9 @@ export default function HomeLayout({
 
   return (
     <>
-      <nav
-        ref={ref}
-        className="container flow-root px-6 py-14 sm:px-10 lg:px-16"
-      >
+      <nav className="container flow-root px-6 py-14 sm:px-10 lg:px-16">
         <Link
           href="/"
-          // TODO: create tooltip component?
           title="Go to homepage"
           className="absolute z-10 select-none transition-transform active:translate-y-0.5 lg:fixed"
         >
@@ -96,6 +90,14 @@ export default function HomeLayout({
       </nav>
 
       {children}
+
+      <footer className="container py-24 text-center font-mono font-semibold text-muted-large">
+        {/* TODO: swap this once the blog has enough content */}
+        {/* CC BY-NC-SA 4.0 2023-PRESENT
+        <span className="relative top-[4px] text-[24px]"> © </span>Tifan Dwi
+        Avianto */}
+        {":)"}
+      </footer>
     </>
   )
 }
