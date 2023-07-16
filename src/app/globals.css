@@ -6,9 +6,6 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply min-h-screen bg-background font-sans text-foreground antialiased selection:bg-blue-500 selection:text-neutral-50 dark:selection:bg-blue-700;
-  }
   em {
     @apply font-italic text-[118%];
   }
