@@ -15,7 +15,6 @@
     "postinstall": "husky install"
   },
   "dependencies": {
-    "@total-typescript/ts-reset": "^0.4.2",
     "clsx": "^1.2.1",
     "contentlayer": "^0.3.4",
     "next": "^13.4.10",
@@ -38,8 +37,9 @@
     "@commitlint/cli": "^17.6.6",
     "@commitlint/cz-commitlint": "^17.5.0",
     "@commitlint/types": "^17.4.4",
-    "@ianvs/prettier-plugin-sort-imports": "^4.0.2",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
     "@tailwindcss/typography": "^0.5.9",
+    "@total-typescript/ts-reset": "^0.4.2",
     "@types/mdx": "^2.0.5",
     "@types/node": "^20.4.2",
     "@types/react": "^18.2.15",
@@ -47,7 +47,7 @@
     "autoprefixer": "^10.4.14",
     "commitizen": "^4.3.0",
     "concurrently": "^8.2.0",
-    "eslint": "^8.44.0",
+    "eslint": "^8.45.0",
     "eslint-config-next": "^13.4.10",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-mdx": "^2.1.0",
@@ -55,12 +55,15 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
     "postcss": "^8.4.26",
-    "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.4.0",
+    "prettier": "^3.0.0",
+    "prettier-plugin-tailwindcss": "^0.4.1",
     "tailwindcss": "^3.3.3",
     "tailwindcss-animate": "^1.0.6",
     "typescript": "^5.1.6"
   },
+  "//": [
+    "pnpm overides used to temp fix bug in contentlayer 0.3.4"
+  ],
   "pnpm": {
     "overrides": {
       "@opentelemetry/api": "1.4.1",
