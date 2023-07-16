@@ -49,7 +49,6 @@ const computedFields: ComputedFields = {
   headings: {
     type: "json",
     resolve: async (doc) => {
-      // should this be async?
       const regex = /\n(?<flag>#{1})\s+(?<content>.+)/g
       const headings = Array.from<[string, string, string]>(
         doc.body.raw.matchAll(regex),
@@ -111,7 +110,12 @@ export default makeSource({
       [
         rehypePrettyCode,
         {
-          theme: "slack-dark",
+          // https://unpkg.com/browse/shiki@0.14.2/themes/
+          theme: {
+            dark: "github-dark",
+            light: "github-light",
+          },
+          keepBackground: false,
         } satisfies PrettyCodeOptions,
       ],
       [
