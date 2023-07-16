@@ -3,95 +3,79 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-
-    --accent: 0 0% 96.1%;
-    --accent-foreground: ;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --ring: 0 0% 63.9%;
-
-    --radius: 0.5rem;
-
-    /* my own */
-    --accent: 209 100% 50%;
-  }
-
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --border: 180 100% 14.9%;
-    --input: 0 0% 14.9%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --accent: 0 0% 14.9%;
-    --accent-foreground: ;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
-
-    --ring: 0 0% 14.9%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply min-h-screen bg-background font-sans text-foreground antialiased selection:bg-blue-500 selection:text-neutral-50 dark:selection:bg-blue-700;
   }
   em {
-    @apply font-serif text-[115%];
+    @apply font-italic text-[118%];
+  }
+
+  :root {
+    --background: theme(colors.white);
+    --foreground: theme(colors.zinc.700);
+
+    --bold: theme(colors.zinc.800);
+    --heading: theme(colors.zinc.800);
+
+    --primary: hsl(209 100% 50%);
+
+    /* both passed WCAG AA contrast test at minimum */
+    /* https://coolors.co/contrast-checker */
+    --muted-small-text: theme(colors.zinc.500);
+    --muted-large-text: hsl(0 0% 58%);
+
+    --border: hsl(0 0% 80%);
+  }
+  .dark {
+    --background: hsl(0 0% 8%);
+    --foreground: hsl(0 0% 85%);
+
+    --bold: hsl(0 0% 95%);
+    --heading: hsl(0 0% 90%);
+
+    --primary: hsl(209 100% 50%);
+
+    --muted-small-text: hsl(0, 0%, 50%);
+    --muted-large-text: hsl(0, 0%, 39%);
+
+    --border: hsl(0 0% 17%);
   }
 }
 
 @layer components {
   .container-main {
-    @apply mx-auto mb-[1000px] max-w-screen-md px-3 animate-in fade-in-60 duration-75 sm:px-5;
+    @apply mx-auto max-w-screen-md px-3 duration-75 animate-in fade-in-60 sm:px-5;
+
+    /* temp */
+    @apply mb-[100vh];
   }
 }
 
-.anchor {
-  @apply -ml-[1em] pl-[1em] no-underline before:absolute before:-ml-[1em] before:text-white/0 before:content-['#'] hover:before:text-gray-500/70;
+/* prose: custom styles for individual heading */
+
+.prose :where(h2) {
+  @apply before:mb-4 before:block before:h-[3px] before:w-[1.5rem] before:bg-foreground before:content-[''];
+
+  @apply mt-[1.7em] font-serif text-3xl font-medium;
 }
+
+.prose :where(h3) {
+  @apply mt-[1.3em] text-2xl font-medium;
+}
+
+/* rehype-autolink-headings */
+
+.anchor {
+  @apply -ml-[1em] pl-[1em] before:absolute before:-ml-[1em] before:font-sans before:text-white/0 before:content-['#'] hover:before:text-muted-large;
+
+  /* discard prose <a> style */
+  @apply font-inherit text-inherit no-underline;
+}
+
+/* remove margin applied by remark-gfm */
 
 .contains-task-list {
   @apply list-none pl-0;
@@ -100,6 +84,8 @@
 .task-list-item [type="checkbox"] {
   @apply my-0;
 }
+
+/* code block */
 
 pre > code {
   @apply grid;
