@@ -8,7 +8,13 @@ import { useWindowScroll } from "react-use"
 export function BackToTopButton({ path }: { path: string }) {
   const { y } = useWindowScroll()
 
-  const isScrolled = y > window.innerHeight
+  // avoid hydration mismatch, server doesn't have window object
+  let isScrolled
+  if (window === undefined) {
+    isScrolled = false
+  } else {
+    isScrolled = y > window.innerHeight
+  }
 
   return (
     <Link
