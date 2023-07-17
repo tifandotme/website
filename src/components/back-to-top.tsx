@@ -10,7 +10,7 @@ export function BackToTopButton({ path }: { path: string }) {
 
   // avoid hydration mismatch, server doesn't have window object
   let isScrolled
-  if (window === undefined) {
+  if (typeof window === "undefined") {
     isScrolled = false
   } else {
     isScrolled = y > window.innerHeight
