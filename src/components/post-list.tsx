@@ -31,7 +31,7 @@ export function PostList() {
             href={post.url}
             className="mb-6 rounded-xl border p-5 hover:bg-neutral-100 hover:transition active:scale-[.98] dark:hover:bg-neutral-900"
           >
-            <h3 className="line-clamp-3 font-serif text-xl font-semibold leading-6">
+            <h3 className="mb-1 line-clamp-3 font-serif text-xl font-semibold leading-6">
               {post.title}
             </h3>
             <time

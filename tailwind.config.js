@@ -19,6 +19,10 @@ const config = {
         "2xl": "1400px",
       },
     },
+    screens: {
+      xs: "475px",
+      ...defaultTheme.screens,
+    },
     extend: {
       fontWeight: {
         inherit: "inherit",
