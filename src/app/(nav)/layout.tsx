@@ -11,7 +11,7 @@ export default function HomeLayout({
 }) {
   return (
     <>
-      <nav className="container flow-root px-6 py-14 sm:px-10 lg:px-16">
+      <nav className="container flow-root px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <Link
           href="/"
           title="Go to homepage"
