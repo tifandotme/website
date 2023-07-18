@@ -80,7 +80,6 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
           // H2
           "prose-h2:before:mb-4 prose-h2:before:block prose-h2:before:h-[3px] prose-h2:before:w-[1.5rem] prose-h2:before:bg-foreground prose-h2:before:content-['']",
-
           "prose-h2:mt-[1.7em] prose-h2:font-serif prose-h2:text-3xl prose-h2:font-medium",
 
           // H3
@@ -91,7 +90,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
       >
         <header
           className={cn(
-            "not-prose !col-span-full mb-10 [&+h2]:mt-5",
+            "not-prose !col-span-full mb-10",
 
             "grid grid-cols-[min(63ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
           )}
@@ -102,7 +101,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           >
             {date}
           </time>
-          <h1 className="!col-span-full mt-5 font-serif text-5xl font-medium leading-none tracking-tighter text-[var(--heading)]">
+          <h1 className="!col-span-full mt-5 max-w-screen-md font-serif text-[clamp(2.5rem,1rem+3.125vw,3rem)] font-medium leading-none tracking-[-0.04em] text-[var(--heading)]">
             {post.title}
           </h1>
           {post.description && (
