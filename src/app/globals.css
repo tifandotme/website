@@ -121,7 +121,7 @@ pre > code {
 }
 
 [data-highlighted-chars] {
-  @apply border-blue-300 bg-primary px-[5px] py-[2px] font-semibold !text-white;
+  @apply bg-primary px-[5px] py-[2px] font-semibold !text-white opacity-80;
 }
 
 /* #endregion */
