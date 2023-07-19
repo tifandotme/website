@@ -1,6 +1,8 @@
 import React from "react"
 import Link from "next/link"
+import { BsRssFill } from "react-icons/bs"
 
+import { site } from "@/config"
 import { LogoSvg } from "@/components/logo"
 import { NavigationBar } from "@/components/navigation-bar"
 
@@ -33,7 +35,15 @@ export default function HomeLayout({
           {" © "}
         </span>
         Tifan Dwi Avianto */}
-        {"This site is still under construction 👷"}
+
+        <a
+          href={`${site.baseUrl}/feed.xml`}
+          target="_blank"
+          className="inline-flex items-center"
+          title="RSS feed"
+        >
+          <BsRssFill size={18} className="m-3" />
+        </a>
       </footer>
     </>
   )
