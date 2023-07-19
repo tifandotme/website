@@ -1,18 +1,19 @@
-import { type NavLink } from "@/types"
+import { type NavLinks } from "@/types"
 
-export const baseUrlDynamic = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : `http://localhost:${process.env.PORT || 3000}`
-
-export const baseUrl = "https://tifan.me"
-
-export const navLinks: NavLink[] = [
-  {
-    title: "Blog",
-    url: "/blog",
-  },
-  {
-    title: "Projects",
-    url: "/projects",
-  },
-]
+export const site = {
+  name: "Tifan Dwi Avianto",
+  description:
+    "A blog and portfolio site by Tifan. Follow my journey in web development through insightful articles and inspiring projects.",
+  author: "Tifan Dwi Avianto",
+  baseUrl: "https://tifan.me",
+  navLinks: [
+    {
+      label: "Blog",
+      url: "/blog",
+    },
+    {
+      label: "Projects",
+      url: "/projects",
+    },
+  ] satisfies NavLinks,
+}

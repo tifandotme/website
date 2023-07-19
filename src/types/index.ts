@@ -1,9 +1,9 @@
-export type NavLink = {
-  readonly title: string
-  readonly url: string
-}
-
 export type HeadingsField = {
   text: string
   slug: string
+}[]
+
+export type NavLinks = {
+  readonly label: string
+  readonly url: string
 }[]
