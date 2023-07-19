@@ -2,6 +2,8 @@ import { type Metadata } from "next"
 import Script from "next/script"
 import cn from "clsx"
 
+import { site } from "@/config"
+import { generateRSS } from "@/lib/feed"
 import { fontMono, fontSans, fontSerif, fontSerifSlanted } from "@/lib/fonts"
 import { BreakpointIndicator } from "@/components/breakpoint-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -10,11 +12,10 @@ import "./globals.css"
 
 export const metadata: Metadata = {
   title: {
-    template: "%s — Tifan Dwi Avianto",
-    default: "Tifan Dwi Avianto",
+    template: "%s — " + site.name,
+    default: site.name,
   },
-  description:
-    "A blog and portfolio site by Tifan. Follow my journey in web development through insightful articles and inspiring projects.",
+  description: site.description,
   keywords: [
     "tifan dwi avianto",
     "tifan",
@@ -27,10 +28,10 @@ export const metadata: Metadata = {
     "typescript",
     "react",
   ],
-  creator: "Tifan Dwi Avianto",
+  creator: site.author,
   authors: [
     {
-      name: "Tifan Dwi Avianto",
+      name: site.author,
       url: "https://twitter.com/tifandotme",
     },
   ],
@@ -43,11 +44,13 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  await generateRSS()
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
