@@ -20,7 +20,6 @@
     --primary: hsl(209 100% 50%);
 
     /* both passed WCAG AA contrast test at minimum */
-    /* https://coolors.co/contrast-checker */
     --muted-small-text: theme(colors.zinc.500);
     --muted-large-text: hsl(0 0% 58%);
 
@@ -129,9 +128,9 @@ pre > code {
 /* rehype-autolink-headings */
 
 .anchor {
-  @apply -ml-[1em] pl-[1em] before:absolute before:-ml-[1em] before:font-sans before:text-white/0 before:content-['#'] hover:before:text-muted-large;
+  @apply -ml-[1em] pl-[1em] before:absolute before:-ml-[1em] before:font-sans before:text-white/0 before:content-['#'] hover:before:text-muted-darker;
 
-  /* discard prose <a> styles */
+  /* discard prose-a styles */
   @apply font-inherit text-inherit no-underline;
 }
 

@@ -2,7 +2,7 @@
 const config = {
   reactStrictMode: false,
   experimental: {
-    mdxRs: false,
+    mdxRs: false, // suggested by https://rehype-pretty-code.netlify.app/
   },
 }
 

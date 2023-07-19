@@ -1,5 +1,3 @@
-// turn .svg to react component: https://react-svgr.com/
-
 export function LogoSvg({ ...props }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg

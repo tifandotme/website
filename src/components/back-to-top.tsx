@@ -8,8 +8,9 @@ import { useWindowScroll } from "react-use"
 export function BackToTopButton({ path }: { path: string }) {
   const { y } = useWindowScroll()
 
-  // avoid hydration mismatch, server doesn't have window object
+  // to avoid hydration mismatch, as server doesn't have a Window object
   let isScrolled
+
   if (typeof window === "undefined") {
     isScrolled = false
   } else {

@@ -141,10 +141,3 @@ function slugify(text: string): string {
     .replace(/[^\w/-]+/g, "")
     .toLowerCase()
 }
-
-/*
-  REFERENCES:
-  https://github.github.com/gfm/
-  https://unpkg.com/browse/shiki@0.14.2/themes/
-  https://rehype-pretty-code.netlify.app/
-  */

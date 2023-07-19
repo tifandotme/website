@@ -1,8 +1,5 @@
 import { Inter, JetBrains_Mono, Lora, Newsreader } from "next/font/google"
 
-// https://fonts.google.com/variablefonts
-// https://fontsource.org/
-
 export const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
