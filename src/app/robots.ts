@@ -1,15 +1,13 @@
 import { MetadataRoute } from "next"
 
-import { baseUrl } from "@/config"
+import { site } from "@/config"
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      // allow: "/",
-      disallow: "/", // temporary
+      allow: "/",
     },
-    // host: baseUrl,
-    sitemap: baseUrl + "/sitemap.xml",
+    sitemap: site.baseUrl + "/sitemap.xml",
   }
 }
