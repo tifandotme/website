@@ -54,10 +54,10 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           "fixed bottom-14 hidden select-none flex-col gap-2.5 pl-11 xl:flex",
 
           // element doesn't render instantly after page load, so I added animation to avoid it looking like trash :)
-          "duration-200 animate-in slide-in-from-left-1/2",
+          "duration-300 animate-in slide-in-from-left-1/2",
         )}
       >
-        <p className="font-mono text-sm font-bold uppercase text-muted-large">
+        <p className="font-mono text-sm font-bold uppercase text-muted-darker">
           On this page
         </p>
         {(post.headings as HeadingsField).map((heading) => (

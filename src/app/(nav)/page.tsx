@@ -2,7 +2,7 @@ import Image from "next/image"
 import { FaGithub, FaNewspaper, FaTwitter } from "react-icons/fa6"
 
 import potrait from "@/public/profile-picture.png"
-import { baseUrlDynamic } from "@/config"
+import { site } from "@/config"
 import { PostList } from "@/components/post-list"
 import { ScrollUpWhenMounted } from "@/components/scroll-fix"
 import { SocialButton } from "@/components/social-button"
@@ -36,22 +36,22 @@ export default function HomePage() {
           <em>science fiction</em> and <em>philosophy</em>.
         </p>
 
-        <section className="mb-20 mt-9 flex w-full justify-around gap-3 sm:justify-center sm:gap-6">
+        <section className="mb-24 mt-10 flex w-full justify-around gap-3 sm:justify-center sm:gap-6">
           <SocialButton
             icon={FaNewspaper}
-            href={baseUrlDynamic + "/resume.pdf"}
-            text="Resume"
+            href={site.baseUrl + "/resume.pdf"}
+            label="Resume"
             download
           />
           <SocialButton
             icon={FaGithub}
             href="https://github.com/tifandotme"
-            text="GitHub"
+            label="GitHub"
           />
           <SocialButton
             icon={FaTwitter}
             href="https://twitter.com/tifandotme"
-            text="Twitter"
+            label="Twitter"
           />
         </section>
       </header>

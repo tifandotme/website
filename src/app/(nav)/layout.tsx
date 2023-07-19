@@ -17,7 +17,7 @@ export default function HomeLayout({
           title="Go to homepage"
           className="absolute inline-flex h-12 select-none items-center transition-transform active:translate-y-0.5 lg:fixed"
         >
-          <LogoSvg className="fill-muted-large text-[2.6rem] transition-colors hover:fill-foreground" />
+          <LogoSvg className="fill-muted-darker text-[2.6rem] transition-colors hover:fill-foreground" />
         </Link>
         <div className="relative float-right inline-flex h-12 gap-3">
           <NavigationBar />
@@ -26,14 +26,14 @@ export default function HomeLayout({
 
       {children}
 
-      <footer className="container py-24 text-center font-mono font-semibold uppercase text-muted-large">
+      <footer className="container py-24 text-center font-mono font-semibold uppercase text-muted-darker">
         {/* TODO: swap this once the blog has enough content */}
         {/* CC BY-NC-SA 4.0 2023-PRESENT
         <span className="relative top-[4px] text-[24px] tracking-tighter">
           {" © "}
         </span>
         Tifan Dwi Avianto */}
-        {'"This site is still under construction" - Bob 👷'}
+        {"This site is still under construction 👷"}
       </footer>
     </>
   )

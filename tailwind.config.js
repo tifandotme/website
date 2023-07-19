@@ -32,10 +32,9 @@ const config = {
         background: "var(--background)",
         primary: "var(--primary)",
         border: "var(--border)",
-
         muted: {
           DEFAULT: "var(--muted-small-text)",
-          large: "var(--muted-large-text)",
+          darker: "var(--muted-large-text)",
         },
       },
       typography: {
@@ -102,10 +101,6 @@ const config = {
         serif: ["var(--font-serif)", ...defaultTheme.fontFamily.serif], // used in <em>
         italic: ["var(--font-serif-slanted)", ...defaultTheme.fontFamily.serif],
       },
-      // borderRadius: {
-      //   lg: "var(--radius)",
-      //   md: "calc(var(--radius) - 2px)",
-      //   sm: "calc(var(--radius) - 4px)",
     },
   },
   // @ts-ignore
