@@ -38,7 +38,7 @@ const config = {
         },
       },
       typography: {
-        // node_modules/@tailwindcss/typography/src/styles.js
+        // ./node_modules/@tailwindcss/typography/src/styles.js
         DEFAULT: {
           css: {
             // discard prose-pre styles, because I handcraft my own with rehype-pretty-code
@@ -103,7 +103,6 @@ const config = {
       },
     },
   },
-  // @ts-ignore
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 }
 
