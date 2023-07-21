@@ -25,7 +25,10 @@ export function NavigationBar() {
   return (
     <>
       <Menu as="div" className="relative inline-flex xs:hidden">
-        <Menu.Button className="group px-2 ring-black transition-transform hover:bg-[hsl(0,0%,93%)] hover:text-foreground focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 active:translate-y-0.5 dark:ring-white dark:hover:bg-[hsl(0,0%,11%)]">
+        <Menu.Button
+          className="group px-2 ring-black transition-transform hover:bg-[hsl(0,0%,93%)] hover:text-foreground focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 active:translate-y-0.5 dark:ring-white dark:hover:bg-[hsl(0,0%,11%)]"
+          aria-label="Navigation menu"
+        >
           <BiDotsHorizontal
             size={34}
             className="fill-muted-darker group-hover:fill-foreground"
