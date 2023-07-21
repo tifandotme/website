@@ -8,7 +8,6 @@
     "eslint:recommended",
     "next/core-web-vitals",
     "plugin:tailwindcss/recommended",
-    "plugin:mdx/recommended",
     "prettier"
   ],
   "rules": {
@@ -17,6 +16,15 @@
     "@next/next/no-html-link-for-pages": "off", // disabled, because this rule only works on pagesDir
     "tailwindcss/classnames-order": "off"
   },
+  "overrides": [
+    {
+      "files": ["*.mdx"],
+      "extends": "plugin:mdx/recommended",
+      "rules": {
+        "react/jsx-no-undef": "off"
+      }
+    }
+  ],
   "settings": {
     "tailwindcss": {
       "callees": ["cn"]
