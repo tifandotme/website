@@ -21,6 +21,7 @@ export default function HomeLayout({
         >
           <LogoSvg className="fill-muted-darker text-[2.6rem] transition-colors hover:fill-foreground" />
         </Link>
+
         <div className="relative float-right inline-flex h-12 gap-3">
           <NavigationBar />
         </div>
@@ -39,8 +40,8 @@ export default function HomeLayout({
         <a
           href={`${site.baseUrl}/feed.xml`}
           target="_blank"
-          className="inline-flex items-center"
-          title="RSS feed"
+          className="inline-flex items-center transition-colors hover:text-foreground"
+          title="RSS"
         >
           <BsRssFill size={18} className="m-3" />
         </a>
