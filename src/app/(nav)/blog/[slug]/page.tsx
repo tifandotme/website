@@ -1,14 +1,13 @@
 import { type Metadata } from "next"
-import Image, { ImageProps } from "next/image"
 import { notFound } from "next/navigation"
 import cn from "clsx"
 import { allPosts } from "contentlayer/generated"
-import { MDXComponents } from "mdx/types"
 import { useMDXComponent } from "next-contentlayer/hooks"
 
 import { type HeadingsField } from "@/types"
 import { getPost } from "@/lib/utils"
 import { BackToTopButton } from "@/components/back-to-top"
+import { components } from "@/components/mdx-components"
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({ slug: post.slug }))
@@ -27,13 +26,6 @@ export async function generateMetadata({
   }
 }
 
-const components: MDXComponents = {
-  // BUG: fix this
-  Image: ({ alt, props }: { alt: string; props: ImageProps }) => (
-    <Image {...props} alt={alt} />
-  ),
-}
-
 export default function PostPage({ params }: { params: { slug: string } }) {
   const post = getPost(params.slug)
 
@@ -43,9 +35,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     new Date(post.date),
   )
 
-  const Content = useMDXComponent(post.body.code, {
-    components,
-  })
+  const MDXContent = useMDXComponent(post.body.code)
 
   return (
     <main className="container px-3 duration-75 animate-in fade-in-60 sm:px-5">
@@ -109,7 +99,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           )}
         </header>
 
-        <Content components={components} />
+        <MDXContent components={components} />
       </article>
     </main>
   )
