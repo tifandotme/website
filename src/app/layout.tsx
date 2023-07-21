@@ -49,7 +49,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  await generateRSS()
+  if (process.env.NODE_ENV === "production") {
+    await generateRSS()
+  }
 
   return (
     <html lang="en" suppressHydrationWarning>
