@@ -14,10 +14,11 @@ export default function HomePage() {
         <Image
           className="float-right m-1 ml-5 hidden rounded-3xl grayscale hover:grayscale-0 dark:brightness-90 sm:block"
           src={potrait}
-          alt="Self potrait of the author"
+          alt={site.author}
           width={120}
           height={120}
           placeholder="blur"
+          quality={85}
         />
         <p>
           Hi, I&apos;m{" "}
