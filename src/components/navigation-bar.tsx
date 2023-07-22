@@ -28,6 +28,7 @@ export function NavigationBar() {
         <Menu.Button
           className="group px-2 ring-black transition-transform hover:bg-[hsl(0,0%,93%)] hover:text-foreground focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 active:translate-y-0.5 dark:ring-white dark:hover:bg-[hsl(0,0%,11%)]"
           aria-label="Navigation menu"
+          id="headlessui-menu-button" // without id, there will be a hydration missmatch error
         >
           <BiDotsHorizontal
             size={34}
