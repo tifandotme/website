@@ -26,6 +26,10 @@
     {
       "source": "/gh/:slug*",
       "destination": "https://github.com/tifandotme/:slug*"
+    },
+    {
+      "source": "/gpg",
+      "destination": "https://github.com/tifandotme.gpg"
     }
   ]
 }
