@@ -6,25 +6,6 @@ export function getPost(slug: string): Post | undefined {
 }
 
 /**
- * Get the image height and base64-encoded placeholder for a given remote image URL.
- */
-export async function getImage(src: string) {
-  const buffer = await fetch(src).then(async (res) =>
-    Buffer.from(await res.arrayBuffer()),
-  )
-
-  const {
-    metadata: { height },
-    base64,
-  } = await getPlaiceholder(buffer, { size: 10 })
-
-  return {
-    height,
-    base64,
-  }
-}
-
-/**
  * Generate Cloudinary signature component for a given URL. Requires the `CLOUDINARY_API_SECRET` environment variable to be set.
  *
  * @param url - Cloudinary delivery URL without the base (e.g. w_300,h_250,e_grayscale/sample.png)
@@ -61,4 +42,33 @@ export async function signImage(transforms: string, publicId: string) {
   const signature = await generateSignature([transforms, publicId].join("/"))
 
   return [base, signature, transforms, publicId].join("/")
+}
+
+/**
+ * Get the image height and base64-encoded placeholder for a given remote image URL.
+ */
+export async function getImage(src: string) {
+  try {
+    const buffer = await fetch(src).then(async (res) =>
+      Buffer.from(await res.arrayBuffer()),
+    )
+
+    const {
+      metadata: { height },
+      base64,
+    } = await getPlaiceholder(buffer, { size: 10 })
+
+    return {
+      height,
+      base64,
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(
+        `Cannot read image from source:\n\n${src}\n\nMake sure the URL is correct.`,
+      )
+    }
+
+    throw error
+  }
 }
