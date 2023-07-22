@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "concurrently -k -c 'bgMagenta,bgBlue' -n contentlayer,next 'contentlayer dev' 'next dev'",
+    "dev": "rm -rf .next && concurrently -k -c 'bgMagenta,bgBlue' -n contentlayer,next 'contentlayer dev' 'next dev'",
     "build": "contentlayer build --clearCache && next build",
     "start": "next start",
     "lint": "eslint --cache --cache-strategy content --cache-location=node_modules/.cache/eslint/.eslint-cache src",

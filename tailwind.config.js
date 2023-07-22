@@ -10,7 +10,9 @@ const config = {
     "./content/**/*.mdx",
   ],
   future: {
-    hoverOnlyWhenSupported: true, // TODO: revert this once tailwindcss is updated to v4. https://stackoverflow.com/questions/56755439/modifying-hover-in-tailwindcss/72323247#72323247
+    // TODO: revert this once tailwindcss is updated to v4
+    // https://stackoverflow.com/questions/56755439/modifying-hover-in-tailwindcss/72323247#72323247
+    hoverOnlyWhenSupported: true,
   },
   theme: {
     container: {
@@ -38,25 +40,11 @@ const config = {
         },
       },
       typography: {
-        // ./node_modules/@tailwindcss/typography/src/styles.js
+        // default prose styles: ./node_modules/@tailwindcss/typography/src/styles.js
         DEFAULT: {
           css: {
-            // discard prose-pre styles, because I handcraft my own with rehype-pretty-code
-            pre: {
-              backgroundColor: null,
-              color: null,
-              overflowX: null,
-              fontWeight: null,
-              fontSize: null,
-              lineHeight: null,
-              marginTop: null,
-              marginBottom: null,
-              borderRadius: null,
-              paddingTop: null,
-              paddingRight: null,
-              paddingBottom: null,
-              paddingLeft: null,
-            },
+            // discard prose-pre styles
+            pre: null,
 
             // custom prose colors
             "--tw-prose-body": "var(--foreground)",
