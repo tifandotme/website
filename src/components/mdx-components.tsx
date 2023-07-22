@@ -11,7 +11,6 @@ export const components: MDXComponents = {
     caption,
     ...props
   }: {
-    aspectRatio?: "16:9" | "4:3" | "1:1"
     bleed?: boolean
     caption?: string
   } & ImageProps) => {
