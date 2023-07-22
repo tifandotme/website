@@ -1,21 +1,21 @@
 "use client"
 
+import React from "react"
 import Link from "next/link"
 import cn from "clsx"
 import { BiUpArrowAlt } from "react-icons/bi"
 import { useWindowScroll } from "react-use"
 
 export function BackToTopButton({ path }: { path: string }) {
+  const [isScrolled, setIsScrolled] = React.useState(false)
   const { y } = useWindowScroll()
 
-  // to avoid hydration mismatch, as server doesn't have a Window object
-  let isScrolled
-
-  if (typeof window === "undefined") {
-    isScrolled = false
-  } else {
-    isScrolled = y > window.innerHeight
-  }
+  React.useEffect(() => {
+    // avoid SSR mismatch
+    if (typeof window !== "undefined") {
+      setIsScrolled(y > window.innerHeight)
+    }
+  }, [y])
 
   return (
     <Link
