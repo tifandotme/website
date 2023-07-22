@@ -28,7 +28,6 @@
   "settings": {
     "tailwindcss": {
       "callees": ["cn"]
-    },
-    "mdx/code-blocks": true
+    }
   }
 }
