@@ -2,9 +2,8 @@ import { ImageProps } from "next/image"
 import cn from "clsx"
 import { type MDXComponents } from "mdx/types"
 
-import { CldImage } from "@/components/image"
+import { CldImage } from "@/components/cloudinary-image"
 
-// XXX: .mdx doesn't have intellisense
 export const components: MDXComponents = {
   Img: ({
     bleed = false,

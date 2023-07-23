@@ -29,11 +29,11 @@ export async function CldImage({
 
   const signedPlaceholder = await signImage(transforms[2], publicId)
 
-  // get the base64 string of the placeholder
-  const { base64 } = await getImage(signedPlaceholder)
-
   // get the height of the image
   const { height: calculatedHeight } = await getImage(signedImage)
+
+  // get the base64 string of the placeholder
+  const { base64 } = await getImage(signedPlaceholder)
 
   return (
     <Image
@@ -44,7 +44,7 @@ export async function CldImage({
       height={calculatedHeight}
       placeholder="blur"
       blurDataURL={base64}
-      quality={80}
+      quality={85}
       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 75vw, (max-width: 1280px) 60vw, (max-width: 1440px) 53vw, 50vw"
     />
   )

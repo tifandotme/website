@@ -1,11 +1,12 @@
 import Image from "next/image"
 import { FaGithub, FaNewspaper, FaTwitter } from "react-icons/fa6"
 
-import potrait from "@/public/profile-picture.png"
 import { site } from "@/config"
 import { PostList } from "@/components/post-list"
 import { ScrollUpWhenMounted } from "@/components/scroll-fix"
 import { SocialButton } from "@/components/social-button"
+
+import potrait from "./potrait.png"
 
 export default function HomePage() {
   return (
@@ -18,7 +19,7 @@ export default function HomePage() {
           width={120}
           height={120}
           placeholder="blur"
-          quality={85}
+          quality={100}
         />
         <p>
           Hi, I&apos;m{" "}
