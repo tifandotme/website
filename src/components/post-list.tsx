@@ -2,9 +2,9 @@ import Link from "next/link"
 import { allPosts } from "contentlayer/generated"
 
 export function PostList() {
-  const posts = allPosts.sort((a, b) =>
-    new Intl.Collator().compare(b.date, a.date),
-  )
+  const posts = allPosts
+    .filter((post) => !post.draft)
+    .sort((a, b) => new Intl.Collator().compare(b.date, a.date))
 
   return (
     <article className="mx-auto flex max-w-screen-sm flex-col">

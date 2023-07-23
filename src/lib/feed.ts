@@ -26,6 +26,7 @@ const options: FeedOptions = {
 }
 
 const posts = allPosts
+  .filter((post) => !post.draft)
   .sort((a, b) => new Intl.Collator().compare(b.date, a.date))
   .map((post) => {
     return {

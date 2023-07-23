@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
+  // TODO: add search bar, tags?
   return (
     <main className="container-main">
       <PostList />

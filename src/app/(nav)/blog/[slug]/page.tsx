@@ -23,6 +23,7 @@ export async function generateMetadata({
   return {
     title: post?.title,
     description: post?.description,
+    robots: post?.draft ? "noindex, nofollow" : undefined,
   }
 }
 
@@ -37,14 +38,14 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
   const MDXContent = useMDXComponent(post.body.code)
 
+  // warning: when main have a tailwindcss-animate class, it will concflict with aside
   return (
-    <main className="container px-3 duration-75 animate-in fade-in-60 sm:px-5">
+    <main className="container px-3 sm:px-5">
       <aside
         className={cn(
           "fixed bottom-14 hidden select-none flex-col gap-2.5 pl-11 xl:flex",
 
-          // element doesn't render instantly after page load, so I added animation to avoid it looking like trash :)
-          "duration-300 animate-in slide-in-from-left-1/2",
+          "duration-500 animate-in slide-in-from-left-1/2",
         )}
       >
         <p className="font-mono text-sm font-bold uppercase text-muted-darker">

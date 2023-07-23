@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   const contentRoutes = allPosts
+    .filter((post) => !post.draft)
     .sort((a, b) => new Intl.Collator().compare(b.date, a.date))
     .map((post) => ({
       url: site.baseUrl + post.url,

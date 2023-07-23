@@ -19,7 +19,7 @@ export default function HomePage() {
           width={120}
           height={120}
           placeholder="blur"
-          quality={100}
+          quality={90}
         />
         <p>
           Hi, I&apos;m{" "}
