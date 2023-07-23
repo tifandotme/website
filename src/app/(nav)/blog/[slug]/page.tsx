@@ -23,7 +23,7 @@ export async function generateMetadata({
   return {
     title: post?.title,
     description: post?.description,
-    robots: post?.draft ? "noindex, nofollow" : undefined,
+    robots: post?.draft ? "noindex" : undefined,
   }
 }
 
@@ -86,12 +86,20 @@ export default function PostPage({ params }: { params: { slug: string } }) {
             "grid grid-cols-[min(63ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
           )}
         >
-          <time
-            dateTime={post.date}
-            className="font-mono font-medium leading-loose text-muted"
-          >
-            {date}
-          </time>
+          <div className="inline-flex gap-3 font-mono font-medium leading-loose">
+            <time dateTime={post.date} className="text-muted">
+              {date}
+            </time>
+            {post.draft && (
+              <div
+                className="select-none bg-yellow-200 px-2 align-middle dark:bg-yellow-800"
+                title="This post is excluded from search engine and list of posts"
+                aria-hidden="true"
+              >
+                Draft
+              </div>
+            )}
+          </div>
           <h1 className="!col-span-full mt-5 max-w-screen-md font-serif text-[clamp(2.5rem,1rem+3.125vw,3rem)] font-medium leading-none tracking-[-0.04em] text-[var(--heading)]">
             {post.title}
           </h1>

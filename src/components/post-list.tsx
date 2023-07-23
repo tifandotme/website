@@ -1,9 +1,15 @@
 import Link from "next/link"
 import { allPosts } from "contentlayer/generated"
 
-export function PostList() {
+export function PostList({ showDrafts = false }: { showDrafts?: boolean }) {
   const posts = allPosts
-    .filter((post) => !post.draft)
+    .filter((post) => {
+      if (showDrafts) {
+        return post.draft
+      } else {
+        return !post.draft
+      }
+    })
     .sort((a, b) => new Intl.Collator().compare(b.date, a.date))
 
   return (
