@@ -1,6 +1,5 @@
 import { allPosts } from "contentlayer/generated"
 import { Feed, type FeedOptions, type Item } from "feed"
-// @ts-ignore
 import fs from "fs-extra"
 
 import { site } from "@/config"
@@ -51,6 +50,7 @@ export async function generateRSS() {
 
   posts.forEach((post) => feed.addItem(post))
 
+  await fs.ensureDir("./public")
   await fs.writeFile("./public/feed.xml", feed.rss2())
   await fs.writeFile("./public/feed.json", feed.json1())
   await fs.writeFile("./public/feed.atom", feed.atom1())
