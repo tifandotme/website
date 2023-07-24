@@ -6,6 +6,7 @@ import { site } from "@/config"
 import { generateRSS } from "@/lib/feed"
 import { fontMono, fontSans, fontSerif, fontSerifSlanted } from "@/lib/fonts"
 import { BreakpointIndicator } from "@/components/breakpoint-indicator"
+import { NavigationProgressProvider } from "@/components/navigation-progress"
 import { ThemeProvider } from "@/components/theme-provider"
 
 import "./globals.css"
@@ -66,7 +67,7 @@ export default async function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" enableSystem>
-          {children}
+          <NavigationProgressProvider>{children}</NavigationProgressProvider>
           <BreakpointIndicator />
         </ThemeProvider>
         <Script
