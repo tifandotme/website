@@ -52,8 +52,8 @@ export default function HomePage() {
           />
           <SocialButton
             icon={FaTwitter}
-            href="https://twitter.com/tifandotme"
-            label="Twitter"
+            href="https://x.com/tifandotme"
+            label="Twitter/X"
           />
         </section>
       </header>
