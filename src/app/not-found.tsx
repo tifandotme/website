@@ -1,6 +1,6 @@
 import { FaArrowLeft } from "react-icons/fa6"
 
-export default async function NotFound() {
+export default function NotFound() {
   return (
     <main className="flex h-screen flex-col items-center justify-center gap-10 font-sans">
       <h1 className="text-xl font-semibold text-foreground">
