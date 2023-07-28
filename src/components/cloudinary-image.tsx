@@ -45,7 +45,6 @@ export async function CldImage({
       placeholder="blur"
       blurDataURL={base64}
       quality={85}
-      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 75vw, (max-width: 1280px) 60vw, (max-width: 1440px) 53vw, 50vw"
     />
   )
 }
