@@ -20,7 +20,8 @@ const config = {
   shallowRouting: true,
   options: {
     showSpinner: false,
-    minimum: 0.25,
+    minimum: 0.2,
+    trickleSpeed: 600,
   } satisfies Partial<NProgressOptions>,
 }
 
