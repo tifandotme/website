@@ -3,7 +3,7 @@ import Link from "next/link"
 import { BsRssFill } from "react-icons/bs"
 
 import { site } from "@/config"
-import { LogoSvg } from "@/components/logo"
+import { Logo } from "@/components/icons"
 import { NavigationBar } from "@/components/navigation-bar"
 
 export default function HomeLayout({
@@ -17,9 +17,9 @@ export default function HomeLayout({
         <Link
           href="/"
           title="Go to homepage"
-          className="absolute inline-flex h-12 select-none items-center transition-transform active:translate-y-0.5 lg:fixed"
+          className="absolute inline-flex h-12 select-none items-center text-muted-darker transition hover:text-foreground active:translate-y-0.5 xl:fixed"
         >
-          <LogoSvg className="fill-muted-darker text-[2.6rem] transition-colors hover:fill-foreground" />
+          <Logo size="2.6em" />
         </Link>
 
         <div className="relative float-right inline-flex h-12 gap-3">
