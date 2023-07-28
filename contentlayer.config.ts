@@ -71,29 +71,96 @@ const Post = defineDocumentType(() => ({
   fields: {
     title: {
       type: "string",
-      description: "Title of the post",
+      description: "Post's title",
       required: true,
     },
     description: {
       type: "string",
-      description: "Description of the post (Max ? characters)",
+      description: "Post's description",
     },
     date: {
       type: "date",
-      description: "Date of publication",
+      description: "Post's published date",
       required: true,
     },
-    // TODO: Implement Draft Mode: https://nextjs.org/docs/app/building-your-application/configuring/draft-mode
     draft: {
       type: "boolean",
+      description:
+        "If true, post will not show up in list of posts and sitemap",
     },
   },
   computedFields,
 }))
 
+const Project = defineDocumentType(() => ({
+  name: "Project",
+  filePathPattern: `projects/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    name: {
+      type: "string",
+      description: "Project's name",
+      required: true,
+    },
+    description: {
+      type: "string",
+      description: "Project's description",
+      required: true,
+    },
+    date: {
+      type: "date",
+      description: "Project's finished date",
+      required: true,
+    },
+    tags: {
+      type: "list",
+      of: {
+        type: "string",
+      },
+      description: "Project's tech stack",
+      required: true,
+    },
+    image: {
+      type: "string",
+      description:
+        "Project's image URL as Cloudinary publicId (e.g. projects/puri.png)",
+    },
+    repo: {
+      type: "string",
+      description: "Project's GitHub repository URL",
+      required: true,
+    },
+    demo: {
+      type: "string",
+      description: "Project's demo URL",
+    },
+    isWIP: {
+      type: "boolean",
+    },
+  },
+  computedFields: {
+    ...computedFields,
+
+    repo: {
+      type: "string",
+      resolve: (doc) => {
+        return "https://" + doc.repo
+      },
+    },
+    demo: {
+      type: "string",
+      resolve: (doc) => {
+        if (!doc.demo) return null
+
+        return "https://" + doc.demo
+      },
+    },
+  },
+}))
+
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [Post],
+  documentTypes: [Post, Project],
   mdx: {
     remarkPlugins: [[remarkGfm, {} satisfies GfmOptions]],
     rehypePlugins: [
