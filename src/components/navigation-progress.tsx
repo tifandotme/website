@@ -1,66 +1,35 @@
 "use client"
 
 import React, { useEffect } from "react"
-import { NavigateOptions } from "next/dist/shared/lib/app-router-context"
+import { type NavigateOptions } from "next/dist/shared/lib/app-router-context"
 import {
   useRouter as useNextRouter,
   usePathname,
   useSearchParams,
 } from "next/navigation"
-import NProgress from "nprogress"
+import NProgress, { type NProgressOptions } from "nprogress"
+
+import { type PushStateInput } from "@/types"
 
 // source: https://github.com/Skyleen77/next-nprogress-bar
-// TODO: understand this code and customize
 
-function isSameURL(target: URL, current: URL) {
-  const cleanTarget = target.protocol + "//" + target.host + target.pathname
-  const cleanCurrent = current.protocol + "//" + current.host + current.pathname
-
-  return cleanTarget === cleanCurrent
+const config = {
+  color: "var(--primary)",
+  height: "2px",
+  delay: 120,
+  shallowRouting: true,
+  options: {
+    showSpinner: false,
+  } satisfies Partial<NProgressOptions>,
 }
 
-interface NProgressOptions {
-  minimum?: number
-  template?: string
-  easing?: string
-  speed?: number
-  trickle?: boolean
-  trickleSpeed?: number
-  showSpinner?: boolean
-  parent?: string
-  positionUsing?: string
-  barSelector?: string
-  spinnerSelector?: string
-}
+const NavigationProgress = React.memo(
+  () => {
+    const { color, height, options, shallowRouting, delay } = config
 
-interface ProgressBarProps {
-  color?: string
-  height?: string
-  options?: Partial<NProgressOptions>
-  shallowRouting?: boolean
-  delay?: number
-  style?: string
-}
-
-type PushStateInput = [
-  data: any,
-  unused: string,
-  url?: string | URL | null | undefined,
-]
-
-export const NavigationProgress = React.memo(
-  ({
-    color = "#0A2FFF",
-    height = "2px",
-    options,
-    shallowRouting = false,
-    delay = 0,
-    style,
-  }: ProgressBarProps) => {
     const styles = (
       <style>
-        {style ||
-          `
+        {`
           #nprogress {
             pointer-events: none;
           }
@@ -161,7 +130,6 @@ export const NavigationProgress = React.memo(
       const handleAnchorClick = (event: MouseEvent) => {
         const anchorElement = event.currentTarget as HTMLAnchorElement
 
-        // Skip anchors with target="_blank"
         if (anchorElement.target === "_blank") return
 
         const targetUrl = new URL(anchorElement.href)
@@ -212,12 +180,7 @@ export function NavigationProgressProvider({
     <>
       {children}
 
-      <NavigationProgress
-        height="2px"
-        color="var(--primary)"
-        options={{ showSpinner: false }}
-        shallowRouting
-      />
+      <NavigationProgress />
     </>
   )
 }
@@ -231,4 +194,11 @@ export function useRouter() {
   }
 
   return { ...router, push }
+}
+
+function isSameURL(target: URL, current: URL) {
+  const cleanTarget = target.protocol + "//" + target.host + target.pathname
+  const cleanCurrent = current.protocol + "//" + current.host + current.pathname
+
+  return cleanTarget === cleanCurrent
 }
