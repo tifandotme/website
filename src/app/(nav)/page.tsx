@@ -1,7 +1,8 @@
 import Image from "next/image"
-import { FaGithub, FaNewspaper, FaTwitter } from "react-icons/fa6"
+import { FaGithub, FaNewspaper } from "react-icons/fa6"
 
 import { site } from "@/config"
+import { XTwitter } from "@/components/icons"
 import { PostList } from "@/components/post-list"
 import { ScrollUpWhenMounted } from "@/components/scroll-fix"
 import { SocialButton } from "@/components/social-button"
@@ -51,9 +52,10 @@ export default function HomePage() {
             label="GitHub"
           />
           <SocialButton
-            icon={FaTwitter}
+            icon={XTwitter}
             href="https://x.com/tifandotme"
-            label="Twitter/X"
+            label="X/Twitter"
+            aria-label="X formerly known as Twitter"
           />
         </section>
       </header>
