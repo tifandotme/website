@@ -7,7 +7,7 @@ type SocialButtonProps = {
 } & React.HTMLProps<HTMLAnchorElement>
 
 export function SocialButton({ icon, label, ...props }: SocialButtonProps) {
-  const iconElement = icon({ size: "1.1em" })
+  const iconElement = icon({ size: "1.1em", "aria-hidden": true })
 
   return (
     <a
