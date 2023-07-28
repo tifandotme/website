@@ -68,13 +68,13 @@ export default async function RootLayout({
       >
         <ThemeProvider attribute="class" enableSystem>
           <NavigationProgressProvider>{children}</NavigationProgressProvider>
-          <BreakpointIndicator />
         </ThemeProvider>
         <Script
           async
           src="https://analytics.tifan.me/script.js"
           data-website-id="7edd9838-f991-48d3-aa41-c7fe0cd55d36"
         />
+        <BreakpointIndicator />
       </body>
     </html>
   )
