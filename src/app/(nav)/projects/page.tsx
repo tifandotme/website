@@ -166,7 +166,7 @@ export default async function ProjectsPage({
 
             {project.image && (
               <a
-                href={project.repo}
+                href={project.demo}
                 className="group relative basis-4/12 select-none self-center"
                 target="_blank"
               >
