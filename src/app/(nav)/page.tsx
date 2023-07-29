@@ -28,13 +28,10 @@ export default function HomePage() {
           quality={90}
         />
         <p>
-          Hi, I&apos;m{" "}
-          <span className="font-heading text-xl font-semibold tracking-wider">
-            Tifan
-          </span>
-          , a software engineer based in Indonesia. I&apos;m currently focused
-          on building with the React ecosystem and exploring various aspects of
-          web development. I also share interesting insights that I discovered
+          Hi, I&apos;m <span className="text-xl font-semibold">Tifan</span>, a
+          software engineer based in Indonesia. I&apos;m currently focused on
+          building with the React ecosystem and exploring various aspects of web
+          development. I also share interesting insights that I discovered
           throughout my learning journey.
         </p>
         <p className="my-6">
