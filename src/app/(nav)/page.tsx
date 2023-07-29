@@ -2,6 +2,7 @@ import Image from "next/image"
 import { FaGithub, FaNewspaper } from "react-icons/fa6"
 
 import { site } from "@/config"
+import { generateRSS } from "@/lib/feed"
 import { XTwitter } from "@/components/icons"
 import { PostList } from "@/components/post-list"
 import { ScrollUpWhenMounted } from "@/components/scroll-fix"
@@ -10,6 +11,10 @@ import { SocialButton } from "@/components/social-button"
 import potrait from "./potrait.png"
 
 export default function HomePage() {
+  if (process.env.NODE_ENV === "production") {
+    generateRSS()
+  }
+
   return (
     <main className="container-main">
       <header className="text-left text-lg leading-8 sm:text-justify">
@@ -24,10 +29,12 @@ export default function HomePage() {
         />
         <p>
           Hi, I&apos;m{" "}
-          <span className="font-serif text-xl font-semibold">Tifan</span>, a
-          software engineer based in Indonesia. I&apos;m currently focused on
-          building with the React ecosystem and exploring various aspects of web
-          development. I also share interesting insights that I discovered
+          <span className="font-heading text-xl font-semibold tracking-wider">
+            Tifan
+          </span>
+          , a software engineer based in Indonesia. I&apos;m currently focused
+          on building with the React ecosystem and exploring various aspects of
+          web development. I also share interesting insights that I discovered
           throughout my learning journey.
         </p>
         <p className="my-6">
