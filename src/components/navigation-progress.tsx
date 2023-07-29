@@ -21,7 +21,7 @@ const config = {
   options: {
     showSpinner: false,
     minimum: 0.2,
-    trickleSpeed: 600,
+    trickleSpeed: 400,
   } satisfies Partial<NProgressOptions>,
 }
 
