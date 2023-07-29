@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect } from "react"
+import React from "react"
 import { type NavigateOptions } from "next/dist/shared/lib/app-router-context"
 import {
   useRouter as useNextRouter,
@@ -113,11 +113,11 @@ const NavigationProgress = React.memo(
     const pathname = usePathname()
     const searchParams = useSearchParams()
 
-    useEffect(() => {
+    React.useEffect(() => {
       NProgress.done()
     }, [pathname, searchParams])
 
-    useEffect(() => {
+    React.useEffect(() => {
       let timer: NodeJS.Timeout
 
       const startProgress = () => {
@@ -182,7 +182,9 @@ export function NavigationProgressProvider({
     <>
       {children}
 
-      <NavigationProgress />
+      <React.Suspense fallback={null}>
+        <NavigationProgress />
+      </React.Suspense>
     </>
   )
 }

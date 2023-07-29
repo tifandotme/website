@@ -71,7 +71,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
           // H2
           "prose-h2:before:mb-4 prose-h2:before:block prose-h2:before:h-[3px] prose-h2:before:w-[1.5rem] prose-h2:before:bg-foreground prose-h2:before:content-['']",
-          "prose-h2:mt-[1.7em] prose-h2:font-heading prose-h2:text-3xl prose-h2:font-medium",
+          "prose-h2:mt-[1.7em] prose-h2:font-heading prose-h2:text-3xl",
 
           // H3
           "prose-h3:mt-[1.3em] prose-h3:text-2xl prose-h3:font-medium",
@@ -94,13 +94,13 @@ export default function PostPage({ params }: { params: { slug: string } }) {
               <div
                 className="select-none bg-yellow-200 px-2 align-middle dark:bg-yellow-800"
                 title="This post is excluded from search engine and list of posts"
-                aria-hidden="true"
+                aria-hidden
               >
                 Draft
               </div>
             )}
           </div>
-          <h1 className="!col-span-full mb-3 mt-5 max-w-screen-md font-heading text-[clamp(2.7rem,1rem+3.125vw,3.2rem)] font-medium leading-none tracking-[-0.04em] text-[var(--heading)]">
+          <h1 className="!col-span-full mb-3 mt-5 max-w-screen-md font-heading text-[clamp(2.7rem,1rem+3.125vw,3.2rem)] leading-none tracking-[-0.04em] text-[var(--heading)]">
             {post.title}
           </h1>
           {post.description && <p className="text-muted">{post.description}</p>}
