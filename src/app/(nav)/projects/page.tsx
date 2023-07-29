@@ -111,7 +111,7 @@ export default async function ProjectsPage({
                 )}
               </div>
 
-              <div className="flex items-center gap-1 text-sm text-muted">
+              <div className="flex flex-wrap items-center gap-1 text-sm text-muted">
                 <a
                   rel="noopener noreferrer"
                   target="_blank"
