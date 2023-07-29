@@ -53,7 +53,7 @@ export default async function ProjectsPage({
 
   return (
     <>
-      <header className="container-main lg:-mt-10">
+      <header className="container-main mb-14 lg:-mt-10">
         <h1 className="mb-5 font-heading text-4xl">Open-source</h1>
         <p className="text-lg leading-8">
           Here is a list of my open-source projects. I hope you find them
@@ -62,7 +62,7 @@ export default async function ProjectsPage({
         </p>
       </header>
 
-      <div className="mt-14 bg-slate-700 pb-11 pt-10 text-white dark:bg-slate-400 dark:text-black">
+      <div className="bg-slate-700 pb-11 pt-10 text-white dark:bg-slate-400 dark:text-black">
         <nav className="container-main">
           <h2 className="mb-3.5 text-xl font-semibold">Table of Contents</h2>
           <ul>
@@ -79,7 +79,7 @@ export default async function ProjectsPage({
           </ul>
         </nav>
       </div>
-      <div className="mb-20 flex justify-center gap-3 border-b-[1px] border-[hsl(0,0%,90%)] bg-[hsl(0,0%,97%)] py-0.5 dark:border-[hsl(0,0%,12%)] dark:bg-[hsl(0,0%,9%)]">
+      <div className="mb-20 flex justify-center gap-3 border-b-[1px] border-[hsl(0,0%,90%)] bg-[hsl(0,0%,97%)] dark:border-[hsl(0,0%,12%)] dark:bg-[hsl(0,0%,9%)]">
         <SortByButtons sortParam={searchParams.sort} />
       </div>
 

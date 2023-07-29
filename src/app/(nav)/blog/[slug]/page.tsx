@@ -106,7 +106,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           {post.description && <p className="text-muted">{post.description}</p>}
         </header>
 
-        <hr className="my-7 border-border" />
+        <hr className="my-7 border-border" aria-hidden />
 
         <MDXContent components={components} />
       </article>
