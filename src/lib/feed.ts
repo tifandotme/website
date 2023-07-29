@@ -43,15 +43,16 @@ const posts = allPosts
     } satisfies Item
   })
 
-export async function generateRSS() {
+export function generateRSS() {
   console.log("Generating RSS feed...")
 
   const feed = new Feed(options)
 
   posts.forEach((post) => feed.addItem(post))
 
-  await fs.ensureDir("./public")
-  await fs.writeFile("./public/feed.xml", feed.rss2())
-  await fs.writeFile("./public/feed.json", feed.json1())
-  await fs.writeFile("./public/feed.atom", feed.atom1())
+  fs.ensureDirSync("./public")
+
+  fs.writeFileSync("./public/feed.xml", feed.rss2())
+  fs.writeFileSync("./public/feed.json", feed.json1())
+  fs.writeFileSync("./public/feed.atom", feed.atom1())
 }
