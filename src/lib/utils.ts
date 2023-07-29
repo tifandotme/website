@@ -1,6 +1,14 @@
 import { allPosts, type Post } from "contentlayer/generated"
 import { getPlaiceholder } from "plaiceholder"
 
+export function slugify(text: string): string {
+  return text
+    .replace(/\s+/g, "-")
+    .replace(/--+/g, "-")
+    .replace(/[^\w/-]+/g, "")
+    .toLowerCase()
+}
+
 export function getPost(slug: string): Post | undefined {
   return allPosts.find((post) => post.slug === slug)
 }

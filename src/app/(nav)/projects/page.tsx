@@ -4,6 +4,7 @@ import { allProjects } from "contentlayer/generated"
 import { LuArrowUpRight, LuExternalLink } from "react-icons/lu"
 import { PiStarBold } from "react-icons/pi"
 
+import { slugify } from "@/lib/utils"
 import { CldImage } from "@/components/cloudinary-image"
 import { SortByButtons } from "@/components/sortby-buttons"
 
@@ -52,10 +53,8 @@ export default async function ProjectsPage({
 
   return (
     <>
-      <header className="container-main">
-        <h1 className="mb-5 font-serif text-4xl font-medium">
-          Open-source Projects
-        </h1>
+      <header className="container-main lg:-mt-10">
+        <h1 className="mb-5 font-heading text-4xl">Open-source</h1>
         <p className="text-lg leading-8">
           Here is a list of my open-source projects. I hope you find them
           useful! If you have any questions or feedback, feel free to reach out
@@ -70,7 +69,7 @@ export default async function ProjectsPage({
             {projectsTOC.map((project) => (
               <li key={project.name} className="py-0.5 first:pt-0 last:pb-0">
                 <a
-                  href={"#" + project.name}
+                  href={"#" + slugify(project.name)}
                   className="font-medium underline underline-offset-[3px]"
                 >
                   {project.name}
@@ -80,111 +79,122 @@ export default async function ProjectsPage({
           </ul>
         </nav>
       </div>
-      <div className="mb-24 flex justify-center gap-3 border-b-[1px] border-[hsl(0,0%,90%)] bg-[hsl(0,0%,97%)] py-1 dark:border-[hsl(0,0%,12%)] dark:bg-[hsl(0,0%,9%)]">
+      <div className="mb-20 flex justify-center gap-3 border-b-[1px] border-[hsl(0,0%,90%)] bg-[hsl(0,0%,97%)] py-0.5 dark:border-[hsl(0,0%,12%)] dark:bg-[hsl(0,0%,9%)]">
         <SortByButtons sortParam={searchParams.sort} />
       </div>
 
-      {projects.map((project) => {
-        const date = new Intl.DateTimeFormat("en-US", {
-          year: "numeric",
-          month: "long",
-        }).format(new Date(project.date))
+      <main>
+        {projects.map((project) => {
+          const date = new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "long",
+          }).format(new Date(project.date))
 
-        return (
-          <div
-            className="mx-auto mb-20 flex max-w-screen-lg flex-col gap-10 px-3 sm:px-5 lg:flex-row"
-            key={project.name}
-          >
-            <article className={cn(project.image && "basis-8/12")}>
-              <div className="mb-2 flex items-center gap-3">
-                <h3 className="text-2xl font-bold" id={project.name}>
-                  {project.name}
-                </h3>
-                {project.isWIP ? (
-                  <span className="mt-0.5 animate-pulse text-muted">
-                    Ongoing
-                  </span>
-                ) : (
-                  <time dateTime={project.date} className="mt-0.5 text-muted">
-                    {date}
-                  </time>
-                )}
-              </div>
-
-              <div className="flex flex-wrap items-center gap-1 text-sm text-muted">
-                <a
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  href={project.repo + "/stargazers"}
-                >
-                  <span className="inline-flex select-none items-center gap-1 rounded-full bg-[hsl(0,0%,90%)] px-2.5 py-0.5 hover:bg-[hsl(0,0%,85%)] dark:bg-[hsl(0,0%,12%)] dark:hover:bg-[hsl(0,0%,16%)]">
-                    <PiStarBold size={13} />
-                    {project.stars}
-                  </span>
-                </a>
-                {project.tags.map((tag) => (
-                  <span
-                    className="inline-flex items-center gap-1 rounded-full bg-[hsl(0,0%,90%)] px-2.5 py-0.5 dark:bg-[hsl(0,0%,12%)]"
-                    key={tag}
+          return (
+            <article
+              className="mx-auto mb-20 flex max-w-screen-lg flex-col gap-10 px-3 last:mb-0 sm:px-5 lg:flex-row"
+              key={project.name}
+            >
+              <div className={cn(project.image && "basis-8/12")}>
+                <div className="mb-2 flex items-center gap-3">
+                  <h3
+                    className="text-xl font-semibold"
+                    id={slugify(project.name)}
                   >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+                    {project.name}
+                  </h3>
+                  {project.isWIP ? (
+                    <span className="mt-0.5 animate-pulse text-muted">
+                      Ongoing
+                    </span>
+                  ) : (
+                    <time dateTime={project.date} className="mt-0.5 text-muted">
+                      {date}
+                    </time>
+                  )}
+                </div>
 
-              <p className="my-6">{project.description}</p>
-
-              <div className="flex gap-4">
-                <a
-                  className="inline-flex items-center gap-1 font-medium underline underline-offset-[3px]"
-                  href={project.repo}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  GitHub&nbsp;&nbsp;&nbsp;&nbsp;
-                  <LuArrowUpRight
-                    className="-ml-4 mt-[1px] stroke-[2.5px]"
-                    size={15}
-                  />
-                </a>
-                {project.demo && (
+                <div className="flex flex-wrap items-center gap-1 text-sm text-muted">
                   <a
-                    className="inline-flex items-center gap-1 font-medium underline underline-offset-[3px]"
-                    href={project.demo}
                     rel="noopener noreferrer"
                     target="_blank"
+                    href={project.repo + "/stargazers"}
+                    aria-label={`${project.stars} stars on GitHub`}
                   >
-                    Demo&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span
+                      className="inline-flex select-none items-center gap-1 rounded-full bg-[hsl(0,0%,90%)] px-2.5 py-0.5 hover:bg-[hsl(0,0%,85%)] dark:bg-[hsl(0,0%,12%)] dark:hover:bg-[hsl(0,0%,16%)]"
+                      aria-hidden
+                    >
+                      <PiStarBold size={13} />
+                      {project.stars}
+                    </span>
+                  </a>
+                  {project.tags.map((tag) => (
+                    <span
+                      className="inline-flex items-center gap-1 rounded-full bg-[hsl(0,0%,90%)] px-2.5 py-0.5 dark:bg-[hsl(0,0%,12%)]"
+                      key={tag}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <p className="my-6">{project.description}</p>
+
+                <div className="flex gap-4">
+                  <a
+                    className="inline-flex items-center gap-1 font-medium underline underline-offset-[3px]"
+                    href={project.repo}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    aria-label="GitHub repository"
+                  >
+                    GitHub&nbsp;&nbsp;&nbsp;&nbsp;
                     <LuArrowUpRight
                       className="-ml-4 mt-[1px] stroke-[2.5px]"
                       size={15}
                     />
                   </a>
-                )}
+                  {project.demo && (
+                    <a
+                      className="inline-flex items-center gap-1 font-medium underline underline-offset-[3px]"
+                      href={project.demo}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      aria-label="Demo"
+                    >
+                      Demo&nbsp;&nbsp;&nbsp;&nbsp;
+                      <LuArrowUpRight
+                        className="-ml-4 mt-[1px] stroke-[2.5px]"
+                        size={15}
+                      />
+                    </a>
+                  )}
+                </div>
               </div>
-            </article>
 
-            {project.image && (
-              <a
-                href={project.demo}
-                className="group relative basis-4/12 select-none self-center"
-                target="_blank"
-              >
-                <CldImage
-                  className="rounded-2xl border group-hover:brightness-50"
-                  src={project.image}
-                  width={500}
-                  alt={project.name}
-                />
-                <span className="absolute inset-0 hidden items-center justify-center text-2xl font-semibold text-white group-hover:inline-flex">
-                  View Demo
-                  <LuExternalLink className="ml-2 stroke-[3px]" size={22} />
-                </span>
-              </a>
-            )}
-          </div>
-        )
-      })}
+              {project.image && (
+                <a
+                  href={project.demo}
+                  className="group relative basis-4/12 select-none self-center"
+                  target="_blank"
+                >
+                  <CldImage
+                    className="rounded-2xl border group-hover:brightness-75"
+                    src={project.image}
+                    width={500}
+                    alt={project.name}
+                  />
+                  <span className="absolute inset-0 hidden items-center justify-center text-2xl font-semibold text-white group-hover:inline-flex">
+                    View Demo
+                    <LuExternalLink className="ml-2 stroke-[3px]" size={22} />
+                  </span>
+                </a>
+              )}
+            </article>
+          )
+        })}
+      </main>
     </>
   )
 }

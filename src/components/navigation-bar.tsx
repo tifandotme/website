@@ -33,7 +33,7 @@ export function NavigationBar() {
           <BiDotsHorizontal
             size={34}
             className="fill-muted-darker group-hover:fill-foreground"
-            aria-hidden="true"
+            aria-hidden
           />
         </Menu.Button>
 
