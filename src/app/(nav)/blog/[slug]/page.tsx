@@ -71,7 +71,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
           // H2
           "prose-h2:before:mb-4 prose-h2:before:block prose-h2:before:h-[3px] prose-h2:before:w-[1.5rem] prose-h2:before:bg-foreground prose-h2:before:content-['']",
-          "prose-h2:mt-[1.7em] prose-h2:font-serif prose-h2:text-3xl prose-h2:font-medium",
+          "prose-h2:mt-[1.7em] prose-h2:font-heading prose-h2:text-3xl prose-h2:font-medium",
 
           // H3
           "prose-h3:mt-[1.3em] prose-h3:text-2xl prose-h3:font-medium",
@@ -81,7 +81,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
       >
         <header
           className={cn(
-            "not-prose !col-span-full mb-10",
+            "not-prose !col-span-full",
 
             "grid grid-cols-[min(63ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
           )}
@@ -100,16 +100,22 @@ export default function PostPage({ params }: { params: { slug: string } }) {
               </div>
             )}
           </div>
-          <h1 className="!col-span-full mt-5 max-w-screen-md font-serif text-[clamp(2.5rem,1rem+3.125vw,3rem)] font-medium leading-none tracking-[-0.04em] text-[var(--heading)]">
+          <h1 className="!col-span-full mb-3 mt-5 max-w-screen-md font-heading text-[clamp(2.7rem,1rem+3.125vw,3.2rem)] font-medium leading-none tracking-[-0.04em] text-[var(--heading)]">
             {post.title}
           </h1>
-          {post.description && (
-            <p className="mt-7 text-muted">{post.description}</p>
-          )}
+          {post.description && <p className="text-muted">{post.description}</p>}
         </header>
+
+        <hr className="my-7 border-border" />
 
         <MDXContent components={components} />
       </article>
+      <div className="mx-auto mt-14 flex !max-w-screen-md items-center font-mono font-semibold uppercase text-muted-darker">
+        <span className="relative top-[2px] mr-2 select-none text-[26px] leading-none">
+          {" © "}
+        </span>
+        CC BY-NC-SA 4.0 2023-PRESENT
+      </div>
     </main>
   )
 }
