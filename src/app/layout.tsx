@@ -3,7 +3,7 @@ import Script from "next/script"
 import cn from "clsx"
 
 import { site } from "@/config"
-import { gambarino, inter, jetbrainsMono, lora, newsreader } from "@/lib/fonts"
+import { fonts } from "@/lib/fonts"
 import { BreakpointIndicator } from "@/components/breakpoint-indicator"
 import { NavigationProgressProvider } from "@/components/navigation-progress"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -13,7 +13,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: {
     template: "%s — " + site.name,
-    default: site.name,
+    default: site.name + " — Software Engineer",
   },
   description: site.description,
   keywords: [
@@ -55,11 +55,7 @@ export default function RootLayout({
         className={cn(
           "min-h-screen bg-background font-sans text-foreground antialiased selection:bg-blue-500 selection:text-neutral-50 dark:selection:bg-blue-700",
 
-          inter.variable,
-          jetbrainsMono.variable,
-          lora.variable,
-          newsreader.variable,
-          gambarino.variable,
+          fonts.map((font) => font.variable),
         )}
       >
         <ThemeProvider attribute="class" enableSystem>

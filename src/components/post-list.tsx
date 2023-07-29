@@ -36,7 +36,7 @@ export function PostList({ showDrafts = false }: { showDrafts?: boolean }) {
           <Link
             key={post.url}
             href={post.url}
-            className="mb-6 rounded-xl border p-5 last:mb-0 hover:bg-neutral-100 hover:transition active:scale-[.98] dark:hover:bg-neutral-900"
+            className="mb-10 rounded-xl border p-5 last:mb-0 hover:bg-neutral-100 hover:transition active:scale-[.98] dark:hover:bg-neutral-900"
           >
             <h3 className="mb-1 line-clamp-3 font-sans text-xl font-medium">
               {post.title}
