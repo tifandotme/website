@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import Link from "next/link"
 import cn from "clsx"
 import { BiUpArrowAlt } from "react-icons/bi"
 import { useWindowScroll } from "react-use"
@@ -18,7 +17,7 @@ export function BackToTopButton({ path }: { path: string }) {
   }, [y])
 
   return (
-    <Link
+    <a
       onClick={() => {
         window.scrollTo({ top: 0, behavior: "instant" })
       }}
@@ -30,9 +29,8 @@ export function BackToTopButton({ path }: { path: string }) {
           : "pointer-events-none text-[hsl(0,0%,75%)] dark:text-[hsl(0,0%,20%)]",
       )}
       href={path}
-      prefetch={false}
     >
       Back to top <BiUpArrowAlt className="ml-[1px] inline-block" size={21} />
-    </Link>
+    </a>
   )
 }
