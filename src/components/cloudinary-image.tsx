@@ -6,7 +6,7 @@ export async function CldImage({
   aspectRatio,
   ...props
 }: { aspectRatio?: string } & ImageProps) {
-  const { src, alt, width, height } = props
+  const { src, alt, width, height, sizes } = props
   const publicId = src as string
 
   if (!src || !alt || !width) {
@@ -44,7 +44,8 @@ export async function CldImage({
       height={calculatedHeight}
       placeholder="blur"
       blurDataURL={base64}
-      quality={85}
+      quality={90} // value above 90 will only increase the file size beyond what was fetched from Cloudinary
+      sizes={sizes || "100vw"} // its recommended to pass the "sizes" prop to make the image responsive.
     />
   )
 }
