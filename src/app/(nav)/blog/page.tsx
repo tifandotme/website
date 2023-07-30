@@ -9,8 +9,19 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   // TODO: add search bar, tags?
   return (
-    <main className="container-main">
-      <PostList />
-    </main>
+    <>
+      <header className="container-md mb-14 lg:-mt-10">
+        <h1 className="mb-5 font-heading text-4xl">Writings</h1>
+        <p className="text-lg leading-8">
+          These pieces reflect my genuine interest in sharing ideas with others,
+          as well as my dedication to learning and growing as a developer. I
+          hope you find them useful!
+        </p>
+      </header>
+
+      <main className="container-md">
+        <PostList />
+      </main>
+    </>
   )
 }
