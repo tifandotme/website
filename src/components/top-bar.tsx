@@ -96,7 +96,11 @@ export function TopBar() {
                 mounted ? "pointer-events-auto" : "pointer-events-none",
               )}
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              title={`Change to ${theme === "light" ? "dark" : "light"} mode`}
+              title={
+                mounted
+                  ? `Change to ${theme === "light" ? "dark" : "light"} mode`
+                  : undefined
+              }
             >
               {mounted ? (
                 theme === "light" ? (
@@ -112,7 +116,12 @@ export function TopBar() {
         </nav>
 
         <CollapsibleContent
-          className="collapsible select-none border-y bg-[hsl(0,0%,94%)] text-muted shadow-[inset_0_2px_39px_-12px_rgba(0,0,0,0.15)] dark:bg-[hsl(0,0%,10%)] xs:hidden"
+          className={cn(
+            "select-none border-y bg-[hsl(0,0%,94%)] text-muted shadow-[inset_0_2px_39px_-12px_rgba(0,0,0,0.15)] dark:bg-[hsl(0,0%,10%)] xs:hidden",
+
+            // open/close animation
+            "overflow-hidden data-[state='closed']:animate-radix-collapsible-close data-[state='open']:animate-radix-collapsible-open",
+          )}
           id="radix-collapsible"
         >
           {site.navLinks.map(({ label, url }) => (

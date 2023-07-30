@@ -24,7 +24,7 @@ export default function HomePage() {
           sizes="(max-width: 768px) 16vw, (max-width: 1024px) 12vw, 10vw"
         />
         <p className="mb-6">
-          Hi, I&apos;m <span className="text-xl font-bold">Tifan</span>, a
+          Hi, I&apos;m <span className="text-xl font-semibold">Tifan</span>, a
           software engineer based in Indonesia. My ambition is to create{" "}
           <em>efficient</em> and <em>elegant</em> software solutions that can
           make a meaningful and positive impact on people&apos;s lives.
