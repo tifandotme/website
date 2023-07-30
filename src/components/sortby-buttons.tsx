@@ -22,6 +22,7 @@ export function SortByButtons({
         }
         className={cn(
           "my-1 inline-flex items-center gap-2 p-3 transition-transform hover:text-foreground active:translate-y-0.5",
+
           sortParam === "stars" ? "text-muted-darker" : "text-foreground",
         )}
         aria-label="Sort by date"

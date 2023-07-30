@@ -182,6 +182,7 @@ export function NavigationProgressProvider({
     <>
       {children}
 
+      {/* warning: without Suspense, this error would occur: https://nextjs.org/docs/messages/deopted-into-client-rendering */}
       <React.Suspense fallback={null}>
         <NavigationProgress />
       </React.Suspense>
