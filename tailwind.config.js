@@ -86,8 +86,8 @@ const config = {
       fontFamily: {
         sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
         mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],
-        serif: ["var(--font-serif)", ...defaultTheme.fontFamily.serif],
-        italic: ["var(--font-slanted)", ...defaultTheme.fontFamily.serif],
+        // serif: ["var(--font-serif)", ...defaultTheme.fontFamily.serif],
+        italic: ["var(--font-italic)", ...defaultTheme.fontFamily.serif],
         heading: ["var(--font-heading)", ...defaultTheme.fontFamily.serif],
       },
     },

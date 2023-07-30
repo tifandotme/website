@@ -11,6 +11,7 @@ const importConfig = {
     "^@/config(/.*)?$",
     "^@/lib(/.*)?$",
     "^@/hooks(/.*)?$",
+    // "^@/components/ui(.*)$",
     "^@/components(.*)$",
     "^@/app(.*)$",
     "",
@@ -20,7 +21,7 @@ const importConfig = {
 
 /** @type {import("prettier-plugin-tailwindcss").PluginOptions} */
 const tailwindConfig = {
-  tailwindFunctions: ["cn", "clsx"],
+  tailwindFunctions: ["cn"],
   tailwindAttributes: ["className", "class"],
 }
 
