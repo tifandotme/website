@@ -53,21 +53,21 @@ export default async function ProjectsPage({
 
   return (
     <>
-      <header className="container-main mb-14 lg:-mt-10">
+      <header className="container-md mb-14 lg:-mt-10">
         <h1 className="mb-5 font-heading text-4xl">Open-source</h1>
         <p className="text-lg leading-8">
-          Here is a list of my open-source projects. I hope you find them
-          useful! If you have any questions or feedback, feel free to reach out
-          to me on Twitter.
+          Whether it&apos;s a personal passion project or a practical solution
+          to everyday problems, I see these projects as creative vessels for
+          exploring and learning new topics.
         </p>
       </header>
 
       <div className="bg-slate-700 pb-11 pt-10 text-white dark:bg-slate-400 dark:text-black">
-        <nav className="container-main">
+        <nav className="container-md">
           <h2 className="mb-3.5 text-xl font-semibold">Table of Contents</h2>
-          <ul>
+          <ul className="flex flex-col space-y-0.5">
             {projectsTOC.map((project) => (
-              <li key={project.name} className="py-0.5 first:pt-0 last:pb-0">
+              <li key={project.name}>
                 <a
                   href={"#" + slugify(project.name)}
                   className="font-medium underline underline-offset-[3px]"
@@ -83,7 +83,7 @@ export default async function ProjectsPage({
         <SortByButtons sortParam={searchParams.sort} />
       </div>
 
-      <main>
+      <main className="container-lg">
         {projects.map((project) => {
           const date = new Intl.DateTimeFormat("en-US", {
             year: "numeric",
@@ -91,8 +91,8 @@ export default async function ProjectsPage({
           }).format(new Date(project.date))
 
           return (
-            <article
-              className="mx-auto mb-20 flex max-w-screen-lg flex-col gap-10 px-3 last:mb-0 sm:px-5 lg:flex-row"
+            <section
+              className="mb-20 flex flex-col gap-10 last:mb-0 lg:flex-row"
               key={project.name}
             >
               <div className={cn(project.image && "basis-8/12")}>
@@ -180,10 +180,12 @@ export default async function ProjectsPage({
                   target="_blank"
                 >
                   <CldImage
-                    className="rounded-2xl border group-hover:brightness-75"
+                    // make sure the image is 16:10
+                    className="w-[500px] rounded-2xl border group-hover:brightness-75 lg:w-full"
                     src={project.image}
-                    width={500}
                     alt={project.name}
+                    width={1000}
+                    sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 25vw"
                   />
                   <span className="absolute inset-0 hidden items-center justify-center text-2xl font-semibold text-white group-hover:inline-flex">
                     View Demo
@@ -191,7 +193,7 @@ export default async function ProjectsPage({
                   </span>
                 </a>
               )}
-            </article>
+            </section>
           )
         })}
       </main>
