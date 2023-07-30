@@ -1,16 +1,26 @@
-import { allPosts, type Post } from "contentlayer/generated"
+import { allPosts } from "contentlayer/generated"
 import { getPlaiceholder } from "plaiceholder"
 
-export function slugify(text: string): string {
+export function getPost(slug: string) {
+  return allPosts.find((post) => post.slug === slug)
+}
+
+// https://dev.to/gugaguichard/replace-clsx-classnames-or-classcat-with-your-own-little-helper-3bf
+// TODO: use this instead of clsx. But it's still showing "require is not define" error, so figure out how to fix that first
+export function cn(...args: unknown[]) {
+  return args
+    .flat()
+    .filter((x) => typeof x === "string")
+    .join(" ")
+    .trim()
+}
+
+export function slugify(text: string) {
   return text
     .replace(/\s+/g, "-")
     .replace(/--+/g, "-")
     .replace(/[^\w/-]+/g, "")
     .toLowerCase()
-}
-
-export function getPost(slug: string): Post | undefined {
-  return allPosts.find((post) => post.slug === slug)
 }
 
 /**
@@ -22,7 +32,7 @@ export function getPost(slug: string): Post | undefined {
  *
  * @see https://cloudinary.com/documentation/advanced_url_delivery_options#generating_delivery_url_signatures
  */
-export async function generateSignature(url: string): Promise<string> {
+export async function generateSignature(url: string) {
   const appendedUrl = url + process.env.CLOUDINARY_API_SECRET
 
   // convert the data to UTF-8 encoded bytes
