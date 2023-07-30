@@ -1,42 +1,33 @@
-import Image from "next/image"
 import { FaGithub, FaNewspaper } from "react-icons/fa6"
 
 import { site } from "@/config"
 import { generateRSS } from "@/lib/feed"
+import { CldImage } from "@/components/cloudinary-image"
 import { XTwitter } from "@/components/icons"
 import { PostList } from "@/components/post-list"
 import { ScrollUpWhenMounted } from "@/components/scroll-fix"
 import { SocialButton } from "@/components/social-button"
 
-import potrait from "./potrait.png"
-
 export default function HomePage() {
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.VERCEL_URL === "tifan.me") {
     generateRSS()
   }
 
   return (
-    <main className="container-main">
+    <main className="container-md">
       <header className="text-left text-lg leading-8 sm:text-justify">
-        <Image
-          className="float-right m-1 ml-5 hidden rounded-3xl grayscale hover:grayscale-0 dark:brightness-90 sm:block"
-          src={potrait}
+        <CldImage
+          className="float-right m-1 ml-5 hidden w-[95px] rounded-2xl grayscale hover:grayscale-0 dark:brightness-90 sm:block"
+          src="potrait.png"
           alt={site.author}
-          width={120}
-          height={120}
-          placeholder="blur"
-          quality={90}
+          width={300}
+          sizes="(max-width: 768px) 16vw, (max-width: 1024px) 12vw, 10vw"
         />
-        <p>
-          Hi, I&apos;m <span className="text-xl font-semibold">Tifan</span>, a
-          software engineer based in Indonesia. I&apos;m currently focused on
-          building with the React ecosystem and exploring various aspects of web
-          development. I also share interesting insights that I discovered
-          throughout my learning journey.
-        </p>
-        <p className="my-6">
-          My ambition is to create an <em>efficient</em> and <em>elegant</em>{" "}
-          software that can have a positive impact on people&apos;s lives.
+        <p className="mb-6">
+          Hi, I&apos;m <span className="text-xl font-bold">Tifan</span>, a
+          software engineer based in Indonesia. My ambition is to create{" "}
+          <em>efficient</em> and <em>elegant</em> software solutions that can
+          make a meaningful and positive impact on people&apos;s lives.
         </p>
         <p>
           Outside of programming, I&apos;m also passionate about{" "}
