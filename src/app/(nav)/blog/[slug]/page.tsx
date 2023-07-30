@@ -9,6 +9,8 @@ import { getPost } from "@/lib/utils"
 import { BackToTopButton } from "@/components/back-to-top"
 import { components } from "@/components/mdx-components"
 
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   return allPosts.map((post) => ({ slug: post.slug }))
 }
@@ -38,7 +40,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
   const MDXContent = useMDXComponent(post.body.code)
 
-  // warning: when main have a tailwindcss-animate class, it will concflict with aside
+  // warning: if <main> tag contain tailwind-animate class, it will conflict with the one inside <aside> tag
   return (
     <main className="container px-3 sm:px-5">
       <aside
@@ -64,14 +66,14 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         <BackToTopButton path={post.url} />
       </aside>
 
-      {/* adjust 63 ch if font is changed from inter to something else */}
+      {/* adjust "63ch" occurences if font is changed from inter to something else */}
       <article
         className={cn(
           "prose mx-auto !max-w-screen-md dark:prose-invert lg:-mt-24",
 
           // H2
           "prose-h2:before:mb-4 prose-h2:before:block prose-h2:before:h-[3px] prose-h2:before:w-[1.5rem] prose-h2:before:bg-foreground prose-h2:before:content-['']",
-          "prose-h2:mt-[1.7em] prose-h2:font-heading prose-h2:text-3xl",
+          "prose-h2:mt-[1.7em] prose-h2:font-heading prose-h2:text-3xl prose-h2:font-medium",
 
           // H3
           "prose-h3:mt-[1.3em] prose-h3:text-2xl prose-h3:font-medium",
@@ -106,16 +108,16 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           {post.description && <p className="text-muted">{post.description}</p>}
         </header>
 
-        <hr className="my-7 border-border" aria-hidden />
+        <hr className="my-8 border-border" aria-hidden />
 
         <MDXContent components={components} />
       </article>
-      <div className="mx-auto mt-14 flex !max-w-screen-md items-center font-mono font-semibold uppercase text-muted-darker">
+      {/* <div className="mx-auto mt-14 flex !max-w-screen-md items-center font-mono font-semibold uppercase text-muted-darker">
         <span className="relative top-[2px] mr-2 select-none text-[26px] leading-none">
           {" © "}
         </span>
         CC BY-NC-SA 4.0 2023-PRESENT
-      </div>
+      </div> */}
     </main>
   )
 }
