@@ -52,8 +52,11 @@
 }
 
 @layer components {
-  .container-main {
+  .container-md {
     @apply mx-auto max-w-screen-md px-3 sm:px-5;
+  }
+  .container-lg {
+    @apply mx-auto max-w-screen-lg px-3 sm:px-5;
   }
 }
 

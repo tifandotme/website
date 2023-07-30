@@ -90,6 +90,28 @@ const config = {
         italic: ["var(--font-italic)", ...defaultTheme.fontFamily.serif],
         heading: ["var(--font-heading)", ...defaultTheme.fontFamily.serif],
       },
+      animation: {
+        "radix-collapsible-open": "slideDown 300ms ease-out",
+        "radix-collapsible-close": "slideUp 300ms ease-out",
+      },
+      keyframes: {
+        slideDown: {
+          "0%": {
+            height: "0",
+          },
+          "100%": {
+            height: "var(--radix-collapsible-content-height)",
+          },
+        },
+        slideUp: {
+          "0%": {
+            height: "var(--radix-collapsible-content-height)",
+          },
+          "100%": {
+            height: "0",
+          },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
