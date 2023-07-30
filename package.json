@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "website",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -15,8 +15,8 @@
     "postinstall": "husky install"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.16",
     "@plaiceholder/next": "^3.0.0",
+    "@radix-ui/react-collapsible": "^1.0.3",
     "clsx": "^2.0.0",
     "contentlayer": "^0.3.4",
     "next": "^13.4.12",
@@ -75,7 +75,7 @@
     }
   },
   "//": [
-    "`pnpm overides` is used to temp fix a bug in contentlayer 0.3.4",
-    "feed depends on fs-extra"
+    "feed depends on fs-extra",
+    "plaiceholder depends on sharp"
   ]
 }
