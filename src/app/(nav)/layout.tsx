@@ -1,10 +1,8 @@
 import React from "react"
-import Link from "next/link"
 import { BsRssFill } from "react-icons/bs"
 
 import { site } from "@/config"
-import { Logo } from "@/components/icons"
-import { NavigationBar } from "@/components/navigation-bar"
+import { TopBar } from "@/components/top-bar"
 
 export default function HomeLayout({
   children,
@@ -13,19 +11,7 @@ export default function HomeLayout({
 }) {
   return (
     <>
-      <nav className="container flow-root px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
-        <Link
-          href="/"
-          title="Go to homepage"
-          className="absolute inline-flex h-12 select-none items-center text-muted-darker transition hover:text-foreground active:translate-y-0.5 xl:fixed"
-        >
-          <Logo size="2.6em" />
-        </Link>
-
-        <div className="relative float-right inline-flex h-12 gap-3">
-          <NavigationBar />
-        </div>
-      </nav>
+      <TopBar />
 
       {children}
 
