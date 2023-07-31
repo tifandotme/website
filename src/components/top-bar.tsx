@@ -60,6 +60,7 @@ export function TopBar() {
                   mounted ? "pointer-events-auto" : "pointer-events-none",
                 )}
                 aria-controls="radix-collapsible"
+                aria-label="Navigation menu"
               >
                 {isOpen ? (
                   <RiContractUpDownFill size={27} />
@@ -128,7 +129,7 @@ export function TopBar() {
             <Link
               key={url}
               href={url}
-              className="block px-4 py-3 text-center text-lg font-semibold tracking-wider first:mt-2  last:mb-2 hover:text-foreground active:text-foreground"
+              className="block px-4 py-3 text-center text-lg font-semibold tracking-wider transition-transform first:mt-2 last:mb-2 hover:text-foreground active:translate-y-0.5 active:text-foreground"
               onClick={() => isOpen && setIsOpen(false)}
             >
               {label}

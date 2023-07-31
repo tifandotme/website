@@ -10,7 +10,7 @@ const config = {
     "./content/**/*.mdx",
   ],
   future: {
-    // TODO: revert this once tailwindcss is updated to v4
+    // NOTE: revert this once tailwindcss is updated to v4
     // https://stackoverflow.com/questions/56755439/modifying-hover-in-tailwindcss/72323247#72323247
     hoverOnlyWhenSupported: true,
   },
@@ -91,8 +91,8 @@ const config = {
         heading: ["var(--font-heading)", ...defaultTheme.fontFamily.serif],
       },
       animation: {
-        "radix-collapsible-open": "slideDown 300ms ease-out",
-        "radix-collapsible-close": "slideUp 300ms ease-out",
+        "radix-collapsible-open": "slideDown 200ms ease-out",
+        "radix-collapsible-close": "slideUp 200ms ease-out",
       },
       keyframes: {
         slideDown: {
