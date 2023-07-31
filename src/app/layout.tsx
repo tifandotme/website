@@ -1,9 +1,9 @@
 import { type Metadata } from "next"
 import Script from "next/script"
-import cn from "clsx"
 
 import { site } from "@/config"
 import { fonts } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
 import { BreakpointIndicator } from "@/components/breakpoint-indicator"
 import { NavigationProgressProvider } from "@/components/navigation-progress"
 import { ThemeProvider } from "@/components/theme-provider"

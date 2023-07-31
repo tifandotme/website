@@ -1,7 +1,7 @@
 import { ImageProps } from "next/image"
-import cn from "clsx"
 import { type MDXComponents } from "mdx/types"
 
+import { cn } from "@/lib/utils"
 import { CldImage } from "@/components/cloudinary-image"
 
 export const components: MDXComponents = {

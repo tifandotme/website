@@ -1,8 +1,7 @@
 import { FaArrowLeft } from "react-icons/fa6"
 
 export default function NotFound() {
-  // warning: when server logs is showing this error:
-  // https://nextjs.org/docs/messages/deopted-into-client-rendering
+  // WARN: when server logs is showing this error: https://nextjs.org/docs/messages/deopted-into-client-rendering
   // any calls to notFound() will return 500 error instead
   return (
     <main className="flex h-screen flex-col items-center justify-center gap-10 font-sans">

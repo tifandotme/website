@@ -1,11 +1,10 @@
 import { type Metadata } from "next"
 import { notFound } from "next/navigation"
-import cn from "clsx"
 import { allPosts } from "contentlayer/generated"
 import { useMDXComponent } from "next-contentlayer/hooks"
 
 import { type HeadingsField } from "@/types"
-import { getPost } from "@/lib/utils"
+import { cn, getPost } from "@/lib/utils"
 import { BackToTopButton } from "@/components/back-to-top"
 import { components } from "@/components/mdx-components"
 
@@ -40,7 +39,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
   const MDXContent = useMDXComponent(post.body.code)
 
-  // warning: if <main> tag contain tailwind-animate class, it will conflict with the one inside <aside> tag
+  // WARN: if <main> tag contain tailwind-animate class, it will conflict with the one inside <aside> tag
   return (
     <main className="container px-3 sm:px-5">
       <aside

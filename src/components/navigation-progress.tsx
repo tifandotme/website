@@ -11,7 +11,7 @@ import NProgress, { type NProgressOptions } from "nprogress"
 
 import { type PushStateInput } from "@/types"
 
-// source: https://github.com/Skyleen77/next-nprogress-bar
+// REF: https://github.com/Skyleen77/next-nprogress-bar
 
 const config = {
   color: "var(--primary)",
@@ -145,7 +145,7 @@ const NavigationProgress = React.memo(
 
       const handleMutation: MutationCallback = () => {
         const anchorElements = document.querySelectorAll("a")
-        // Skip anchors with target="_blank" and anchors without href
+        // skip anchors with target="_blank" and anchors without href
         const validAnchorELes = Array.from(anchorElements).filter(
           (anchor) => anchor.href && anchor.target !== "_blank",
         )

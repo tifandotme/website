@@ -1,10 +1,9 @@
 import { type Metadata } from "next"
-import cn from "clsx"
 import { allProjects } from "contentlayer/generated"
 import { LuArrowUpRight, LuExternalLink } from "react-icons/lu"
 import { PiStarBold } from "react-icons/pi"
 
-import { slugify } from "@/lib/utils"
+import { cn, slugify } from "@/lib/utils"
 import { CldImage } from "@/components/cloudinary-image"
 import { SortByButtons } from "@/components/sortby-buttons"
 
@@ -180,7 +179,7 @@ export default async function ProjectsPage({
                   target="_blank"
                 >
                   <CldImage
-                    // make sure the image is 16:10
+                    // NOTE: make sure the image is 16:10
                     className="w-[500px] rounded-2xl border group-hover:brightness-75 lg:w-full"
                     src={project.image}
                     alt={project.name}

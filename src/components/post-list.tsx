@@ -18,7 +18,7 @@ export function PostList({ showDrafts = false }: { showDrafts?: boolean }) {
         const postYear = new Date(post.date).getFullYear()
         const currentYear = new Date().getFullYear()
 
-        // XXX: JS will add Temporal in the future
+        // NOTE: JS will add Temporal in the future
         let options: Intl.DateTimeFormatOptions
 
         // if the post is not from the current year, show the full date

@@ -8,12 +8,12 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@radix-ui/react-collapsible"
-import cn from "clsx"
 import { useTheme } from "next-themes"
 import { MdDarkMode, MdLightMode } from "react-icons/md"
 import { RiContractUpDownFill, RiExpandUpDownFill } from "react-icons/ri"
 
 import { site } from "@/config"
+import { cn } from "@/lib/utils"
 import { Logo } from "@/components/icons"
 
 export function TopBar() {
@@ -22,7 +22,7 @@ export function TopBar() {
 
   const { theme, setTheme } = useTheme()
 
-  // https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch
+  // REF: https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch
   React.useEffect(() => {
     setMounted(true)
   }, [])

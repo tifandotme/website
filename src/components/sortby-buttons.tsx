@@ -1,9 +1,10 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import cn from "clsx"
 import { LuCalendarDays } from "react-icons/lu"
 import { PiStarBold } from "react-icons/pi"
+
+import { cn } from "@/lib/utils"
 
 export function SortByButtons({
   sortParam,

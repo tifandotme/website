@@ -2,9 +2,10 @@
 
 import React from "react"
 import Link from "next/link"
-import cn from "clsx"
 import { BiUpArrowAlt } from "react-icons/bi"
 import { useWindowScroll } from "react-use"
+
+import { cn } from "@/lib/utils"
 
 export function BackToTopButton({ path }: { path: string }) {
   const [isScrolled, setIsScrolled] = React.useState(false)
