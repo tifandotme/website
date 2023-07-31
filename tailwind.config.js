@@ -8,6 +8,7 @@ const config = {
     "./src/app/**/*.{ts,tsx}",
     "./src/components/**/*.{ts,tsx}",
     "./content/**/*.mdx",
+    "contentlayer.config.ts",
   ],
   future: {
     // NOTE: revert this once tailwindcss is updated to v4

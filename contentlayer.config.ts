@@ -188,6 +188,41 @@ export default makeSource({
       [
         rehypeExternalLinks,
         {
+          content: [
+            // {
+            //   type: "text",
+            //   value: "\u00A0\u00A0\u00A0\u00A0",
+            // },
+            {
+              type: "element",
+              tagName: "svg",
+              properties: {
+                xmlns: "http://www.w3.org/2000/svg",
+                viewBox: "0 0 24 24",
+                width: 15,
+                height: 15,
+                stroke: "currentColor",
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: "2.5px",
+                className: "inline-block ml-0.5 text-muted",
+              },
+              children: [
+                {
+                  type: "element",
+                  tagName: "path",
+                  properties: {
+                    d: "M7 17 17 7M7 7h10v10",
+                  },
+                  children: [],
+                },
+              ],
+            },
+          ],
+          contentProperties: {
+            "aria-hidden": true,
+          },
+          target: "_blank",
           rel: ["nofollow", "noopener"],
         } satisfies ExternalLinksOptions,
       ],
