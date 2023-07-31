@@ -13,9 +13,10 @@ export default function BlogPage() {
       <header className="container-md mb-14 lg:-mt-10">
         <h1 className="mb-5 font-heading text-4xl">Writings</h1>
         <p className="text-lg leading-8">
-          These pieces reflect my genuine interest in sharing ideas with others,
-          as well as my dedication to learning and growing as a developer. I
-          hope you find them useful!
+          These writings reflect my genuine interest in sharing ideas with
+          others, as well as my dedication to learning and growing as a
+          developer. I strive to make each post provide as much value to the
+          readers as possible, and I certainly hope you find them useful!
         </p>
       </header>
 

@@ -77,6 +77,8 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           // H3
           "prose-h3:mt-[1.3em] prose-h3:text-2xl prose-h3:font-medium",
 
+          "prose-a:underline-offset-2",
+
           "grid grid-cols-[min(63ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
         )}
       >

@@ -56,8 +56,8 @@ export default async function ProjectsPage({
         <h1 className="mb-5 font-heading text-4xl">Open-source</h1>
         <p className="text-lg leading-8">
           Whether it&apos;s a personal passion project or a practical solution
-          to everyday problems, I see these projects as creative vessels for
-          exploring and learning new topics.
+          to everyday problems, I see these open-source projects as creative
+          vessels for exploring and learning new topics.
         </p>
       </header>
 
