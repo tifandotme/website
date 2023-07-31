@@ -146,12 +146,13 @@ const NavigationProgress = React.memo(
       const handleMutation: MutationCallback = () => {
         const anchorElements = document.querySelectorAll("a")
 
-        // skip anchors with target="_blank"m anchors without href and mailto anchors
+        // only show nprogress for links that match the conditions
         const validAnchorELes = Array.from(anchorElements).filter(
           (anchor) =>
             anchor.href &&
+            anchor.target !== "_blank" &&
             !anchor.href.startsWith("mailto") &&
-            anchor.target !== "_blank",
+            !anchor.download,
         )
         validAnchorELes.forEach((anchor) =>
           anchor.addEventListener("click", handleAnchorClick),

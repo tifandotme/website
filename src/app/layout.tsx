@@ -63,7 +63,7 @@ export default function RootLayout({
 
         <BreakpointIndicator />
 
-        {process.env.VERCEL_URL === "tifan.me" && (
+        {process.env.VERCEL_ENV === "production" && (
           <Script
             async
             src="https://analytics.tifan.me/script.js"

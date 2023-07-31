@@ -9,7 +9,7 @@ import { ScrollUpWhenMounted } from "@/components/scroll-fix"
 import { SocialButton } from "@/components/social-button"
 
 export default function HomePage() {
-  if (process.env.VERCEL_URL === "tifan.me") {
+  if (process.env.VERCEL_ENV === "production") {
     generateRSS()
   }
 
@@ -45,11 +45,15 @@ export default function HomePage() {
             icon={FaGithub}
             href="https://github.com/tifandotme"
             label="GitHub"
+            rel="noopener noreferrer"
+            target="_blank"
           />
           <SocialButton
             icon={XTwitter}
             href="https://x.com/tifandotme"
             label="X/Twitter"
+            rel="noopener noreferrer"
+            target="_blank"
             aria-label="X formerly known as Twitter"
           />
         </section>
