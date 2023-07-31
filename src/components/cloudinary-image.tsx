@@ -1,6 +1,5 @@
 import Image, { type ImageProps } from "next/image"
-
-import { getImage, signImage } from "@/lib/utils"
+import { getPlaiceholder } from "plaiceholder"
 
 export async function CldImage({
   aspectRatio,
@@ -25,9 +24,10 @@ export async function CldImage({
     `c_scale,w_100/e_blur:1000/q_1/f_webp`,
   ] as const
 
-  const signedImage = await signImage(transforms[aspectRatio ? 0 : 1], publicId)
+  // prettier-ignore
+  const signedImage = await generateSignedImage(transforms[aspectRatio ? 0 : 1], publicId)
 
-  const signedPlaceholder = await signImage(transforms[2], publicId)
+  const signedPlaceholder = await generateSignedImage(transforms[2], publicId)
 
   // get the height of the image
   const { height: calculatedHeight } = await getImage(signedImage)
@@ -48,6 +48,74 @@ export async function CldImage({
       sizes={sizes || "100vw"} // its recommended to pass the "sizes" prop to make the image responsive.
     />
   )
+}
+
+/**
+ * Generate Cloudinary signature component for a given URL. Requires the `CLOUDINARY_API_SECRET` environment variable to be set.
+ *
+ * @param url - Cloudinary delivery URL without the base (e.g. w_300,h_250,e_grayscale/sample.png)
+ *
+ * @return Signature component for the URL (e.g. s--Kjba5B8k--).
+ *
+ * @see https://cloudinary.com/documentation/advanced_url_delivery_options#generating_delivery_url_signatures
+ */
+async function generateSignature(url: string) {
+  const appendedUrl = url + process.env.CLOUDINARY_API_SECRET
+
+  // convert the data to UTF-8 encoded bytes
+  const data = new TextEncoder().encode(appendedUrl)
+
+  // generate SHA-256 hash of the data
+  const hash = await crypto.subtle.digest("SHA-256", data)
+
+  // convert the hash to a base64-encoded string
+  const base64 = Buffer.from(hash).toString("base64")
+
+  const urlSafe = base64
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=/g, "")
+
+  const formattedSignature = `s--${urlSafe.slice(0, 8)}--`
+
+  return formattedSignature
+}
+
+async function generateSignedImage(transforms: string, publicId: string) {
+  const base = "https://res.cloudinary.com/tifan"
+
+  const signature = await generateSignature([transforms, publicId].join("/"))
+
+  return [base, signature, transforms, publicId].join("/")
+}
+
+/**
+ * Get the image height and base64-encoded placeholder for a given remote image URL.
+ */
+async function getImage(src: string) {
+  try {
+    const buffer = await fetch(src).then(async (res) =>
+      Buffer.from(await res.arrayBuffer()),
+    )
+
+    const {
+      metadata: { height },
+      base64,
+    } = await getPlaiceholder(buffer, { size: 10 })
+
+    return {
+      height,
+      base64,
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(
+        `Cannot read image from source:\n\n${src}\n\nMake sure the URL is correct.`,
+      )
+    }
+
+    throw error
+  }
 }
 
 // TODO: add image preview
