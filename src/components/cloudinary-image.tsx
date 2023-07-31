@@ -103,6 +103,8 @@ async function getImage(src: string) {
       base64,
     } = await getPlaiceholder(buffer, { size: 10 })
 
+    // WARN: DO NOT declare this function (getImage) along with other functions that might run on the client, because plaiceholder uses sharp which cannot be run on the browser. Or else you'll get this error: "ReferenceError: require is not defined". However, this might change in the future: https://github.com/lovell/sharp/pull/3522
+
     return {
       height,
       base64,
