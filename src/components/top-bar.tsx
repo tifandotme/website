@@ -44,7 +44,11 @@ export function TopBar() {
         >
           <Link
             href="/"
-            className="absolute inline-flex h-12 select-none items-center text-muted-darker transition hover:text-foreground active:translate-y-0.5 xl:fixed"
+            className={cn(
+              "absolute inline-flex h-12 select-none items-center text-muted-darker transition hover:text-foreground active:translate-y-0.5",
+
+              pathname === "/projects" ? "xl:fixed" : "lg:fixed",
+            )}
             onClick={() => isOpen && setIsOpen(false)}
             title="Go to homepage"
           >
