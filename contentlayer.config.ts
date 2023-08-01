@@ -1,8 +1,4 @@
-import {
-  defineDocumentType,
-  makeSource,
-  type ComputedFields,
-} from "contentlayer/source-files"
+import { defineDocumentType, makeSource } from "contentlayer/source-files"
 import rehypeAutolinkHeadings, {
   type Options as AutolinkHeadingsOptions,
 } from "rehype-autolink-headings"
@@ -19,50 +15,6 @@ import rehypeSlug, { type Options as SlugOptions } from "rehype-slug"
 import remarkGfm, { type Options as GfmOptions } from "remark-gfm"
 
 import { type HeadingsField } from "@/types"
-
-const computedFields: ComputedFields = {
-  url: {
-    description: "URL path of the post (e.g. /blog/my-post)",
-    type: "string",
-    resolve: (doc) => {
-      const segments = doc._raw.flattenedPath.split("/")
-
-      // remove in-between segments (e.g. 2023)
-      segments.splice(1, segments.length - 2)
-
-      const final = "/" + segments.join("/")
-
-      return slugify(final)
-    },
-  },
-  slug: {
-    description: "Slug of the post (e.g. my-post)",
-    type: "string",
-    resolve: (doc) => {
-      const segments = doc._raw.flattenedPath.split("/")
-
-      const final = segments[segments.length - 1]!
-
-      return slugify(final)
-    },
-  },
-  headings: {
-    type: "json",
-    resolve: async (doc) => {
-      const regex = /\n(?<flag>#{1})\s+(?<content>.+)/g
-      const headings = Array.from<[string, string, string]>(
-        doc.body.raw.matchAll(regex),
-      ).map((group) => {
-        return {
-          text: group[2],
-          slug: slugify(group[2]),
-        } satisfies HeadingsField[number]
-      })
-
-      return headings
-    },
-  },
-}
 
 const Post = defineDocumentType(() => ({
   name: "Post",
@@ -89,13 +41,56 @@ const Post = defineDocumentType(() => ({
         "If true, post will not show up in list of posts and sitemap",
     },
   },
-  computedFields,
+  computedFields: {
+    url: {
+      description: "URL path of the post (e.g. /blog/my-post)",
+      type: "string",
+      resolve: (doc) => {
+        const segments = doc._raw.flattenedPath.split("/")
+
+        // remove in-between segments (e.g. 2023)
+        segments.splice(1, segments.length - 2)
+
+        const final = "/" + segments.join("/")
+
+        return slugify(final)
+      },
+    },
+    slug: {
+      description: "Slug of the post (e.g. my-post)",
+      type: "string",
+      resolve: (doc) => {
+        const segments = doc._raw.flattenedPath.split("/")
+
+        const final = segments[segments.length - 1]!
+
+        return slugify(final)
+      },
+    },
+    headings: {
+      type: "json",
+      resolve: async (doc) => {
+        const regex = /\n(?<flag>#{1})\s+(?<content>.+)/g
+        const headings = Array.from(doc.body.raw.matchAll(regex)).map(
+          (group) => {
+            const text = group[2] as string
+            return {
+              text,
+              slug: slugify(text),
+            } satisfies HeadingsField[number]
+          },
+        )
+
+        return headings
+      },
+    },
+  },
 }))
 
 const Project = defineDocumentType(() => ({
   name: "Project",
-  filePathPattern: `projects/*.mdx`,
-  contentType: "mdx",
+  filePathPattern: `projects/*.{yaml,yml,json}`,
+  contentType: "data",
   fields: {
     name: {
       type: "string",
@@ -139,8 +134,6 @@ const Project = defineDocumentType(() => ({
     },
   },
   computedFields: {
-    ...computedFields,
-
     repo: {
       type: "string",
       resolve: (doc) => {
@@ -150,9 +143,20 @@ const Project = defineDocumentType(() => ({
     demo: {
       type: "string",
       resolve: (doc) => {
-        if (!doc.demo) return null
+        if (!doc.demo) return
 
         return "https://" + doc.demo
+      },
+    },
+    slug: {
+      description: "Slug of the project (e.g. personal-website)",
+      type: "string",
+      resolve: (doc) => {
+        const segments = doc._raw.flattenedPath.split("/")
+
+        const final = segments[segments.length - 1]!
+
+        return slugify(final)
       },
     },
   },
@@ -188,37 +192,31 @@ export default makeSource({
       [
         rehypeExternalLinks,
         {
-          content: [
-            // {
-            //   type: "text",
-            //   value: "\u00A0\u00A0\u00A0\u00A0",
-            // },
-            {
-              type: "element",
-              tagName: "svg",
-              properties: {
-                xmlns: "http://www.w3.org/2000/svg",
-                viewBox: "0 0 24 24",
-                width: 15,
-                height: 15,
-                stroke: "currentColor",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                strokeWidth: "2.5px",
-                className: "inline-block ml-0.5 text-muted",
-              },
-              children: [
-                {
-                  type: "element",
-                  tagName: "path",
-                  properties: {
-                    d: "M7 17 17 7M7 7h10v10",
-                  },
-                  children: [],
-                },
-              ],
+          content: {
+            type: "element",
+            tagName: "svg",
+            properties: {
+              xmlns: "http://www.w3.org/2000/svg",
+              viewBox: "0 0 24 24",
+              width: 15,
+              height: 15,
+              stroke: "currentColor",
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: "2.5px",
+              className: "inline-block ml-0.5 text-muted",
             },
-          ],
+            children: [
+              {
+                type: "element",
+                tagName: "path",
+                properties: {
+                  d: "M7 17 17 7M7 7h10v10",
+                },
+                children: [],
+              },
+            ],
+          },
           contentProperties: {
             "aria-hidden": true,
           },
@@ -238,6 +236,7 @@ export default makeSource({
 
 function slugify(text: string): string {
   return text
+    .trim()
     .replace(/\s+/g, "-")
     .replace(/--+/g, "-")
     .replace(/[^\w/-]+/g, "")

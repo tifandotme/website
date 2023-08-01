@@ -12,11 +12,3 @@ export function cn(...args: unknown[]) {
     .join(" ")
     .trim()
 }
-
-export function slugify(text: string) {
-  return text
-    .replace(/\s+/g, "-")
-    .replace(/--+/g, "-")
-    .replace(/[^\w/-]+/g, "")
-    .toLowerCase()
-}
