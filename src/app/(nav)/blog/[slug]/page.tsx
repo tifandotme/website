@@ -44,7 +44,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     <main className="container px-3 sm:px-5">
       <aside
         className={cn(
-          "fixed bottom-14 hidden select-none flex-col gap-2.5 pl-11 xl:flex",
+          "fixed bottom-14 ml-4 hidden w-[160px] select-none flex-col gap-2.5 min-[1217px]:flex min-[1300px]:ml-10 min-[1340px]:w-[210px]",
 
           "duration-500 animate-in slide-in-from-left-1/2",
         )}
@@ -56,12 +56,12 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           <a
             key={heading.slug}
             href={`#${heading.slug}`}
-            className="block text-sm font-medium text-muted transition hover:text-foreground active:translate-y-0.5"
+            className="block py-[0.12rem] text-sm font-medium leading-4 text-muted transition first:pt-0 last:pb-0 hover:text-foreground active:translate-y-0.5"
           >
             {heading.text}
           </a>
         ))}
-        <hr className="my-3" />
+        <hr className="my-3 mr-16" />
         <BackToTopButton path={post.url} />
       </aside>
 
