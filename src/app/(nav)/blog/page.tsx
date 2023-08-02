@@ -15,8 +15,7 @@ export default function BlogPage() {
         <p className="text-lg leading-8">
           These writings reflect my genuine interest in sharing ideas with
           others, as well as my dedication to learning and growing as a
-          developer. I strive to make each post provide as much value to the
-          readers as possible, and I certainly hope you find them useful!
+          developer. I hope you find them useful!
         </p>
       </header>
 
