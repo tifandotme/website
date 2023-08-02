@@ -3,7 +3,7 @@ import { allProjects } from "contentlayer/generated"
 import { LuArrowUpRight, LuExternalLink } from "react-icons/lu"
 import { PiStarBold } from "react-icons/pi"
 
-import { cn, slugify } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { CldImage } from "@/components/cloudinary-image"
 import { SortByButtons } from "@/components/sortby-buttons"
 
@@ -44,11 +44,9 @@ export default async function ProjectsPage({
     }),
   )
 
-  const projectsTOC = allProjects
-    .sort((a, b) => new Intl.Collator().compare(a.name, b.name))
-    .map((project) => ({
-      name: project.name,
-    }))
+  const projectsTOC = allProjects.sort((a, b) =>
+    new Intl.Collator().compare(a.name, b.name),
+  )
 
   return (
     <>
@@ -68,7 +66,7 @@ export default async function ProjectsPage({
             {projectsTOC.map((project) => (
               <li key={project.name}>
                 <a
-                  href={"#" + slugify(project.name)}
+                  href={"#" + project.slug}
                   className="font-medium underline underline-offset-[3px]"
                 >
                   {project.name}
@@ -96,10 +94,7 @@ export default async function ProjectsPage({
             >
               <div className={cn(project.image && "basis-8/12")}>
                 <div className="mb-2 flex items-center gap-3">
-                  <h3
-                    className="text-xl font-semibold"
-                    id={slugify(project.name)}
-                  >
+                  <h3 className="text-xl font-semibold" id={project.slug}>
                     {project.name}
                   </h3>
                   {project.isWIP ? (
@@ -180,13 +175,23 @@ export default async function ProjectsPage({
                 >
                   <CldImage
                     // NOTE: make sure the image is 16:10
-                    className="w-[500px] rounded-2xl border group-hover:brightness-75 lg:w-full"
+                    className={cn(
+                      "w-[500px] rounded-2xl border lg:w-full",
+
+                      project.demo && "group-hover:brightness-75",
+                    )}
                     src={project.image}
                     alt={project.name}
                     width={1000}
                     sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 25vw"
                   />
-                  <span className="absolute inset-0 hidden items-center justify-center text-2xl font-semibold text-white group-hover:inline-flex">
+                  <span
+                    className={cn(
+                      "absolute inset-0 hidden items-center justify-center text-2xl font-semibold text-white",
+
+                      project.demo && "group-hover:inline-flex",
+                    )}
+                  >
                     View Demo
                     <LuExternalLink className="ml-2 stroke-[3px]" size={22} />
                   </span>
