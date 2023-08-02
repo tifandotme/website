@@ -61,7 +61,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
             {heading.text}
           </a>
         ))}
-        <hr className="my-3 mr-16" />
+        <hr className="my-3 w-[130px]" />
         <BackToTopButton path={post.url} />
       </aside>
 
