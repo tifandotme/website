@@ -7,7 +7,7 @@
     @apply border-border;
   }
   em {
-    @apply font-italic text-[118%];
+    @apply font-italic text-[111%];
   }
 
   :root {

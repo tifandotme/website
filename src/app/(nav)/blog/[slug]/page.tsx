@@ -103,7 +103,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
               </div>
             )}
           </div>
-          <h1 className="!col-span-full mb-3 mt-5 max-w-screen-md font-heading text-[clamp(2.7rem,1rem+3.125vw,3.2rem)] leading-none tracking-[-0.04em] text-[var(--heading)]">
+          <h1 className="!col-span-full mb-3 mt-5 max-w-screen-md font-heading text-[clamp(2.5rem,1rem+3.125vw,3rem)] leading-none tracking-[-0.04em] text-[var(--heading)]">
             {post.title}
           </h1>
           {post.description && <p className="text-muted">{post.description}</p>}

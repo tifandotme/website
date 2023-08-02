@@ -51,7 +51,7 @@ export default async function ProjectsPage({
   return (
     <>
       <header className="container-md mb-14 lg:-mt-10">
-        <h1 className="mb-5 font-heading text-4xl">Open-source</h1>
+        <h1 className="mb-5 font-heading text-[2rem] leading-7">Open-source</h1>
         <p className="text-lg leading-8">
           Whether it&apos;s a personal passion project or a practical solution
           to everyday problems, I see these open-source projects as creative
@@ -62,18 +62,15 @@ export default async function ProjectsPage({
       <div className="bg-slate-700 pb-11 pt-10 text-white dark:bg-slate-400 dark:text-black">
         <nav className="container-md">
           <h2 className="mb-3.5 text-xl font-semibold">Table of Contents</h2>
-          <ul className="flex flex-col space-y-0.5">
-            {projectsTOC.map((project) => (
-              <li key={project.name}>
-                <a
-                  href={"#" + project.slug}
-                  className="font-medium underline underline-offset-[3px]"
-                >
-                  {project.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+          {projectsTOC.map((project) => (
+            <a
+              key={project.name}
+              href={"#" + project.slug}
+              className="block w-fit py-1 font-medium underline underline-offset-[3px]"
+            >
+              {project.name}
+            </a>
+          ))}
         </nav>
       </div>
       <div className="mb-20 flex justify-center gap-3 border-b-[1px] border-[hsl(0,0%,90%)] bg-[hsl(0,0%,97%)] dark:border-[hsl(0,0%,12%)] dark:bg-[hsl(0,0%,9%)]">
