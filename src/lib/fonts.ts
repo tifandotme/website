@@ -1,12 +1,12 @@
-import { Inter, JetBrains_Mono, Newsreader } from "next/font/google"
+import { JetBrains_Mono, Newsreader, Nunito_Sans } from "next/font/google"
 import localFont from "next/font/local"
 
-const inter = Inter({
+const NunitoSans = Nunito_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 })
 
-const jetbrainsMono = JetBrains_Mono({
+const JetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
 })
@@ -16,17 +16,17 @@ const jetbrainsMono = JetBrains_Mono({
 //   variable: "--font-serif",
 // })
 
-const newsreader = Newsreader({
+const NewsreaderItalic = Newsreader({
   subsets: ["latin"],
   style: "italic",
   variable: "--font-italic",
 })
 
-const gambarino = localFont({
+const Gambarino = localFont({
   src: "../lib/assets/gambarino-regular.woff2",
   display: "swap",
   variable: "--font-heading",
   weight: "400",
 })
 
-export const fonts = [inter, jetbrainsMono, newsreader, gambarino]
+export const fonts = [NunitoSans, JetBrainsMono, NewsreaderItalic, Gambarino]
