@@ -82,7 +82,7 @@ export function TopBar() {
                   key={url}
                   href={url}
                   className={cn(
-                    "hidden select-none items-center px-3 text-lg font-semibold transition hover:bg-[hsl(0,0%,93%)] hover:text-foreground active:translate-y-0.5 dark:hover:bg-[hsl(0,0%,11%)] xs:inline-flex",
+                    "hidden select-none items-center px-3 text-lg font-bold transition hover:bg-[hsl(0,0%,93%)] hover:text-foreground active:translate-y-0.5 dark:hover:bg-[hsl(0,0%,11%)] xs:inline-flex",
 
                     isActive ? "text-foreground" : "text-muted-darker",
                   )}
@@ -133,7 +133,7 @@ export function TopBar() {
             <Link
               key={url}
               href={url}
-              className="block px-4 py-3 text-center text-lg font-semibold tracking-wider transition-transform first:mt-2 last:mb-2 hover:text-foreground active:translate-y-0.5 active:text-foreground"
+              className="block px-4 py-3 text-center text-lg font-bold tracking-wider transition-transform first:mt-2 last:mb-2 hover:text-foreground active:translate-y-0.5 active:text-foreground"
               onClick={() => isOpen && setIsOpen(false)}
             >
               {label}
