@@ -60,6 +60,12 @@ export async function CldImage({
  * @see https://cloudinary.com/documentation/advanced_url_delivery_options#generating_delivery_url_signatures
  */
 async function generateSignature(url: string) {
+  if (process.env.CLOUDINARY_API_SECRET === undefined) {
+    throw new Error(
+      "CLOUDINARY_API_SECRET environment variable is not set. Make sure to set it in your .env file.",
+    )
+  }
+
   const appendedUrl = url + process.env.CLOUDINARY_API_SECRET
 
   // convert the data to UTF-8 encoded bytes
