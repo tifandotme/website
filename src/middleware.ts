@@ -11,7 +11,11 @@ export async function middleware(req: NextRequest) {
   const slug = req.nextUrl.pathname.split("/").pop() as string
   const posts = allPosts.map((post) => post.slug)
 
-  if (!posts.includes(slug) || slug === "blog") {
+  if (
+    !posts.includes(slug) ||
+    slug === "blog" ||
+    process.env.VERCEL_URL !== "production"
+  ) {
     return NextResponse.next({
       headers: {
         "X-Middleware": "skipped",
