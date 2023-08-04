@@ -14,7 +14,7 @@ import rehypeShiftHeading, {
 import rehypeSlug, { type Options as SlugOptions } from "rehype-slug"
 import remarkGfm, { type Options as GfmOptions } from "remark-gfm"
 
-import { type HeadingsField } from "@/types"
+import { type Headings } from "@/types"
 
 const Post = defineDocumentType(() => ({
   name: "Post",
@@ -77,7 +77,7 @@ const Post = defineDocumentType(() => ({
             return {
               text,
               slug: slugify(text),
-            } satisfies HeadingsField[number]
+            } satisfies Headings[number]
           },
         )
 
