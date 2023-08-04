@@ -5,7 +5,9 @@ import { z } from "zod"
 
 declare global {
   namespace NodeJS {
-    interface ProcessEnv extends z.infer<typeof envVariables> {}
+    interface ProcessEnv extends z.infer<typeof envVariables> {
+      VERCEL_ENV: "development" | "preview" | "production"
+    }
   }
 }
 
