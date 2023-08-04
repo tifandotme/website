@@ -21,6 +21,11 @@ export default async function ProjectsPage({
       const res = await fetch(
         "https://api.github.com/repos/" +
           project.repo.split("/").slice(-2).join("/"),
+        {
+          next: {
+            revalidate: 3600, // 1 hour
+          },
+        },
       )
 
       const { stargazers_count } = (await res.json()) as {

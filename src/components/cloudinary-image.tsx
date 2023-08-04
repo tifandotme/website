@@ -92,7 +92,7 @@ async function getImage(src: string) {
   try {
     const buffer = await fetch(src, {
       next: {
-        revalidate: false,
+        revalidate: false, // always use the cached version
       },
     }).then(async (res) => Buffer.from(await res.arrayBuffer()))
 
