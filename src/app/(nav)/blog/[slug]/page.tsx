@@ -1,12 +1,11 @@
 import { type Metadata } from "next"
 import { notFound } from "next/navigation"
 import { allPosts } from "contentlayer/generated"
-import { useMDXComponent } from "next-contentlayer/hooks"
 
 import { type HeadingsField } from "@/types"
-import { cn, getPost } from "@/lib/utils"
+import { cn, getPost, getViews } from "@/lib/utils"
 import { BackToTopButton } from "@/components/back-to-top"
-import { components } from "@/components/mdx-components"
+import { MDXContent } from "@/components/mdx"
 
 export const dynamicParams = false
 
@@ -28,7 +27,11 @@ export async function generateMetadata({
   }
 }
 
-export default function PostPage({ params }: { params: { slug: string } }) {
+export default async function PostPage({
+  params,
+}: {
+  params: { slug: string }
+}) {
   const post = getPost(params.slug)
 
   if (!post) notFound()
@@ -37,7 +40,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     new Date(post.date),
   )
 
-  const MDXContent = useMDXComponent(post.body.code)
+  const views = await getViews(params.slug)
 
   // WARN: if <main> tag contain tailwind-animate class, it will conflict with the one inside <aside> tag
   return (
@@ -93,14 +96,21 @@ export default function PostPage({ params }: { params: { slug: string } }) {
             <time dateTime={post.date} className="text-muted">
               {date}
             </time>
+            <span className="select-none text-muted" aria-hidden>
+              •
+            </span>
+            <span className="text-muted">{views} views</span>
             {post.draft && (
-              <div
-                className="select-none bg-yellow-200 px-2 align-middle dark:bg-yellow-800"
-                title="This post is excluded from search engine and list of posts"
-                aria-hidden
-              >
-                Draft
-              </div>
+              <>
+                <span className="text-muted">•</span>
+                <div
+                  className="select-none bg-yellow-200 px-2 align-middle dark:bg-yellow-800"
+                  title="This post is excluded from search engine and list of posts"
+                  aria-hidden
+                >
+                  Draft
+                </div>
+              </>
             )}
           </div>
           <h1 className="!col-span-full mb-3 mt-5 max-w-screen-md font-heading text-[clamp(2.5rem,1rem+3.125vw,3rem)] leading-none tracking-[-0.04em] text-[var(--heading)]">
@@ -111,10 +121,10 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
         <hr className="my-8 border-border" aria-hidden />
 
-        <MDXContent components={components} />
+        <MDXContent code={post.body.code} />
       </article>
-      {/* <div className="mx-auto mt-14 flex !max-w-screen-md items-center font-mono font-semibold uppercase text-muted-darker">
-        <span className="relative top-[2px] mr-2 select-none text-[26px] leading-none">
+      {/* <div className="mx-auto mt-14 flex !max-w-screen-md items-center font-mono font-semibold uppercase text-muted-darker text-sm">
+        <span className="relative top-[2px] mr-2 select-none text-[170%] leading-none">
           {" © "}
         </span>
         CC BY-NC-SA 4.0 2023-PRESENT
