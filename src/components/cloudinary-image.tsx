@@ -60,21 +60,11 @@ export async function CldImage({
  * @see https://cloudinary.com/documentation/advanced_url_delivery_options#generating_delivery_url_signatures
  */
 async function generateSignature(url: string) {
-  if (process.env.CLOUDINARY_API_SECRET === undefined) {
-    throw new Error(
-      "CLOUDINARY_API_SECRET environment variable is not set. Make sure to set it in your .env file.",
-    )
-  }
-
   const appendedUrl = url + process.env.CLOUDINARY_API_SECRET
 
-  // convert the data to UTF-8 encoded bytes
+  // create a SHA-256 hash of the URL and API secret
   const data = new TextEncoder().encode(appendedUrl)
-
-  // generate SHA-256 hash of the data
   const hash = await crypto.subtle.digest("SHA-256", data)
-
-  // convert the hash to a base64-encoded string
   const base64 = Buffer.from(hash).toString("base64")
 
   const urlSafe = base64
@@ -100,9 +90,11 @@ async function generateSignedImage(transforms: string, publicId: string) {
  */
 async function getImage(src: string) {
   try {
-    const buffer = await fetch(src).then(async (res) =>
-      Buffer.from(await res.arrayBuffer()),
-    )
+    const buffer = await fetch(src, {
+      next: {
+        revalidate: false,
+      },
+    }).then(async (res) => Buffer.from(await res.arrayBuffer()))
 
     const {
       metadata: { height },
@@ -127,33 +119,3 @@ async function getImage(src: string) {
 }
 
 // TODO: add image preview
-
-/*
-
-21/07/2023
-I tried the JavaScript SDK, but then went back to URL method for simplicity and zero-dependencies sake.
-
-const image = new CloudinaryImage(
-  src,
-  {
-    cloudName: "tifan",
-    apiKey: process.env.CLOUDINARY_API_KEY,
-    apiSecret: process.env.CLOUDINARY_API_SECRET,
-  },
-  { secure: true, signUrl: true },
-)
-
-const imageUrl = image
-  .resize(limitFit().width(width))
-  .quality("auto")
-  .format("auto")
-  .toURL()
-
-const placeholderUrl = image
-  .resize(limitFit().width(100))
-  .quality(1)
-  .effect(blur(1000))
-  .format("auto")
-  .toURL()
-
-*/
