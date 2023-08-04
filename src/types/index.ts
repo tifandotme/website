@@ -9,19 +9,19 @@ declare global {
   }
 }
 
-export type Headings = {
-  text: string
-  slug: string
-}[]
-
-export type NavLinks = {
-  readonly label: string
-  readonly url: string
-}[]
-
 export interface UpstashRedisRestResponse {
   result: boolean | null | "OK"
 }
+
+export type NavLinks = Array<{
+  readonly label: string
+  readonly url: string
+}>
+
+export type HeadingsField = Array<{
+  text: string
+  slug: string
+}>
 
 export type PushStateInput = [
   data: any,
