@@ -11,8 +11,8 @@ declare global {
   }
 }
 
-export interface UpstashRedisRestResponse {
-  result: boolean | null | "OK"
+export interface UpstashRedisRestResponse<T extends boolean | number> {
+  result: T extends boolean ? "OK" | null : T | null
 }
 
 export interface GitHubRestResponse {

@@ -26,7 +26,7 @@ export async function getViews(slug: string) {
     next: {
       revalidate: 60, // 1 minute
     },
-  }).then((res) => res.json() as Promise<UpstashRedisRestResponse>)
+  }).then((res) => res.json() as Promise<UpstashRedisRestResponse<number>>)
 
   return res.result ?? 0
 }

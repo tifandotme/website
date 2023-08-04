@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server"
 import { NextResponse } from "next/server"
 import { allPosts } from "contentlayer/generated"
 
-import { UpstashRedisRestResponse } from "./types"
+import { type UpstashRedisRestResponse } from "./types"
 
 export const config = {
   matcher: "/blog/:path*",
@@ -40,7 +40,7 @@ export async function middleware(req: NextRequest) {
         Authorization: `Bearer ${token}`,
       },
     },
-  ).then((res) => res.json() as Promise<UpstashRedisRestResponse>)
+  ).then((res) => res.json() as Promise<UpstashRedisRestResponse<boolean>>)
 
   if (isNew.result) {
     await fetch(`${url}/INCR/pageviews:blog:${slug}`, {
