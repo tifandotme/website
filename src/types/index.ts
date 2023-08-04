@@ -13,6 +13,10 @@ export interface UpstashRedisRestResponse {
   result: boolean | null | "OK"
 }
 
+export interface GitHubRestResponse {
+  stargazers_count: number
+}
+
 export type NavLinks = Array<{
   readonly label: string
   readonly url: string

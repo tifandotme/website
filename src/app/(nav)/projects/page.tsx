@@ -3,6 +3,7 @@ import { allProjects } from "contentlayer/generated"
 import { LuArrowUpRight, LuExternalLink } from "react-icons/lu"
 import { PiStarBold } from "react-icons/pi"
 
+import { type GitHubRestResponse } from "@/types"
 import { cn } from "@/lib/utils"
 import { CldImage } from "@/components/cloudinary-image"
 import { SortByButtons } from "@/components/sortby-buttons"
@@ -19,20 +20,15 @@ export default async function ProjectsPage({
   const projects = await Promise.all(
     allProjects.map(async (project) => {
       const res = await fetch(
-        "https://api.github.com/repos/" +
-          project.repo.split("/").slice(-2).join("/"),
+        "https://api.github.com/repos" + new URL(project.repo).pathname,
         {
           next: {
             revalidate: 3600, // 1 hour
           },
         },
-      )
+      ).then((res) => res.json() as Promise<GitHubRestResponse>)
 
-      const { stargazers_count } = (await res.json()) as {
-        stargazers_count: number
-      }
-
-      const stars = res.ok ? stargazers_count : 0
+      const stars = res.stargazers_count || 0
 
       return {
         ...project,

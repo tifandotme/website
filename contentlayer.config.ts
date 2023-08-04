@@ -134,20 +134,6 @@ const Project = defineDocumentType(() => ({
     },
   },
   computedFields: {
-    repo: {
-      type: "string",
-      resolve: (doc) => {
-        return "https://" + doc.repo
-      },
-    },
-    demo: {
-      type: "string",
-      resolve: (doc) => {
-        if (!doc.demo) return
-
-        return "https://" + doc.demo
-      },
-    },
     slug: {
       description: "Slug of the project (e.g. personal-website)",
       type: "string",
