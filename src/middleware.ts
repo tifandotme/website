@@ -8,8 +8,6 @@ export const config = {
   matcher: "/blog/:path*",
 }
 export async function middleware(req: NextRequest) {
-  console.log("middleware country: ", req.geo?.country)
-
   const slug = req.nextUrl.pathname.split("/").pop() as string
   const posts = allPosts.map((post) => post.slug)
 
