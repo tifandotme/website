@@ -3,10 +3,5 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
 
   "tailwind-fold.autoFold": false,
-  "editor.wordWrap": "on",
-
-  // https://github.com/lukeed/clsx#tailwind-support
-  "tailwindCSS.experimental.classRegex": [
-    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-  ]
+  "editor.wordWrap": "on"
 }
