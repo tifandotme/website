@@ -35,13 +35,15 @@ const Post = defineDocumentType(() => ({
       description: "Post's published date",
       required: true,
     },
-    draft: {
-      type: "boolean",
-      description:
-        "If true, post will not show up in list of posts and sitemap",
-    },
   },
   computedFields: {
+    draft: {
+      description: "Draft post will not show up in list of posts and sitemap",
+      type: "boolean",
+      resolve: (doc) => {
+        return doc._raw.sourceFileDir.startsWith("blog/draft")
+      },
+    },
     url: {
       description: "URL path of the post (e.g. /blog/my-post)",
       type: "string",
