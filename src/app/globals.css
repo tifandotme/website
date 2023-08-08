@@ -11,43 +11,41 @@
   }
 
   :root {
-    --background: theme(colors.white);
-    --foreground: theme(colors.zinc.700);
+    --background: 0 0% 100%;
+    --foreground: 240 4% 26%;
+    --border: 0 0% 80%;
 
-    --bold: theme(colors.zinc.800);
-    --heading: theme(colors.zinc.800);
+    --bold: 240 4% 13%;
+    --heading: 240 4% 16%;
 
-    --primary: hsl(209 100% 50%);
+    --primary: 209 100% 50%;
 
     /* both passed WCAG AA contrast test at minimum */
-    --muted-small-text: theme(colors.zinc.500);
-    --muted-large-text: hsl(0 0% 58%);
+    --muted-small-text: 240 4% 46%;
+    --muted-large-text: 0 0% 58%;
 
-    --codeblock-background: theme(colors.zinc.100);
-    --codeblock-title: hsl(240 6% 92%);
-    --codeblock-highlight: theme(colors.zinc.200);
-    --codeblock-border: theme(colors.zinc.300);
-
-    --border: hsl(0 0% 80%);
+    --codeblock-background: 240 4% 96%;
+    --codeblock-title: 240 6% 92%;
+    --codeblock-highlight: 240 4% 90%;
+    --codeblock-border: 240 4% 84%;
   }
   .dark {
-    --background: hsl(0 0% 8%);
-    --foreground: hsl(0 0% 85%);
+    --background: 0 0% 8%;
+    --foreground: 0 0% 85%;
+    --border: 0 0% 17%;
 
-    --bold: hsl(0 0% 95%);
-    --heading: hsl(0 0% 90%);
+    --bold: 0 0% 95%;
+    --heading: 0 0% 90%;
 
-    --primary: hsl(209 100% 50%);
+    --primary: 209 100% 50%;
 
-    --muted-small-text: hsl(0, 0%, 50%);
-    --muted-large-text: hsl(0, 0%, 39%);
+    --muted-small-text: 0 0% 50%;
+    --muted-large-text: 0 0% 39%;
 
-    --codeblock-background: hsl(0 0% 10%);
-    --codeblock-title: hsl(0 0% 12%);
-    --codeblock-highlight: hsl(0 0% 15%);
-    --codeblock-border: hsl(0 0% 20%);
-
-    --border: hsl(0 0% 17%);
+    --codeblock-background: 0 0% 10%;
+    --codeblock-title: 0 0% 12%;
+    --codeblock-highlight: 0 0% 15%;
+    --codeblock-border: 0 0% 20%;
   }
 }
 
@@ -78,14 +76,14 @@ code[data-theme="dark"] {
 }
 
 [data-rehype-pretty-code-fragment] {
-  @apply my-7 overflow-hidden rounded-lg border border-[var(--codeblock-border)] bg-[var(--codeblock-background)] text-sm leading-6 text-[var(--foreground)];
+  @apply my-7 overflow-hidden rounded-lg border border-[hsl(var(--codeblock-border))] bg-[hsl(var(--codeblock-background))] text-sm leading-6 text-[hsl(var(--foreground))];
 
   --codeblock-padding: 1.25rem;
   --line-numbering-width: 3rem;
 }
 
 [data-rehype-pretty-code-title] {
-  @apply bg-[var(--codeblock-title)] py-0.5 pl-[var(--codeblock-padding)] font-mono font-medium text-muted;
+  @apply bg-[hsl(var(--codeblock-title))] py-0.5 pl-[var(--codeblock-padding)] font-mono font-medium text-muted;
 }
 
 [data-rehype-pretty-code-fragment] > pre {
@@ -110,7 +108,7 @@ pre > code {
 }
 
 [data-highlighted-line] {
-  @apply border-l-2 border-primary bg-[var(--codeblock-highlight)];
+  @apply border-l-2 border-primary bg-[hsl(var(--codeblock-highlight))];
 }
 
 /* fix border shifting content */
