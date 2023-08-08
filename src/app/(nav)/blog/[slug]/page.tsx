@@ -8,6 +8,7 @@ import { type HeadingsField } from "@/types"
 import { site } from "@/config"
 import { cn, getLastModified, getPost } from "@/lib/utils"
 import { BackToTopButton } from "@/components/client/back-to-top"
+import { LoadingComments } from "@/components/client/comments"
 import { LoadingDots } from "@/components/loading-dots"
 import { MDXContent } from "@/components/mdx"
 
@@ -15,7 +16,10 @@ const Views = dynamic(() => import("@/components/client/views"), {
   ssr: false,
   loading: () => <LoadingDots />,
 })
-const Comments = dynamic(() => import("@/components/client/comments"))
+const Comments = dynamic(() => import("@/components/client/comments"), {
+  ssr: false,
+  loading: () => <LoadingComments />,
+})
 
 export const dynamicParams = false
 

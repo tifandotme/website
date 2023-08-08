@@ -33,7 +33,7 @@ export default function Comments() {
 
   return (
     <div className="relative">
-      <Loading className={cn(show ? "hidden" : "block")} />
+      <LoadingComments className={cn(show ? "hidden" : "block")} />
       <div
         className={cn(!show && "absolute top-0 mt-24 flex w-full opacity-0")}
       >
@@ -57,7 +57,7 @@ export default function Comments() {
   )
 }
 
-export function Loading({ className }: { className?: string }) {
+export function LoadingComments({ className }: { className?: string }) {
   return (
     <div className={cn("flex animate-pulse flex-col", className)}>
       <div className="mb-[23px] h-[28px] w-[35%] rounded-sm bg-[hsl(var(--foreground)/15%)]" />
