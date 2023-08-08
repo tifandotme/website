@@ -2,7 +2,7 @@ import React from "react"
 import { BsRssFill } from "react-icons/bs"
 
 import { site } from "@/config"
-import { TopBar } from "@/components/top-bar"
+import { TopBar } from "@/components/client/top-bar"
 
 export default function HomeLayout({
   children,

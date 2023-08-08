@@ -5,8 +5,8 @@ import { site } from "@/config"
 import { fonts } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { BreakpointIndicator } from "@/components/breakpoint-indicator"
-import { NavigationProgressProvider } from "@/components/navigation-progress"
-import { ThemeProvider } from "@/components/theme-provider"
+import { NavigationProgressProvider } from "@/components/client/navigation-progress"
+import { ThemeProvider } from "@/components/client/theme-provider"
 
 import "./globals.css"
 
@@ -57,7 +57,11 @@ export default function RootLayout({
           fonts.map((font) => font.variable),
         )}
       >
-        <ThemeProvider attribute="class" enableSystem>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          disableTransitionOnChange
+        >
           <NavigationProgressProvider>{children}</NavigationProgressProvider>
         </ThemeProvider>
 

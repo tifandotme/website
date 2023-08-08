@@ -3,10 +3,10 @@ import { allProjects } from "contentlayer/generated"
 import { LuArrowUpRight, LuExternalLink } from "react-icons/lu"
 import { PiStarBold } from "react-icons/pi"
 
-import { type GitHubRestResponse } from "@/types"
+import { type GitHubResponse } from "@/types"
 import { cn } from "@/lib/utils"
+import { SortByButtons } from "@/components/client/sortby-buttons"
 import { CldImage } from "@/components/cloudinary-image"
-import { SortByButtons } from "@/components/sortby-buttons"
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -26,7 +26,7 @@ export default async function ProjectsPage({
             revalidate: 3600, // 1 hour
           },
         },
-      ).then((res) => res.json() as Promise<GitHubRestResponse>)
+      ).then((res) => res.json() as Promise<GitHubResponse>)
 
       const stars = res.stargazers_count || 0
 
