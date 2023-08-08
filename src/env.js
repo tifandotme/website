@@ -5,6 +5,7 @@ export const envVariables = z
     CLOUDINARY_API_SECRET: z.string(),
     UPSTASH_REDIS_REST_URL: z.string().url(),
     UPSTASH_REDIS_REST_TOKEN: z.string(),
+    GITHUB_TOKEN: z.string(),
   })
   .required()
 

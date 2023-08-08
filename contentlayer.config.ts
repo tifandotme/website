@@ -37,31 +37,6 @@ const Post = defineDocumentType(() => ({
     },
   },
   computedFields: {
-    lastModified: {
-      type: "date",
-      description: "Post's last modified date",
-      resolve: async (doc) => {
-        if (doc._raw.sourceFileDir.startsWith("blog/draft")) return
-
-        const path = encodeURIComponent(`content/${doc._raw.sourceFilePath}`)
-        const url = `https://api.github.com/repos/tifandotme/website/commits?per_page=1&path=${path}`
-
-        const res = await fetch(url)
-        const json = (await res.json()) as Array<{
-          commit: {
-            committer: {
-              date: string
-            }
-          }
-        }>
-
-        const date = json[0]?.commit.committer.date
-
-        console.log(url)
-
-        return date
-      },
-    },
     draft: {
       description: "Draft post will not show up in list of posts and sitemap",
       type: "boolean",

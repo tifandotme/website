@@ -6,7 +6,7 @@ import { allPosts } from "contentlayer/generated"
 
 import { type HeadingsField } from "@/types"
 import { site } from "@/config"
-import { cn, getPost } from "@/lib/utils"
+import { cn, getLastModified, getPost } from "@/lib/utils"
 import { BackToTopButton } from "@/components/client/back-to-top"
 import { LoadingDots } from "@/components/loading-dots"
 import { MDXContent } from "@/components/mdx"
@@ -43,7 +43,7 @@ export async function generateMetadata({
       alternateLocale: ["id_ID"],
       type: "article",
       publishedTime: post?.date,
-      // modifiedTime: post?.lastmod, // TODO: fetch from GitHub API
+      modifiedTime: post ? await getLastModified(post) : undefined, // TODO: fetch from GitHub API
       authors: [site.author],
     },
     robots: post?.draft ? "noindex" : undefined,
