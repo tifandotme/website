@@ -5,17 +5,11 @@ import { z } from "zod"
 
 declare global {
   namespace NodeJS {
-    interface ProcessEnv extends z.infer<typeof envVariables> {
-      VERCEL_ENV: "development" | "preview" | "production"
-    }
+    interface ProcessEnv extends z.infer<typeof envVariables> {}
   }
 }
 
-export interface UpstashRedisRestResponse<T extends boolean | number> {
-  result: T extends boolean ? "OK" | null : T | null
-}
-
-export interface GitHubRestResponse {
+export interface GitHubResponse {
   stargazers_count: number
 }
 
