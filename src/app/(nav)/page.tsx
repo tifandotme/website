@@ -5,7 +5,6 @@ import { generateRSS } from "@/lib/feed"
 import { CldImage } from "@/components/cloudinary-image"
 import { XTwitter } from "@/components/icons"
 import { PostList } from "@/components/post-list"
-import { ScrollUpWhenMounted } from "@/components/scroll-fix"
 import { SocialButton } from "@/components/social-button"
 
 export default function HomePage() {
@@ -60,8 +59,6 @@ export default function HomePage() {
       </header>
 
       <PostList />
-
-      <ScrollUpWhenMounted />
     </main>
   )
 }
