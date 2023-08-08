@@ -36,6 +36,7 @@ export async function incrementViews(slug: string) {
 }
 
 export async function getLastModified(post: Post) {
+  if (process.env.VERCEL_ENV !== "production") return
   if (post._raw.sourceFileDir.startsWith("blog/draft")) return
 
   const path = encodeURIComponent(`content/${post._raw.sourceFilePath}`)
@@ -56,8 +57,6 @@ export async function getLastModified(post: Post) {
   }>
 
   const date = json[0]?.commit.committer.date
-
-  console.log(date) // TODO: remove after testing
 
   return date
 }
