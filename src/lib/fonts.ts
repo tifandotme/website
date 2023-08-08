@@ -23,7 +23,7 @@ const NewsreaderItalic = Newsreader({
 })
 
 const Gambarino = localFont({
-  src: "../lib/assets/gambarino-regular.woff2",
+  src: "../lib/gambarino-regular.woff2",
   display: "swap",
   variable: "--font-heading",
   weight: "400",
