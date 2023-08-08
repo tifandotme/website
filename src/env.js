@@ -8,6 +8,7 @@ export const envVariables = z
   })
   .required()
 
+// will check at build time, because this file is imported in next.config.js
 const result = envVariables.safeParse(process.env)
 
 if (!result.success) {
