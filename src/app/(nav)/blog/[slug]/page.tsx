@@ -46,7 +46,7 @@ export async function generateMetadata({
       alternateLocale: ["id_ID"],
       type: "article",
       publishedTime: post?.date,
-      modifiedTime: post ? await getLastModified(post) : undefined, // TODO: fetch from GitHub API
+      modifiedTime: post && (await getLastModified(post)),
       authors: [site.author],
     },
     robots: post?.draft ? "noindex" : undefined,
@@ -72,7 +72,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         className={cn(
           "fixed bottom-14 ml-4 hidden w-[160px] select-none flex-col gap-2.5 min-[1217px]:flex min-[1300px]:ml-10 min-[1340px]:w-[210px]",
 
-          "duration-500 animate-in slide-in-from-left-1/2",
+          "duration-300 animate-in fade-in-50 slide-in-from-left-5",
         )}
       >
         {post.headings.length !== 0 && (
@@ -124,33 +124,23 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         >
           <div className="inline-flex flex-wrap gap-3 font-mono font-medium leading-loose text-muted">
             <time dateTime={post.date}>{date}</time>
+            <span
+              className="select-none text-[0.7rem] leading-8 text-muted-darker"
+              aria-hidden
+            >
+              &bull;
+            </span>
             {!post.draft ? (
-              <>
-                <span
-                  className="select-none text-[0.7rem] leading-8 text-muted-darker"
-                  aria-hidden
-                >
-                  &bull;
-                </span>
-                <span>
-                  <Views slug={post.slug} /> views
-                </span>
-              </>
+              <span>
+                <Views slug={post.slug} /> views
+              </span>
             ) : (
-              <>
-                <span
-                  className="select-none text-[0.7rem] leading-8 text-muted-darker"
-                  aria-hidden
-                >
-                  &bull;
-                </span>
-                <div
-                  className="select-none bg-yellow-200 px-2 align-middle dark:bg-yellow-800/20"
-                  aria-hidden
-                >
-                  Draft
-                </div>
-              </>
+              <div
+                className="select-none bg-yellow-200 px-2 align-middle dark:bg-yellow-800/20"
+                aria-hidden
+              >
+                Draft
+              </div>
             )}
           </div>
           <h1 className="!col-span-full mb-3 mt-5 max-w-screen-md font-heading text-[clamp(2.5rem,1rem+3.125vw,3rem)] leading-none tracking-[-0.04em] text-[hsl(var(--heading))]">

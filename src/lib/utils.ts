@@ -48,13 +48,13 @@ export async function getLastModified(post: Post) {
       Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
     },
   })
-  const json = (await res.json()) as Array<{
+  const json = (await res.json()) as {
     commit: {
       committer: {
         date: string
       }
     }
-  }>
+  }[]
 
   const date = json[0]?.commit.committer.date
 
