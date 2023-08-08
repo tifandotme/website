@@ -1,11 +1,21 @@
 import { type Metadata } from "next"
+import dynamic from "next/dynamic"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 import { allPosts } from "contentlayer/generated"
 
 import { type HeadingsField } from "@/types"
-import { cn, getPost, getViews } from "@/lib/utils"
-import { BackToTopButton } from "@/components/back-to-top"
+import { site } from "@/config"
+import { cn, getPost } from "@/lib/utils"
+import { BackToTopButton } from "@/components/client/back-to-top"
+import { LoadingDots } from "@/components/loading-dots"
 import { MDXContent } from "@/components/mdx"
+
+const Views = dynamic(() => import("@/components/client/views"), {
+  ssr: false,
+  loading: () => <LoadingDots />,
+})
+const Comments = dynamic(() => import("@/components/client/comments"))
 
 export const dynamicParams = false
 
@@ -23,15 +33,27 @@ export async function generateMetadata({
   return {
     title: post?.title,
     description: post?.description,
+    metadataBase: new URL(site.baseUrl),
+    openGraph: {
+      title: post?.title,
+      description: post?.description,
+      url: site.baseUrl + post?.url,
+      siteName: site.name,
+      locale: "en_US",
+      alternateLocale: ["id_ID"],
+      type: "article",
+      publishedTime: post?.date,
+      // modifiedTime: post?.lastmod, // TODO: fetch from GitHub API
+      authors: [site.author],
+    },
     robots: post?.draft ? "noindex" : undefined,
+    other: {
+      "giscus:backlink": site.baseUrl + post?.url,
+    },
   }
 }
 
-export default async function PostPage({
-  params,
-}: {
-  params: { slug: string }
-}) {
+export default function PostPage({ params }: { params: { slug: string } }) {
   const post = getPost(params.slug)
 
   if (!post) notFound()
@@ -39,8 +61,6 @@ export default async function PostPage({
   const date = new Intl.DateTimeFormat("en-US", { dateStyle: "long" }).format(
     new Date(post.date),
   )
-
-  const views = await getViews(params.slug)
 
   // WARN: if <main> tag contain tailwind-animate class, it will conflict with the one inside <aside> tag
   return (
@@ -52,19 +72,23 @@ export default async function PostPage({
           "duration-500 animate-in slide-in-from-left-1/2",
         )}
       >
-        <p className="font-mono text-sm font-bold uppercase text-muted-darker">
-          On this page
-        </p>
-        {(post.headings as HeadingsField).map((heading) => (
-          <a
-            key={heading.slug}
-            href={`#${heading.slug}`}
-            className="block py-[0.12rem] text-sm font-medium leading-4 text-muted transition first:pt-0 last:pb-0 hover:text-foreground active:translate-y-0.5"
-          >
-            {heading.text}
-          </a>
-        ))}
-        <hr className="my-3 w-[130px]" />
+        {post.headings.length !== 0 && (
+          <>
+            <p className="font-mono text-sm font-bold uppercase text-muted-darker">
+              On this page
+            </p>
+            {(post.headings as HeadingsField).map((heading) => (
+              <Link
+                key={heading.slug}
+                href={`#${heading.slug}`}
+                className="block py-[0.12rem] text-sm font-medium leading-4 text-muted transition first:pt-0 last:pb-0 hover:text-foreground active:translate-y-0.5"
+              >
+                {heading.text}
+              </Link>
+            ))}
+            <hr className="my-3 w-[130px]" />
+          </>
+        )}
         <BackToTopButton path={post.url} />
       </aside>
 
@@ -80,6 +104,9 @@ export default async function PostPage({
           // H3
           "prose-h3:mt-[1.3em] prose-h3:text-2xl prose-h3:font-medium",
 
+          // TODO: restyle all elements
+          "prose-ol:mt-0 prose-ul:mt-0",
+
           "prose-a:underline-offset-2",
 
           "grid grid-cols-[min(63ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
@@ -92,20 +119,30 @@ export default async function PostPage({
             "grid grid-cols-[min(63ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
           )}
         >
-          <div className="inline-flex gap-3 font-mono font-medium leading-loose">
-            <time dateTime={post.date} className="text-muted">
-              {date}
-            </time>
-            <span className="select-none text-muted" aria-hidden>
-              •
-            </span>
-            <span className="text-muted">{views} views</span>
-            {post.draft && (
+          <div className="inline-flex flex-wrap gap-3 font-mono font-medium leading-loose text-muted">
+            <time dateTime={post.date}>{date}</time>
+            {!post.draft ? (
               <>
-                <span className="text-muted">•</span>
+                <span
+                  className="select-none text-[0.7rem] leading-8 text-muted-darker"
+                  aria-hidden
+                >
+                  &bull;
+                </span>
+                <span>
+                  <Views slug={post.slug} /> views
+                </span>
+              </>
+            ) : (
+              <>
+                <span
+                  className="select-none text-[0.7rem] leading-8 text-muted-darker"
+                  aria-hidden
+                >
+                  &bull;
+                </span>
                 <div
-                  className="select-none bg-yellow-200 px-2 align-middle dark:bg-yellow-800"
-                  title="This post is excluded from search engine and list of posts"
+                  className="select-none bg-yellow-200 px-2 align-middle dark:bg-yellow-800/20"
                   aria-hidden
                 >
                   Draft
@@ -113,7 +150,7 @@ export default async function PostPage({
               </>
             )}
           </div>
-          <h1 className="!col-span-full mb-3 mt-5 max-w-screen-md font-heading text-[clamp(2.5rem,1rem+3.125vw,3rem)] leading-none tracking-[-0.04em] text-[var(--heading)]">
+          <h1 className="!col-span-full mb-3 mt-5 max-w-screen-md font-heading text-[clamp(2.5rem,1rem+3.125vw,3rem)] leading-none tracking-[-0.04em] text-[hsl(var(--heading))]">
             {post.title}
           </h1>
           {post.description && <p className="text-muted">{post.description}</p>}
@@ -122,12 +159,28 @@ export default async function PostPage({
         <hr className="my-8 border-border" aria-hidden />
 
         <MDXContent code={post.body.code} />
+
+        {!post.draft && (
+          <div className="mt-24" aria-hidden>
+            <Comments />
+          </div>
+        )}
       </article>
-      {/* <div className="mx-auto mt-14 flex !max-w-screen-md items-center font-mono font-semibold uppercase text-muted-darker text-sm">
-        <span className="relative top-[2px] mr-2 select-none text-[170%] leading-none">
-          {" © "}
+
+      {/* <div className="mx-auto mt-14 flex !max-w-screen-md items-center font-mono text-sm font-semibold uppercase text-muted-darker">
+        <a
+          href="https://creativecommons.org/licenses/by-nc/4.0/"
+          rel="noopener noreferrer"
+          target="_blank"
+          className="hover:underline"
+        >
+          CC BY-NC-SA 4.0
+        </a>
+        &nbsp;2023
+        <span className="relative top-[2px] mx-2 select-none text-[170%] leading-none">
+          ©
         </span>
-        CC BY-NC-SA 4.0 2023-PRESENT
+        Tifan Dwi Avianto
       </div> */}
     </main>
   )
