@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function DraftsPage() {
   return (
     <main className="container-md">
-      <PostList showDrafts />
+      <PostList draft />
     </main>
   )
 }

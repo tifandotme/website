@@ -1,10 +1,18 @@
+import dynamic from "next/dynamic"
 import Link from "next/link"
 import { allPosts } from "contentlayer/generated"
 
-export function PostList({ showDrafts = false }: { showDrafts?: boolean }) {
+import { LoadingDots } from "@/components/loading-dots"
+
+const Views = dynamic(() => import("@/components/client/views"), {
+  loading: () => <LoadingDots />,
+  ssr: false,
+})
+
+export function PostList({ draft = false }: { draft?: boolean }) {
   const posts = allPosts
     .filter((post) => {
-      if (showDrafts) {
+      if (draft) {
         return post.draft
       } else {
         return !post.draft
@@ -41,12 +49,24 @@ export function PostList({ showDrafts = false }: { showDrafts?: boolean }) {
             <h3 className="mb-1 line-clamp-3 font-sans text-xl font-medium">
               {post.title}
             </h3>
-            <time
-              dateTime={post.date}
-              className="whitespace-nowrap font-mono font-medium text-muted"
-            >
-              {formattedDate}
-            </time>
+            <div className="inline-flex gap-3 font-mono font-medium text-muted">
+              <time dateTime={post.date} className="whitespace-nowrap">
+                {formattedDate}
+              </time>
+              {!post.draft && (
+                <>
+                  <span
+                    className="select-none text-[0.7rem] leading-6 text-muted-darker"
+                    aria-hidden
+                  >
+                    &bull;
+                  </span>
+                  <span>
+                    <Views slug={post.slug} /> views
+                  </span>
+                </>
+              )}
+            </div>
             {post.description && (
               <p className="mt-5 line-clamp-3">{post.description}</p>
             )}
