@@ -1,6 +1,5 @@
 import { type Metadata } from "next"
 import dynamic from "next/dynamic"
-import Link from "next/link"
 import { notFound } from "next/navigation"
 import { allPosts } from "contentlayer/generated"
 
@@ -82,13 +81,13 @@ export default function PostPage({ params }: { params: { slug: string } }) {
               On this page
             </p>
             {(post.headings as HeadingsField).map((heading) => (
-              <Link
+              <a
                 key={heading.slug}
                 href={`#${heading.slug}`}
                 className="block py-[0.12rem] text-sm font-medium leading-4 text-muted transition first:pt-0 last:pb-0 hover:text-foreground active:translate-y-0.5"
               >
                 {heading.text}
-              </Link>
+              </a>
             ))}
             <hr className="my-3 w-[130px]" />
           </>
