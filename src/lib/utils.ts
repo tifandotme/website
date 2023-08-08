@@ -1,7 +1,5 @@
 import { allPosts } from "contentlayer/generated"
 
-import { type UpstashRedisRestResponse } from "@/types"
-
 export function getPost(slug: string) {
   return allPosts.find((post) => post.slug === slug)
 }
@@ -16,17 +14,23 @@ export function cn(...args: unknown[]) {
 }
 
 export async function getViews(slug: string) {
-  const url = new URL(process.env.UPSTASH_REDIS_REST_URL).origin
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN
+  const origin = window.location.origin
+  const pathname = `/api/views/${slug}`
 
-  const res = await fetch(`${url}/GET/pageviews:blog:${slug}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    next: {
-      revalidate: 60, // 1 minute
-    },
-  }).then((res) => res.json() as Promise<UpstashRedisRestResponse<number>>)
+  const url = new URL(pathname, origin)
 
-  return res.result ?? 0
+  return fetch(url).then((res) => res.json()) as Promise<{
+    views: number | null
+  }>
+}
+
+export async function incrementViews(slug: string) {
+  const origin = window.location.origin
+  const pathname = `/api/views/${slug}?incr`
+
+  const url = new URL(pathname, origin)
+
+  return fetch(url).then((res) => res.json()) as Promise<{
+    views: number
+  }>
 }
