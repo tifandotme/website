@@ -14,7 +14,7 @@ import { type PushStateInput } from "@/types"
 // REF: https://github.com/Skyleen77/next-nprogress-bar
 
 const config = {
-  color: "var(--primary)",
+  color: "hsl(var(--primary))",
   height: "2px",
   delay: 120,
   shallowRouting: true,
@@ -131,6 +131,8 @@ const NavigationProgress = React.memo(
 
       const handleAnchorClick = (event: MouseEvent) => {
         const anchorElement = event.currentTarget as HTMLAnchorElement
+
+        if (event.ctrlKey) return
 
         if (anchorElement.target === "_blank") return
 

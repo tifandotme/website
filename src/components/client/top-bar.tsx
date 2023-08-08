@@ -125,7 +125,7 @@ export function TopBar() {
             "select-none border-y bg-[hsl(0,0%,94%)] text-muted shadow-[inset_0_2px_39px_-12px_rgba(0,0,0,0.15)] dark:bg-[hsl(0,0%,10%)] xs:hidden",
 
             // open/close animation
-            "overflow-hidden data-[state='closed']:animate-radix-collapsible-close data-[state='open']:animate-radix-collapsible-open",
+            "overflow-hidden data-[state='closed']:animate-[slideUp_200ms_ease-out] data-[state='open']:animate-[slideDown_200ms_ease-out]",
           )}
           id="radix-collapsible"
         >
