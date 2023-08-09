@@ -52,7 +52,7 @@ export function TopBar() {
             onClick={() => isOpen && setIsOpen(false)}
             title="Go to homepage"
           >
-            <Logo size="2.6em" />
+            <Logo size="2.4em" />
           </Link>
 
           <div className="relative float-right inline-flex h-12 gap-3">

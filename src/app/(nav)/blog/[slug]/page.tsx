@@ -117,7 +117,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
       >
         <header
           className={cn(
-            "not-prose !col-span-full",
+            "not-prose !col-span-full mb-10",
 
             "grid grid-cols-[min(63ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
           )}
@@ -143,13 +143,13 @@ export default function PostPage({ params }: { params: { slug: string } }) {
               </div>
             )}
           </div>
-          <h1 className="!col-span-full mb-3 mt-5 max-w-screen-md font-heading text-[clamp(2.5rem,1rem+3.125vw,3rem)] leading-none tracking-[-0.04em] text-[hsl(var(--heading))]">
+          <h1 className="!col-span-full mb-3 mt-4 max-w-screen-md font-heading text-[clamp(2.5rem,1rem+3.125vw,2.9rem)] leading-tight tracking-[-0.04em] text-[hsl(var(--heading))]">
             {post.title}
           </h1>
-          {post.description && <p className="text-muted">{post.description}</p>}
+          {post.description && (
+            <p className="text-lg text-muted">{post.description}</p>
+          )}
         </header>
-
-        <hr className="my-8 border-border" aria-hidden />
 
         <MDXContent code={post.body.code} />
 
