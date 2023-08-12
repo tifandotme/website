@@ -1,5 +1,5 @@
 name: Puri
-description: Puri is an Order Management System created as part of my Bachelor's thesis, which PT. WPU utilizes to manage customer orders and internal processing.
+description: Puri is an Order Management System created as part of my Bachelor's thesis. Designed for PT. WPU, a logistics company in Semarang to manage customer orders internally. The app relies heavily on Firebase serverless services, namely Firebase Cloud Messaging, Firebase Authentication, and Firebase Realtime Databse. To efficiently display extensive data without compromising performance, the app uses TanStack Table, while Chakra UI is used as the CSS framework.
 date: 2023-04
 image: projects/puri.png
 tags:

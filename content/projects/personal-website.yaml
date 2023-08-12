@@ -1,5 +1,5 @@
 name: Personal Website
-description: This website serves as a personal platform for me to share my insights through blog posts and showcase my portfolio of projects. It's built using Next.js, a React framework with built-in features, such as file-based routing, data fetching, optimizations. This website leverage React Server Components, a new React's feature which gives better performance by rendering web pages on the server before sending them to the client. This website also uses Tailwind CSS, a utility-first CSS framework that allows for greater customizability and provides a better developer experience for styling my elements. This is an ongoing project with no specific end date. I see it as a canvas to experiment with new technologies, design concepts, and content strategies. As I continue to evolve and grow, so will this website.
+description: The website that you're currently on, serves as a personal platform for sharing what I've learned through blog posts and showcasing my project portfolio. It's built using Next.js, a React framework that offers features like file-based routing, data fetching, and various optimizations. This project utilizes React Server Components, a recent addition to React's capabilities. Additionally, Tailwind CSS, a versatile CSS framework is used, enabling greater customization and maintainability. I view this project as a canvas to experiment with new technologies, design concepts, and content strategies. As I continue to evolve and grow, so will this website.
 date: 2023-07
 tags:
   - TypeScript
@@ -7,5 +7,6 @@ tags:
   - Next.js
   - Tailwind CSS
   - MDX
+  - Redis
+  - RESTful API
 repo: https://github.com/tifandotme/website
-isWIP: true
