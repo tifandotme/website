@@ -103,7 +103,7 @@ export function TopBar() {
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               title={
                 mounted
-                  ? `Change to ${theme === "light" ? "dark" : "light"} mode`
+                  ? `Switch to ${theme === "light" ? "dark" : "light"} theme`
                   : undefined
               }
             >
