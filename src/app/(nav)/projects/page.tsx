@@ -95,15 +95,9 @@ export default async function ProjectsPage({
                   <h3 className="text-xl font-semibold" id={project.slug}>
                     {project.name}
                   </h3>
-                  {project.isWIP ? (
-                    <span className="mt-0.5 animate-pulse text-muted">
-                      Ongoing
-                    </span>
-                  ) : (
-                    <time dateTime={project.date} className="mt-0.5 text-muted">
-                      {date}
-                    </time>
-                  )}
+                  <time dateTime={project.date} className="mt-0.5 text-muted">
+                    {date}
+                  </time>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-1 text-sm text-muted">

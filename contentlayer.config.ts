@@ -131,9 +131,6 @@ const Project = defineDocumentType(() => ({
       type: "string",
       description: "Project's demo URL",
     },
-    isWIP: {
-      type: "boolean",
-    },
   },
   computedFields: {
     slug: {
