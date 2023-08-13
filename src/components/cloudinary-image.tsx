@@ -109,8 +109,9 @@ async function getImage(src: string) {
     }
   } catch (error) {
     if (error instanceof Error) {
+      // TODO: refine this error message
       throw new Error(
-        `Cannot read image from source:\n\n${src}\n\nMake sure the URL is correct.`,
+        `Cannot read image from source:\n\n${src}\n\nMake sure the URL is correct.\n\nError message:\n${error.message}`,
       )
     }
 
