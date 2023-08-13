@@ -1,10 +1,117 @@
 ---
-title: "The quick brown fox jumps over the lazy dog"
+title: "The quick brown fox jumps over the lazy dog quick brown fox"
 description: "Sed non justo quis odio faucibus convallis nec a sapien. Fusce libero mauris, tincidunt vel blandit quis, tempor eget orci. Quisque sollicitudin velit sit amet felis ornare efficitur."
 date: "2023-06-30"
 ---
 
+# asd
+
 Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.
+
+<Diagram bleed content={`
+sequenceDiagram
+    participant web as Web Browser
+    participant blog as Blog Service
+    participant account as Account Service
+    participant mail as Mail Service
+    participant db as Storage
+
+    Note over web,db: The user must be logged in to submit blog posts
+    web->>+account: Logs in using credentials
+    account->>db: Query stored accounts
+    db->>account: Respond with query result
+
+    alt Credentials not found
+        account->>web: Invalid credentials
+    else Credentials found
+        account->>-web: Successfully logged in
+
+        Note over web,db: When the user is authenticated, they can now submit new posts
+        web->>+blog: Submit new post
+        blog->>db: Store post data
+
+        par Notifications
+            blog--)mail: Send mail to blog subscribers
+            blog--)db: Store in-site notifications
+        and Response
+            blog-->>-web: Successfully posted
+        end
+    end
+
+`}/>
+
+<Diagram
+  bleed
+  content={`
+gitGraph:
+  commit "Ashish"
+  branch newbranch
+  checkout newbranch
+  commit id:"1111"
+  commit tag:"test"
+  checkout main
+  commit type: HIGHLIGHT
+  commit
+  merge newbranch
+  commit
+  branch b2
+  commit
+`}
+/>
+
+<Diagram
+  content={`
+sequenceDiagram
+  participant Alice
+  participant Bob
+  Alice->>John: Hello John, how are you?
+  loop Healthcheck
+      John->>John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts<br/>prevail...
+  John-->>Alice: Great!
+  John->>Bob: How about you?
+  Bob-->>John: Jolly good!
+`}
+/>
+
+<Diagram content={`
+sequenceDiagram
+  Alice ->> Bob: Hello Bob, how are you?
+  Bob-->>John: How about you John?
+  Bob--x Alice: I am good thanks!
+  Bob-x John: I am good thanks!
+  Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
+
+Bob-->Alice: Checking with John...
+Alice->John: Yes... John, how are you?
+`}/>
+
+<Diagram
+  content={`graph TD;
+  A-->B;
+  A-->C;
+  B-->D;
+  C-->D;`}
+/>
+
+<Diagram
+  content={`
+pie title What Voldemort doesn't have?
+  "FRIENDS" : 2
+  "FAMILY" : 3
+  "NOSE" : 45
+`}
+/>
+
+<Diagram content={`
+pie showData
+    title Key elements in Product X
+    "Calcium" : 42.96
+    "Potassium" : 50.05
+    "Magnesium" : 10.01
+    "Iron" :  5
+`}/>
 
 By default, Tailwind removes all of the default browser styling from paragraphs, headings, lists and more. This ends up being really useful for building application UIs because you spend less time undoing user-agent styles, but when you _really are_ just trying to style some content that came from a rich-text editor in a CMS or a markdown file, it can be surprising and unintuitive.
 
