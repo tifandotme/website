@@ -53,7 +53,6 @@ export default function HomePage() {
             label="X/Twitter"
             rel="noopener noreferrer"
             target="_blank"
-            aria-label="X formerly known as Twitter"
           />
         </section>
       </header>
