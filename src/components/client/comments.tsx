@@ -8,8 +8,9 @@ import { cn } from "@/lib/utils"
 
 // also see "giscus:backlink" in src/app/(nav)/blog/[slug]/page.tsx
 export default function Comments() {
-  const { theme } = useTheme()
   const [show, setShow] = React.useState(false)
+
+  const isDarkTheme = useTheme().theme === "dark"
 
   React.useEffect(() => {
     function handleMessage(event: MessageEvent) {
@@ -48,7 +49,7 @@ export default function Comments() {
           reactionsEnabled="0"
           emitMetadata="0"
           inputPosition="top"
-          theme={theme === "dark" ? "transparent_dark" : "light"}
+          theme={isDarkTheme ? "transparent_dark" : "light"}
           lang="en"
           loading="lazy"
         />

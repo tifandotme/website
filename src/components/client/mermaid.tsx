@@ -32,7 +32,8 @@ export function Mermaid({ content }: { content: string }) {
             "var(--font-sans)",
             ...defaultTheme.fontFamily.sans,
           ].join(","),
-          themeCSS: "margin: 1.5rem auto 0; .pieOuterCircle { opacity: 0.5 }",
+          themeCSS:
+            "margin: 1.5rem auto 0; line-height: 1.5; .pieOuterCircle { opacity: 0.5 }",
           fontSize: 16,
           gitGraph: {
             useMaxWidth: true,
@@ -95,7 +96,7 @@ export function Mermaid({ content }: { content: string }) {
  * width of the wrapper element and determine if the diagram is bleeding (width
  * exceeds grid's main column width)
  *
- * We get the wrapper element width by measuring loading element width (see `useRef` above)
+ * We later get the wrapper element width by measuring loading element width (see `useRef` above)
  */
 function getWidth(svg: string): number {
   const parser = new DOMParser()
