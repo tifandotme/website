@@ -163,6 +163,18 @@ export default makeSource({
           },
         } satisfies AutolinkHeadingsOptions,
       ],
+      // [
+      //   rehypeMermaid,
+      //   {
+      //     mermaidConfig: {
+      //       fontFamily: ["var(--font-mono)", ...theme.fontFamily.mono].join(
+      //         ",",
+      //       ),
+      //       theme: "base",
+      //       themeCSS: "margin: 1.5rem auto 0; grid-column: 1 / -1 !important; line-height: 1rem, .label text, span, p { color: hsl(var(--foreground)) }, .node rect, .node circle, .node ellipse, .node polygon, .node path { fill: hsl(var(--codeblock-background)); stroke: hsl(var(--codeblock-border)); stroke-width: 1px; }",
+      //     },
+      //   } satisfies MermaidOptions,
+      // ], // must be before pretty code
       [
         rehypePrettyCode,
         {
@@ -189,14 +201,15 @@ export default makeSource({
               strokeLinecap: "round",
               strokeLinejoin: "round",
               strokeWidth: "2.5px",
-              className: "inline-block ml-0.5 text-muted",
+              fill: "none",
+              className: "inline-block mb-0.5 ml-0.5 text-muted",
             },
             children: [
               {
                 type: "element",
                 tagName: "path",
                 properties: {
-                  d: "M7 17 17 7M7 7h10v10",
+                  d: "M 7 17 L 17 7 M 7 7 L 17 7 L 17 17", // TODO fix this
                 },
                 children: [],
               },
