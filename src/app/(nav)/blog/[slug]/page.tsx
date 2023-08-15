@@ -107,6 +107,9 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           // H3
           "prose-h3:mt-[1.3em] prose-h3:text-2xl prose-h3:font-medium",
 
+          // inline code
+          "prose-code:bg-[hsl(var(--muted-small-text)/17%)] prose-code:px-1 prose-code:py-0.5 prose-code:text-sm prose-code:text-[hsl(var(--bold))]",
+
           // TODO: restyle all elements
           "prose-ol:mt-0 prose-ul:mt-0",
 

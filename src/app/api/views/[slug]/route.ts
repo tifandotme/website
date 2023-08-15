@@ -17,16 +17,6 @@ export async function GET(
   const slug = params.slug
   const incr = req.nextUrl.searchParams.get("incr")
 
-  const posts = allPosts.map((post) => post.slug)
-  if (!posts.includes(slug)) {
-    return NextResponse.json(
-      {
-        message: "Unknown post",
-      },
-      { status: 400, statusText: "Unknown post" },
-    )
-  }
-
   // #region disallow direct access
   const referer = req.headers.get("referer")
   const allowedReferers = ["http://localhost:3000", site.baseUrl]
@@ -38,7 +28,17 @@ export async function GET(
       { status: 401 },
     )
   }
-  // #endregion -------------------
+  // #endregion
+
+  const posts = allPosts.map((post) => post.slug)
+  if (!posts.includes(slug)) {
+    return NextResponse.json(
+      {
+        message: "Unknown post",
+      },
+      { status: 400, statusText: "Unknown post" },
+    )
+  }
 
   if (incr !== null) {
     const views = await redis.hincrby("views", slug, 1)
