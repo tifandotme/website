@@ -6,8 +6,7 @@ import { useTheme } from "next-themes"
 import defaultTheme from "tailwindcss/defaultTheme"
 
 import { cn } from "@/lib/utils"
-
-import { Spinner } from "../icons"
+import { Spinner } from "@/components/icons"
 
 export function Mermaid({ content }: { content: string }) {
   const [processedSvg, setProcessedSvg] = React.useState("")
@@ -33,7 +32,7 @@ export function Mermaid({ content }: { content: string }) {
             ...defaultTheme.fontFamily.sans,
           ].join(","),
           themeCSS:
-            "margin: 1.5rem auto 0; line-height: 1.5; .pieOuterCircle { opacity: 0.5 }",
+            "margin: 0 auto; line-height: 1.5; .pieOuterCircle { opacity: 0.5 }",
           fontSize: 16,
           gitGraph: {
             useMaxWidth: true,
@@ -84,10 +83,10 @@ export function Mermaid({ content }: { content: string }) {
       Error while rendering mermaid
     </div>
   ) : (
-    <div
+    <figure
       className={cn(bleed && "!col-span-full")}
       dangerouslySetInnerHTML={{ __html: processedSvg }}
-    ></div>
+    ></figure>
   )
 }
 
@@ -95,8 +94,6 @@ export function Mermaid({ content }: { content: string }) {
  * Get width of of the svg returned by mermaid, so that we can compare it to the
  * width of the wrapper element and determine if the diagram is bleeding (width
  * exceeds grid's main column width)
- *
- * We later get the wrapper element width by measuring loading element width (see `useRef` above)
  */
 function getWidth(svg: string): number {
   const parser = new DOMParser()
@@ -105,7 +102,7 @@ function getWidth(svg: string): number {
 
   const styleAttribute = svgElement.getAttribute("style")
 
-  // pie charts shouldn't bleed (their width is relatively narrow)
+  // pie charts shouldn't bleed regardless (their width is relatively narrow)
   const ariaRole = svgElement.getAttribute("aria-roledescription")
   if (ariaRole === "pie") {
     return 0
