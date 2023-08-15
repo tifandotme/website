@@ -46,6 +46,9 @@ const config = {
           css: {
             // discard prose-pre styles
             pre: null,
+            code: null,
+            "code::before": null,
+            "code::after": null,
 
             // custom prose colors
             "--tw-prose-body": "hsl(var(--foreground))",
