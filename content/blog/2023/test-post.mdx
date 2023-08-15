@@ -1,5 +1,5 @@
 ---
-title: "The quick brown fox jumps over the lazy dog quick brown fox"
+title: "This is a Test Post"
 description: "Sed non justo quis odio faucibus convallis nec a sapien. Fusce libero mauris, tincidunt vel blandit quis, tempor eget orci. Quisque sollicitudin velit sit amet felis ornare efficitur."
 date: "2023-06-30"
 ---
@@ -88,12 +88,31 @@ Alice->John: Yes... John, how are you?
 `}/>
 
 <Diagram
-  content={`graph TD;
-  A-->B;
-  A-->C;
-  B-->D;
-  C-->D;`}
+  content={`---
+title: Node with text
+---
+graph TD;
+A-->B;
+A-->C;
+B-->D;
+C-->D;`}
 />
+
+<Diagram content={`
+erDiagram
+    CAR ||--o{ NAMED-DRIVER : allows
+    CAR {
+        string registrationNumber
+        string make
+        string model
+    }
+    PERSON ||--o{ NAMED-DRIVER : is
+    PERSON {
+        string firstName
+        string lastName
+        int age
+    }
+`} />
 
 <Diagram
   content={`
