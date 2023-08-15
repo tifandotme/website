@@ -1,16 +1,18 @@
 import { allPosts, type Post } from "contentlayer/generated"
 
-export function getPost(slug: string) {
+export function getPost(slug: string): Post | undefined {
   return allPosts.find((post) => post.slug === slug)
 }
 
 // REF: https://dev.to/gugaguichard/replace-clsx-classnames-or-classcat-with-your-own-little-helper-3bf
-export function cn(...args: unknown[]) {
-  return args
-    .flat()
-    .filter((x) => typeof x === "string")
-    .join(" ")
-    .trim()
+export function cn(...args: unknown[]): string | undefined {
+  return (
+    args
+      .flat()
+      .filter((x) => typeof x === "string")
+      .join(" ")
+      .trim() || undefined
+  )
 }
 
 export async function getViews(slug: string) {
