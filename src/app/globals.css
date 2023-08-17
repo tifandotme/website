@@ -20,6 +20,8 @@
 
     --primary: 209 100% 50%;
 
+    --yellow: 45 93% 47%;
+
     /* both passed WCAG AA contrast test at minimum */
     --muted-small-text: 240 4% 46%;
     --muted-large-text: 0 0% 58%;
@@ -38,6 +40,8 @@
     --heading: 0 0% 90%;
 
     --primary: 209 100% 50%;
+
+    --yellow: 28 73% 21%;
 
     --muted-small-text: 0 0% 50%;
     --muted-large-text: 0 0% 39%;

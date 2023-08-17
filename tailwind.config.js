@@ -125,6 +125,7 @@ const config = {
               color: "hsl(var(--bold))",
               background: "hsl(var(--muted-small-text)/17%)",
               padding: "0.125rem 0.25rem",
+              fontWeight: defaultTheme.fontWeight.normal,
             },
             "code::before": null,
             "code::after": null,
