@@ -98,16 +98,16 @@ export default function PostPage({ params }: { params: { slug: string } }) {
       {/* adjust "63ch" occurences if font is changed from inter to something else */}
       <article
         className={cn(
-          "prose mx-auto !max-w-screen-md dark:prose-invert lg:-mt-24",
+          "prose mx-auto !max-w-screen-md leading-7 dark:prose-invert md:text-[1.05rem] lg:-mt-24",
 
-          "grid grid-cols-[min(63ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
+          "grid grid-cols-[min(66ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
         )}
       >
         <header
           className={cn(
-            "not-prose !col-span-full mb-10",
+            "not-prose !col-span-full mb-14 [&+*]:mt-0",
 
-            "grid grid-cols-[min(63ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
+            "grid grid-cols-[min(66ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
           )}
         >
           <div className="inline-flex flex-wrap gap-3 font-mono font-medium leading-loose text-muted">

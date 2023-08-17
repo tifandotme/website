@@ -76,7 +76,7 @@ code[data-theme="dark"] {
 }
 
 [data-rehype-pretty-code-fragment] {
-  @apply my-7 overflow-hidden rounded-lg border border-[hsl(var(--codeblock-border))] bg-[hsl(var(--codeblock-background))] text-sm leading-6 text-[hsl(var(--foreground))];
+  @apply my-7 overflow-hidden rounded-lg border border-[hsl(var(--codeblock-border))] bg-[hsl(var(--codeblock-background))] text-sm leading-6 text-[hsl(var(--foreground))] [h2+&]:mt-0 [h3+&]:mt-0;
 
   --codeblock-padding: 1.25rem;
   --line-numbering-width: 3rem;
