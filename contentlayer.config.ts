@@ -5,6 +5,9 @@ import rehypeAutolinkHeadings, {
 import rehypeExternalLinks, {
   type Options as ExternalLinksOptions,
 } from "rehype-external-links"
+import rehypeMermaid, {
+  type RehypeMermaidOptions as MermaidOptions,
+} from "rehype-mermaidjs"
 import rehypePrettyCode, {
   type Options as PrettyCodeOptions,
 } from "rehype-pretty-code"
@@ -13,6 +16,7 @@ import rehypeShiftHeading, {
 } from "rehype-shift-heading"
 import rehypeSlug, { type Options as SlugOptions } from "rehype-slug"
 import remarkGfm, { type Options as GfmOptions } from "remark-gfm"
+import defaultTheme from "tailwindcss/defaultTheme.js"
 
 import { type HeadingsField } from "@/types"
 
@@ -179,6 +183,42 @@ export default makeSource({
         } satisfies AutolinkHeadingsOptions,
       ],
       [
+        rehypeMermaid,
+        {
+          strategy: "inline-svg",
+          css: "https://fonts.googleapis.com/css?family=Nunito+Sans", // TODO: use local
+          mermaidConfig: {
+            securityLevel: "loose",
+            fontFamily: ["Nunito Sans", ...defaultTheme.fontFamily.sans].join(
+              ", ",
+            ),
+            fontSize: 10,
+            gitGraph: {
+              useMaxWidth: true,
+            },
+            pie: {
+              useWidth: 900,
+            },
+            theme: "default",
+            themeCSS: [
+              "margin: 0 auto; line-height: 1.4;",
+
+              // flowchart
+              ".label, p, span, text { color: hsl(var(--foreground)); }",
+              // node
+              ".node * { fill: hsl(var(--codeblock-background)) !important; stroke: hsl(var(--foreground)/20%) !important; stroke-width: 1px; }",
+              // arrow head
+              ".marker { fill: hsl(var(--foreground)); stroke: hsl(var(--foreground)); }",
+              // link
+              ".flowchart-link { stroke: hsl(var(--foreground)); }",
+              // clusters
+              ".cluster rect { fill: hsl(var(--yellow)/20%); stroke: hsl(var(--yellow)); }",
+              ".cluster span { color: hsl(var(--foreground)); }",
+            ].join(" "),
+          },
+        } satisfies MermaidOptions,
+      ], // must be before pretty code
+      [
         rehypePrettyCode,
         {
           // https://unpkg.com/browse/shiki@0.14.2/themes/
@@ -205,7 +245,7 @@ export default makeSource({
               strokeLinejoin: "round",
               strokeWidth: "2.5px",
               fill: "none",
-              className: "inline-block mb-0.5 ml-0.5 text-muted",
+              className: "inline mb-0.5 ml-0.5 text-muted",
             },
             children: [
               {

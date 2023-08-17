@@ -3,7 +3,6 @@ import { type MDXComponents } from "mdx/types"
 import { useMDXComponent } from "next-contentlayer/hooks"
 
 import { cn } from "@/lib/utils"
-import { Mermaid } from "@/components/client/mermaid"
 import { CldImage } from "@/components/cloudinary-image"
 
 export const components: MDXComponents = {
@@ -30,9 +29,6 @@ export const components: MDXComponents = {
         )}
       </figure>
     )
-  },
-  Diagram: ({ content }: { content: string }) => {
-    return <Mermaid content={content} />
   },
 }
 
