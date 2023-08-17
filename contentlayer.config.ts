@@ -72,18 +72,28 @@ const Post = defineDocumentType(() => ({
     headings: {
       type: "json",
       resolve: async (doc) => {
-        const regex = /\n(?<flag>#{1})\s+(?<content>.+)/g
-        const headings = Array.from(doc.body.raw.matchAll(regex)).map(
-          (group) => {
-            const text = group[2] as string
-            return {
-              text,
-              slug: slugify(text),
-            }
-          },
-        ) as HeadingsField
+        let isInsideCodeBlock = false
+        const headingLines = doc.body.raw.split("\n").filter((line) => {
+          if (line.startsWith("```")) {
+            isInsideCodeBlock = !isInsideCodeBlock
+            return false
+          }
 
-        return headings
+          if (isInsideCodeBlock) return false
+
+          if (line.match(/^(\s*#\s.*)/)) return true
+
+          return false
+        })
+
+        return headingLines.map((line) => {
+          const text = line.replace(/^(\s*#\s*)/, "")
+
+          return {
+            text,
+            slug: slugify(text),
+          }
+        }) as HeadingsField
       },
     },
   },
@@ -159,22 +169,15 @@ export default makeSource({
         {
           behavior: "wrap",
           properties: {
-            className: ["anchor"],
+            className: [
+              // discard prose-a styles
+              "font-inherit text-inherit no-underline",
+
+              "-ml-[1em] pl-[1em] before:absolute before:-ml-[1em] before:font-mono before:font-medium before:text-white/0 before:content-['#'] hover:before:text-muted-darker",
+            ],
           },
         } satisfies AutolinkHeadingsOptions,
       ],
-      // [
-      //   rehypeMermaid,
-      //   {
-      //     mermaidConfig: {
-      //       fontFamily: ["var(--font-mono)", ...theme.fontFamily.mono].join(
-      //         ",",
-      //       ),
-      //       theme: "base",
-      //       themeCSS: "margin: 1.5rem auto 0; grid-column: 1 / -1 !important; line-height: 1rem, .label text, span, p { color: hsl(var(--foreground)) }, .node rect, .node circle, .node ellipse, .node polygon, .node path { fill: hsl(var(--codeblock-background)); stroke: hsl(var(--codeblock-border)); stroke-width: 1px; }",
-      //     },
-      //   } satisfies MermaidOptions,
-      // ], // must be before pretty code
       [
         rehypePrettyCode,
         {
@@ -209,7 +212,7 @@ export default makeSource({
                 type: "element",
                 tagName: "path",
                 properties: {
-                  d: "M 7 17 L 17 7 M 7 7 L 17 7 L 17 17", // TODO fix this
+                  d: "M 7 17 L 17 7 M 7 7 L 17 7 L 17 17",
                 },
                 children: [],
               },

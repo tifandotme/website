@@ -126,15 +126,6 @@ pre > code {
 
 /* #endregion */
 
-/* rehype-autolink-headings */
-
-.anchor {
-  @apply -ml-[1em] pl-[1em] before:absolute before:-ml-[1em] before:font-sans before:text-white/0 before:content-['#'] hover:before:text-muted-darker;
-
-  /* discard prose-a styles */
-  @apply font-inherit text-inherit no-underline;
-}
-
 /* remark-gfm */
 
 .contains-task-list {
