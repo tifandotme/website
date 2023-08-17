@@ -11,11 +11,6 @@ const JetBrainsMono = JetBrains_Mono({
   variable: "--font-mono",
 })
 
-// const lora = Lora({
-//   subsets: ["latin"],
-//   variable: "--font-serif",
-// })
-
 const NewsreaderItalic = Newsreader({
   subsets: ["latin"],
   style: "italic",
