@@ -95,6 +95,14 @@ const config = {
         // default prose styles: ./node_modules/@tailwindcss/typography/src/styles.js
         DEFAULT: {
           css: {
+            "h2::before": {
+              display: "block",
+              marginBottom: "1rem",
+              height: "2px",
+              width: "1.5rem",
+              background: "hsl(var(--foreground))",
+              content: "''",
+            },
             h2: {
               marginTop: "1.7rem",
               fontFamily: [
@@ -105,17 +113,9 @@ const config = {
               fontSize: defaultTheme.fontSize["3xl"][0],
               ...defaultTheme.fontSize["3xl"][1],
             },
-            "h2::before": {
-              display: "block",
-              marginBottom: "1rem",
-              height: "3px",
-              width: "1.5rem",
-              background: "hsl(var(--foreground))",
-              content: "''",
-            },
             h3: {
               marginTop: "1.3rem",
-              fontWeight: defaultTheme.fontWeight.medium,
+              fontWeight: defaultTheme.fontWeight.semibold,
               fontSize: defaultTheme.fontSize["2xl"][0],
               ...defaultTheme.fontSize["2xl"][1],
             },
