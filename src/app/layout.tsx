@@ -3,7 +3,6 @@ import Script from "next/script"
 
 import { site } from "@/config"
 import { fonts } from "@/lib/fonts"
-import { cn } from "@/lib/utils"
 import { BreakpointIndicator } from "@/components/breakpoint-indicator"
 import { NavigationProgressProvider } from "@/components/client/navigation-progress"
 import { ThemeProvider } from "@/components/client/theme-provider"
@@ -49,14 +48,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans text-foreground antialiased selection:bg-blue-500 selection:text-neutral-50 dark:selection:bg-blue-700",
-
-          fonts.map((font) => font.variable),
-        )}
-      >
+    <html lang="en" suppressHydrationWarning>
+      <body className={fonts.map((font) => font.variable).join(" ")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
