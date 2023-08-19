@@ -1,39 +1,35 @@
 "use client"
 
 import React from "react"
-import Link from "next/link"
 import { BiUpArrowAlt } from "react-icons/bi"
 import { useWindowScroll } from "react-use"
 
 import { cn } from "@/lib/utils"
 
-export function BackToTopButton({ path }: { path: string }) {
-  const [isScrolled, setIsScrolled] = React.useState(false)
+export function BackToTopButton() {
+  const [isScrolled, setIsScrolled] = React.useState(true)
   const { y } = useWindowScroll()
 
   React.useEffect(() => {
-    // avoid SSR mismatch
     if (typeof window !== "undefined") {
       setIsScrolled(y > window.innerHeight)
     }
   }, [y])
 
   return (
-    <Link
-      onClick={() => {
+    <a
+      href="#"
+      onClick={(e) => {
+        e.preventDefault()
         window.scrollTo({ top: 0, behavior: "instant" })
       }}
       className={cn(
-        "text-sm font-medium transition-transform hover:text-foreground active:translate-y-0.5",
+        "pointer-events-none font-medium text-foreground/30 transition-transform hover:text-foreground active:translate-y-0.5",
 
-        isScrolled
-          ? "pointer-events-auto text-muted"
-          : "pointer-events-none text-[hsl(0,0%,75%)] dark:text-[hsl(0,0%,20%)]",
+        isScrolled && "!pointer-events-auto !text-muted",
       )}
-      href={path}
-      prefetch={false}
     >
       Back to top <BiUpArrowAlt className="ml-[1px] inline-block" size={21} />
-    </Link>
+    </a>
   )
 }

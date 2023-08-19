@@ -8,6 +8,7 @@ import { site } from "@/config"
 import { cn, getLastModified, getPost } from "@/lib/utils"
 import { BackToTopButton } from "@/components/client/back-to-top"
 import { LoadingComments } from "@/components/client/comments"
+import { HeadingsLinks } from "@/components/client/headings-links"
 import { LoadingDots } from "@/components/loading-dots"
 import { MDXContent } from "@/components/mdx"
 
@@ -70,7 +71,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     <main className="container px-3 sm:px-5">
       <aside
         className={cn(
-          "fixed bottom-14 ml-4 hidden w-[160px] select-none flex-col gap-2.5 min-[1217px]:flex min-[1300px]:ml-10 min-[1340px]:w-[210px]",
+          "fixed bottom-14 ml-4 hidden w-[160px] select-none flex-col gap-2.5 text-sm min-[1217px]:flex min-[1300px]:ml-10 min-[1340px]:w-[210px]",
 
           "duration-300 animate-in fade-in-50 slide-in-from-left-5",
         )}
@@ -80,19 +81,14 @@ export default function PostPage({ params }: { params: { slug: string } }) {
             <p className="font-mono text-sm font-bold uppercase text-muted-darker">
               On this page
             </p>
-            {(post.headings as HeadingsField).map((heading) => (
-              <a
-                key={heading.slug}
-                href={`#${heading.slug}`}
-                className="block py-[0.12rem] text-sm font-medium leading-4 text-muted transition first:pt-0 last:pb-0 hover:text-foreground active:translate-y-0.5"
-              >
-                {heading.text}
-              </a>
-            ))}
+            <HeadingsLinks
+              headings={post.headings as HeadingsField}
+              className="inline-block py-[0.12rem] text-left font-medium leading-4 text-muted transition first:pt-0 last:pb-0 hover:text-foreground active:translate-y-0.5"
+            />
             <hr className="my-3 w-[130px]" />
           </>
         )}
-        <BackToTopButton path={post.url} />
+        <BackToTopButton />
       </aside>
 
       {/* adjust "65ch" occurences if font is changed from inter to something else */}
