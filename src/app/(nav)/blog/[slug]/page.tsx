@@ -8,7 +8,7 @@ import { site } from "@/config"
 import { cn, getLastModified, getPost } from "@/lib/utils"
 import { BackToTopButton } from "@/components/client/back-to-top"
 import { LoadingComments } from "@/components/client/comments"
-import { HeadingsLinks } from "@/components/client/headings-links"
+import { HeadingsLinks } from "@/components/client/headings"
 import { LoadingDots } from "@/components/loading-dots"
 import { MDXContent } from "@/components/mdx"
 
