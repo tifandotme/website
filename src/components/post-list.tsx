@@ -5,8 +5,8 @@ import { allPosts } from "contentlayer/generated"
 import { LoadingDots } from "@/components/loading-dots"
 
 const Views = dynamic(() => import("@/components/client/views"), {
-  loading: () => <LoadingDots />,
   ssr: false,
+  loading: () => <LoadingDots />,
 })
 
 export function PostList({ draft = false }: { draft?: boolean }) {

@@ -217,7 +217,7 @@ export default makeSource({
             ].join(" "),
           },
         } satisfies MermaidOptions,
-      ], // must be before pretty code
+      ], // must be before rehypPrettyCode
       [
         rehypePrettyCode,
         {
