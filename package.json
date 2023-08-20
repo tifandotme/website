@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "rm -rf .next && concurrently -k -c 'bgMagenta,bgBlue' -n contentlayer,next 'contentlayer dev' 'next dev'",
-    "build": "npx playwright install && contentlayer build --clearCache && next build",
+    "build": "pnpm dlx playwright install && contentlayer build --clearCache && next build",
     "start": "next start",
     "lint": "eslint --cache --cache-strategy content --cache-location=node_modules/.cache/eslint/.eslint-cache src",
     "format": "prettier --check --cache --cache-strategy content .",
@@ -20,7 +20,7 @@
     "@radix-ui/react-collapsible": "^1.0.3",
     "@upstash/redis": "^1.22.0",
     "contentlayer": "^0.3.4",
-    "next": "^13.4.17",
+    "next": "^13.4.19",
     "next-contentlayer": "^0.3.4",
     "next-themes": "^0.2.1",
     "nprogress": "^0.2.0",
@@ -28,29 +28,28 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
+    "react-tweet": "^3.1.1",
     "react-use": "^17.4.0",
     "sharp": "^0.32.5",
     "swr": "^2.2.1",
-    "zod": "^3.22.1"
+    "zod": "^3.22.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
-    "@commitlint/cz-commitlint": "^17.7.1",
     "@commitlint/types": "^17.4.4",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
     "@tailwindcss/typography": "^0.5.9",
     "@total-typescript/ts-reset": "^0.5.1",
     "@types/fs-extra": "^11.0.1",
     "@types/mdx": "^2.0.6",
-    "@types/node": "^20.5.0",
+    "@types/node": "^20.5.1",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "autoprefixer": "^10.4.15",
-    "commitizen": "^4.3.0",
     "concurrently": "^8.2.0",
     "eslint": "^8.47.0",
-    "eslint-config-next": "^13.4.17",
+    "eslint-config-next": "^13.4.19",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-mdx": "^2.2.0",
     "eslint-plugin-tailwindcss": "^3.13.0",
@@ -72,11 +71,6 @@
     "tailwindcss": "^3.3.3",
     "tailwindcss-animate": "^1.0.6",
     "typescript": "^5.1.6"
-  },
-  "config": {
-    "commitizen": {
-      "path": "@commitlint/cz-commitlint"
-    }
   },
   "//": [
     "feed depends on fs-extra",
