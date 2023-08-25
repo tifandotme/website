@@ -1,6 +1,6 @@
+import fs from "node:fs"
 import { allPosts } from "contentlayer/generated"
 import { Feed, type FeedOptions, type Item } from "feed"
-import fs from "fs-extra"
 
 import { site } from "@/config"
 
@@ -50,7 +50,7 @@ export function generateRSS() {
 
   posts.forEach((post) => feed.addItem(post))
 
-  fs.ensureDirSync("./public")
+  fs.existsSync("./public") || fs.mkdirSync("./public")
 
   fs.writeFileSync("./public/feed.xml", feed.rss2())
   fs.writeFileSync("./public/feed.json", feed.json1())
