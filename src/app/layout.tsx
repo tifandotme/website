@@ -72,6 +72,5 @@ export default function RootLayout({
   )
 }
 
-// TODO: add icon, apple-icon, refine favicon
 // TODO: add blog to blogs.hn and ooh.directory
 // TODO: generate opengraphs

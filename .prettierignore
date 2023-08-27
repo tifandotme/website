@@ -1,5 +1,6 @@
 # used in `prettier -w .`, but not for lint-staged as it uses glob patterns
 
 /.husky
+*.mdx
 
 pnpm-lock.*
