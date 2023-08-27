@@ -61,8 +61,8 @@ export default function Comments() {
 export function LoadingComments({ className }: { className?: string }) {
   return (
     <div className={cn("flex animate-pulse flex-col", className)}>
-      <div className="mb-[23px] h-[28px] w-[35%] rounded-sm bg-[hsl(var(--foreground)/15%)]" />
-      <div className="h-[234px] w-full rounded-sm bg-[hsl(var(--foreground)/15%)]" />
+      <div className="mb-[23px] h-[28px] w-[35%] rounded-sm bg-[hsl(var(--foreground)/21%)] dark:bg-[hsl(var(--foreground)/15%)]" />
+      <div className="h-[234px] w-full rounded-sm bg-[hsl(var(--foreground)/21%)] dark:bg-[hsl(var(--foreground)/15%)]" />
     </div>
   )
 }
