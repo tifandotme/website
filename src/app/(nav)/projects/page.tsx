@@ -1,6 +1,6 @@
 import { type Metadata } from "next"
 import { allProjects } from "contentlayer/generated"
-import { LuArrowUpRight, LuExternalLink } from "react-icons/lu"
+import { LuArrowUpRight } from "react-icons/lu"
 import { PiStarBold } from "react-icons/pi"
 
 import { type GitHubResponse } from "@/types"
@@ -19,16 +19,26 @@ export default async function ProjectsPage({
 }) {
   const projects = await Promise.all(
     allProjects.map(async (project) => {
-      const res = await fetch(
-        "https://api.github.com/repos" + new URL(project.repo).pathname,
-        {
-          next: {
-            revalidate: 3600, // 1 hour
-          },
-        },
-      ).then((res) => res.json() as Promise<GitHubResponse>)
+      const path = new URL(project.repo).pathname
+      const url = `https://api.github.com/repos${path}`
 
-      const stars = res.stargazers_count || 0
+      const res = await fetch(url, {
+        headers: {
+          Accept: "application/vnd.github+json",
+          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        },
+        next: {
+          revalidate: 3600, // 1 hour
+        },
+      })
+
+      if (!res.ok) {
+        console.error("Failed to fetch stargazers count from GitHub API")
+      }
+
+      const json = (await res.json()) as GitHubResponse
+
+      const stars = json.stargazers_count || 0
 
       return {
         ...project,
@@ -160,34 +170,14 @@ export default async function ProjectsPage({
               </div>
 
               {project.image && (
-                <a
-                  href={project.demo}
-                  className="group relative basis-4/12 select-none self-center"
-                  target="_blank"
-                >
-                  <CldImage
-                    // NOTE: make sure the image is 16:10
-                    className={cn(
-                      "w-[500px] rounded-2xl border lg:w-full",
-
-                      project.demo && "group-hover:brightness-75",
-                    )}
-                    src={project.image}
-                    alt={project.name}
-                    width={1000}
-                    sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 25vw"
-                  />
-                  <span
-                    className={cn(
-                      "absolute inset-0 hidden items-center justify-center text-2xl font-semibold text-white",
-
-                      project.demo && "group-hover:inline-flex",
-                    )}
-                  >
-                    View Demo
-                    <LuExternalLink className="ml-2 stroke-[3px]" size={22} />
-                  </span>
-                </a>
+                <CldImage
+                  className="w-[500px] basis-4/12 self-center rounded-2xl border lg:w-full"
+                  src={project.image} // NOTE: make sure the image is 16:10
+                  alt={project.name}
+                  width={1000}
+                  aspectRatio="16:10"
+                  sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 25vw"
+                />
               )}
             </section>
           )
