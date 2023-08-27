@@ -5,7 +5,7 @@ import { allPosts } from "contentlayer/generated"
 
 import { type HeadingsField } from "@/types"
 import { site } from "@/config"
-import { cn, getLastModified, getPost } from "@/lib/utils"
+import { cn, getLastModified } from "@/lib/utils"
 import { BackToTopButton } from "@/components/client/back-to-top"
 import { LoadingComments } from "@/components/client/comments"
 import { HeadingsLinks } from "@/components/client/headings"
@@ -32,7 +32,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string }
 }): Promise<Metadata> {
-  const post = getPost(params.slug)
+  const post = allPosts.find((post) => post.slug === params.slug)
 
   return {
     title: post?.title,
@@ -58,7 +58,7 @@ export async function generateMetadata({
 }
 
 export default function PostPage({ params }: { params: { slug: string } }) {
-  const post = getPost(params.slug)
+  const post = allPosts.find((post) => post.slug === params.slug)
 
   if (!post) notFound()
 

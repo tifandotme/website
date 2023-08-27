@@ -1,10 +1,8 @@
-import { allPosts, type Post } from "contentlayer/generated"
+import { type Post } from "contentlayer/generated"
 
-export function getPost(slug: string): Post | undefined {
-  return allPosts.find((post) => post.slug === slug)
-}
-
-// REF: https://dev.to/gugaguichard/replace-clsx-classnames-or-classcat-with-your-own-little-helper-3bf
+/**
+ * In-house replacement for clsx, inspired from https://dev.to/gugaguichard/replace-clsx-classnames-or-classcat-with-your-own-little-helper-3bf
+ */
 export function cn(...args: unknown[]): string | undefined {
   return (
     args
@@ -15,28 +13,49 @@ export function cn(...args: unknown[]): string | undefined {
   )
 }
 
+/**
+ * Calls the `/api/views` endpoint to get the view count for a post
+ */
 export async function getViews(slug: string) {
   const origin = window.location.origin
   const pathname = `/api/views/${slug}`
 
   const url = new URL(pathname, origin)
 
-  return fetch(url).then((res) => res.json()) as Promise<{
+  const res = await fetch(url)
+
+  if (!res.ok) {
+    console.error("Failed to fetch views (/api/views) for slug:", slug)
+  }
+
+  return res.json() as Promise<{
     views: number | null
   }>
 }
 
+/**
+ * Calls the `/api/views` endpoint to increment the view count for a post
+ */
 export async function incrementViews(slug: string) {
   const origin = window.location.origin
   const pathname = `/api/views/${slug}?incr`
 
   const url = new URL(pathname, origin)
 
-  return fetch(url).then((res) => res.json()) as Promise<{
+  const res = await fetch(url)
+
+  if (!res.ok) {
+    console.error("Failed to increment views (/api/views) for slug:", slug)
+  }
+
+  return res.json() as Promise<{
     views: number
   }>
 }
 
+/**
+ * Get the last modified date of a post from GitHub API to be used in OG modified time
+ */
 export async function getLastModified(post: Post) {
   if (process.env.VERCEL_ENV !== "production") return
   if (post._raw.sourceFileDir.startsWith("blog/draft")) return
@@ -50,6 +69,12 @@ export async function getLastModified(post: Post) {
       Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
     },
   })
+
+  if (!res.ok) {
+    console.error("Failed to fetch last modified date from GitHub API")
+    return
+  }
+
   const json = (await res.json()) as {
     commit: {
       committer: {
@@ -58,7 +83,5 @@ export async function getLastModified(post: Post) {
     }
   }[]
 
-  const date = json[0]?.commit.committer.date
-
-  return date
+  return json[0]?.commit.committer.date
 }
