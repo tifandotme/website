@@ -134,6 +134,8 @@ const NavigationProgress = React.memo(
 
         if (event.ctrlKey || event.shiftKey) return
 
+        if (anchorElement.download) return
+
         if (anchorElement.target === "_blank") return
 
         const targetUrl = new URL(anchorElement.href)
