@@ -186,7 +186,7 @@ export default makeSource({
         rehypeMermaid,
         {
           strategy: "inline-svg",
-          css: "https://fonts.googleapis.com/css?family=Nunito+Sans", // TODO: use local
+          css: "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200..1000&display=swap", // TODO: use local
           mermaidConfig: {
             securityLevel: "loose",
             fontFamily: ["Nunito Sans", ...defaultTheme.fontFamily.sans].join(
