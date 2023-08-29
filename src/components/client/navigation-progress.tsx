@@ -132,7 +132,7 @@ const NavigationProgress = React.memo(
       const handleAnchorClick = (event: MouseEvent) => {
         const anchorElement = event.currentTarget as HTMLAnchorElement
 
-        if (event.ctrlKey) return
+        if (event.ctrlKey || event.shiftKey) return
 
         if (anchorElement.target === "_blank") return
 
