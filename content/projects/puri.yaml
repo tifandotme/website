@@ -1,5 +1,5 @@
 name: Puri
-description: Puri is an Order Management System developed for a logistics company in Semarang. The application successfully transformed the customer order processing workflow, replacing the outdated physical whiteboard-based system with a modern web-based solution. This transition enabled real-time data display and push notifications, facilitating seamless coordination between the sales and logistics divisions. The main technologies used include React.js, Firebase (Cloud Messaging, Database, Authentication), Chakra UI, and Progressive Web App (PWA).
+description: Puri is an Order Management System developed for a logistics company in Semarang. The application successfully transformed the customer order processing workflow, replacing the outdated physical whiteboard-based system with a modern web-based solution. This transition enabled real-time data display and push notifications, facilitating seamless coordination between the sales and logistics divisions.
 date: 2023-04
 image: projects/puri.png
 tags:
