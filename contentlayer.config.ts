@@ -201,7 +201,7 @@ export default makeSource({
             },
             theme: "default",
             themeCSS: [
-              "margin: 0 auto; line-height: 1.4;",
+              "margin: 1rem auto; line-height: 1.4;",
 
               // flowchart
               ".label, p, span, text { color: hsl(var(--foreground)); }",

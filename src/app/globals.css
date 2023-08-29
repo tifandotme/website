@@ -10,7 +10,7 @@
     @apply min-h-screen bg-background font-sans text-foreground antialiased selection:bg-blue-500 selection:text-neutral-50 dark:selection:bg-blue-700;
   }
   em {
-    @apply font-italic text-[111%];
+    @apply font-italic text-[109%];
   }
 
   :root {
@@ -83,7 +83,7 @@ code[data-theme="dark"] {
 }
 
 [data-rehype-pretty-code-fragment] {
-  @apply my-7 overflow-hidden rounded-lg border border-[hsl(var(--codeblock-border))] bg-[hsl(var(--codeblock-background))] text-sm leading-6 text-[hsl(var(--foreground))] [h2+&]:mt-0 [h3+&]:mt-0;
+  @apply my-4 overflow-hidden rounded-lg border border-[hsl(var(--codeblock-border))] bg-[hsl(var(--codeblock-background))] text-sm leading-6 text-[hsl(var(--foreground))] [h2+&]:mt-0 [h3+&]:mt-0;
 
   --codeblock-padding: 1.25rem;
   --line-numbering-width: 3rem;

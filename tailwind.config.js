@@ -120,10 +120,27 @@ const config = {
               ...defaultTheme.fontSize["2xl"][1],
             },
 
+            "p + p, blockquote + p": {
+              marginTop: "0",
+            },
+
+            blockquote: {
+              marginTop: "0",
+              fontWeight: defaultTheme.fontWeight.normal,
+            },
+            "blockquote p:first-of-type::before": null,
+            "blockquote p:last-of-type::after": null,
+            "blockquote p:first-of-type": {
+              marginTop: "0",
+            },
+            "blockquote p:last-of-type": {
+              marginBottom: "0",
+            },
+
             pre: null,
             code: {
               color: "hsl(var(--bold))",
-              background: "hsl(var(--muted-small-text)/17%)",
+              background: "hsl(var(--muted-small-text)/20%)",
               padding: "0.125rem 0.25rem",
               fontWeight: defaultTheme.fontWeight.normal,
             },
@@ -146,8 +163,8 @@ const config = {
             "--tw-prose-counters": colors.zinc[500],
             "--tw-prose-bullets": colors.zinc[300],
             "--tw-prose-hr": "hsl(var(--border))",
-            "--tw-prose-quotes": colors.zinc[900],
-            "--tw-prose-quote-borders": colors.zinc[200],
+            "--tw-prose-quotes": "hsl(var(--foreground))",
+            "--tw-prose-quote-borders": colors.zinc[300],
             "--tw-prose-captions": colors.zinc[500],
             "--tw-prose-code": colors.zinc[900],
             "--tw-prose-pre-code": colors.red[200],
@@ -163,7 +180,7 @@ const config = {
             "--tw-prose-invert-counters": colors.zinc[400],
             "--tw-prose-invert-bullets": colors.zinc[600],
             "--tw-prose-invert-hr": "hsl(var(--border))",
-            "--tw-prose-invert-quotes": colors.zinc[100],
+            "--tw-prose-invert-quotes": "hsl(var(--foreground))",
             "--tw-prose-invert-quote-borders": colors.zinc[700],
             "--tw-prose-invert-captions": colors.zinc[400],
             "--tw-prose-invert-code": colors.white,
