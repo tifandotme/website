@@ -9,18 +9,20 @@ import { cn } from "@/lib/utils"
 export function SortByButtons({
   sortParam,
   ...props
-}: { sortParam: string } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
+}: { sortParam: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   const router = useRouter()
 
   return (
     <>
-      <button
+      <a
         {...props}
-        onClick={() =>
+        href="/projects?sort=date"
+        onClick={(e) => {
+          e.preventDefault()
           router.replace(`/projects?sort=date`, {
             scroll: false,
           })
-        }
+        }}
         className={cn(
           "my-1 inline-flex items-center gap-2 p-3 transition-transform hover:text-foreground active:translate-y-0.5",
 
@@ -30,15 +32,17 @@ export function SortByButtons({
       >
         <LuCalendarDays size={19} />
         by Date
-      </button>
+      </a>
 
-      <button
+      <a
         {...props}
-        onClick={() =>
+        href="/projects?sort=stars"
+        onClick={(e) => {
+          e.preventDefault()
           router.replace(`/projects?sort=stars`, {
             scroll: false,
           })
-        }
+        }}
         className={cn(
           "my-1 inline-flex items-center gap-2 p-3 transition-transform hover:text-foreground active:translate-y-0.5",
           sortParam === "stars" ? "text-foreground" : "text-muted-darker",
@@ -47,7 +51,7 @@ export function SortByButtons({
       >
         <PiStarBold size={19} />
         by Stars
-      </button>
+      </a>
     </>
   )
 }
