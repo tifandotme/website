@@ -18,15 +18,17 @@ export async function GET(
   const incr = req.nextUrl.searchParams.get("incr")
 
   // #region disallow direct access
-  const referer = req.headers.get("referer")
-  const allowedReferers = ["http://localhost:3000", site.baseUrl]
-  if (!referer || !allowedReferers.includes(new URL(referer).origin)) {
-    return NextResponse.json(
-      {
-        message: "Unauthorized",
-      },
-      { status: 401 },
-    )
+  // TODO: check again if this causes the error (related to opentelemery, uncli, etc)
+  if (process.env.NODE_ENV === "production") {
+    const referer = req.headers.get("referer")
+    if (!referer || new URL(referer).origin !== site.baseUrl) {
+      return NextResponse.json(
+        {
+          message: "Unauthorized",
+        },
+        { status: 401 },
+      )
+    }
   }
   // #endregion
 

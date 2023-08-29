@@ -96,6 +96,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         className={cn(
           "prose mx-auto !max-w-screen-md leading-7 dark:prose-invert md:text-[1.05rem] lg:-mt-24",
 
+          // NOTE: because prose elements are now grid items, vertical margins will not collapse
           "grid grid-cols-[min(65ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
         )}
       >
