@@ -110,13 +110,17 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           <div className="inline-flex flex-wrap gap-3 font-mono font-medium leading-loose text-muted">
             <time dateTime={post.date}>{date}</time>
             <span
-              className="select-none text-[0.7rem] leading-8 text-muted-darker"
+              // eslint-disable-next-line tailwindcss/no-custom-classname
+              className="no-js select-none text-[0.7rem] leading-8 text-muted-darker"
               aria-hidden
             >
               &bull;
             </span>
             {!post.draft ? (
-              <span>
+              <span
+                // eslint-disable-next-line tailwindcss/no-custom-classname
+                className="no-js"
+              >
                 <Views slug={post.slug} /> views
               </span>
             ) : (
@@ -139,7 +143,8 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         <MDXContent code={post.body.code} />
 
         {!post.draft && (
-          <div className="mt-24" aria-hidden>
+          // eslint-disable-next-line tailwindcss/no-custom-classname
+          <div className="no-js mt-24" aria-hidden>
             <Comments />
           </div>
         )}

@@ -56,12 +56,16 @@ export function PostList({ draft = false }: { draft?: boolean }) {
               {!post.draft && (
                 <>
                   <span
-                    className="select-none text-[0.7rem] leading-6 text-muted-darker"
+                    // eslint-disable-next-line tailwindcss/no-custom-classname
+                    className="no-js select-none text-[0.7rem] leading-6 text-muted-darker"
                     aria-hidden
                   >
                     &bull;
                   </span>
-                  <span>
+                  <span
+                    // eslint-disable-next-line tailwindcss/no-custom-classname
+                    className="no-js"
+                  >
                     <Views slug={post.slug} /> views
                   </span>
                 </>

@@ -67,6 +67,11 @@ export default function RootLayout({
             data-website-id="7edd9838-f991-48d3-aa41-c7fe0cd55d36"
           />
         )}
+
+        {/* Detect if client has JS disabled. Most elements such as theme switcher, views counter, and Giscus comment will be hidden when JS is disabled. */}
+        <noscript>
+          <style>{`.no-js {display: none;}`}</style>
+        </noscript>
       </body>
     </html>
   )
