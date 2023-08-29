@@ -1,4 +1,13 @@
-# tifan.me
+<picture>
+  <img
+    alt="Logo"
+    src="./src/app/icon.png"
+    width="130px"
+    align="right"
+  />
+</picture>
+
+# tifan.me &nbsp; <picture><img alt="GitHub Commit Activity (Month)" src="https://img.shields.io/github/commit-activity/m/tifandotme/website" /></picture>
 
 My personal website
 
