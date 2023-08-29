@@ -1,0 +1,188 @@
+---
+title: 'Solving "Integer to English Words" LeetCode problem'
+description: "Breaking down the solution of this string manipulation problem with TypeScript"
+date: "2023-08-29"
+---
+
+I first came across this problem on an online assessment for a job application. My experience at the time was suboptimal to say the least. I was not able to solve it in the alloted time and stumbled into so many roadblocks which hinder my process.
+
+_Interestingly_, this problem has a like/dislike ratio of 2.9k/5.9k (as of Aug 2023), which I could assume many people also have the same experience as me. So, I will use this opportunity to revisit this problem and solve it for good. I will be using TypeScript for this solution.
+
+# Problem Statement
+
+Taken from the [problem description](https://leetcode.com/problems/integer-to-english-words/description/):
+
+> Convert a non-negative integer `num` to its English words representation.
+>
+> Constraint: `0 <= num <= 2^31 - 1`
+
+This problem asks us to convert a number to its English words representation. With constraint that num a has a maximum value of 32-bit signed integer, which is equal to 2.147.483.647 and is a positive number.
+
+For example, `123` should be converted to `One Hundred Twenty Three` and `123456791` should be converted to `One Hundred Twenty Three Million Four Hundred Fifty Six Thousand Seven Hundred Ninety One`. Sounds easy enough, huh? (Spoiler alert: it's not)
+
+# Solution
+
+## Overview
+
+Let's understand the solution on a high level. Basically, we will split the number into groups of scale components. For example, a `num` of 1.234.567.891 would be illustrated as follows:
+
+```mermaid
+graph LR
+    subgraph Billion
+        billion["1"]
+    end
+
+    subgraph Million
+        million["234"]
+    end
+
+    subgraph Thousand
+        thousand["567"]
+    end
+
+    subgraph Hundred
+        hundred["8"]
+    end
+
+    subgraph Ten
+        ten["9"]
+    end
+
+    subgraph One
+        one["1"]
+    end
+
+    billion ~~~ million ~~~ thousand ~~~ hundred ~~~ ten ~~~ one
+```
+
+Each group will be converted to its English words representation. Then, we will concatenate the result of each group starting from the highest scale component (billion) to the lowest (one) into a single string.
+
+## Step 1. Creating Dictionary
+
+This dictionary maps a number to its English words representation. We will use this dictionary whenever we need to convert a number.
+
+```ts
+const translations: Record<number, string> = {
+  0: "Zero",
+  1: "One",
+  2: "Two",
+  3: "Three",
+  4: "Four",
+  5: "Five",
+  6: "Six",
+  7: "Seven",
+  8: "Eight",
+  9: "Nine",
+  10: "Ten",
+  11: "Eleven",
+  12: "Twelve",
+  13: "Thirteen",
+  14: "Fourteen",
+  15: "Fifteen",
+  16: "Sixteen",
+  17: "Seventeen",
+  18: "Eighteen",
+  19: "Nineteen",
+  20: "Twenty",
+  30: "Thirty",
+  40: "Forty",
+  50: "Fifty",
+  60: "Sixty",
+  70: "Seventy",
+  80: "Eighty",
+  90: "Ninety",
+  100: "Hundred",
+  1_000: "Thousand",
+  1_000_000: "Million",
+  1_000_000_000: "Billion",
+}
+```
+
+Notice the `Record<number, string>`, this is important to tell TypeScript that the keys of this dictionary are numbers and the values are strings. If we omit this, when we try to access the dictionary with a number: `translations[1]`, TypeScript will throw an error:
+
+> No index signature with a parameter of type 'number' was found on type `{ 0: string; 1: string; ... }`
+
+This is because TypeScript expects the index signature to be `keyof typeof translations`. This is one of those roadblocks that I encountered when I first tried to solve this problem. I know, TypeScript can be a double-edged sword.
+
+## Step 2. Converting hundreds, tens, and ones
+
+We'll start from the lowest scale component up until 999. We will not touch the thousands and up yet. Create a function named `convert` like so:
+
+```ts
+function convert(num: number): string {
+  let result = ""
+
+  if (num >= 100) {
+    const hundred = Math.floor(num / 100)
+    result += ` ${translations[hundred]} Hundred`
+
+    num -= hundred * 100
+  }
+
+  if (num > 0) {
+    if (num <= 20) {
+      result += ` ${translations[num]}`
+    } else {
+      const ten = Math.floor(num / 10)
+      result += ` ${translations[ten * 10]}`
+
+      const one = num % 10
+      if (one > 0) {
+        result += ` ${translations[one]}`
+      }
+    }
+  }
+
+  return result
+}
+```
+
+We are mutating the `num` variable until it reaches 0. Let's break down the logic:
+
+1. First, we handle the hundreds (if there is any). We divide the `num` by 100 and round it down to the nearest integer with `Math.floor` method. For example, if `num` is 123, we will get 1.23 which will be rounded down to 1. We store this number in `hundred` variable.
+2. We then use this number to access the dictionary and concatenate it with the word "Hundred". For example, if `num` is 123, we will get "One Hundred". This get appended to the `result` variable.
+3. We mutate `num`, substracting it with `hundred`. After the subtraction, if `num` is 0, we will return the `result` variable. Otherwise, we will continue to the next step.
+4. Since number 1-20 English words representation is unique (no more combination), we can just access the dictionary with the `num` and append it to the `result` variable. Otherwise, we will do the same thing as we did with the hundreds.
+
+## Step 3. Converting billions, millions, and thousands
+
+We had just finished with `convert` function that deals with the hundreds, tens, and ones. Now, we will create the actual `numberToWords` function.
+
+```ts
+function numberToWords(num: number): string {
+  if (num === 0) return translations[0]
+
+  let result = ""
+
+  if (num >= 1_000_000_000) {
+    const billion = Math.floor(num / 1_000_000_000)
+    result += `${convert(billion)} Billion`
+
+    num -= billion * 1_000_000_000
+  }
+
+  if (num >= 1_000_000) {
+    const million = Math.floor(num / 1_000_000)
+    result += `${convert(million)} Million`
+
+    num -= million * 1_000_000
+  }
+
+  if (num >= 1_000) {
+    const thousand = Math.floor(num / 1_000)
+    result += `${convert(thousand)} Thousand`
+
+    num -= thousand * 1_000
+  }
+
+  if (num > 0) {
+    result += convert(num)
+  }
+
+  return result.trim()
+}
+```
+
+As you can see, we are using the `convert` function that we created in the previous step. We are also mutating the `num` variable until it reaches 0, starting from the leftmost scale component (billion) to the right (thousand). Except this time, we are converting the the numbers with the the `convert` function since it conveniently handles 3-digit numbers.
+
+The full code will look like [this](https://github.com/tifandotme/leetcode/blob/dd3559cbf5473b018d31a2306079ef4ea2117375/hard/273.integer-to-english-words.ts).
