@@ -132,17 +132,18 @@ const NavigationProgress = React.memo(
       const handleAnchorClick = (event: MouseEvent) => {
         const anchorElement = event.currentTarget as HTMLAnchorElement
 
-        if (event.ctrlKey || event.shiftKey) return
-
-        if (anchorElement.download) return
-
-        if (anchorElement.target === "_blank") return
-
         const targetUrl = new URL(anchorElement.href)
         const currentUrl = new URL(location.href)
 
+        if (event.ctrlKey || event.shiftKey) return
+
+        if (anchorElement.target === "_blank") return
+
         if (shallowRouting && isSameURL(targetUrl, currentUrl)) return
+
         if (targetUrl?.href === currentUrl?.href) return
+
+        if (targetUrl.pathname === "/resume.pdf") return
 
         startProgress()
       }
