@@ -183,7 +183,7 @@ export default makeSource({
         } satisfies AutolinkHeadingsOptions,
       ],
       [
-        rehypeMermaid,
+        rehypeMermaid as any, // NOTE: temp fix for error caused after updating to 2.0.0
         {
           strategy: "inline-svg",
           css: "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200..1000&display=swap", // TODO: use local
@@ -217,7 +217,7 @@ export default makeSource({
             ].join(" "),
           },
         } satisfies MermaidOptions,
-      ], // must be before rehypPrettyCode
+      ], // must be before rehypePrettyCode
       [
         rehypePrettyCode,
         {
