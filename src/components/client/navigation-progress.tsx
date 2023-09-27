@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { type NavigateOptions } from "next/dist/shared/lib/app-router-context"
 import {
   useRouter as useNextRouter,
   usePathname,
@@ -203,7 +202,9 @@ export function NavigationProgressProvider({
 export function useRouter() {
   const router = useNextRouter()
 
-  function push(href: string, options?: NavigateOptions) {
+  type NavigateOptions = Parameters<ReturnType<typeof useNextRouter>["push"]>[1]
+
+  function push(href: string, options: NavigateOptions) {
     NProgress.start()
     return router.push(href, options)
   }
