@@ -31,8 +31,5 @@
       "source": "/gpg",
       "destination": "https://github.com/tifandotme.gpg"
     }
-  ],
-  "github": {
-    "silent": true
-  }
+  ]
 }
