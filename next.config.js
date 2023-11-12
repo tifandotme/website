@@ -4,9 +4,14 @@ import "./src/env.js"
 
 /** @type {import("next").NextConfig} */
 const config = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
-    domains: ["res.cloudinary.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+    ],
   },
   // experimental: {
   //   mdxRs: false, // suggested by https://rehype-pretty-code.netlify.app/
