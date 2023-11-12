@@ -1,4 +1,14 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-bunx commitlint --edit ${1}
+if command -v bun >/dev/null; then
+  bunx commitlint --edit "${1}"
+  exit 0
+fi
+
+if command -v pnpm >/dev/null; then
+  pnpm dlx commitlint --edit "${1}"
+  exit 0
+fi
+
+npx commitlint --edit "${1}"

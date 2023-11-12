@@ -1,4 +1,14 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-bunx lint-staged
+if command -v bun >/dev/null; then
+  bunx lint-staged
+  exit 0
+fi
+
+if command -v pnpm >/dev/null; then
+  pnpm dlx lint-staged
+  exit 0
+fi
+
+npx lint-staged
