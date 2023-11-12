@@ -7,7 +7,7 @@ import rehypeExternalLinks, {
 } from "rehype-external-links"
 import rehypeMermaid, {
   type RehypeMermaidOptions as MermaidOptions,
-} from "rehype-mermaidjs"
+} from "rehype-mermaid"
 import rehypePrettyCode, {
   type Options as PrettyCodeOptions,
 } from "rehype-pretty-code"
@@ -85,9 +85,7 @@ const Post = defineDocumentType(() => ({
 
           if (isInsideCodeBlock) return false
 
-          if (line.match(/^(\s*#\s.*)/)) return true
-
-          return false
+          return /^\s*#\s.*/.exec(line)
         })
 
         return headingLines.map((line) => {
@@ -183,10 +181,10 @@ export default makeSource({
         } satisfies AutolinkHeadingsOptions,
       ],
       [
-        rehypeMermaid as any, // NOTE: temp fix for error caused after updating to 2.0.0
+        rehypeMermaid as any, // REF: https://github.com/remcohaszing/rehype-mermaid/issues/4
         {
           strategy: "inline-svg",
-          css: "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200..1000&display=swap", // TODO: use local
+          css: "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200..1000&display=swap",
           mermaidConfig: {
             securityLevel: "loose",
             fontFamily: ["Nunito Sans", ...defaultTheme.fontFamily.sans].join(
