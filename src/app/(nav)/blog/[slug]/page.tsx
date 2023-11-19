@@ -12,6 +12,8 @@ import { HeadingsLinks } from "@/components/client/headings"
 import { LoadingDots } from "@/components/loading-dots"
 import { MDXContent } from "@/components/mdx"
 
+import "@/styles/mdx.css"
+
 const Views = dynamic(() => import("@/components/client/views"), {
   ssr: false,
   loading: () => <LoadingDots />,

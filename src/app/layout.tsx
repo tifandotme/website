@@ -7,7 +7,7 @@ import { BreakpointIndicator } from "@/components/breakpoint-indicator"
 import { NavigationProgressProvider } from "@/components/client/navigation-progress"
 import { ThemeProvider } from "@/components/client/theme-provider"
 
-import "./globals.css"
+import "@/styles/globals.css"
 
 export const metadata: Metadata = {
   title: {
@@ -33,12 +33,8 @@ export const metadata: Metadata = {
       name: site.author,
     },
   ],
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "light" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
   other: {
-    "darkreader-lock": "_", // disable Dark Reader
+    "darkreader-lock": "_", // REF: https://github.com/darkreader/darkreader/blob/main/CONTRIBUTING.md#disabling-dark-reader-on-your-site
   },
 }
 
