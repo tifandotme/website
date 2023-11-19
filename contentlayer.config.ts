@@ -18,7 +18,7 @@ import rehypeSlug, { type Options as SlugOptions } from "rehype-slug"
 import remarkGfm, { type Options as GfmOptions } from "remark-gfm"
 import defaultTheme from "tailwindcss/defaultTheme.js"
 
-import { type HeadingsField } from "@/types"
+import type { HeadingsField } from "@/types"
 
 const Post = defineDocumentType(() => ({
   name: "Post",
@@ -219,7 +219,7 @@ export default makeSource({
       [
         rehypePrettyCode,
         {
-          // https://unpkg.com/browse/shiki@0.14.2/themes/
+          // https://unpkg.com/browse/shiki@latest/themes/
           theme: {
             dark: "github-dark",
             light: "github-light",

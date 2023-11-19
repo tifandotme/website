@@ -47,8 +47,8 @@ const config = {
         },
       },
       keyframes: {
+        // radix collapsible
         slideDown: {
-          // radix collapsible
           "0%": {
             height: "0",
           },
@@ -64,8 +64,8 @@ const config = {
             height: "0",
           },
         },
+        // loading dots
         loading: {
-          // loading dots
           "0%": {
             opacity: ".2",
           },
@@ -77,8 +77,8 @@ const config = {
             opacity: ".2",
           },
         },
+        // views counter
         mutation: {
-          // views counter
           "0%": {
             background: "hsl(var(--muted-small-text) / 3%)",
           },
@@ -154,7 +154,6 @@ const config = {
               marginTop: "0",
             },
 
-            // custom prose colors
             "--tw-prose-body": "hsl(var(--foreground))",
             "--tw-prose-headings": "hsl(var(--heading))",
             "--tw-prose-lead": colors.zinc[600],
