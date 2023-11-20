@@ -18,7 +18,7 @@ import rehypeSlug, { type Options as SlugOptions } from "rehype-slug"
 import remarkGfm, { type Options as GfmOptions } from "remark-gfm"
 import defaultTheme from "tailwindcss/defaultTheme.js"
 
-import type { HeadingsField } from "@/types"
+import { type HeadingsField } from "@/types"
 
 const Post = defineDocumentType(() => ({
   name: "Post",
@@ -36,30 +36,28 @@ const Post = defineDocumentType(() => ({
     },
     date: {
       type: "date",
-      description: "Post's published date",
+      description: "Post's published date (e.g. YYYY-MM)",
       required: true,
     },
   },
   computedFields: {
     draft: {
-      description: "Draft post will not show up in list of posts and sitemap",
+      description: "Drafts will be excluded in list of posts and sitemap",
       type: "boolean",
       resolve: (doc) => {
         return doc._raw.sourceFileDir.startsWith("blog/draft")
       },
     },
     url: {
-      description: "URL path of the post (e.g. /blog/my-post)",
+      description: "URL path of the post (e.g. /blog/foo-bar)",
       type: "string",
       resolve: (doc) => {
         const segments = doc._raw.flattenedPath.split("/")
 
-        // remove in-between segments (e.g. 2023)
+        // remove in-between segment(s) (e.g. 2023)
         segments.splice(1, segments.length - 2)
 
-        const final = "/" + segments.join("/")
-
-        return slugify(final)
+        return slugify("/" + segments.join("/"))
       },
     },
     slug: {
@@ -68,9 +66,7 @@ const Post = defineDocumentType(() => ({
       resolve: (doc) => {
         const segments = doc._raw.flattenedPath.split("/")
 
-        const final = segments[segments.length - 1]!
-
-        return slugify(final)
+        return slugify(segments.pop() as string)
       },
     },
     headings: {
@@ -118,7 +114,7 @@ const Project = defineDocumentType(() => ({
     },
     date: {
       type: "date",
-      description: "Project's finished date",
+      description: "Project's finished date (e.g. YYYY-MM)",
       required: true,
     },
     tags: {
@@ -132,28 +128,27 @@ const Project = defineDocumentType(() => ({
     image: {
       type: "string",
       description:
-        "Project's image URL as Cloudinary publicId (e.g. projects/puri.png)",
+        "Project's image URL as Cloudinary publicId (e.g. projects/foo.png)",
     },
     repo: {
       type: "string",
-      description: "Project's GitHub repository URL",
+      description:
+        "Project's GitHub repository URL (e.g. https://github.com/foo/bar",
       required: true,
     },
     demo: {
       type: "string",
-      description: "Project's demo URL",
+      description: "Project's demo URL (e.g. https://example.com)",
     },
   },
   computedFields: {
     slug: {
-      description: "Slug of the project (e.g. personal-website)",
+      description: "Slug of the project (e.g. lorem-ipsum)",
       type: "string",
       resolve: (doc) => {
         const segments = doc._raw.flattenedPath.split("/")
 
-        const final = segments[segments.length - 1]!
-
-        return slugify(final)
+        return slugify(segments.pop() as string)
       },
     },
   },
@@ -181,7 +176,7 @@ export default makeSource({
         } satisfies AutolinkHeadingsOptions,
       ],
       [
-        rehypeMermaid as any, // REF: https://github.com/remcohaszing/rehype-mermaid/issues/4
+        rehypeMermaid as any, // TODO remove any: https://github.com/remcohaszing/rehype-mermaid/issues/4
         {
           strategy: "inline-svg",
           css: "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200..1000&display=swap",
@@ -219,7 +214,7 @@ export default makeSource({
       [
         rehypePrettyCode,
         {
-          // https://unpkg.com/browse/shiki@latest/themes/
+          // REF https://unpkg.com/browse/shiki@latest/themes/
           theme: {
             dark: "github-dark",
             light: "github-light",
