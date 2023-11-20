@@ -1,5 +1,5 @@
-# used in `prettier -w .`, but not for lint-staged as it uses glob patterns
+# will also follow rules from gitignore
+# will not affect lint-staged
 
 /.husky
-
 pnpm-lock.*
