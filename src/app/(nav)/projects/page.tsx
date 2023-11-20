@@ -36,7 +36,7 @@ export default async function ProjectsPage({
         console.error("Failed to fetch stargazers count from GitHub API")
       }
 
-      const json = (await res.json()) as GitHubResponse
+      const json: GitHubResponse = await res.json()
 
       const stars = json.stargazers_count || 0
 
@@ -172,7 +172,7 @@ export default async function ProjectsPage({
               {project.image && (
                 <CldImage
                   className="w-[500px] basis-4/12 self-center rounded-2xl border lg:w-full"
-                  src={project.image} // NOTE: make sure the image is 16:10
+                  src={project.image} // NOTE make sure the image is 16:10
                   alt={project.name}
                   width={1000}
                   aspectRatio="16:10"

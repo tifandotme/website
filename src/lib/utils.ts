@@ -1,8 +1,6 @@
 import { type Post } from "contentlayer/generated"
 
-/**
- * In-house replacement for clsx, inspired from https://dev.to/gugaguichard/replace-clsx-classnames-or-classcat-with-your-own-little-helper-3bf
- */
+// REF https://dev.to/gugaguichard/replace-clsx-classnames-or-classcat-with-your-own-little-helper-3bfs|asdasd
 export function cn(...args: unknown[]): string | undefined {
   return (
     args
@@ -13,9 +11,6 @@ export function cn(...args: unknown[]): string | undefined {
   )
 }
 
-/**
- * Calls the `/api/views` endpoint to get the view count for a post
- */
 export async function getViews(slug: string) {
   const origin = window.location.origin
   const pathname = `/api/views/${slug}`
@@ -33,9 +28,6 @@ export async function getViews(slug: string) {
   }>
 }
 
-/**
- * Calls the `/api/views` endpoint to increment the view count for a post
- */
 export async function incrementViews(slug: string) {
   const origin = window.location.origin
   const pathname = `/api/views/${slug}?incr`
@@ -53,12 +45,9 @@ export async function incrementViews(slug: string) {
   }>
 }
 
-/**
- * Get the last modified date of a post from GitHub API to be used in OG modified time
- */
 export async function getLastModified(post: Post) {
   if (process.env.VERCEL_ENV !== "production") return
-  if (post._raw.sourceFileDir.startsWith("blog/draft")) return
+  if (post.draft) return
 
   const path = encodeURIComponent(`content/${post._raw.sourceFilePath}`)
   const url = `https://api.github.com/repos/tifandotme/website/commits?per_page=1&path=${path}`
@@ -75,13 +64,15 @@ export async function getLastModified(post: Post) {
     return
   }
 
-  const json = (await res.json()) as {
+  type CommitsResponse = {
     commit: {
       committer: {
         date: string
       }
     }
   }[]
+
+  const json: CommitsResponse = await res.json()
 
   return json[0]?.commit.committer.date
 }
