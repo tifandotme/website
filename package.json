@@ -74,8 +74,8 @@
     "sharp"
   ],
   "//": [
-    "esbuild peer dependency: https://github.com/contentlayerdev/contentlayer/issues/530",
-    "plaiceholder depends on sharp",
-    "`npx playwright install` is needed by rehype-mermaid"
+    "sharp is required by plaiceholder",
+    "`npx playwright install` is required by rehype-mermaid",
+    "esbuild peer dependency: https://github.com/contentlayerdev/contentlayer/issues/530"
   ]
 }
