@@ -4,7 +4,7 @@ import Script from "next/script"
 import { site } from "@/config"
 import { fonts } from "@/lib/fonts"
 import { BreakpointIndicator } from "@/components/breakpoint-indicator"
-import { NavigationProgressProvider } from "@/components/client/navigation-progress"
+import { NProgressProvider } from "@/components/client/nprogress"
 import { ThemeProvider } from "@/components/client/theme-provider"
 
 import "@/styles/globals.css"
@@ -51,7 +51,7 @@ export default function RootLayout({
           defaultTheme="dark"
           disableTransitionOnChange
         >
-          <NavigationProgressProvider>{children}</NavigationProgressProvider>
+          <NProgressProvider>{children}</NProgressProvider>
         </ThemeProvider>
 
         <BreakpointIndicator />
