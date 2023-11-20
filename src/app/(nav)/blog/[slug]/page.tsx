@@ -68,7 +68,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     new Date(post.date),
   )
 
-  // WARN: if <main> tag contain tailwind-animate class, it will conflict with the one inside <aside> tag
+  // WARN if <main> tag contain tailwind-animate class, it will conflict with the one inside <aside> tag
   return (
     <main className="container px-3 sm:px-5">
       <aside
@@ -98,7 +98,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         className={cn(
           "prose mx-auto !max-w-screen-md leading-7 dark:prose-invert md:text-[1.05rem] lg:-mt-24",
 
-          // NOTE: because prose elements are now grid items, vertical margins will not collapse
+          // NOTE because prose elements are now grid items, vertical margins will not collapse
           "grid grid-cols-[min(65ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
         )}
       >
@@ -144,6 +144,22 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
         <MDXContent code={post.body.code} />
 
+        <div className="not-prose mx-auto mt-14 inline-flex w-full !max-w-screen-md items-center font-mono text-sm font-semibold uppercase text-muted-darker">
+          <a
+            href="https://creativecommons.org/licenses/by-nc/4.0/"
+            rel="noopener noreferrer"
+            target="_blank"
+            className="hover:underline"
+          >
+            CC BY-NC-SA 4.0
+          </a>
+          <span>&nbsp;2023</span>
+          <span className="relative top-[2px] mx-2 text-[170%] leading-none">
+            ©
+          </span>
+          <span>Tifan Dwi Avianto</span>
+        </div>
+
         {!post.draft && (
           // eslint-disable-next-line tailwindcss/no-custom-classname
           <div className="no-js mt-24" aria-hidden>
@@ -151,22 +167,6 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           </div>
         )}
       </article>
-
-      {/* <div className="mx-auto mt-14 flex !max-w-screen-md items-center font-mono text-sm font-semibold uppercase text-muted-darker">
-        <a
-          href="https://creativecommons.org/licenses/by-nc/4.0/"
-          rel="noopener noreferrer"
-          target="_blank"
-          className="hover:underline"
-        >
-          CC BY-NC-SA 4.0
-        </a>
-        &nbsp;2023
-        <span className="relative top-[2px] mx-2 select-none text-[170%] leading-none">
-          ©
-        </span>
-        Tifan Dwi Avianto
-      </div> */}
     </main>
   )
 }
