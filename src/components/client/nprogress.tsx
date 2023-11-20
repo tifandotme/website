@@ -10,6 +10,7 @@ import { useNProgress } from "@tanem/react-nprogress"
 function ProgressBar({ isAnimating }: { isAnimating: boolean }) {
   const { animationDuration, isFinished, progress } = useNProgress({
     isAnimating,
+    incrementDuration: 200,
   })
 
   return (
@@ -27,7 +28,7 @@ function ProgressBar({ isAnimating }: { isAnimating: boolean }) {
           transition: `margin-left ${animationDuration}ms linear`,
         }}
       >
-        <div className="absolute right-0 block h-full w-[100px] translate-y-[-4px] rotate-3 opacity-100 shadow-[0_0_10px_var(--primary),_0_0_5px_var(--primary)]" />
+        <div className="absolute right-0 block h-full w-[100px] translate-y-[-4px] rotate-3 opacity-100 shadow-[0_0_10px_hsl(var(--primary)),_0_0_5px_hsl(var(--primary))]" />
       </div>
     </div>
   )

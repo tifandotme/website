@@ -24,4 +24,4 @@ export const site = {
   ).filter((link) =>
     process.env.NODE_ENV === "production" ? link.url !== "/drafts" : true,
   ),
-}
+} as const
