@@ -6,6 +6,7 @@ import { useWindowScroll } from "react-use"
 
 import { cn } from "@/lib/utils"
 
+// TODO remove react-use dependency
 export function BackToTopButton() {
   const [isScrolled, setIsScrolled] = React.useState(true)
   const { y } = useWindowScroll()

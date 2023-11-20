@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 
-import { envVariables } from "@/env"
 import { z } from "zod"
+
+import { envVariables } from "@/env"
 
 declare global {
   namespace NodeJS {

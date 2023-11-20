@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import { type Metadata } from "next"
 import { FaArrowLeft } from "react-icons/fa6"
 
 // WARN: when server logs is showing this error: https://nextjs.org/docs/messages/deopted-into-client-rendering, any calls to notFound() will return 500 error instead
