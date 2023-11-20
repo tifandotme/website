@@ -3,7 +3,7 @@
 import React from "react"
 import { usePathname } from "next/navigation"
 
-import { usePostViews } from "@/hooks/usePostViews"
+import { usePostViews } from "@/hooks/use-post-views"
 
 export default function Views({ slug }: { slug: string }) {
   const { views, increment } = usePostViews(slug)

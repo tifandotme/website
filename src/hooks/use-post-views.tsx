@@ -6,7 +6,9 @@ export function usePostViews(slug: string) {
   const { data, mutate } = useSWR(slug, getViews, {
     revalidateOnFocus: false,
     revalidateOnMount: false,
-    suspense: true, // if true, data can't be undefined and isLoading is a constant false
+
+    // if enabled, data will not be undefined initially and isLoading will always be false
+    suspense: true,
   })
 
   const increment = () => {
