@@ -11,6 +11,16 @@
 
 My personal website
 
+## TODOs
+
+- [ ] Replace Contentlayer with DIY solution using `@next/mdx`
+- [ ] Remove `react-use` and `react-icons` dependencies
+- [ ] Add search bar to /blog
+- [ ] Add image preview?
+- [ ] Add tags to post?
+- [ ] Enlist to blogs.gn and ooh.directory
+- [ ] Generate custom OG image for each post
+
 ## Tech Stack
 
 - Framework: [Next.js](https://nextjs.org/)
