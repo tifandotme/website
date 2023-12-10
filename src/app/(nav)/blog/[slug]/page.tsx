@@ -1,14 +1,15 @@
-import { type Metadata } from "next"
+import type { Metadata } from "next"
 import dynamic from "next/dynamic"
 import { notFound } from "next/navigation"
 import { allPosts } from "contentlayer/generated"
 
-import { type HeadingsField } from "@/types"
-import { site } from "@/config"
-import { cn, getLastModified } from "@/lib/utils"
+import type { HeadingsField } from "@/types"
+import { siteConfig } from "@/config"
+import { getLastModified } from "@/lib/github/get-last-modified"
+import { absoluteUrl, cn, isProd } from "@/lib/utils"
 import { BackToTopButton } from "@/components/client/back-to-top"
 import { LoadingComments } from "@/components/client/comments"
-import { HeadingsLinks } from "@/components/client/headings"
+import { HeadingLink } from "@/components/client/heading-link"
 import { LoadingDots } from "@/components/loading-dots"
 import { MDXContent } from "@/components/mdx"
 
@@ -36,30 +37,38 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const post = allPosts.find((post) => post.slug === params.slug)
 
+  if (!post) notFound()
+
+  const { title, description, url } = post
+
   return {
-    title: post?.title,
-    description: post?.description,
-    metadataBase: new URL(site.baseUrl),
+    title,
+    description,
+    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL as string),
     openGraph: {
-      title: post?.title,
-      description: post?.description,
-      url: site.baseUrl + post?.url,
-      siteName: site.name,
+      title,
+      description,
+      url,
+      siteName: siteConfig.name,
       locale: "en_US",
-      alternateLocale: ["id_ID"],
+      // alternateLocale: ["id_ID"],
       type: "article",
-      publishedTime: post?.date,
-      modifiedTime: post && (await getLastModified(post)),
-      authors: [site.author],
+      publishedTime: post.date,
+      modifiedTime: isProd() ? await getLastModified(post) : undefined,
+      authors: [siteConfig.author],
     },
-    robots: post?.draft ? "noindex" : undefined,
+    robots: post.draft ? "noindex" : undefined,
     other: {
-      "giscus:backlink": site.baseUrl + post?.url,
+      "giscus:backlink": absoluteUrl(post.url),
     },
   }
 }
 
-export default function PostPage({ params }: { params: { slug: string } }) {
+interface PostPageProps {
+  params: { slug: string }
+}
+
+export default function PostPage({ params }: PostPageProps) {
   const post = allPosts.find((post) => post.slug === params.slug)
 
   if (!post) notFound()
@@ -83,10 +92,15 @@ export default function PostPage({ params }: { params: { slug: string } }) {
             <p className="font-mono text-sm font-bold uppercase text-muted-darker">
               On this page
             </p>
-            <HeadingsLinks
-              headings={post.headings as HeadingsField}
-              className="inline-block py-[0.12rem] text-left font-medium leading-4 text-muted transition first:pt-0 last:pb-0 hover:text-foreground active:translate-y-0.5"
-            />
+            <ul className="flex flex-col gap-2.5">
+              {(post.headings as HeadingsField).map((heading) => (
+                <HeadingLink
+                  key={heading.slug}
+                  heading={heading}
+                  className="inline-block cursor-pointer py-[0.12rem] text-left font-medium leading-4 text-muted transition first:pt-0 last:pb-0 hover:text-foreground active:translate-y-0.5"
+                />
+              ))}
+            </ul>
             <hr className="my-3 w-[130px]" />
           </>
         )}
@@ -112,17 +126,13 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           <div className="inline-flex flex-wrap gap-3 font-mono font-medium leading-loose text-muted">
             <time dateTime={post.date}>{date}</time>
             <span
-              // eslint-disable-next-line tailwindcss/no-custom-classname
               className="no-js select-none text-[0.7rem] leading-8 text-muted-darker"
               aria-hidden
             >
               &bull;
             </span>
             {!post.draft ? (
-              <span
-                // eslint-disable-next-line tailwindcss/no-custom-classname
-                className="no-js"
-              >
+              <span className="no-js">
                 <Views slug={post.slug} /> views
               </span>
             ) : (
@@ -161,7 +171,6 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         </div>
 
         {!post.draft && (
-          // eslint-disable-next-line tailwindcss/no-custom-classname
           <div className="no-js mt-24" aria-hidden>
             <Comments />
           </div>
