@@ -71,7 +71,6 @@ const config = {
           },
           "20%": {
             opacity: "1",
-            transform: "translateX(1px)",
           },
           to: {
             opacity: ".2",
