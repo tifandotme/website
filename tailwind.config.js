@@ -11,7 +11,7 @@ const config = {
     "contentlayer.config.ts",
   ],
   future: {
-    // NOTE: revert this once tailwindcss is updated to v4
+    // NOTE revert this once tailwindcss is updated to v4
     // https://stackoverflow.com/questions/56755439/modifying-hover-in-tailwindcss/72323247#72323247
     hoverOnlyWhenSupported: true,
   },

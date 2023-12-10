@@ -6,18 +6,17 @@ const importConfig = {
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
     "",
-    // remove literal character '/' before groups if index file is used
     "^@/env(.*)$",
     "^@/types(.*)$",
     "^@/config(.*)$",
+    "^@/assets/(.*)$",
     "^@/lib/(.*)$",
     "^@/hooks/(.*)$",
     "^@/components/ui/(.*)$",
     "^@/components/(.*)$",
-    "^@/styles/(.*)$",
     "^@/app/(.*)$",
     "",
-    "^[./]",
+    "^[.]",
   ],
 }
 
@@ -29,10 +28,10 @@ const tailwindConfig = {
 
 /** @type {import("prettier").Options} */
 const config = {
+  semi: false,
+
   ...importConfig,
   ...tailwindConfig,
-
-  semi: false,
 
   plugins: [
     "@ianvs/prettier-plugin-sort-imports",

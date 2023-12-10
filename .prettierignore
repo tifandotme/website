@@ -1,5 +1,0 @@
-# will also follow rules from gitignore
-# will not affect lint-staged
-
-/.husky
-pnpm-lock.*

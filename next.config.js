@@ -13,9 +13,6 @@ const config = {
       },
     ],
   },
-  // experimental: {
-  //   mdxRs: false, // suggested by https://rehype-pretty-code.netlify.app/
-  // },
 }
 
 export default withPlaiceholder(config)

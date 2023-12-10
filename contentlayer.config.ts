@@ -18,7 +18,7 @@ import rehypeSlug, { type Options as SlugOptions } from "rehype-slug"
 import remarkGfm, { type Options as GfmOptions } from "remark-gfm"
 import defaultTheme from "tailwindcss/defaultTheme.js"
 
-import { type HeadingsField } from "@/types"
+import type { HeadingsField } from "@/types"
 
 const Post = defineDocumentType(() => ({
   name: "Post",
@@ -44,9 +44,7 @@ const Post = defineDocumentType(() => ({
     draft: {
       description: "Drafts will be excluded in list of posts and sitemap",
       type: "boolean",
-      resolve: (doc) => {
-        return doc._raw.sourceFileDir.startsWith("blog/draft")
-      },
+      resolve: (doc) => doc._raw.sourceFileDir.startsWith("blog/draft"),
     },
     url: {
       description: "URL path of the post (e.g. /blog/foo-bar)",
@@ -61,37 +59,38 @@ const Post = defineDocumentType(() => ({
       },
     },
     slug: {
-      description: "Slug of the post (e.g. my-post)",
+      description: "Slug of the post (e.g. foo-bar)",
       type: "string",
       resolve: (doc) => {
         const segments = doc._raw.flattenedPath.split("/")
+        const lastSegment = segments[segments.length - 1]!
 
-        return slugify(segments.pop() as string)
+        return slugify(lastSegment)
       },
     },
     headings: {
+      description: "Headings of a post to be used in TOC",
       type: "json",
-      resolve: async (doc) => {
+      resolve: async (doc): Promise<HeadingsField> => {
+        const lines = doc.body.raw.split("\n")
+
         let isInsideCodeBlock = false
-        const headingLines = doc.body.raw.split("\n").filter((line) => {
-          if (line.startsWith("```")) {
-            isInsideCodeBlock = !isInsideCodeBlock
-            return false
-          }
+        const matches = lines.filter((line) => {
+          if (line.startsWith("```")) isInsideCodeBlock = !isInsideCodeBlock
 
           if (isInsideCodeBlock) return false
 
-          return /^\s*#\s.*/.exec(line)
+          return /^\s*#\s.*/.test(line)
         })
 
-        return headingLines.map((line) => {
+        return matches.map((line) => {
           const text = line.replace(/^(\s*#\s*)/, "")
 
           return {
             text,
             slug: slugify(text),
           }
-        }) as HeadingsField
+        })
       },
     },
   },
@@ -128,7 +127,7 @@ const Project = defineDocumentType(() => ({
     image: {
       type: "string",
       description:
-        "Project's image URL as Cloudinary publicId (e.g. projects/foo.png)",
+        "Project's image as Cloudinary publicId (e.g. projects/foo.png)",
     },
     repo: {
       type: "string",
@@ -143,12 +142,13 @@ const Project = defineDocumentType(() => ({
   },
   computedFields: {
     slug: {
-      description: "Slug of the project (e.g. lorem-ipsum)",
+      description: "Slug of the project (e.g. foo-bar)",
       type: "string",
       resolve: (doc) => {
         const segments = doc._raw.flattenedPath.split("/")
+        const lastSegment = segments[segments.length - 1]!
 
-        return slugify(segments.pop() as string)
+        return slugify(lastSegment)
       },
     },
   },
@@ -176,7 +176,7 @@ export default makeSource({
         } satisfies AutolinkHeadingsOptions,
       ],
       [
-        rehypeMermaid as any, // TODO remove any: https://github.com/remcohaszing/rehype-mermaid/issues/4
+        rehypeMermaid as any,
         {
           strategy: "inline-svg",
           css: "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200..1000&display=swap",
@@ -212,9 +212,9 @@ export default makeSource({
         } satisfies MermaidOptions,
       ], // must be before rehypePrettyCode
       [
-        rehypePrettyCode,
+        rehypePrettyCode as any,
         {
-          // REF https://unpkg.com/browse/shiki@latest/themes/
+          // REF https://github.com/antfu/shikiji/blob/main/docs/themes.md
           theme: {
             dark: "github-dark",
             light: "github-light",

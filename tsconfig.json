@@ -1,23 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ES5", // doesn't affect build output
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
-    "skipLibCheck": true,
-    "jsx": "preserve",
-    "noEmit": true,
-
-    "moduleResolution": "bundler",
-    "isolatedModules": true,
-    "incremental": true,
 
     "allowJs": true,
     "checkJs": true,
 
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
-    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
 
     "strict": true,
     "noImplicitReturns": true,
@@ -28,11 +28,7 @@
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
 
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{ "name": "next" }],
 
     "baseUrl": ".",
     "paths": {
