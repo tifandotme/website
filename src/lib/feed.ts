@@ -1,30 +1,33 @@
-import fs from "node:fs"
+import fs from "node:fs/promises"
 import { allPosts } from "contentlayer/generated"
 import { Feed, type FeedOptions, type Item } from "feed"
 
-import { site } from "@/config"
+import { siteConfig } from "@/config"
+import { absoluteUrl } from "@/lib/utils"
+
+const url = process.env.NEXT_PUBLIC_APP_URL as string
 
 const options: FeedOptions = {
-  title: site.name,
+  title: siteConfig.name,
   description: "Recent content on Tifan's blog",
-  id: site.baseUrl,
-  link: site.baseUrl,
+  id: url,
+  link: url,
   language: "en",
   generator: "Feed for Node.js",
-  favicon: `${site.baseUrl}/favicon.ico`,
+  favicon: absoluteUrl("/favicon.ico"),
   copyright: `All rights reserved ${new Date().getFullYear()}, Tifan Dwi Avianto`,
   feedLinks: {
-    json: `${site.baseUrl}/feed.json`,
-    atom: `${site.baseUrl}/feed.atom`,
-    rss: `${site.baseUrl}/feed.xml`,
+    json: absoluteUrl("/feed.json"),
+    atom: absoluteUrl("/feed.atom"),
+    rss: absoluteUrl("/feed.xml"),
   },
   author: {
-    name: site.author,
-    link: site.baseUrl,
+    name: siteConfig.author,
+    link: url,
   },
 }
 
-const posts = allPosts
+const posts: Item[] = allPosts
   .filter((post) => !post.draft)
   .sort((a, b) => new Intl.Collator().compare(b.date, a.date))
   .map((post) => {
@@ -32,27 +35,33 @@ const posts = allPosts
       title: post.title,
       description: post.description,
       id: post.url,
-      link: `${site.baseUrl}${post.url}`,
+      link: absoluteUrl(post.url),
       author: [
         {
-          name: site.author,
-          link: site.baseUrl,
+          name: siteConfig.author,
+          link: url,
         },
       ],
       date: new Date(post.date),
-    } satisfies Item
+    }
   })
 
-export function generateRSS() {
+export async function generateRSS() {
   console.log("Generating RSS feed...")
 
   const feed = new Feed(options)
 
   posts.forEach((post) => feed.addItem(post))
 
-  fs.existsSync("./public") || fs.mkdirSync("./public")
+  const publicDir = await fs.stat("./public")
 
-  fs.writeFileSync("./public/feed.xml", feed.rss2())
-  fs.writeFileSync("./public/feed.json", feed.json1())
-  fs.writeFileSync("./public/feed.atom", feed.atom1())
+  if (!publicDir.isDirectory()) {
+    await fs.mkdir("./public")
+  }
+
+  await fs.writeFile("./public/feed.xml", feed.rss2())
+  await fs.writeFile("./public/feed.json", feed.json1())
+  await fs.writeFile("./public/feed.atom", feed.atom1())
+
+  console.log("RSS feed generated!")
 }
