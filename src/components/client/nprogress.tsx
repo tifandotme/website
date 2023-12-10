@@ -46,13 +46,12 @@ const NProgress = React.memo(() => {
   const timerId = React.useRef<NodeJS.Timeout>()
 
   const startProgress = () => {
-    console.log("startProgress")
-
     timerId.current = setTimeout(() => {
       setState((prevState) => ({
         isAnimating: true,
         key: prevState.key ^ 1,
       }))
+      // when navigation takes less than 120ms (usually when a page is prefetched), progress bar won't be shown
     }, 120)
   }
 
@@ -78,7 +77,11 @@ const NProgress = React.memo(() => {
       const targetUrl = new URL(anchorElement.href)
       const currentUrl = new URL(location.href)
 
-      if (targetUrl.href === currentUrl.href) return
+      if (
+        targetUrl.origin + targetUrl.pathname ===
+        currentUrl.origin + currentUrl.pathname
+      )
+        return
 
       startProgress()
     }

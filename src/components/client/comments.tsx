@@ -6,7 +6,7 @@ import { useTheme } from "next-themes"
 
 import { cn } from "@/lib/utils"
 
-// also see "giscus:backlink" in src/app/(nav)/blog/[slug]/page.tsx
+// NOTE also see "giscus:backlink" in src/app/(nav)/blog/[slug]/page.tsx
 export default function Comments() {
   const [show, setShow] = React.useState(false)
 
@@ -58,7 +58,11 @@ export default function Comments() {
   )
 }
 
-export function LoadingComments({ className }: { className?: string }) {
+interface LoadingCommentsProps {
+  className?: string
+}
+
+export function LoadingComments({ className }: LoadingCommentsProps) {
   return (
     <div className={cn("flex animate-pulse flex-col", className)}>
       <div className="mb-[23px] h-[28px] w-[35%] rounded-sm bg-[hsl(var(--foreground)/21%)] dark:bg-[hsl(var(--foreground)/15%)]" />

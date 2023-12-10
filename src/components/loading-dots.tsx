@@ -1,4 +1,4 @@
-// REF: https://vercel.com/design/loading-dots
+// REF https://vercel.com/design/loading-dots
 export function LoadingDots() {
   return (
     <span className="select-none space-x-0.5">
