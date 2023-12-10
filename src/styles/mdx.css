@@ -1,5 +1,15 @@
 /* code block */
 
+code[data-theme*=" "],
+code[data-theme*=" "] span {
+  color: var(--shiki-light);
+}
+
+html.dark code[data-theme*=" "],
+html.dark code[data-theme*=" "] span {
+  color: var(--shiki-dark);
+}
+
 [data-rehype-pretty-code-title][data-theme="light"],
 pre[data-theme="light"],
 code[data-theme="light"] {
@@ -15,7 +25,7 @@ code[data-theme="dark"] {
   @apply hidden dark:grid;
 }
 
-[data-rehype-pretty-code-fragment] {
+[data-rehype-pretty-code-figure] {
   @apply my-4 overflow-hidden rounded-lg border border-[hsl(var(--codeblock-border))] bg-[hsl(var(--codeblock-background))] text-sm leading-6 text-[hsl(var(--foreground))] [h2+&]:mt-0 [h3+&]:mt-0;
 
   --codeblock-padding: 1.25rem;
@@ -26,7 +36,7 @@ code[data-theme="dark"] {
   @apply bg-[hsl(var(--codeblock-title))] py-0.5 pl-[var(--codeblock-padding)] font-mono font-medium text-muted;
 }
 
-[data-rehype-pretty-code-fragment] > pre {
+[data-rehype-pretty-code-figure] > pre {
   @apply overflow-x-auto py-[var(--codeblock-padding)];
 }
 

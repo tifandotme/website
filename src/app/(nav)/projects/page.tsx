@@ -33,7 +33,7 @@ export default async function ProjectsPage({
     return Intl.Collator().compare(b.date, a.date)
   })
 
-  const projectsTOC = allProjects.toSorted((a, b) =>
+  const projectsTOC = allProjects.sort((a, b) =>
     Intl.Collator().compare(a.name, b.name),
   )
 
