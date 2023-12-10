@@ -1,30 +1,27 @@
 import { NextRequest, NextResponse } from "next/server"
-import { Redis } from "@upstash/redis"
 import { allPosts } from "contentlayer/generated"
 
-import { site } from "@/config"
-
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN,
-  enableTelemetry: false,
-})
+import type { Response } from "@/types"
+import { isProd } from "@/lib/utils"
 
 export async function GET(
   req: NextRequest,
   { params }: { params: { slug: string } },
 ) {
-  const slug = params.slug
-  const incr = req.nextUrl.searchParams.get("incr")
+  const { slug } = params
+  const isIncr = req.nextUrl.searchParams.get("incr") !== null
 
   // #region disallow direct access
-  // TODO: check again if this causes the error (related to opentelemery, uncli, etc)
-  if (process.env.NODE_ENV === "production") {
+  if (isProd()) {
     const referer = req.headers.get("referer")
-    if (!referer || new URL(referer).origin !== site.baseUrl) {
-      return NextResponse.json(
+
+    if (
+      !referer ||
+      new URL(referer).origin !== process.env.NEXT_PUBLIC_APP_URL
+    ) {
+      return NextResponse.json<Response>(
         {
-          message: "Unauthorized",
+          message: "unauthorized",
         },
         { status: 401 },
       )
@@ -32,40 +29,49 @@ export async function GET(
   }
   // #endregion
 
-  const posts = allPosts.map((post) => post.slug)
-  if (!posts.includes(slug)) {
-    return NextResponse.json(
+  if (!allPosts.some((post) => post.slug === slug)) {
+    return NextResponse.json<Response>(
       {
-        message: "Unknown post",
+        message: "unknown post",
       },
-      { status: 400, statusText: "Unknown post" },
+      { status: 400 },
     )
   }
 
-  if (incr !== null) {
-    const views = await redis.hincrby("views", slug, 1)
+  try {
+    const url = new URL(process.env.UPSTASH_REDIS_REST_URL as string)
+    const options: RequestInit = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.UPSTASH_REDIS_REST_TOKEN}`,
+      },
+      body: JSON.stringify(
+        isIncr ? ["HINCRBY", "views", slug, 1] : ["HGET", "views", slug],
+      ),
+    }
 
-    return NextResponse.json({
-      views,
+    const res = await fetch(url, options)
+
+    if (!res.ok) {
+      throw new Error(`failed to fetch upstash api`)
+    }
+
+    const result = (await res.json()).result as string | null
+
+    return NextResponse.json<Response>({
+      message: "success",
+      // in case HGET returns null, it'll be converted to 0
+      data: Number(result),
     })
+  } catch (error) {
+    return NextResponse.json<Response>(
+      {
+        message: error instanceof Error ? error.message : "unknown error",
+      },
+      { status: 500 },
+    )
   }
-
-  const views = await redis.hget<number>("views", slug)
-
-  return NextResponse.json({
-    views,
-  })
 }
 
-// deduplication logic, but i'm not sure if it's needed
-//
-// const data = new TextEncoder().encode(req.ip)
-// const buf = await crypto.subtle.digest("SHA-256", data)
-// const hash = Array.from(new Uint8Array(buf))
-//   .map((b) => b.toString(16).padStart(2, "0"))
-//   .join("")
-
-// const isNew = await redis.set(`dedup:${hash}:${slug}`, true, {
-//   nx: true,
-//   ex: 60 * 60, // optimally 1h
-// })
+// NOTE In case I need deduplication logic:
+// https://upstash.com/blog/nextjs13-approuter-view-counter
