@@ -1,27 +1,26 @@
-import { type NavLinks } from "@/types"
+import type { SiteConfig } from "@/types"
+import { isProd } from "@/lib/utils"
 
-export const site = {
+export const siteConfig: SiteConfig = {
   name: "Tifan Dwi Avianto",
   description:
     "A blog and portfolio site by Tifan. Follow my journey in web development through insightful articles and inspiring projects.",
   author: "Tifan Dwi Avianto",
-  baseUrl: "https://tifan.me",
-  navLinks: (
-    [
-      {
-        label: "Drafts",
-        url: "/drafts",
-      },
-      {
-        label: "Blog",
-        url: "/blog",
-      },
-      {
-        label: "Projects",
-        url: "/projects",
-      },
-    ] satisfies NavLinks
-  ).filter((link) =>
-    process.env.NODE_ENV === "production" ? link.url !== "/drafts" : true,
-  ),
-} as const
+  navItems: [
+    {
+      title: "Blog",
+      href: "/blog",
+    },
+    {
+      title: "Projects",
+      href: "/projects",
+    },
+  ],
+}
+
+if (!isProd()) {
+  siteConfig.navItems.unshift({
+    title: "Drafts",
+    href: "/drafts",
+  })
+}
