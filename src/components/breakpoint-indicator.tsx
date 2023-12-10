@@ -1,6 +1,4 @@
 export function BreakpointIndicator() {
-  if (process.env.NODE_ENV !== "development") return
-
   return (
     <div className="fixed bottom-1 left-1 z-50 flex h-6 w-6 select-none items-center justify-center rounded-full bg-primary p-3 font-mono text-xs text-white">
       <div className="block sm:hidden">xs</div>
