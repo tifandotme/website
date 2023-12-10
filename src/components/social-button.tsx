@@ -1,13 +1,15 @@
 import React from "react"
-import { type IconType } from "react-icons"
 
-type SocialButtonProps = {
-  icon: IconType
+import { Icons } from "@/components/icons"
+
+// prettier-ignore
+interface SocialButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  icon: keyof typeof Icons
   label: string
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>
+}
 
 export function SocialButton({ icon, label, ...props }: SocialButtonProps) {
-  const iconElement = icon({ size: "1.1em", "aria-hidden": true })
+  const Icon = Icons[icon]
 
   return (
     <a
@@ -15,7 +17,10 @@ export function SocialButton({ icon, label, ...props }: SocialButtonProps) {
       data-umami-event={label + " button"}
       {...props}
     >
-      <span className="group-hover:text-primary">{iconElement}</span>
+      <Icon
+        className="h-[1.1em] w-[1.1em] group-hover:text-primary"
+        aria-hidden
+      />
       <span className="select-none text-base font-medium leading-[1.1em]">
         {label}
       </span>
