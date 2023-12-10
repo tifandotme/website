@@ -9,14 +9,16 @@ const Views = dynamic(() => import("@/components/client/views"), {
   loading: () => <LoadingDots />,
 })
 
-export function PostList({ draft = false }: { draft?: boolean }) {
+interface PostListProps {
+  draft?: boolean
+}
+
+export function PostList({ draft = false }: PostListProps) {
   const posts = allPosts
     .filter((post) => {
-      if (draft) {
-        return post.draft
-      } else {
-        return !post.draft
-      }
+      if (draft) return post.draft
+
+      return !post.draft
     })
     .sort((a, b) => new Intl.Collator().compare(b.date, a.date))
 
@@ -56,16 +58,12 @@ export function PostList({ draft = false }: { draft?: boolean }) {
               {!post.draft && (
                 <>
                   <span
-                    // eslint-disable-next-line tailwindcss/no-custom-classname
                     className="no-js select-none text-[0.7rem] leading-6 text-muted-darker"
                     aria-hidden
                   >
                     &bull;
                   </span>
-                  <span
-                    // eslint-disable-next-line tailwindcss/no-custom-classname
-                    className="no-js"
-                  >
+                  <span className="no-js">
                     <Views slug={post.slug} /> views
                   </span>
                 </>
