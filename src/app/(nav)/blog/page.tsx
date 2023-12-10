@@ -1,4 +1,4 @@
-import { type Metadata } from "next"
+import type { Metadata } from "next"
 
 import { PostList } from "@/components/post-list"
 
@@ -7,7 +7,6 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
-  // TODO: add search bar, tags?
   return (
     <>
       <header className="container-md mb-14 lg:-mt-10">
