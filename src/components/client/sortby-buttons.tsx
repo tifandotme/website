@@ -1,15 +1,16 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { LuCalendarDays } from "react-icons/lu"
-import { PiStarBold } from "react-icons/pi"
 
 import { cn } from "@/lib/utils"
+import { Icons } from "@/components/icons"
 
-export function SortByButtons({
-  sortParam,
-  ...props
-}: { sortParam: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>) {
+// prettier-ignore
+interface SortByButtonsProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  sortParam: string
+}
+
+export function SortByButtons({ sortParam, ...props }: SortByButtonsProps) {
   const router = useRouter()
 
   return (
@@ -30,7 +31,7 @@ export function SortByButtons({
         )}
         aria-label="Sort by date"
       >
-        <LuCalendarDays size={19} />
+        <Icons.Calendar className="h-4 w-4" />
         by Date
       </a>
 
@@ -49,7 +50,7 @@ export function SortByButtons({
         )}
         aria-label="Sort by stars"
       >
-        <PiStarBold size={19} />
+        <Icons.Star className="h-4 w-4" />
         by Stars
       </a>
     </>

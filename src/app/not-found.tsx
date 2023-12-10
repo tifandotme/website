@@ -1,7 +1,8 @@
-import { type Metadata } from "next"
-import { FaArrowLeft } from "react-icons/fa6"
+import type { Metadata } from "next"
 
-// WARN: when server logs is showing this error: https://nextjs.org/docs/messages/deopted-into-client-rendering, any calls to notFound() will return 500 error instead
+import { Icons } from "@/components/icons"
+
+// WARN when server logs is showing this error: https://nextjs.org/docs/messages/deopted-into-client-rendering, any calls to notFound() will return 500 error instead
 
 export const metadata: Metadata = {
   title: "Page not found",
@@ -18,7 +19,7 @@ export default function NotFound() {
         className="mb-10 inline-flex flex-row items-center justify-center gap-3 rounded-lg border px-4 py-3 font-medium transition active:scale-95"
         href="/"
       >
-        <FaArrowLeft size={15} />
+        <Icons.ArrowLeft className="h-3.5 w-3.5" />
         Back to homepage
       </a>
     </main>
