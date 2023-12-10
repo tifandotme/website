@@ -3,6 +3,10 @@ import { getPlaiceholder } from "plaiceholder"
 
 import { cn } from "@/lib/utils"
 
+interface CldImageProps extends ImageProps {
+  aspectRatio?: string
+}
+
 /**
  * Fetches remote image from Cloudinary. If the image fails to load, a placeholder is shown instead.
  *
@@ -14,10 +18,7 @@ import { cn } from "@/lib/utils"
  *
  * @return Next.js Image component
  */
-export async function CldImage({
-  aspectRatio,
-  ...props
-}: { aspectRatio?: string } & ImageProps) {
+export async function CldImage({ aspectRatio, ...props }: CldImageProps) {
   try {
     const { src, alt, width, height, sizes } = props
     const publicId = src as string
@@ -55,7 +56,7 @@ export async function CldImage({
         placeholder="blur"
         blurDataURL={base64}
         quality={90} // value above 90 will only increase the file size beyond what was fetched from Cloudinary
-        sizes={sizes || "100vw"} // its recommended to pass the "sizes" prop to make the image responsive.
+        sizes={sizes ?? "100vw"} // its recommended to pass the "sizes" prop to make the image responsive.
       />
     )
   } catch (err) {
@@ -153,5 +154,3 @@ async function getImage(src: string) {
     base64,
   }
 }
-
-// TODO: add image preview
