@@ -1,14 +1,10 @@
 import React from "react"
-import { BsRssFill } from "react-icons/bs"
 
-import { site } from "@/config"
+import { absoluteUrl } from "@/lib/utils"
 import { TopBar } from "@/components/client/top-bar"
+import { Icons } from "@/components/icons"
 
-export default function HomeLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function HomeLayout({ children }: React.PropsWithChildren) {
   return (
     <>
       <TopBar />
@@ -17,12 +13,12 @@ export default function HomeLayout({
 
       <footer className="container py-24 text-center font-mono font-semibold uppercase text-muted-darker">
         <a
-          href={`${site.baseUrl}/feed.xml`}
+          href={absoluteUrl("/feed.xml")}
           target="_blank"
           className="inline-flex items-center transition-colors hover:text-foreground"
           title="RSS"
         >
-          <BsRssFill size={18} className="m-3" />
+          <Icons.Feed className="m-3 h-4 w-4" />
         </a>
       </footer>
     </>

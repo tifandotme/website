@@ -1,8 +1,9 @@
-import { type Metadata } from "next"
+import type { Metadata } from "next"
 import Script from "next/script"
 
-import { site } from "@/config"
+import { siteConfig } from "@/config"
 import { fonts } from "@/lib/fonts"
+import { isProd } from "@/lib/utils"
 import { BreakpointIndicator } from "@/components/breakpoint-indicator"
 import { NProgressProvider } from "@/components/client/nprogress"
 import { ThemeProvider } from "@/components/client/theme-provider"
@@ -11,10 +12,10 @@ import "@/styles/globals.css"
 
 export const metadata: Metadata = {
   title: {
-    template: "%s — " + site.name,
-    default: site.name + " — Software Engineer",
+    template: "%s — " + siteConfig.name,
+    default: siteConfig.name + " — Software Engineer",
   },
-  description: site.description,
+  description: siteConfig.description,
   keywords: [
     "tifan dwi avianto",
     "tifan",
@@ -27,22 +28,18 @@ export const metadata: Metadata = {
     "typescript",
     "react",
   ],
-  creator: site.author,
+  creator: siteConfig.author,
   authors: [
     {
-      name: site.author,
+      name: siteConfig.author,
     },
   ],
   other: {
-    "darkreader-lock": "_", // REF: https://github.com/darkreader/darkreader/blob/main/CONTRIBUTING.md#disabling-dark-reader-on-your-site
+    "darkreader-lock": "_", // REF https://github.com/darkreader/darkreader/blob/main/CONTRIBUTING.md#disabling-dark-reader-on-your-site
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={fonts.map((font) => font.variable).join(" ")}>
@@ -54,9 +51,9 @@ export default function RootLayout({
           <NProgressProvider>{children}</NProgressProvider>
         </ThemeProvider>
 
-        <BreakpointIndicator />
+        {!isProd() && <BreakpointIndicator />}
 
-        {process.env.VERCEL_ENV === "production" && (
+        {isProd() && (
           <Script
             async
             src="https://analytics.tifan.me/script.js"
@@ -72,6 +69,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-// TODO: add blog to blogs.hn and ooh.directory
-// TODO: generate opengraphs

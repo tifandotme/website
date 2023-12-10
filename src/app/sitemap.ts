@@ -1,13 +1,14 @@
-import { MetadataRoute } from "next"
+import type { MetadataRoute } from "next"
 import { allPosts } from "contentlayer/generated"
 
-import { site } from "@/config"
+import { siteConfig } from "@/config"
+import { absoluteUrl } from "@/lib/utils"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const today = new Date().toISOString().split("T")[0]
 
-  const navRoutes = site.navLinks.map((nav) => ({
-    url: site.baseUrl + nav.url,
+  const navRoutes = siteConfig.navItems.map((nav) => ({
+    url: absoluteUrl(nav.href),
     lastModified: today,
   }))
 
@@ -15,13 +16,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((post) => !post.draft)
     .sort((a, b) => new Intl.Collator().compare(b.date, a.date))
     .map((post) => ({
-      url: site.baseUrl + post.url,
+      url: absoluteUrl(post.url),
       lastModified: today,
     }))
 
   return [
     {
-      url: site.baseUrl,
+      url: process.env.NEXT_PUBLIC_APP_URL as string,
       lastModified: today,
     },
     ...navRoutes,

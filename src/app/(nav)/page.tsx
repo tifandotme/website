@@ -1,14 +1,12 @@
-import { FaGithub, FaNewspaper } from "react-icons/fa6"
-
-import { site } from "@/config"
+import { siteConfig } from "@/config"
 import { generateRSS } from "@/lib/feed"
+import { isProd } from "@/lib/utils"
 import { CldImage } from "@/components/cloudinary-image"
-import { XTwitter } from "@/components/icons"
 import { PostList } from "@/components/post-list"
 import { SocialButton } from "@/components/social-button"
 
 export default function HomePage() {
-  if (process.env.VERCEL_ENV === "production") {
+  if (isProd()) {
     generateRSS()
   }
 
@@ -18,7 +16,7 @@ export default function HomePage() {
         <CldImage
           className="float-right m-1 ml-5 hidden w-[95px] rounded-2xl grayscale hover:grayscale-0 dark:brightness-90 sm:block"
           src="potrait.png"
-          alt={site.author}
+          alt={siteConfig.author}
           width={300}
           sizes="(max-width: 768px) 16vw, (max-width: 1024px) 12vw, 10vw"
         />
@@ -35,22 +33,22 @@ export default function HomePage() {
 
         <section className="mb-24 mt-10 flex w-full justify-around gap-3 sm:justify-center sm:gap-6">
           <SocialButton
-            icon={FaNewspaper}
-            href={site.baseUrl + "/resume.pdf"}
+            icon="Newspaper"
+            href="/resume.pdf"
             label="Resume"
             download
           />
           <SocialButton
-            icon={FaGithub}
+            icon="GitHub"
             href="https://github.com/tifandotme"
             label="GitHub"
             rel="noopener noreferrer"
             target="_blank"
           />
           <SocialButton
-            icon={XTwitter}
-            href="https://x.com/tifandotme"
-            label="X/Twitter"
+            icon="Twitter"
+            href="https://twitter.com/tifandotme"
+            label="Twitter"
             rel="noopener noreferrer"
             target="_blank"
           />

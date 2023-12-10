@@ -1,6 +1,6 @@
-import { MetadataRoute } from "next"
+import type { MetadataRoute } from "next"
 
-import { site } from "@/config"
+import { absoluteUrl } from "@/lib/utils"
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: site.baseUrl + "/sitemap.xml",
+    sitemap: absoluteUrl("/sitemap.xml"),
   }
 }

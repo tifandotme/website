@@ -1,62 +1,40 @@
-import { type Metadata } from "next"
+import type { Metadata } from "next"
 import { allProjects } from "contentlayer/generated"
-import { LuArrowUpRight } from "react-icons/lu"
-import { PiStarBold } from "react-icons/pi"
 
-import { type GitHubResponse } from "@/types"
+import { getStars } from "@/lib/github/get-stars"
 import { cn } from "@/lib/utils"
 import { SortByButtons } from "@/components/client/sortby-buttons"
 import { CldImage } from "@/components/cloudinary-image"
+import { Icons } from "@/components/icons"
 
 export const metadata: Metadata = {
   title: "Projects",
 }
 
+interface ProjectsPageProps {
+  searchParams: { sort: string }
+}
+
 export default async function ProjectsPage({
   searchParams,
-}: {
-  searchParams: { sort: string }
-}) {
+}: ProjectsPageProps) {
   const projects = await Promise.all(
-    allProjects.map(async (project) => {
-      const path = new URL(project.repo).pathname
-      const url = `https://api.github.com/repos${path}`
-
-      const res = await fetch(url, {
-        headers: {
-          Accept: "application/vnd.github+json",
-          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-        },
-        next: {
-          revalidate: 3600, // 1 hour
-        },
-      })
-
-      if (!res.ok) {
-        console.error("Failed to fetch stargazers count from GitHub API")
-      }
-
-      const json: GitHubResponse = await res.json()
-
-      const stars = json.stargazers_count || 0
-
-      return {
-        ...project,
-        stars,
-      }
-    }),
-  ).then((projects) =>
-    projects.sort((a, b) => {
-      if (searchParams.sort === "stars") {
-        return b.stars - a.stars
-      } else {
-        return new Intl.Collator().compare(b.date, a.date)
-      }
-    }),
+    allProjects.map(async (project) => ({
+      ...project,
+      stars: await getStars(project),
+    })),
   )
 
-  const projectsTOC = allProjects.sort((a, b) =>
-    new Intl.Collator().compare(a.name, b.name),
+  projects.sort((a, b) => {
+    if (searchParams.sort === "stars") {
+      return b.stars - a.stars
+    }
+
+    return Intl.Collator().compare(b.date, a.date)
+  })
+
+  const projectsTOC = allProjects.toSorted((a, b) =>
+    Intl.Collator().compare(a.name, b.name),
   )
 
   return (
@@ -121,7 +99,7 @@ export default async function ProjectsPage({
                       className="inline-flex select-none items-center gap-1 rounded-full bg-[hsl(0,0%,90%)] px-2.5 py-0.5 hover:bg-[hsl(0,0%,85%)] dark:bg-[hsl(0,0%,12%)] dark:hover:bg-[hsl(0,0%,16%)]"
                       aria-hidden
                     >
-                      <PiStarBold size={13} />
+                      <Icons.Star className="w-3.5" />
                       {project.stars}
                     </span>
                   </a>
@@ -146,10 +124,7 @@ export default async function ProjectsPage({
                     aria-label="GitHub repository"
                   >
                     GitHub&nbsp;&nbsp;&nbsp;&nbsp;
-                    <LuArrowUpRight
-                      className="-ml-4 mt-[1px] stroke-[2.5px]"
-                      size={15}
-                    />
+                    <Icons.ArrowUpRight className="-ml-4 mt-[1px] h-3.5 w-3.5 stroke-[2.5px]" />
                   </a>
                   {project.demo && (
                     <a
@@ -160,10 +135,7 @@ export default async function ProjectsPage({
                       aria-label="Demo"
                     >
                       Demo&nbsp;&nbsp;&nbsp;&nbsp;
-                      <LuArrowUpRight
-                        className="-ml-4 mt-[1px] stroke-[2.5px]"
-                        size={15}
-                      />
+                      <Icons.ArrowUpRight className="-ml-4 mt-[1px] h-3.5 w-3.5 stroke-[2.5px]" />
                     </a>
                   )}
                 </div>
