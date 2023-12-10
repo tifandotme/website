@@ -18,7 +18,6 @@
     "@plaiceholder/next": "^3.0.0",
     "@radix-ui/react-collapsible": "^1.0.3",
     "@tanem/react-nprogress": "^5.0.51",
-    "@upstash/redis": "^1.25.1",
     "contentlayer": "^0.3.4",
     "next": "^14.0.4",
     "next-contentlayer": "^0.3.4",
@@ -26,12 +25,10 @@
     "plaiceholder": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.12.0",
     "react-tweet": "^3.1.1",
     "react-use": "^17.4.2",
     "sharp": "^0.33.0",
-    "swr": "^2.2.4",
-    "zod": "^3.22.4"
+    "swr": "^2.2.4"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",

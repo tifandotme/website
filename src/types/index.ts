@@ -1,13 +1,6 @@
-/* eslint-disable no-unused-vars */
-
-import type { z } from "zod"
-
-import { envSchema } from "@/env"
-
-declare global {
-  namespace NodeJS {
-    interface ProcessEnv extends z.infer<typeof envSchema> {}
-  }
+export type Response<TData = unknown> = {
+  message: string
+  data?: TData
 }
 
 export type NavItem = {
