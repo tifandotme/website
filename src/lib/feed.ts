@@ -47,8 +47,6 @@ const posts: Item[] = allPosts
   })
 
 export async function generateRSS() {
-  console.log("Generating RSS feed...")
-
   const feed = new Feed(options)
 
   posts.forEach((post) => feed.addItem(post))
