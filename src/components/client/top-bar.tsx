@@ -12,7 +12,7 @@ import { useTheme } from "next-themes"
 
 import { siteConfig } from "@/config"
 import { cn } from "@/lib/utils"
-import { Icons } from "@/components/icons"
+import { Icon } from "@/components/icon"
 
 export function TopBar() {
   const [mounted, setMounted] = React.useState(false)
@@ -20,7 +20,7 @@ export function TopBar() {
 
   const { theme, setTheme } = useTheme()
 
-  // REF: https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch
+  // REF https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch
   React.useEffect(() => {
     setMounted(true)
   }, [])
@@ -49,14 +49,14 @@ export function TopBar() {
           onClick={() => isOpen && setIsOpen(false)}
           title="Go to homepage"
         >
-          <Icons.Logo className="h-[2.2em] w-[2.2em]" />
+          <Icon id="logo" className="h-[2.2em] w-[2.2em]" />
         </Link>
 
         <div className="relative float-right inline-flex h-12 gap-3">
           <CollapsibleTrigger asChild>
             <button
               className={cn(
-                "block items-center px-3 text-muted-darker transition hover:bg-[hsl(0,0%,93%)] hover:text-foreground active:translate-y-0.5 dark:hover:bg-[hsl(0,0%,11%)] xs:hidden",
+                "block items-center px-3 text-muted-darker transition hover:bg-[hsl(0,0%,93%)] hover:text-foreground active:translate-y-0.5 xs:hidden dark:hover:bg-[hsl(0,0%,11%)]",
 
                 mounted ? "pointer-events-auto" : "pointer-events-none",
               )}
@@ -64,9 +64,9 @@ export function TopBar() {
               aria-label="Navigation menu"
             >
               {isOpen ? (
-                <Icons.Collapse className="h-7 w-7" />
+                <Icon id="collapse" className="h-7 w-7" />
               ) : (
-                <Icons.Expand className="h-7 w-7" />
+                <Icon id="expand" className="h-7 w-7" />
               )}
             </button>
           </CollapsibleTrigger>
@@ -79,7 +79,7 @@ export function TopBar() {
                 key={href}
                 href={href}
                 className={cn(
-                  "hidden select-none items-center px-3 text-lg font-bold transition hover:bg-[hsl(0,0%,93%)] hover:text-foreground active:translate-y-0.5 dark:hover:bg-[hsl(0,0%,11%)] xs:inline-flex",
+                  "hidden select-none items-center px-3 text-lg font-bold transition hover:bg-[hsl(0,0%,93%)] hover:text-foreground active:translate-y-0.5 xs:inline-flex dark:hover:bg-[hsl(0,0%,11%)]",
 
                   isActive ? "text-foreground" : "text-muted-darker",
                 )}
@@ -105,9 +105,9 @@ export function TopBar() {
             } theme`}
           >
             {mounted && theme === "light" ? (
-              <Icons.Moon className="h-7 w-7" />
+              <Icon id="moon" className="h-7 w-7" />
             ) : (
-              <Icons.Sun className="h-7 w-7" />
+              <Icon id="sun" className="h-7 w-7" />
             )}
           </button>
         </div>
@@ -115,7 +115,7 @@ export function TopBar() {
 
       <CollapsibleContent
         className={cn(
-          "select-none border-y bg-[hsl(0,0%,94%)] text-muted shadow-[inset_0_2px_39px_-12px_rgba(0,0,0,0.15)] dark:bg-[hsl(0,0%,10%)] xs:hidden",
+          "select-none border-y bg-[hsl(0,0%,94%)] text-muted shadow-[inset_0_2px_39px_-12px_rgba(0,0,0,0.15)] xs:hidden dark:bg-[hsl(0,0%,10%)]",
 
           // open/close animation
           "overflow-hidden data-[state='closed']:animate-[slideUp_200ms_ease-out] data-[state='open']:animate-[slideDown_200ms_ease-out]",

@@ -4,7 +4,6 @@ import React from "react"
 import { useWindowScroll } from "react-use"
 
 import { cn } from "@/lib/utils"
-import { Icons } from "@/components/icons"
 
 export function BackToTopButton() {
   const [isScrolled, setIsScrolled] = React.useState(true)
@@ -29,7 +28,7 @@ export function BackToTopButton() {
         isScrolled && "!pointer-events-auto !text-muted",
       )}
     >
-      Back to top <Icons.ChevronUp className="ml-[1px] inline-block h-6 w-6" />
+      Back to top
     </a>
   )
 }

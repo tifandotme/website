@@ -2,7 +2,7 @@ import React from "react"
 
 import { absoluteUrl } from "@/lib/utils"
 import { TopBar } from "@/components/client/top-bar"
-import { Icons } from "@/components/icons"
+import { Icon } from "@/components/icon"
 
 export default function HomeLayout({ children }: React.PropsWithChildren) {
   return (
@@ -18,7 +18,7 @@ export default function HomeLayout({ children }: React.PropsWithChildren) {
           className="inline-flex items-center transition-colors hover:text-foreground"
           title="RSS"
         >
-          <Icons.Feed className="m-3 h-4 w-4" />
+          <Icon id="feed" className="m-3 h-4 w-4" />
         </a>
       </footer>
     </>

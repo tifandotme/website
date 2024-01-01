@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation"
 
 import { cn } from "@/lib/utils"
-import { Icons } from "@/components/icons"
+import { Icon } from "@/components/icon"
 
 // prettier-ignore
 interface SortByButtonsProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -31,7 +31,7 @@ export function SortByButtons({ sortParam, ...props }: SortByButtonsProps) {
         )}
         aria-label="Sort by date"
       >
-        <Icons.Calendar className="h-4 w-4" />
+        <Icon id="calendar" className="h-4 w-4" />
         by Date
       </a>
 
@@ -50,7 +50,7 @@ export function SortByButtons({ sortParam, ...props }: SortByButtonsProps) {
         )}
         aria-label="Sort by stars"
       >
-        <Icons.Star className="h-4 w-4" />
+        <Icon id="star" className="h-4 w-4" />
         by Stars
       </a>
     </>
