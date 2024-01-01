@@ -27,6 +27,7 @@
     "react-dom": "^18.2.0",
     "react-tweet": "^3.2.0",
     "react-use": "^17.4.2",
+    "sharp": "0.32.6",
     "swr": "^2.2.4"
   },
   "devDependencies": {
@@ -59,10 +60,13 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.3.3"
   },
-  "//": [
-    "`npx playwright install` is required by rehype-mermaid"
-  ],
   "overrides": {
     "@opentelemetry/api": "~1.5.0"
-  }
+  },
+  "trustedDependencies": [
+    "sharp"
+  ],
+  "//": [
+    "`npx playwright install` is required by rehype-mermaid"
+  ]
 }

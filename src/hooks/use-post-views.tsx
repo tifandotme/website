@@ -3,8 +3,7 @@ import useSWR from "swr"
 import type { Response } from "@/types"
 
 async function getViews(slug: string) {
-  const url = new URL(`/api/views/${slug}`, process.env.NEXT_PUBLIC_APP_URL)
-  const res = await fetch(url)
+  const res = await fetch(`/api/views/${slug}`)
 
   if (!res.ok) {
     throw new Error(`Failed to fetch views (${slug})`)
@@ -15,9 +14,7 @@ async function getViews(slug: string) {
 }
 
 async function incrementViews(slug: string) {
-  // prettier-ignore
-  const url = new URL(`/api/views/${slug}?incr`, process.env.NEXT_PUBLIC_APP_URL)
-  const res = await fetch(url)
+  const res = await fetch(`/api/views/${slug}?incr`)
 
   if (!res.ok) {
     throw new Error(`Failed to increment views (${slug})`)
