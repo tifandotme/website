@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
 import { allProjects } from "contentlayer/generated"
 
-import { getStars } from "@/lib/github/get-stars"
+import { getStars } from "@/lib/github"
 import { cn } from "@/lib/utils"
 import { SortByButtons } from "@/components/client/sortby-buttons"
 import { CldImage } from "@/components/cloudinary-image"
-import { Icons } from "@/components/icons"
+import { Icon } from "@/components/icon"
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -18,24 +18,22 @@ interface ProjectsPageProps {
 export default async function ProjectsPage({
   searchParams,
 }: ProjectsPageProps) {
+  const projectsTOC = [...allProjects].sort((a, b) =>
+    Intl.Collator().compare(a.name, b.name),
+  )
+
   const projects = await Promise.all(
-    allProjects.map(async (project) => ({
+    projectsTOC.map(async (project) => ({
       ...project,
-      stars: await getStars(project),
+      stars: (await getStars(project)) ?? 0,
     })),
   )
 
-  projects.sort((a, b) => {
-    if (searchParams.sort === "stars") {
-      return b.stars - a.stars
-    }
-
-    return Intl.Collator().compare(b.date, a.date)
-  })
-
-  const projectsTOC = allProjects.sort((a, b) =>
-    Intl.Collator().compare(a.name, b.name),
-  )
+  if (searchParams.sort === "stars") {
+    projects.sort((a, b) => b.stars - a.stars)
+  } else {
+    projects.sort((a, b) => Intl.Collator().compare(b.date, a.date))
+  }
 
   return (
     <>
@@ -99,7 +97,7 @@ export default async function ProjectsPage({
                       className="inline-flex select-none items-center gap-1 rounded-full bg-[hsl(0,0%,90%)] px-2.5 py-0.5 hover:bg-[hsl(0,0%,85%)] dark:bg-[hsl(0,0%,12%)] dark:hover:bg-[hsl(0,0%,16%)]"
                       aria-hidden
                     >
-                      <Icons.Star className="w-3.5" />
+                      <Icon id="star" className="h-3.5 w-3.5" />
                       {project.stars}
                     </span>
                   </a>
@@ -124,7 +122,10 @@ export default async function ProjectsPage({
                     aria-label="GitHub repository"
                   >
                     GitHub&nbsp;&nbsp;&nbsp;&nbsp;
-                    <Icons.ArrowUpRight className="-ml-4 mt-[1px] h-3.5 w-3.5 stroke-[2.5px]" />
+                    <Icon
+                      id="arrow-up-right"
+                      className="-ml-4 mt-[1px] h-3.5 w-3.5 stroke-[2.5px]"
+                    />
                   </a>
                   {project.demo && (
                     <a
@@ -135,7 +136,10 @@ export default async function ProjectsPage({
                       aria-label="Demo"
                     >
                       Demo&nbsp;&nbsp;&nbsp;&nbsp;
-                      <Icons.ArrowUpRight className="-ml-4 mt-[1px] h-3.5 w-3.5 stroke-[2.5px]" />
+                      <Icon
+                        id="arrow-up-right"
+                        className="-ml-4 mt-[1px] h-3.5 w-3.5 stroke-[2.5px]"
+                      />
                     </a>
                   )}
                 </div>
