@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@giscus/react": "^2.4.0",
-    "@octokit/rest": "^20.0.2",
     "@plaiceholder/next": "^3.0.0",
     "@radix-ui/react-collapsible": "^1.0.3",
     "@tanem/react-nprogress": "^5.0.51",
