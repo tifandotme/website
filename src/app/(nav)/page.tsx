@@ -33,20 +33,20 @@ export default function HomePage() {
 
         <section className="mb-24 mt-10 flex w-full justify-around gap-3 sm:justify-center sm:gap-6">
           <SocialButton
-            icon="Newspaper"
+            iconId="newspaper"
             href="/resume.pdf"
             label="Resume"
             download
           />
           <SocialButton
-            icon="GitHub"
+            iconId="github"
             href="https://github.com/tifandotme"
             label="GitHub"
             rel="noopener noreferrer"
             target="_blank"
           />
           <SocialButton
-            icon="Twitter"
+            iconId="twitter"
             href="https://twitter.com/tifandotme"
             label="Twitter"
             rel="noopener noreferrer"

@@ -12,7 +12,7 @@ export function cn(...args: unknown[]): string | undefined {
 }
 
 export function isProd() {
-  return process.env.NODE_ENV === "production"
+  return process.env.VERCEL_ENV === "production"
 }
 
 export function absoluteUrl(path: string) {
