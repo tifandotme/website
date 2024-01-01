@@ -5,7 +5,7 @@ import { allPosts } from "contentlayer/generated"
 
 import type { HeadingsField } from "@/types"
 import { siteConfig } from "@/config"
-import { getLastModified } from "@/lib/github/get-last-modified"
+import { getLastModified } from "@/lib/github"
 import { absoluteUrl, cn, isProd } from "@/lib/utils"
 import { BackToTopButton } from "@/components/client/back-to-top"
 import { LoadingComments } from "@/components/client/comments"
@@ -54,7 +54,10 @@ export async function generateMetadata({
       // alternateLocale: ["id_ID"],
       type: "article",
       publishedTime: post.date,
-      modifiedTime: isProd() ? await getLastModified(post) : undefined,
+      modifiedTime:
+        isProd() && !post.draft
+          ? (await getLastModified(post)) ?? undefined
+          : undefined,
       authors: [siteConfig.author],
     },
     robots: post.draft ? "noindex" : undefined,
