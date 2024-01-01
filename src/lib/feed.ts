@@ -29,7 +29,7 @@ const options: FeedOptions = {
 
 const posts: Item[] = allPosts
   .filter((post) => !post.draft)
-  .sort((a, b) => new Intl.Collator().compare(b.date, a.date))
+  .sort((a, b) => Intl.Collator().compare(b.date, a.date))
   .map((post) => {
     return {
       title: post.title,

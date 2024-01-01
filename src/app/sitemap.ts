@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const contentRoutes = allPosts
     .filter((post) => !post.draft)
-    .sort((a, b) => new Intl.Collator().compare(b.date, a.date))
+    .sort((a, b) => Intl.Collator().compare(b.date, a.date))
     .map((post) => ({
       url: absoluteUrl(post.url),
       lastModified: today,

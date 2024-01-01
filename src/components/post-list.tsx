@@ -20,7 +20,7 @@ export function PostList({ draft = false }: PostListProps) {
 
       return !post.draft
     })
-    .sort((a, b) => new Intl.Collator().compare(b.date, a.date))
+    .sort((a, b) => Intl.Collator().compare(b.date, a.date))
 
   return (
     <article className="mx-auto flex max-w-screen-sm flex-col">
@@ -28,7 +28,6 @@ export function PostList({ draft = false }: PostListProps) {
         const postYear = new Date(post.date).getFullYear()
         const currentYear = new Date().getFullYear()
 
-        // NOTE: JS will add Temporal in the future
         let options: Intl.DateTimeFormatOptions
 
         // if the post is not from the current year, show the full date

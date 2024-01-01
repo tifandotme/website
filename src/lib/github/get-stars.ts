@@ -3,9 +3,6 @@ import type { Project } from "contentlayer/generated"
 
 import { octokit } from "@/lib/github/init"
 
-// TODO check if this works
-export const revalidate = 3600
-
 export const getStars = cache(async (project: Project) => {
   const repo = project.repo.split("/").pop() as string
 

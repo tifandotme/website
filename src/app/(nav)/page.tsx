@@ -14,7 +14,7 @@ export default function HomePage() {
     <main className="container-md">
       <header className="text-left text-lg leading-8 sm:text-justify">
         <CldImage
-          className="float-right m-1 ml-5 hidden w-[95px] rounded-2xl grayscale hover:grayscale-0 dark:brightness-90 sm:block"
+          className="float-right m-1 ml-5 hidden w-[95px] rounded-2xl grayscale hover:grayscale-0 sm:block dark:brightness-90"
           src="potrait.png"
           alt={siteConfig.author}
           width={300}
