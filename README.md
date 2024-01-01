@@ -20,7 +20,7 @@ My personal website
 - [ ] Add tags to post?
 - [ ] Enlist to blogs.gn and ooh.directory
 - [ ] Generate custom OG image for each post
-- [ ] Use svg sprite
+- [x] Use svg sprite
 
 ## Tech Stack
 

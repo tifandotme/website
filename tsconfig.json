@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5", // doesn't affect build output
+    "target": "ES5",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
 
@@ -9,8 +9,8 @@
 
     "moduleResolution": "bundler",
     "noEmit": true,
-    "skipLibCheck": true,
     "incremental": true,
+    "skipLibCheck": true,
     "isolatedModules": true,
     "jsx": "preserve",
 
