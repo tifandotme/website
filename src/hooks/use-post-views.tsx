@@ -5,9 +5,7 @@ import type { Response } from "@/types"
 async function getViews(slug: string) {
   const res = await fetch(`/api/views/${slug}`)
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch views (${slug})`)
-  }
+  if (!res.ok) return 0
 
   const json: Response<number> = await res.json()
   return json.data
@@ -16,9 +14,7 @@ async function getViews(slug: string) {
 async function incrementViews(slug: string) {
   const res = await fetch(`/api/views/${slug}?incr`)
 
-  if (!res.ok) {
-    throw new Error(`Failed to increment views (${slug})`)
-  }
+  if (!res.ok) return 0
 
   const json: Response<number> = await res.json()
   return json.data

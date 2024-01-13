@@ -11,29 +11,20 @@ export async function GET(
   const { slug } = params
   const isIncr = req.nextUrl.searchParams.get("incr") !== null
 
-  // #region disallow direct access
   if (isProd()) {
     const referer = req.headers.get("referer")
 
-    if (
-      !referer ||
-      new URL(referer).origin !== process.env.NEXT_PUBLIC_APP_URL
-    ) {
+    if (!referer) {
       return NextResponse.json<Response>(
-        {
-          message: "unauthorized",
-        },
+        { message: "unauthorized" },
         { status: 401 },
       )
     }
   }
-  // #endregion
 
   if (!allPosts.some((post) => post.slug === slug)) {
     return NextResponse.json<Response>(
-      {
-        message: "unknown post",
-      },
+      { message: "unknown post" },
       { status: 400 },
     )
   }
