@@ -147,7 +147,7 @@ export default async function ProjectsPage({
 
               {project.image && (
                 <CldImage
-                  className="w-[500px] basis-4/12 self-center rounded-2xl border lg:w-full"
+                  className="max-w-[400px] basis-4/12 self-center rounded-2xl border lg:w-full"
                   src={project.image} // NOTE make sure the image is 16:10
                   alt={project.name}
                   width={1000}

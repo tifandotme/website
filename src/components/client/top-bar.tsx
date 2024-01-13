@@ -89,13 +89,11 @@ export function TopBar() {
             )
           })}
 
-          <div className="no-js hidden flex-1 xs:block" />
+          <div className="hidden flex-1 xs:block" />
 
           <button
             className={cn(
               "px-3 text-muted-darker transition-transform hover:bg-[hsl(0,0%,93%)] hover:text-foreground active:translate-y-0.5 dark:hover:bg-[hsl(0,0%,11%)]",
-
-              "no-js",
 
               mounted ? "pointer-events-auto" : "pointer-events-none",
             )}
