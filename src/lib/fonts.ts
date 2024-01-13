@@ -15,6 +15,10 @@ const fontItalic = Newsreader({
   subsets: ["latin"],
   style: "italic",
   variable: "--font-italic",
+
+  // REF temp fix from https://github.com/vercel/next.js/issues/47115#issuecomment-1807197912
+  display: "swap",
+  adjustFontFallback: false,
 })
 
 const fontHeading = localFont({
