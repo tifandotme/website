@@ -1,0 +1,16 @@
+name: ByeByeSick
+description: A healthcare platform that connects patients with medical professionals, enabling patients to receive diagnosis and prescriptions via online medical consultation with doctors. Patients can also order the respective medicine through the app, which only displays products from pharmacies nearest to the patient using coordinates from Google Maps Geocoding API. Other noteworthy features include stock mutation between pharmacies and a checkout flow with delivery options. This collaboration between frontend and backend developers resulted in a tightly coupled Next.js frontend and Go backend.
+date: 2024-02
+image: projects/byebyesick.png
+tags:
+  - TypeScript
+  - Go
+  - React
+  - Next.js
+  - Zustand
+  - Tailwind CSS
+  - WebSocket
+  - RESTful API
+  - PostgreSQL
+repo: https://github.com/tifandotme/byebyesick
+demo: https://byebyesick-staging.irfancen.com/
