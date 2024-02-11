@@ -1,5 +1,5 @@
 name: Personal Website
-description: The website that you're currently on, serves as a personal platform where I share my learnings through blog posts and showcase my project portfolio. It is an opportunity for me to experiment with new technologies, design concepts, and content strategies. Built using Next.js, a powerful React.js framework, the project benefits from features like file-based routing, efficient data fetching, and various optimizations. Additionally, Tailwind CSS, a highly adaptable CSS framework is used, enabling greater customization and maintainability.
+description: A platform where I share my learnings through blog posts and showcase my projects. It's an opportunity for me to experiment with new technologies, design concepts, and content strategies.
 date: 2023-07
 tags:
   - TypeScript
