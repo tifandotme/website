@@ -4,6 +4,11 @@ import withPlaiceholder from "@plaiceholder/next"
 const config = {
   reactStrictMode: false,
   cleanDistDir: true,
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   images: {
     remotePatterns: [
       {
