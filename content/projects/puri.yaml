@@ -1,5 +1,5 @@
 name: Puri
-description: Developed for a logistics company in Semarang, this application serves as an Order Management System that successfully transformed the customer order processing workflow. It replaced the outdated physical whiteboard-based system with a modern web-based solution. This transition enabled real-time data display and push notifications, facilitating seamless coordination between the sales and logistics divisions.
+description: Developed for a logistics company in Semarang, this application aims to improve the customer order processing workflow. It provides an alternative to the existing manual whiteboard method with an integrated web-based system, facilitating a seamless coordination between the sales and logistics divisions. This transition seeks to reduce human errors and increase delivery response time, enabled by real-time data display and push notifications.
 date: 2023-04
 image: projects/puri.png
 tags:
