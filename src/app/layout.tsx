@@ -1,12 +1,12 @@
 import type { Metadata } from "next"
 import Script from "next/script"
+import { ThemeProvider } from "next-themes"
 
 import { siteConfig } from "@/config"
 import { fonts } from "@/lib/fonts"
 import { isProd } from "@/lib/utils"
 import { BreakpointIndicator } from "@/components/breakpoint-indicator"
 import { NProgressProvider } from "@/components/client/nprogress"
-import { ThemeProvider } from "@/components/client/theme-provider"
 
 import "@/styles/globals.css"
 
@@ -55,9 +55,9 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
           <>
             <BreakpointIndicator />
             <Script
-              async
+              defer
               src="https://analytics.tifan.me/script.js"
-              data-website-id="7edd9838-f991-48d3-aa41-c7fe0cd55d36"
+              data-website-id="e0c792f9-efbb-49ee-b4d1-c58892d76c2a"
             />
           </>
         )}
