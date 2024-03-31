@@ -1,5 +1,9 @@
-import { JetBrains_Mono, Newsreader, Nunito_Sans } from "next/font/google"
-import localFont from "next/font/local"
+import {
+  Imbue,
+  JetBrains_Mono,
+  Newsreader,
+  Nunito_Sans,
+} from "next/font/google"
 
 const fontSans = Nunito_Sans({
   subsets: ["latin"],
@@ -21,11 +25,9 @@ const fontItalic = Newsreader({
   adjustFontFallback: false,
 })
 
-const fontHeading = localFont({
-  src: "../assets/fonts/gambarino-regular.woff2",
-  display: "swap",
+const fontHeading = Imbue({
+  subsets: ["latin"],
   variable: "--font-heading",
-  weight: "400",
 })
 
 export const fonts = [fontSans, fontMono, fontItalic, fontHeading]
