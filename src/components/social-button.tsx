@@ -1,11 +1,10 @@
 import React from "react"
 
-import type { iconIds } from "@/config"
 import { Icon } from "@/components/icon"
 
 // prettier-ignore
 interface SocialButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  iconId: typeof iconIds[number]
+  iconId: string
   label: string
 }
 
@@ -18,7 +17,7 @@ export function SocialButton({ iconId, label, ...props }: SocialButtonProps) {
     >
       <Icon
         id={iconId}
-        className="h-[1.1em] w-[1.1em] group-hover:text-primary"
+        className="size-[1.1em] group-hover:text-primary"
         aria-hidden
       />
       <span className="select-none text-base font-medium leading-[1.1em]">

@@ -19,7 +19,7 @@ export default function NotFound() {
         className="mb-10 inline-flex flex-row items-center justify-center gap-3 rounded-lg border px-4 py-3 font-medium transition active:scale-95"
         href="/"
       >
-        <Icon id="arrow-left" className="h-3.5 w-3.5" />
+        <Icon id="arrow-left" className="size-3.5" />
         Back to homepage
       </a>
     </main>

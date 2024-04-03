@@ -5,10 +5,11 @@ import { ThemeProvider } from "next-themes"
 import { siteConfig } from "@/config"
 import { fonts } from "@/lib/fonts"
 import { isProd } from "@/lib/utils"
-import { BreakpointIndicator } from "@/components/breakpoint-indicator"
-import { NProgressProvider } from "@/components/client/nprogress"
+import { NProgressProvider } from "@/app/nprogress"
 
 import "@/styles/globals.css"
+
+import { BreakpointIndicator } from "@/app/breakpoint-indicator"
 
 export const metadata: Metadata = {
   title: {
@@ -45,22 +46,23 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
       <body className={fonts.map((font) => font.variable).join(" ")}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
           disableTransitionOnChange
         >
-          <NProgressProvider>{children}</NProgressProvider>
-        </ThemeProvider>
+          <NProgressProvider>
+            {children}
 
-        {!isProd() && (
-          <>
-            <BreakpointIndicator />
-            <Script
-              defer
-              src="https://analytics.tifan.me/script.js"
-              data-website-id="e0c792f9-efbb-49ee-b4d1-c58892d76c2a"
-            />
-          </>
-        )}
+            {isProd() ? (
+              <Script
+                defer
+                src="https://analytics.tifan.me/script.js"
+                data-website-id="e0c792f9-efbb-49ee-b4d1-c58892d76c2a"
+              />
+            ) : (
+              <BreakpointIndicator />
+            )}
+          </NProgressProvider>
+        </ThemeProvider>
 
         {/* Detect if client has JS disabled. Most elements such as theme switcher, views counter, and Giscus comment will be hidden when JS is disabled. */}
         <noscript>

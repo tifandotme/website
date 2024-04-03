@@ -8,10 +8,6 @@ export const siteConfig: SiteConfig = {
   author: "Tifan Dwi Avianto",
   navItems: [
     {
-      title: "Blog",
-      href: "/blog",
-    },
-    {
       title: "Projects",
       href: "/projects",
     },
@@ -24,23 +20,3 @@ if (!isProd()) {
     href: "/drafts",
   })
 }
-
-/**
- * Icon IDs in `public/sprite.svg`
- */
-export const iconIds = [
-  "logo",
-  "x",
-  "twitter",
-  "github",
-  "newspaper",
-  "sun",
-  "moon",
-  "collapse",
-  "expand",
-  "feed",
-  "star",
-  "calendar",
-  "arrow-up-right",
-  "arrow-left",
-] as const

@@ -31,7 +31,7 @@ export function TopBar() {
     <Collapsible
       open={isOpen}
       onOpenChange={setIsOpen}
-      className="pb-5 pt-10 lg:pb-7 lg:pt-14" // half
+      className="pb-5 pt-10 lg:pb-14 lg:pt-14" // half
     >
       <nav
         className={cn(
@@ -49,7 +49,7 @@ export function TopBar() {
           onClick={() => isOpen && setIsOpen(false)}
           title="Go to homepage"
         >
-          <Icon id="logo" className="h-[2.2em] w-[2.2em]" />
+          <Icon id="logo" className="size-[1.9rem]" />
         </Link>
 
         <div className="relative float-right inline-flex h-12 gap-3">
@@ -64,9 +64,9 @@ export function TopBar() {
               aria-label="Navigation menu"
             >
               {isOpen ? (
-                <Icon id="collapse" className="h-7 w-7" />
+                <Icon id="collapse" className="size-7" />
               ) : (
-                <Icon id="expand" className="h-7 w-7" />
+                <Icon id="expand" className="size-7" />
               )}
             </button>
           </CollapsibleTrigger>
@@ -103,9 +103,9 @@ export function TopBar() {
             } theme`}
           >
             {mounted && theme === "light" ? (
-              <Icon id="moon" className="h-7 w-7" />
+              <Icon id="moon" className="size-7" />
             ) : (
-              <Icon id="sun" className="h-7 w-7" />
+              <Icon id="sun" className="size-7" />
             )}
           </button>
         </div>

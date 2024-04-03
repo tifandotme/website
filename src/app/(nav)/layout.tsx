@@ -18,8 +18,9 @@ export default function HomeLayout({ children }: React.PropsWithChildren) {
           className="inline-flex items-center transition-colors hover:text-foreground"
           title="RSS"
         >
-          <Icon id="feed" className="m-3 h-4 w-4" />
+          <Icon id="feed" className="m-3 size-4" />
         </a>
+        asdasd
       </footer>
     </>
   )

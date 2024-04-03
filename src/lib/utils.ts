@@ -1,6 +1,3 @@
-/**
- * @see https://dev.to/gugaguichard/replace-clsx-classnames-or-classcat-with-your-own-little-helper-3bf
- */
 export function cn(...args: unknown[]): string | undefined {
   return (
     args

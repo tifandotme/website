@@ -8,20 +8,16 @@ import { siteConfig } from "@/config"
 import { getLastModified } from "@/lib/github"
 import { absoluteUrl, cn, isProd } from "@/lib/utils"
 import { BackToTopButton } from "@/components/client/back-to-top"
-import { LoadingComments } from "@/components/client/comments"
 import { HeadingLink } from "@/components/client/heading-link"
 import { LoadingDots } from "@/components/loading-dots"
 import { MDXContent } from "@/components/mdx"
+import { Giscus } from "@/app/(nav)/blog/[slug]/giscus"
 
 import "@/styles/mdx.css"
 
 const Views = dynamic(() => import("@/components/client/views"), {
   ssr: false,
   loading: () => <LoadingDots />,
-})
-const Comments = dynamic(() => import("@/components/client/comments"), {
-  ssr: false,
-  loading: () => <LoadingComments />,
 })
 
 export const dynamicParams = false
@@ -83,13 +79,7 @@ export default function PostPage({ params }: PostPageProps) {
   // WARN if <main> tag contain tailwind-animate class, it will conflict with the one inside <aside> tag
   return (
     <main className="container px-3 sm:px-5">
-      <aside
-        className={cn(
-          "fixed bottom-14 ml-4 hidden w-[160px] select-none flex-col gap-2.5 text-sm min-[1217px]:flex min-[1300px]:ml-10 min-[1340px]:w-[210px]",
-
-          "duration-300 animate-in fade-in-50 slide-in-from-left-5",
-        )}
-      >
+      <aside className="fixed bottom-14 ml-4 hidden w-[160px] select-none flex-col gap-2.5 text-sm min-[1217px]:flex min-[1300px]:ml-10 min-[1340px]:w-[210px]">
         {post.headings.length !== 0 && (
           <>
             <p className="font-mono text-sm font-bold uppercase text-muted-darker">
@@ -147,7 +137,7 @@ export default function PostPage({ params }: PostPageProps) {
               </div>
             )}
           </div>
-          <h1 className="!col-span-full mb-3 mt-4 max-w-screen-md font-heading text-[clamp(2.5rem,1rem+3.125vw,2.9rem)] leading-tight tracking-[-0.04em] text-[hsl(var(--heading))]">
+          <h1 className="!col-span-full mb-3 mt-4 max-w-screen-md font-heading text-[clamp(3rem,1rem+3.125vw,3.4rem)] leading-tight text-[hsl(var(--heading))]">
             {post.title}
           </h1>
           {post.description && (
@@ -173,11 +163,7 @@ export default function PostPage({ params }: PostPageProps) {
           <span>Tifan Dwi Avianto</span>
         </div>
 
-        {!post.draft && (
-          <div className="no-js mt-24" aria-hidden>
-            <Comments />
-          </div>
-        )}
+        {!post.draft && <Giscus />}
       </article>
     </main>
   )

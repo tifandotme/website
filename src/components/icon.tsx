@@ -1,7 +1,7 @@
-import type { iconIds } from "@/config"
+import type { SVGProps } from "react"
 
-interface IconProps extends React.SVGAttributes<SVGElement> {
-  id: (typeof iconIds)[number]
+interface IconProps extends SVGProps<SVGSVGElement> {
+  id: string
 }
 
 export function Icon({ id, ...props }: IconProps) {
