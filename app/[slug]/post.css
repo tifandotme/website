@@ -1,0 +1,72 @@
+:root {
+  --codeblock-background: 240 4% 92%;
+  --codeblock-title: 240 6% 92%;
+  --codeblock-highlight: 240 4% 90%;
+  /* --yellow: 45 93% 47%; */
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --codeblock-background: 240 2% 10%;
+    --codeblock-title: 240 2% 12%;
+    --codeblock-highlight: 240 2% 15%;
+    /* --yellow: 28 73% 30%; */
+  }
+}
+
+/* code block */
+
+code[data-theme*=" "],
+code[data-theme*=" "] span {
+  color: var(--shiki-light);
+  @media (prefers-color-scheme: dark) {
+    color: var(--shiki-dark);
+  }
+}
+
+[data-rehype-pretty-code-figure] {
+  /* adjust to match the padding-x of <main> element */
+  @apply [--codeblock-padding:1rem] sm:[--codeblock-padding:1.5rem];
+  --line-numbering-width: 3rem;
+
+  @apply my-4 overflow-hidden bg-[hsl(var(--codeblock-background))] text-sm leading-6 text-[hsl(var(--foreground))] max-md:!-mx-[var(--codeblock-padding)] [h2+&]:mt-0 [h3+&]:mt-0;
+}
+
+[data-rehype-pretty-code-title] {
+  @apply mt-0 bg-[hsl(var(--codeblock-title))] py-2 pl-[var(--codeblock-padding)] font-mono font-semibold text-muted;
+}
+
+[data-rehype-pretty-code-figure] > pre {
+  @apply overflow-x-auto py-[var(--codeblock-padding)];
+}
+
+pre > code {
+  @apply grid [counter-reset:line];
+}
+
+[data-line-numbers] > [data-line]::before {
+  @apply inline-block w-[var(--line-numbering-width)] text-center text-muted [content:counter(line)] [counter-increment:line];
+}
+
+[data-line-numbers] > [data-line] {
+  @apply !pl-0;
+}
+
+[data-line] {
+  @apply after:inline-block after:h-[1px] after:content-[''];
+  @apply pl-[var(--codeblock-padding)] leading-5 after:w-[var(--codeblock-padding)];
+}
+
+[data-highlighted-line] {
+  @apply border-l-2 border-foreground bg-[hsl(var(--codeblock-highlight))];
+
+  /* fix border shifting content */
+  @apply pl-[calc(var(--codeblock-padding)-10px)];
+}
+
+[data-line][data-highlighted-line]::before {
+  @apply w-[calc(var(--line-numbering-width)-2px)];
+}
+
+[data-highlighted-chars] {
+  @apply bg-[hsl(var(--codeblock-highlight))] px-[5px] py-[2px] font-semibold;
+}
