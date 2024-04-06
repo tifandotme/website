@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "module": "ESNext",
+    "module": "ESNext", // https://devblogs.microsoft.com/typescript/announcing-typescript-5-4/#support-for-require-calls-in---moduleresolution-bundler-and---module-preserve
 
     "allowJs": true,
     "checkJs": true,
@@ -27,16 +27,9 @@
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
 
-    "plugins": [{ "name": "next" }],
-
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
-    }
+    "plugins": [{ "name": "next" }]
   },
   "include": [
-    ".contentlayer/generated",
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "**/*.ts",

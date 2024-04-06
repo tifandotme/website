@@ -1,23 +1,3 @@
-/** @type {import("@ianvs/prettier-plugin-sort-imports").PluginConfig} */
-const importConfig = {
-  importOrder: [
-    "",
-    "^(react/(.*)$)|^(react$)",
-    "^(next/(.*)$)|^(next$)",
-    "<THIRD_PARTY_MODULES>",
-    "",
-    "^@/types(.*)$",
-    "^@/config(.*)$",
-    "^@/assets/(.*)$",
-    "^@/lib/(.*)$",
-    "^@/hooks/(.*)$",
-    "^@/components/(.*)$",
-    "^@/app/(.*)$",
-    "",
-    "^[.]",
-  ],
-}
-
 /** @type {import("prettier-plugin-tailwindcss").PluginOptions} */
 const tailwindConfig = {
   tailwindFunctions: ["cn"],
@@ -28,13 +8,9 @@ const tailwindConfig = {
 const config = {
   semi: false,
 
-  ...importConfig,
   ...tailwindConfig,
 
-  plugins: [
-    "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-tailwindcss", // must be loaded last: https://github.com/tailwindlabs/prettier-plugin-tailwindcss#compatibility-with-other-prettier-plugins
-  ],
+  plugins: ["prettier-plugin-tailwindcss"],
 }
 
 export default config

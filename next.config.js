@@ -3,7 +3,6 @@ import withPlaiceholder from "@plaiceholder/next"
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: false,
-  cleanDistDir: true,
   logging: {
     fetches: {
       fullUrl: true,

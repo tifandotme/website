@@ -1,30 +1,15 @@
+import typography from "@tailwindcss/typography"
 import colors from "tailwindcss/colors"
 import defaultTheme from "tailwindcss/defaultTheme"
 
 /** @type {import("tailwindcss").Config} */
 const config = {
-  darkMode: ["class"],
-  content: [
-    "./src/app/**/*.{ts,tsx}",
-    "./src/components/**/*.{ts,tsx}",
-    "./content/**/*.mdx",
-    "contentlayer.config.ts",
-  ],
-  future: {
-    // NOTE revert this once tailwindcss is updated to v4
-    // https://stackoverflow.com/questions/56755439/modifying-hover-in-tailwindcss/72323247#72323247
-    hoverOnlyWhenSupported: true,
-  },
+  content: ["./app/**/*.{ts,tsx}", "./content/**/*.mdx"],
   theme: {
-    container: {
-      center: true,
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     screens: {
       xs: "475px",
       ...defaultTheme.screens,
+      "2xl": "1440px",
     },
     extend: {
       fontFamily: {
@@ -46,50 +31,6 @@ const config = {
           darker: "hsl(var(--muted-large-text))",
         },
       },
-      keyframes: {
-        // radix collapsible
-        slideDown: {
-          "0%": {
-            height: "0",
-          },
-          "100%": {
-            height: "var(--radix-collapsible-content-height)",
-          },
-        },
-        slideUp: {
-          "0%": {
-            height: "var(--radix-collapsible-content-height)",
-          },
-          "100%": {
-            height: "0",
-          },
-        },
-        // loading dots
-        loading: {
-          "0%": {
-            opacity: ".2",
-          },
-          "20%": {
-            opacity: "1",
-          },
-          to: {
-            opacity: ".2",
-          },
-        },
-        // views counter
-        mutation: {
-          "0%": {
-            background: "hsl(var(--muted-small-text) / 3%)",
-          },
-          "10%": {
-            background: "hsl(var(--muted-small-text) / 16%)",
-            color: "hsl(var(--heading) / 65%)",
-          },
-          "100%": {
-            background: "hsl(var(--muted-small-text) / 0%)",
-          },
-        },
-      },
       typography: {
         // default prose styles: ./node_modules/@tailwindcss/typography/src/styles.js
         DEFAULT: {
@@ -108,51 +49,37 @@ const config = {
                 "var(--font-heading)",
                 ...defaultTheme.fontFamily.serif,
               ].join(", "),
-              fontWeight: defaultTheme.fontWeight.medium,
-              fontSize: defaultTheme.fontSize["3xl"][0],
-              ...defaultTheme.fontSize["3xl"][1],
+              fontWeight: defaultTheme.fontWeight.normal,
+              fontSize: defaultTheme.fontSize["4xl"][0],
+              ...defaultTheme.fontSize["4xl"][1],
             },
             h3: {
               marginTop: "1.3rem",
               fontWeight: defaultTheme.fontWeight.semibold,
-              fontSize: defaultTheme.fontSize["2xl"][0],
-              ...defaultTheme.fontSize["2xl"][1],
+              fontSize: defaultTheme.fontSize["xl"][0],
+              ...defaultTheme.fontSize["xl"][1],
             },
-
-            "p + p, blockquote + p": {
-              marginTop: "0",
-            },
-
-            blockquote: {
-              marginTop: "0",
-              fontWeight: defaultTheme.fontWeight.normal,
+            "blockquote p:last-of-type": {
+              marginBottom: "0",
             },
             "blockquote p:first-of-type::before": null,
             "blockquote p:last-of-type::after": null,
             "blockquote p:first-of-type": {
               marginTop: "0",
             },
-            "blockquote p:last-of-type": {
-              marginBottom: "0",
-            },
-
-            pre: null,
-            code: {
-              color: "hsl(var(--bold))",
-              background: "hsl(var(--muted-small-text)/20%)",
-              padding: "0.125rem 0.25rem",
-              fontWeight: defaultTheme.fontWeight.normal,
-            },
-            "code::before": null,
-            "code::after": null,
-
-            a: {
-              textUnderlineOffset: "2px",
-            },
-            "ol, ul": {
+            "p + p, blockquote + p, ol, ul": {
               marginTop: "0",
             },
-
+            blockquote: {
+              marginTop: "0",
+              fontWeight: defaultTheme.fontWeight.normal,
+            },
+            pre: null,
+            "code::before": null,
+            "code::after": null,
+            a: {
+              textUnderlineOffset: "1px",
+            },
             "--tw-prose-body": "hsl(var(--foreground))",
             "--tw-prose-headings": "hsl(var(--heading))",
             "--tw-prose-lead": colors.zinc[600],
@@ -164,8 +91,8 @@ const config = {
             "--tw-prose-quotes": "hsl(var(--foreground))",
             "--tw-prose-quote-borders": colors.zinc[300],
             "--tw-prose-captions": colors.zinc[500],
-            "--tw-prose-code": colors.zinc[900],
-            "--tw-prose-pre-code": colors.red[200],
+            "--tw-prose-code": "hsl(var(--foreground))",
+            "--tw-prose-pre-code": colors.zinc[200],
             "--tw-prose-pre-bg": "var(--codeblock)",
             "--tw-prose-th-borders": colors.zinc[300],
             "--tw-prose-td-borders": colors.zinc[200],
@@ -181,8 +108,8 @@ const config = {
             "--tw-prose-invert-quotes": "hsl(var(--foreground))",
             "--tw-prose-invert-quote-borders": colors.zinc[700],
             "--tw-prose-invert-captions": colors.zinc[400],
-            "--tw-prose-invert-code": colors.white,
-            "--tw-prose-invert-pre-code": colors.red[300],
+            "--tw-prose-invert-code": "hsl(var(--foreground))",
+            "--tw-prose-invert-pre-code": colors.zinc[300],
             "--tw-prose-invert-pre-bg": "var(--codeblock)",
             "--tw-prose-invert-th-borders": colors.zinc[600],
             "--tw-prose-invert-td-borders": colors.zinc[700],
@@ -191,7 +118,15 @@ const config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  corePlugins: {
+    container: false,
+  },
+  future: {
+    // NOTE revert this once tailwindcss is updated to v4
+    // https://stackoverflow.com/questions/56755439/modifying-hover-in-tailwindcss/72323247#72323247
+    hoverOnlyWhenSupported: true,
+  },
+  plugins: [typography],
 }
 
 export default config
