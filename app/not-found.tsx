@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
-
-import { Icon } from "@/components/icon"
+import { Icon } from "./_components/icon"
 
 // WARN when server logs is showing this error: https://nextjs.org/docs/messages/deopted-into-client-rendering, any calls to notFound() will return 500 error instead
 
@@ -16,10 +15,10 @@ export default function NotFound() {
       </h1>
 
       <a
-        className="mb-10 inline-flex flex-row items-center justify-center gap-3 rounded-lg border px-4 py-3 font-medium transition active:scale-95"
+        className="inline-flex flex-row items-center justify-center gap-3 p-2.5 text-muted hover:text-foreground"
         href="/"
       >
-        <Icon id="arrow-left" className="size-3.5" />
+        <Icon id="arrow-left" className="size-4" />
         Back to homepage
       </a>
     </main>
