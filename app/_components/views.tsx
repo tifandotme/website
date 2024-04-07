@@ -17,15 +17,34 @@ export function Views({
   ...props
 }: ViewsProps) {
   const [views, setViews] = React.useState<number | null | undefined>(undefined)
-  const ref = React.useRef<HTMLSpanElement>(null)
 
   React.useEffect(() => {
-    fetchViews(slug, increment).then(setViews)
+    if (typeof window === "undefined") {
+      return
+    }
+
+    const cachedViews = sessionStorage.getItem("views-" + slug)
+    if (cachedViews !== null) {
+      if (increment) {
+        setViews(Number(cachedViews) + 1)
+      } else {
+        setViews(Number(cachedViews))
+        return
+      }
+    }
+
+    fetchViews(slug, increment).then((views) => {
+      setViews(views)
+      if (views !== null) {
+        sessionStorage.setItem("views-" + slug, String(views))
+      }
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const ref = React.useRef<HTMLSpanElement>(null)
   React.useEffect(() => {
-    if (views === null) return
+    if (!views || !increment) return
     ref.current?.animate(
       {
         filter: "brightness(140%)",
@@ -37,6 +56,7 @@ export function Views({
         iterations: 1,
       },
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [views])
 
   // in the unlikely event that a fetch to Upstash fails, do not render anything
