@@ -1,0 +1,40 @@
+import Link from "next/link"
+import React from "react"
+import { Icon } from "../_components/icon"
+import { navItems } from "../sitemap"
+
+export default function HomeLayout({ children }: React.PropsWithChildren) {
+  return (
+    <>
+      <header
+        className="container-md flex items-center gap-6 py-14 sm:pb-20 sm:pt-24 md:pt-32"
+        aria-label="Navigation"
+      >
+        <Link
+          className="-m-2.5 flex min-h-10 p-2.5 text-muted-darker/50 hover:text-foreground"
+          href="/"
+          title="Homepage"
+          draggable="false"
+        >
+          <Icon id="logo" className="size-6 self-center" />
+        </Link>
+        <hr className="h-[19px] w-px bg-muted/30" aria-hidden="true" />
+        <ul className="inline-flex gap-6">
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <Link
+                className="-mx-2 -my-2.5 flex select-none items-center px-2 py-2.5 text-[103%] font-bold text-muted-darker/90 hover:text-foreground"
+                href={item.href}
+                draggable="false"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </header>
+
+      <main className="pb-14 sm:pb-24 md:pb-32">{children}</main>
+    </>
+  )
+}
