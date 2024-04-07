@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 4% 20%;
+  --border: 0 0% 80%;
+
+  --bold: 240 4% 13%;
+  --heading: 240 4% 16%;
+
+  --muted-small-text: 240 4% 42%; /* max lightness to satisfy WCAG AA: 47% */
+  --muted-large-text: 240 4% 50%; /* max lightness to satisfy WCAG AA: 58% */
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 240 4% 8%;
+    --foreground: 0 0% 85%;
+    --border: 0 0% 17%;
+
+    --bold: 0 0% 92%;
+    --heading: 0 0% 87%;
+
+    --muted-small-text: 0 0% 50%;
+    --muted-large-text: 0 0% 39%;
+  }
+  html {
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply min-h-screen bg-background font-sans text-foreground antialiased selection:bg-zinc-300 dark:selection:bg-zinc-700;
+  }
+  em {
+    @apply font-italic text-[109%];
+  }
+}
+
+@layer components {
+  .container-md {
+    @apply mx-auto max-w-screen-md px-4 sm:px-6;
+  }
+  .container-lg {
+    @apply mx-auto max-w-screen-lg px-4 sm:px-6;
+  }
+}
+
+a {
+  /* NOTE any translate-y applied to this element will be affected. */
+  @apply translate-y-0 active:translate-y-px;
+}
