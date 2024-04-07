@@ -25,7 +25,7 @@ const fontHeading = Imbue({
   subsets: ["latin"],
   variable: "--font-heading",
 
-  // REF temp fix from https://github.com/vercel/next.js/issues/47115#issuecomment-1807197912
+  // temp fix
   display: "swap",
   adjustFontFallback: false,
 })

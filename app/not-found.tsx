@@ -1,8 +1,6 @@
 import type { Metadata } from "next"
 import { Icon } from "./_components/icon"
 
-// WARN when server logs is showing this error: https://nextjs.org/docs/messages/deopted-into-client-rendering, any calls to notFound() will return 500 error instead
-
 export const metadata: Metadata = {
   title: "Page not found",
 }
