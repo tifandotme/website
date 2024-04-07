@@ -2,7 +2,7 @@
 
 import GiscusReact from "@giscus/react"
 import React from "react"
-import { cn } from "../_lib/utils"
+import { cn } from "../../_lib/utils"
 
 export function Giscus() {
   const [isLoading, setIsLoading] = React.useState(true)

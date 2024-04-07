@@ -35,7 +35,10 @@ export function CopyButton({ text, className, ...props }: CopyButtonProps) {
     >
       <Icon
         id={isCopied ? "check" : "copy"}
-        className={cn(isCopied ? "size-5" : "size-4")}
+        className={cn(
+          isCopied ? "size-5" : "size-4",
+          "bg-[hsl(var(--codeblock-background))] rounded-md",
+        )}
       />
     </button>
   )

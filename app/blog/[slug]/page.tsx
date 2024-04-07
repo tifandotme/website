@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { Icon } from "../_components/icon"
-import { Views } from "../_components/views"
-import { getAllPosts, getPostBySlug } from "../_lib/blog"
-import { cn, formatDate } from "../_lib/utils"
+import { Icon } from "../../_components/icon"
+import { Views } from "../../_components/views"
+import { getAllPosts, getPostBySlug } from "../../_lib/blog"
+import { cn, formatDate } from "../../_lib/utils"
 import { Giscus } from "./giscus"
 import "./post.css"
 
@@ -34,10 +34,7 @@ export async function generateMetadata({
       locale: post.lang === "en" ? "en_US" : "id_ID",
       type: "article",
       publishedTime: post.publishedDate,
-      // modifiedTime:
-      //   isProd() && !post.draft
-      //     ? (await getLastModified(post)) ?? undefined
-      //     : undefined,
+      // modifiedTime: (await getLastModified(post)) ?? undefined
       authors: ["Tifan Dwi Avianto"],
     },
     other: {

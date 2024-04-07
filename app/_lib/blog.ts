@@ -79,7 +79,7 @@ export async function getAllPosts() {
         content,
         headings,
         slug,
-        url: "/" + slug,
+        url: "/blog/" + slug,
       }
     }),
   ).then((posts) =>
