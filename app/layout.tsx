@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import { fonts } from "./_lib/fonts"
-import { isProd } from "./_lib/utils"
 import "./globals.css"
 import { PreloadResources } from "./preload"
 
@@ -35,7 +34,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
     <html lang="en">
       <body className={fonts.map((font) => font.variable).join(" ")}>
         {children}
-        {isProd() && (
+        {process.env.NODE_ENV === "production" && (
           <script
             defer
             src="https://analytics.tifan.me/script.js"

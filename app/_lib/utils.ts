@@ -8,10 +8,6 @@ export function cn(...args: unknown[]): string | undefined {
   )
 }
 
-export function isProd() {
-  return process.env.NODE_ENV === "production"
-}
-
 export function formatDate(
   date: string,
   { fullMonth = false, includeDay = true, includeYear = true } = {},
