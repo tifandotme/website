@@ -1,10 +1,11 @@
 ---
 title: 'Solving "Integer to English Words" LeetCode problem'
 description: "Breaking down the solution of this string manipulation problem with TypeScript"
-date: "2023-08-29"
+publishedDate: "2023-08-29"
+lang: "en"
 ---
 
-I first came across this problem on an online assessment for a job application. My experience at the time was suboptimal to say the least. I was not able to solve it in the alloted time and stumbled into so many roadblocks which hinder my process.
+asdasd I first came across this problem on an online assessment for a job application. My experience at the time was suboptimal to say the least. I was not able to solve it in the alloted time and stumbled into so many roadblocks which hinder my process.
 
 _Interestingly_, this problem has a like/dislike ratio of 2.9k/5.9k (as of Aug 2023), which I could assume many people also have the same experience as me. So, I will use this opportunity to revisit this problem and solve it for good. I will be using TypeScript for this solution.
 
@@ -21,41 +22,6 @@ This problem asks us to convert a number to its English words representation. Wi
 For example, `123` should be converted to `One Hundred Twenty Three` and `123456791` should be converted to `One Hundred Twenty Three Million Four Hundred Fifty Six Thousand Seven Hundred Ninety One`. Sounds easy enough, huh? (Spoiler alert: it's not)
 
 # Solution
-
-## Overview
-
-Let's understand the solution on a high level. Basically, we will split the number into groups of scale components. For example, a `num` of 1.234.567.891 would be illustrated as follows:
-
-```mermaid
-graph LR
-    subgraph Billion
-        billion["1"]
-    end
-
-    subgraph Million
-        million["234"]
-    end
-
-    subgraph Thousand
-        thousand["567"]
-    end
-
-    subgraph Hundred
-        hundred["8"]
-    end
-
-    subgraph Ten
-        ten["9"]
-    end
-
-    subgraph One
-        one["1"]
-    end
-
-    billion ~~~ million ~~~ thousand ~~~ hundred ~~~ ten ~~~ one
-```
-
-Each group will be converted to its English words representation. Then, we will concatenate the result of each group starting from the highest scale component (billion) to the lowest (one) into a single string.
 
 ## Step 1. Creating Dictionary
 
