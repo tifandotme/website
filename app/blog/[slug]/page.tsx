@@ -8,6 +8,8 @@ import { cn, formatDate } from "../../_lib/utils"
 import { Giscus } from "./giscus"
 import "./post.css"
 
+export const dynamic = "force-static"
+
 export async function generateStaticParams() {
   return getAllPosts().then((posts) =>
     posts.map((post) => ({ slug: post.slug })),
@@ -25,7 +27,6 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.description,
-    metadataBase: new URL("https://tifan.me"),
     openGraph: {
       title: post.title,
       description: post.description,
@@ -35,10 +36,11 @@ export async function generateMetadata({
       type: "article",
       publishedTime: post.publishedDate,
       // modifiedTime: (await getLastModified(post)) ?? undefined
+      images: `/og?title=${encodeURIComponent(post.title)}`,
       authors: ["Tifan Dwi Avianto"],
     },
     other: {
-      "giscus:backlink": new URL(post.url, "https://tifan.me").toString(),
+      "giscus:backlink": `https://tifan.me${post.url}`,
     },
   }
 }

@@ -1,11 +1,17 @@
 "use client"
 
+import type { Metadata } from "next"
 import Image from "next/image"
 import React from "react"
 import { Icon } from "../../_components/icon"
 import { cn, formatDate, slugify } from "../../_lib/utils"
 import projects from "./_content/data"
 import { fetchStargazersCount } from "./github"
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "A collection of projects I've worked on.",
+}
 
 export function Projects() {
   const [data, setData] = React.useState(projects)

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: "Tifan Dwi Avianto — Software Engineer",
   },
   description:
-    "A blog and portfolio site by Tifan. Follow my journey in web development through insightful articles and inspiring projects.",
+    "Code smarter, not harder. A dev blog by Tifan to level up your web development skills.",
   keywords: [
     "tifan dwi avianto",
     "tifan",
@@ -24,6 +24,13 @@ export const metadata: Metadata = {
   ],
   creator: "Tifan Dwi Avianto",
   authors: [{ name: "Tifan Dwi Avianto" }],
+  metadataBase: process.env.VERCEL_URL
+    ? new URL(`https://${process.env.VERCEL_URL}`)
+    : new URL(`http://localhost:${process.env.PORT || 3000}`),
+  openGraph: {
+    type: "website",
+    images: "/og",
+  },
   other: {
     "darkreader-lock": "_", // REF https://github.com/darkreader/darkreader/blob/main/CONTRIBUTING.md#disabling-dark-reader-on-your-site
   },
