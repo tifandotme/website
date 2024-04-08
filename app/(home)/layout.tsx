@@ -1,9 +1,10 @@
 import Link from "next/link"
 import React from "react"
 import { Icon } from "../_components/icon"
-import { navItems } from "../sitemap"
 
 export default function HomeLayout({ children }: React.PropsWithChildren) {
+  const navItems = [{ href: "/projects", label: "Projects" }] as const
+
   return (
     <>
       <header
