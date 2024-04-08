@@ -83,7 +83,7 @@ const config = {
               fontWeight: defaultTheme.fontWeight.normal,
               fontSize: defaultTheme.fontSize.sm[0],
               ...defaultTheme.fontSize.base[1],
-              color: "#949BB0" + " !important",
+              color: "#949BB0",
               backgroundColor: "hsl(var(--codeblock-title))",
               padding: "0.2rem 0.4rem",
               margin: "-0.2rem 0",
