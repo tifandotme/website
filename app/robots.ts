@@ -7,5 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
     sitemap: "https://tifan.me/sitemap.xml",
+    host: "https://tifan.me",
   }
 }
