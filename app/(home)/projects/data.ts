@@ -1,8 +1,3 @@
-import type { StaticImageData } from "next/image"
-import byebyesick from "./byebyesick.webp"
-import crumpledPaper from "./crumpled-paper.webp"
-import puri from "./puri.webp"
-
 const projects: Project[] = [
   {
     name: "Crumpled Paper",
@@ -12,7 +7,7 @@ const projects: Project[] = [
     tags: ["TypeScript", "React", "Next.js", "Zustand", "Tailwind CSS"],
     repoUrl: "https://github.com/tifandotme/crumpled-paper",
     demoUrl: "https://crumpled-paper.tifan.me",
-    image: crumpledPaper,
+    image: "projects/crumpled-paper",
   },
   {
     name: "ByeByeSick",
@@ -32,7 +27,7 @@ const projects: Project[] = [
     ],
     repoUrl: "https://github.com/tifandotme/byebyesick",
     demoUrl: "https://byebyesick-staging.irfancen.com/",
-    image: byebyesick,
+    image: "projects/byebyesick",
   },
   {
     name: "Puri",
@@ -42,7 +37,7 @@ const projects: Project[] = [
     tags: ["TypeScript", "React", "Chakra UI", "Firebase", "PWA"],
     repoUrl: "https://github.com/tifandotme/puri",
     demoUrl: "https://puri.tifan.me",
-    image: puri,
+    image: "projects/puri",
   },
 ]
 
@@ -59,9 +54,9 @@ type Project = {
   repoUrl: string
   demoUrl?: string
   /**
-   * Snapshot image of the project, imported as a static image.
+   * Public ID of the image in Cloudinary.
    */
-  image?: StaticImageData
+  image?: string
 }
 
 export default projects

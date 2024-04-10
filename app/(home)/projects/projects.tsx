@@ -5,7 +5,7 @@ import Image from "next/image"
 import React from "react"
 import { Icon } from "../../_components/icon"
 import { cn, formatDate, slugify } from "../../_lib/utils"
-import projects from "./_content/data"
+import projects from "./data"
 import { fetchStargazersCount } from "./github"
 
 export const metadata: Metadata = {
@@ -156,9 +156,10 @@ export function Projects() {
             {project.image && (
               <Image
                 className="h-fit w-full max-w-[400px] basis-4/12 border"
+                width={1600}
+                height={1000}
                 src={project.image} // NOTE make sure the image is 16:10
                 alt={project.name}
-                placeholder="blur"
                 sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 25vw"
               />
             )}

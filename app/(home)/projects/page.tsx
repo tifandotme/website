@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { slugify } from "../../_lib/utils"
-import projects from "./_content/data"
+import projects from "./data"
 import { Projects } from "./projects"
 
 export const metadata: Metadata = {

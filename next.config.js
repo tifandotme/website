@@ -15,6 +15,8 @@ const config = {
         hostname: "res.cloudinary.com",
       },
     ],
+    loader: "custom",
+    loaderFile: "./app/loader.js",
   },
 }
 
