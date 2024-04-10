@@ -30,8 +30,8 @@ export async function GET(req: NextRequest) {
         >
           <Logo
             style={{
-              width: 160,
-              height: 160,
+              width: 180,
+              height: 180,
             }}
           />
         </div>
@@ -46,29 +46,29 @@ export async function GET(req: NextRequest) {
     (
       <div
         style={{
-          background: "hsl(240 4% 8%)",
+          background: "#94a3b8", // slate 400
+          color: "hsl(240 4% 15%)",
           width: "100%",
           height: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
-          justifyContent: "space-between",
-          padding: "150px",
+          justifyContent: "center",
+          padding: "0 150px",
+          gap: "120px",
         }}
       >
         <Logo
           style={{
             width: 100,
             height: 100,
-            color: "hsl(240 4% 30%)",
           }}
         />
         <div
           style={{
-            fontSize: 120,
-            lineHeight: 0.9,
-            letterSpacing: -1,
-            color: "hsl(240 4% 85%)",
+            fontSize: 140,
+            lineHeight: 0.85,
+            letterSpacing: -2,
           }}
         >
           {postTitle}
@@ -79,11 +79,11 @@ export async function GET(req: NextRequest) {
       ...size,
       fonts: [
         {
+          // Nunito Sans Condensed ExtraBold
           data: await fetch(new URL("./nunito-sans.ttf", import.meta.url)).then(
             (res) => res.arrayBuffer(),
           ),
           name: "Nunito Sans",
-          style: "normal",
         },
       ],
     },
