@@ -6,11 +6,6 @@ const fontSans = Nunito_Sans({
   variable: "--font-sans",
 })
 
-const fontMono = localFont({
-  src: "./commitmono-v143.woff2", // relative to where localFont is invoked
-  variable: "--font-mono",
-})
-
 const fontItalic = Newsreader({
   subsets: ["latin"],
   style: "italic",
@@ -30,4 +25,9 @@ const fontHeading = Imbue({
   adjustFontFallback: false,
 })
 
-export const fonts = [fontSans, fontMono, fontItalic, fontHeading]
+const Commit_Mono = localFont({
+  src: "./commitmono-v143.woff2", // relative to where localFont is invoked
+  variable: "--font-mono",
+})
+
+export const fonts = [fontSans, fontItalic, fontHeading, Commit_Mono]
