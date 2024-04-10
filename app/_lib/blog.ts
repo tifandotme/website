@@ -36,7 +36,12 @@ function findMDXFiles(dir: string): string[] {
       recursive: true,
       encoding: "utf-8",
     })
-    .filter((file) => path.extname(file) === ".mdx")
+    .filter(
+      (file) =>
+        path.extname(file) === ".mdx" &&
+        // prefix with `_` to exclude from build, essentially making it a draft
+        !file.split("/").pop()!.startsWith("_"),
+    )
     .map((file) => path.join(dir, file))
 }
 
