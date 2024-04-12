@@ -35,9 +35,12 @@ export async function generateMetadata({
       locale: post.lang === "en" ? "en_US" : "id_ID",
       type: "article",
       publishedTime: post.publishedDate,
-      // modifiedTime: (await getLastModified(post)) ?? undefined
+      // TODO modifiedTime: (await getLastModified(post)) ?? undefined
       images: `/og?title=${encodeURIComponent(post.title)}`,
       authors: ["Tifan Dwi Avianto"],
+    },
+    twitter: {
+      images: `/og?title=${encodeURIComponent(post.title)}`,
     },
     other: {
       "giscus:backlink": `https://tifan.me${post.url}`,
@@ -135,7 +138,7 @@ function Back({
   return (
     <Link
       className={cn(
-        "-m-3 w-fit rounded-full p-3 text-muted-darker hover:bg-muted-darker/10 hover:text-foreground",
+        "translate-y-0 active:translate-y-px -m-3 w-fit rounded-full p-3 text-muted-darker hover:bg-muted-darker/10 hover:text-foreground",
         // NOTE margin class names from props will need to take into account the existing negative margins
         className,
       )}

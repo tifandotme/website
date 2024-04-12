@@ -1,15 +1,32 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { fonts } from "./_lib/fonts"
 import "./globals.css"
 import { PreloadResources } from "./preload"
 
 export const metadata: Metadata = {
+  metadataBase:
+    process.env.VERCEL_ENV === "production"
+      ? new URL(`https://tifan.me`)
+      : process.env.VERCEL_URL
+        ? new URL(`https://${process.env.VERCEL_URL}`)
+        : new URL(`http://localhost:${process.env.PORT || 3000}`),
   title: {
     template: "%s — Tifan Dwi Avianto",
     default: "Tifan Dwi Avianto — Software Engineer",
   },
-  description:
-    "Code smarter, not harder. A dev blog by Tifan to level up your web development skills.",
+  description: "Developer blog to level up your software engineering skills.",
+  openGraph: {
+    title: "Tifan Dwi Avianto",
+    description: "Developer blog to level up your software engineering skills.",
+    type: "website",
+    images: "/og",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@tifandotme",
+    images: "/og",
+  },
   keywords: [
     "tifan dwi avianto",
     "tifan",
@@ -17,23 +34,24 @@ export const metadata: Metadata = {
     "portfolio",
     "blog",
     "personal site",
-    "web development",
-    "javascript",
-    "typescript",
-    "react",
   ],
   creator: "Tifan Dwi Avianto",
   authors: [{ name: "Tifan Dwi Avianto" }],
-  metadataBase: process.env.VERCEL_URL
-    ? new URL(`https://${process.env.VERCEL_URL}`)
-    : new URL(`http://localhost:${process.env.PORT || 3000}`),
-  openGraph: {
-    type: "website",
-    images: "/og",
-  },
-  other: {
-    "darkreader-lock": "_", // REF https://github.com/darkreader/darkreader/blob/main/CONTRIBUTING.md#disabling-dark-reader-on-your-site
-  },
+  other: { "darkreader-lock": "_" },
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    {
+      color: "hsl(240 4% 8%)",
+      media: "(prefers-color-scheme: dark)",
+    },
+    {
+      color: "hsl(0 0% 100%)",
+      media: "(prefers-color-scheme: light)",
+    },
+  ],
+  colorScheme: "dark light",
 }
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
@@ -41,7 +59,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
     <html lang="en">
       <body className={fonts.map((font) => font.variable).join(" ")}>
         {children}
-        {process.env.NODE_ENV === "production" && (
+        {process.env.VERCEL_ENV === "production" && (
           <script
             defer
             src="https://analytics.tifan.me/script.js"
