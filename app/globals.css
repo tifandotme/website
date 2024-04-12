@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
+:root {
   --background: 0 0% 100%;
   --foreground: 240 4% 5%;
   --border: 0 0% 80%;
@@ -13,29 +13,26 @@
   --muted-small-text: 240 4% 30%;
   --muted-large-text: 240 4% 40%;
 }
-@media (prefers-color-scheme: dark) { */
-:root {
-  --background: 240 4% 8%;
-  --foreground: 0 0% 85%;
-  --border: 0 0% 17%;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 240 4% 8%;
+    --foreground: 0 0% 85%;
+    --border: 0 0% 17%;
 
-  --bold: 0 0% 92%;
-  --heading: 0 0% 87%;
+    --bold: 0 0% 92%;
+    --heading: 0 0% 87%;
 
-  --muted-small-text: 0 0% 50%;
-  --muted-large-text: 0 0% 39%;
+    --muted-small-text: 0 0% 50%;
+    --muted-large-text: 0 0% 39%;
+  }
 }
-html {
-  color-scheme: dark;
-}
-/* } */
 
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply min-h-screen bg-background font-sans text-foreground antialiased selection:bg-zinc-300 dark:selection:bg-zinc-700;
+    @apply min-h-screen bg-background font-sans text-foreground antialiased selection:bg-slate-300 dark:selection:bg-slate-400 dark:selection:text-black;
   }
   em {
     @apply font-italic text-[109%];
@@ -49,8 +46,4 @@ html {
   .container-lg {
     @apply mx-auto max-w-screen-lg px-4 sm:px-6;
   }
-}
-
-a {
-  @apply translate-y-0 active:translate-y-px;
 }

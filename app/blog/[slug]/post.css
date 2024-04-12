@@ -1,24 +1,24 @@
-/* :root {
+:root {
   --codeblock-background: 240 4% 92%;
   --codeblock-title: 240 6% 92%;
   --codeblock-highlight: 240 4% 90%;
-} */
-/* @media (prefers-color-scheme: dark) { */
-:root {
-  --codeblock-background: 240 2% 10%;
-  --codeblock-title: 240 2% 12%;
-  --codeblock-highlight: 240 2% 15%;
 }
-/* } */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --codeblock-background: 240 2% 10%;
+    --codeblock-title: 240 2% 12%;
+    --codeblock-highlight: 240 2% 15%;
+  }
+}
 
 /* code block */
 
 code[data-theme*=" "],
 code[data-theme*=" "] span {
-  /* color: var(--shiki-light); */
-  /* @media (prefers-color-scheme: dark) { */
-  color: var(--shiki-dark);
-  /* } */
+  color: var(--shiki-light);
+  @media (prefers-color-scheme: dark) {
+    color: var(--shiki-dark);
+  }
 }
 
 [data-rehype-pretty-code-figure] {
