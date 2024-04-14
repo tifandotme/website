@@ -35,7 +35,6 @@ export async function generateMetadata({
       locale: post.lang === "en" ? "en_US" : "id_ID",
       type: "article",
       publishedTime: post.publishedDate,
-      // TODO modifiedTime: (await getLastModified(post)) ?? undefined
       images: `/og?title=${encodeURIComponent(post.title)}`,
       authors: ["Tifan Dwi Avianto"],
     },
