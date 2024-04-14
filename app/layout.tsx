@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     type: "website",
     images: "/og",
     locale: "en_US",
+    url: "https://tifan.me",
   },
   twitter: {
     card: "summary_large_image",
@@ -36,7 +37,6 @@ export const metadata: Metadata = {
     "personal site",
   ],
   creator: "Tifan Dwi Avianto",
-  authors: [{ name: "Tifan Dwi Avianto" }],
   other: { "darkreader-lock": "_" },
 }
 
