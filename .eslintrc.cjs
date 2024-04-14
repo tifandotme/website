@@ -1,7 +1,6 @@
 // REF https://github.com/vercel/next.js/blob/canary/packages/eslint-config-next/index.js
 
-// NOTE the old config system will be deprecated in v9.0.0 in favor of flat config:
-// https://eslint.org/blog/2022/08/new-config-system-part-2/
+// https://github.com/vercel/next.js/pull/64141 (@9 dep plugins is being worked on)
 
 /** @type {import("eslint").Linter.Config} */
 const config = {

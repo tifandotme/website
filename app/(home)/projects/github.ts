@@ -1,5 +1,8 @@
 "use server"
 
+// NOTE rate limit for authenticated user is 5000 req/hour
+// https://docs.github.com/en/rest/overview/rate-limits-for-the-rest-api?apiVersion=2022-11-28#primary-rate-limit-for-authenticated-users
+
 export async function fetchStargazersCount(repoUrl: string) {
   try {
     const res = await fetch(
