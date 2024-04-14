@@ -26,7 +26,6 @@ const projects: Project[] = [
       "PostgreSQL",
     ],
     repoUrl: "https://github.com/tifandotme/byebyesick",
-    demoUrl: "https://byebyesick-staging.irfancen.com/",
     image: "projects/byebyesick",
   },
   {
