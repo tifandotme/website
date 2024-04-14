@@ -137,7 +137,7 @@ function Back({
   return (
     <Link
       className={cn(
-        "translate-y-0 active:translate-y-px -m-3 w-fit rounded-full p-3 text-muted-darker hover:bg-muted-darker/10 hover:text-foreground",
+        "-m-3 w-fit translate-y-0 rounded-full p-3 text-muted-darker hover:bg-muted-darker/10 hover:text-foreground active:translate-y-px",
         // NOTE margin class names from props will need to take into account the existing negative margins
         className,
       )}
