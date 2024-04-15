@@ -45,32 +45,37 @@ export const components: MDXComponents = {
   }: {
     caption?: string
   } & ImageProps) => {
-    const { height } = await getImageData(
-      `https://res.cloudinary.com/tifan/c_limit,w_${width},q_1,f_webp/${publicId}`,
-    )
-    const { base64 } = await getImageData(
-      `https://res.cloudinary.com/tifan/t_placeholder/${publicId}`,
-    )
+    try {
+      const { height } = await getImageData(
+        `https://res.cloudinary.com/tifan/c_limit,w_${width},q_1,f_webp/${publicId}`,
+      )
+      const { base64 } = await getImageData(
+        `https://res.cloudinary.com/tifan/t_placeholder/${publicId}`,
+      )
 
-    return (
-      <figure className={cn("justify-self-center", className)}>
-        <Image
-          width={width}
-          height={height}
-          placeholder="blur"
-          blurDataURL={base64}
-          alt={alt}
-          src={publicId}
-          sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 75vw, (max-width: 1440px) 60vw, 53vw"
-          {...props}
-        />
+      return (
+        <figure className={cn("justify-self-center", className)}>
+          <Image
+            width={width}
+            height={height}
+            placeholder="blur"
+            blurDataURL={base64}
+            alt={alt}
+            src={publicId}
+            sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 75vw, (max-width: 1440px) 60vw, 53vw"
+            {...props}
+          />
 
-        {caption && (
-          <figcaption className="text-center text-sm text-muted">
-            {caption}
-          </figcaption>
-        )}
-      </figure>
-    )
+          {caption && (
+            <figcaption className="text-center text-sm text-muted">
+              {caption}
+            </figcaption>
+          )}
+        </figure>
+      )
+    } catch (err) {
+      console.error(err instanceof Error ? err.message : "An error occured")
+      return null
+    }
   },
 }
