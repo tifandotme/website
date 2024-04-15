@@ -158,7 +158,7 @@ export function Projects() {
                 className="h-fit w-full max-w-[400px] basis-4/12 border max-lg:self-center"
                 width={1600}
                 height={1000}
-                src={project.image} // NOTE make sure the image is 16:10
+                src={project.image}
                 alt={project.name}
                 sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 25vw"
               />

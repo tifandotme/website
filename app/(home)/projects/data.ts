@@ -60,7 +60,7 @@ type Project = {
   repoUrl: string
   demoUrl?: string
   /**
-   * Cloudinary Public ID
+   * Cloudinary Public ID. Ensure that the image's aspect ratio is 16:10.
    */
   image?: string
 }
