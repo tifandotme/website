@@ -82,7 +82,7 @@ export function Projects() {
       <section className="container-lg space-y-20">
         {data.map((project) => (
           <article
-            className="flex gap-x-10 gap-y-5 max-lg:flex-col max-lg:items-center"
+            className="flex gap-x-10 gap-y-5 max-lg:flex-col"
             key={project.name}
           >
             <div className={cn(project.image && "basis-8/12")}>
@@ -155,7 +155,7 @@ export function Projects() {
 
             {project.image && (
               <Image
-                className="h-fit w-full max-w-[400px] basis-4/12 border"
+                className="h-fit w-full max-w-[400px] basis-4/12 border max-lg:self-center"
                 width={1600}
                 height={1000}
                 src={project.image} // NOTE make sure the image is 16:10
