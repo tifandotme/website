@@ -23,7 +23,7 @@ export function Projects() {
     setData((data) =>
       data.toSorted((a, b) => {
         if (sortBy === "stars") return b.stars - a.stars
-        return Intl.Collator().compare(b.lastUpdated, a.lastUpdated)
+        return Intl.Collator().compare(b.updatedAt, a.updatedAt)
       }),
     )
   }, [isPending, sortBy])
@@ -92,10 +92,10 @@ export function Projects() {
                 </h2>
                 <time
                   className="text-muted"
-                  dateTime={project.lastUpdated}
+                  dateTime={project.updatedAt}
                   title="Last updated"
                 >
-                  {formatDate(project.lastUpdated, { includeDay: false })}
+                  {formatDate(project.updatedAt, { includeDay: false })}
                 </time>
               </div>
 

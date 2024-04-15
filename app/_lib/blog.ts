@@ -89,7 +89,7 @@ export async function getAllPosts() {
     }),
   ).then((posts) =>
     posts.sort((a, b) =>
-      Intl.Collator().compare(b.publishedDate, a.publishedDate),
+      Intl.Collator().compare(b.publishedAt, a.publishedAt),
     ),
   )
 }
@@ -106,7 +106,7 @@ type Frontmatter = {
   /**
    * Format: `YYYY-MM-DD`
    */
-  publishedDate: `${number}-${number}-${number}`
+  publishedAt: `${number}-${number}-${number}`
   lang: "en" | "id"
 }
 
@@ -120,7 +120,7 @@ async function validate(frontmatter: Frontmatter, file: string) {
   const requiredProperties: (keyof Frontmatter)[] = [
     "title",
     "description",
-    "publishedDate",
+    "publishedAt",
     "lang",
   ]
 

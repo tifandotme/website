@@ -34,7 +34,7 @@ export async function generateMetadata({
       siteName: "Tifan Dwi Avianto",
       locale: post.lang === "en" ? "en_US" : "id_ID",
       type: "article",
-      publishedTime: post.publishedDate,
+      publishedTime: post.publishedAt,
       images: `/og?title=${encodeURIComponent(post.title)}`,
       authors: ["Tifan Dwi Avianto"],
     },
@@ -91,8 +91,8 @@ export default async function PostPage({
             className="inline-flex flex-wrap gap-3 font-mono font-medium leading-none text-muted"
             aria-hidden="true"
           >
-            <time dateTime={post.publishedDate} title="Published date">
-              {formatDate(post.publishedDate, { fullMonth: true })}
+            <time dateTime={post.publishedAt} title="Published date">
+              {formatDate(post.publishedAt, { fullMonth: true })}
             </time>
             <span className="no-js inline-block size-[3px] self-center rounded-full bg-muted-darker/60" />
             <Views className="no-js" slug={post.slug} increment />

@@ -59,9 +59,9 @@ export function Posts({ posts }: PostsProps) {
                 <span className="inline-flex items-center gap-5 leading-7 text-muted-darker md:flex-row-reverse">
                   <time
                     className="whitespace-nowrap "
-                    dateTime={post.publishedDate}
+                    dateTime={post.publishedAt}
                   >
-                    {formatDateDynamic(post.publishedDate)}
+                    {formatDateDynamic(post.publishedAt)}
                   </time>
                   <Views className="no-js" slug={post.slug} />
                 </span>
