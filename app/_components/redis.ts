@@ -1,7 +1,7 @@
 "use server"
 
-const url = process.env.UPSTASH_REDIS_REST_URL as string
-const token = process.env.UPSTASH_REDIS_REST_TOKEN as string
+const url = process.env.KV_REST_API_URL as string
+const token = process.env.KV_REST_API_TOKEN as string
 
 export async function fetchViews(slug: string, increment = false) {
   try {

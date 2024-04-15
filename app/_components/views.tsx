@@ -3,7 +3,7 @@
 import React from "react"
 import { cn } from "../_lib/utils"
 import { Icon } from "./icon"
-import { fetchViews } from "./upstash"
+import { fetchViews } from "./redis"
 
 interface ViewsProps extends React.HTMLAttributes<HTMLSpanElement> {
   slug: string
