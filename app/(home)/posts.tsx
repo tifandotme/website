@@ -49,7 +49,7 @@ export function Posts({ posts }: PostsProps) {
             )}
           >
             <Link
-              className="relative -mx-4 flex translate-y-0 flex-col gap-2 p-4 hover:bg-muted-darker/10 active:translate-y-px active:bg-muted-darker/10 sm:-mx-3 sm:p-3"
+              className="relative -mx-4 flex flex-col gap-2 p-4 hover:bg-muted-darker/10 active:bg-muted-darker/10 sm:-mx-3 sm:p-3"
               href={post.url}
             >
               <div className="flex flex-col justify-between md:flex-row md:items-start md:gap-2">

@@ -88,9 +88,7 @@ export async function getAllPosts() {
       }
     }),
   ).then((posts) =>
-    posts.sort((a, b) =>
-      Intl.Collator().compare(b.publishedAt, a.publishedAt),
-    ),
+    posts.sort((a, b) => Intl.Collator().compare(b.publishedAt, a.publishedAt)),
   )
 }
 
