@@ -1,7 +1,21 @@
 import type { MDXRemoteProps } from "next-mdx-remote/rsc"
 import type { ImageProps } from "next/image"
 import Image from "next/image"
-import React from "react"
+import React, { type ComponentProps } from "react"
+import {
+  QuotedTweet,
+  TweetActions,
+  TweetBody,
+  TweetHeader,
+  TweetInReplyTo,
+  TweetInfo,
+  TweetMedia,
+  TweetReplies,
+  TweetContainer as _TweetContainer,
+  enrichTweet,
+  type TwitterComponents,
+} from "react-tweet"
+import { getTweet } from "react-tweet/api"
 import { cn } from "../utils"
 import { CopyButton } from "./copy"
 import { getImageData } from "./plaiceholder"
@@ -72,6 +86,60 @@ export const components: MDXComponents = {
             </figcaption>
           )}
         </figure>
+      )
+    } catch (err) {
+      console.error(err instanceof Error ? err.message : "An error occured")
+      return null
+    }
+  },
+  Tweet: async ({ id }: { id: string }) => {
+    try {
+      const TweetContainer = (
+        props: ComponentProps<typeof _TweetContainer>,
+      ) => (
+        <_TweetContainer
+          className={cn(
+            "not-prose justify-self-center !transition-none [--tweet-bg-color-hover:hsl(var(--muted-large-text)/.025)] [--tweet-bg-color:transparent] [--tweet-border:1px_solid_hsl(var(--border))] [--tweet-color-blue-secondary-hover:hsl(var(--muted-large-text)/.05)] [--tweet-quoted-bg-color-hover:hsl(var(--muted-large-text)/.05)] [&_*]:!transition-none",
+            props.className,
+          )}
+          {...props}
+        />
+      )
+
+      const t = await getTweet(id, {
+        next: {
+          revalidate: 3600 * 24,
+        },
+      })
+      if (!t) {
+        return (
+          <TweetContainer>
+            <div className="flex flex-col items-center py-3">
+              <p className="text-xl">Tweet not found</p>
+            </div>
+          </TweetContainer>
+        )
+      }
+
+      const tweet = enrichTweet(t)
+      const components: TwitterComponents = {
+        AvatarImg: (props) => <Image {...props} alt="Avatar" unoptimized />,
+        MediaImg: (props) => <Image {...props} alt="Avatar" unoptimized fill />,
+      }
+
+      return (
+        <TweetContainer>
+          <TweetHeader tweet={tweet} components={components} />
+          {tweet.in_reply_to_status_id_str && <TweetInReplyTo tweet={tweet} />}
+          <TweetBody tweet={tweet} />
+          {tweet.mediaDetails?.length ? (
+            <TweetMedia tweet={tweet} components={components} />
+          ) : null}
+          {tweet.quoted_tweet && <QuotedTweet tweet={tweet.quoted_tweet} />}
+          <TweetInfo tweet={tweet} />
+          <TweetActions tweet={tweet} />
+          <TweetReplies tweet={tweet} />
+        </TweetContainer>
       )
     } catch (err) {
       console.error(err instanceof Error ? err.message : "An error occured")
