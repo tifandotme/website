@@ -19,7 +19,7 @@ export default function ProjectsPage() {
         </p>
       </article>
 
-      <section className="bg-slate-700 py-10 text-white dark:bg-slate-400 dark:text-black">
+      <section className="bg-slate-700 py-10 text-white selection:text-black dark:bg-slate-400 dark:text-black dark:selection:bg-slate-700 dark:selection:text-white">
         <div className="container-md">
           <p className="mb-3.5 text-lg font-semibold">Table of Contents</p>
           <ul>
