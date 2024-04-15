@@ -112,7 +112,7 @@ export function Projects() {
                     {project.stars}
                   </a>
                 </li>
-                {project.tags.map((tag) => (
+                {project.tags.sort().map((tag) => (
                   <li
                     className="rounded-full bg-[hsl(0,0%,90%)] px-2.5 py-0.5 dark:bg-[hsl(0,0%,12%)]"
                     key={tag}

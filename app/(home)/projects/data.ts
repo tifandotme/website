@@ -4,7 +4,7 @@ const projects: Project[] = [
     description:
       "Personal platform to share my writings and showcase my open-source projects.",
     updatedAt: "2024-04",
-    tags: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Redis"],
+    tags: ["TypeScript", "Next.js", "Tailwind CSS", "Redis"],
     repoUrl: "https://github.com/tifandotme/website",
   },
   {
@@ -12,7 +12,7 @@ const projects: Project[] = [
     description:
       "Medium-like news publishing platform with built-in content management system. Noteable features include role-based user authentication, subscription-based content access, like system, and algorithmic trending articles section.",
     updatedAt: "2023-12",
-    tags: ["TypeScript", "React", "Next.js", "Zustand", "Tailwind CSS"],
+    tags: ["TypeScript", "Next.js", "Zustand", "Tailwind CSS"],
     repoUrl: "https://github.com/tifandotme/crumpled-paper",
     demoUrl: "https://crumpled-paper.tifan.me",
     image: "projects/crumpled-paper",
@@ -25,7 +25,6 @@ const projects: Project[] = [
     tags: [
       "TypeScript",
       "Go",
-      "React",
       "Next.js",
       "Zustand",
       "Tailwind CSS",
@@ -61,7 +60,7 @@ type Project = {
   repoUrl: string
   demoUrl?: string
   /**
-   * Public ID of the image in Cloudinary.
+   * Cloudinary Public ID
    */
   image?: string
 }
