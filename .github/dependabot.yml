@@ -7,5 +7,5 @@ updates:
     schedule:
       interval: "weekly"
     ignore:
-      - dependency-name: "sharp"
       - dependency-name: "eslint"
+        versions: ["9.x"]
