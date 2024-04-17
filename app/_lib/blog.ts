@@ -122,18 +122,11 @@ async function validate(frontmatter: Frontmatter, file: string) {
     "lang",
   ]
 
-  try {
-    for (const prop of requiredProperties) {
-      if (!frontmatter[prop]) {
-        throw new Error(
-          `Missing or invalid frontmatter: ${prop}. Value: ${frontmatter[prop]}`,
-        )
-      }
+  for (const prop of requiredProperties) {
+    if (!frontmatter[prop]) {
+      throw new Error(
+        `Missing or invalid frontmatter: ${prop}. Value: ${frontmatter[prop]} (${file})`,
+      )
     }
-  } catch (err) {
-    if (err instanceof Error) {
-      throw new Error(`${err.message} (${file})`)
-    }
-    throw err
   }
 }
