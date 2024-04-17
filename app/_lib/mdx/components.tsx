@@ -1,6 +1,7 @@
 import type { MDXRemoteProps } from "next-mdx-remote/rsc"
 import type { ImageProps } from "next/image"
 import Image from "next/image"
+import { getPlaiceholder } from "plaiceholder"
 import React, { type ComponentProps } from "react"
 import {
   QuotedTweet,
@@ -18,7 +19,6 @@ import {
 import { getTweet } from "react-tweet/api"
 import { cn } from "../utils"
 import { CopyButton } from "./copy"
-import { getImageData } from "./plaiceholder"
 
 type MDXComponents = MDXRemoteProps["components"]
 
@@ -60,11 +60,24 @@ export const components: MDXComponents = {
     caption?: string
   } & ImageProps) => {
     try {
-      const { height } = await getImageData(
-        `https://res.cloudinary.com/tifan/c_limit,w_${width},q_1,f_webp/${publicId}`,
+      const {
+        metadata: { height },
+      } = await getPlaiceholder(
+        Buffer.from(
+          await fetch(
+            `https://res.cloudinary.com/tifan/$w_${width}/t_1/${publicId}`,
+          ).then((res) => res.arrayBuffer()),
+        ),
+        { size: 10 },
       )
-      const { base64 } = await getImageData(
-        `https://res.cloudinary.com/tifan/t_placeholder/${publicId}`,
+
+      const { base64 } = await getPlaiceholder(
+        Buffer.from(
+          await fetch(
+            `https://res.cloudinary.com/tifan/t_placeholder/${publicId}`,
+          ).then((res) => res.arrayBuffer()),
+        ),
+        { size: 10 },
       )
 
       return (
@@ -106,11 +119,7 @@ export const components: MDXComponents = {
         />
       )
 
-      const t = await getTweet(id, {
-        next: {
-          revalidate: 3600 * 24,
-        },
-      })
+      const t = await getTweet(id)
       if (!t) {
         return (
           <TweetContainer>
