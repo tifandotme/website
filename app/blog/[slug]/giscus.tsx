@@ -47,7 +47,10 @@ export function Giscus() {
 
   return (
     <div
-      className={cn("no-js not-prose relative mt-20", !isLoading && "-mb-2")}
+      className={cn(
+        "no-js not-prose relative mt-20 print:hidden",
+        !isLoading && "-mb-2",
+      )}
       aria-hidden="true"
     >
       {isLoading && <GiscusSkeleton />}

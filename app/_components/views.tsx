@@ -65,7 +65,7 @@ export function Views({
   return (
     <span
       className={cn(
-        "relative inline-flex items-center align-middle leading-none",
+        "relative inline-flex items-center align-middle leading-none print:hidden",
         className,
       )}
       title="Views"

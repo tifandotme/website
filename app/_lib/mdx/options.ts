@@ -87,6 +87,7 @@ export const mdxOptions: MDXOptions = {
           ],
         },
         contentProperties: {
+          className: "print:hidden",
           "aria-hidden": true,
         },
         target: "_blank",
