@@ -1,6 +1,5 @@
 import type { MDXRemoteProps } from "next-mdx-remote/rsc"
-import type { ImageProps } from "next/image"
-import Image from "next/image"
+import Image, { type ImageProps } from "next/image"
 import { getPlaiceholder } from "plaiceholder"
 import React, { type ComponentProps } from "react"
 import {
@@ -24,7 +23,7 @@ type MDXComponents = MDXRemoteProps["components"]
 
 export const components: MDXComponents = {
   // @ts-ignore
-  pre: ({ children, raw, ...props }) => {
+  pre: ({ raw, children, ...props }) => {
     return (
       <pre {...props}>
         {children}
@@ -57,6 +56,7 @@ export const components: MDXComponents = {
     alt,
     ...props
   }: {
+    width?: number
     caption?: string
   } & ImageProps) => {
     try {
@@ -81,7 +81,12 @@ export const components: MDXComponents = {
       )
 
       return (
-        <figure className={cn("justify-self-center", className)}>
+        <figure
+          className={cn(
+            "justify-self-center max-md:-mx-6 max-sm:-mx-4",
+            className,
+          )}
+        >
           <Image
             width={width}
             height={height}
@@ -92,7 +97,6 @@ export const components: MDXComponents = {
             sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 75vw, (max-width: 1440px) 60vw, 53vw"
             {...props}
           />
-
           {caption && (
             <figcaption className="text-center text-sm text-muted">
               {caption}

@@ -60,8 +60,8 @@ export async function GET(req: NextRequest) {
       >
         <Logo
           style={{
-            width: 85,
-            height: 85,
+            width: 87,
+            height: 87,
           }}
         />
         <div
