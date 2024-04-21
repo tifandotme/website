@@ -25,25 +25,7 @@ export const components: MDXComponents = {
       </pre>
     )
   },
-  /**
-   * Post content is part of a grid system, so individual elements such as `p`
-   * or `h2` is a grid item. By wrapping an element with this component, it will
-   * span the full width.
-   */
-  Full: ({ children }: React.PropsWithChildren) => {
-    if (React.isValidElement(children)) {
-      return React.cloneElement(children, {
-        ...children.props,
-        className: cn(children.props.className, "!col-span-full"),
-      })
-    }
-    if (React.Children.count(children) > 1) {
-      React.Children.only(null)
-    }
-    return null
-  },
   Image: async ({
-    bleed = false,
     caption,
     width = 768,
     src: publicId,
@@ -51,7 +33,6 @@ export const components: MDXComponents = {
     className,
     ...props
   }: {
-    bleed?: boolean
     caption?: string
     width?: number
   } & ImageProps) => {
@@ -80,7 +61,9 @@ export const components: MDXComponents = {
         <figure
           className={cn(
             "mx-[calc(var(--post-padding)*-1)]",
-            bleed ? "!col-span-full" : "justify-self-center",
+            width >= 768
+              ? "!col-span-full [&_img]:w-full"
+              : "justify-self-center",
             className,
           )}
         >
@@ -92,7 +75,6 @@ export const components: MDXComponents = {
             alt={alt}
             src={publicId}
             sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 75vw, (max-width: 1440px) 60vw, 53vw"
-            className="w-full"
             {...props}
           />
           {caption && (
