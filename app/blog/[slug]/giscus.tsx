@@ -6,33 +6,14 @@ import { cn } from "../../_lib/utils"
 
 export function Giscus() {
   const [isLoading, setIsLoading] = React.useState(true)
-  const [theme, setTheme] = React.useState<"light" | "dark">("light")
 
   React.useEffect(() => {
-    if (!window.matchMedia) {
-      return
-    }
+    if (typeof window === "undefined") return
 
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
-    setTheme(mediaQuery.matches ? "dark" : "light")
-
-    function onChange(event: MediaQueryListEvent): void {
-      setTheme(event.matches ? "dark" : "light")
-    }
-    mediaQuery.addEventListener("change", onChange)
-
-    return () => {
-      mediaQuery.removeEventListener("change", onChange)
-    }
-  }, [])
-
-  React.useEffect(() => {
-    function handleMessage(event: MessageEvent) {
+    const handleMessage = (event: MessageEvent) => {
       if (event.origin !== "https://giscus.app") return
       if (!(typeof event.data === "object" && event.data.giscus)) return
-
       const height = event.data.giscus.resizeHeight
-
       // only show the comments after the loading animation is done
       if (Math.round(height) > 90) {
         setIsLoading(false)
@@ -45,15 +26,19 @@ export function Giscus() {
     }
   }, [])
 
+  const base =
+    process.env.NODE_ENV === "development"
+      ? `http://localhost:${process.env.PORT || 3000}`
+      : "https://tifan.me"
+
   return (
     <div
-      className={cn(
-        "no-js not-prose relative mt-20 print:hidden",
-        !isLoading && "-mb-2",
-      )}
+      className="no-js not-prose relative -mx-px mt-32 print:hidden"
       aria-hidden="true"
     >
-      {isLoading && <GiscusSkeleton />}
+      {isLoading && (
+        <div className="h-[220px] w-full animate-pulse rounded-sm bg-foreground/10" />
+      )}
       <div className={cn(isLoading && "absolute top-0 w-full opacity-0")}>
         <GiscusReact
           id="giscus"
@@ -65,20 +50,11 @@ export function Giscus() {
           strict="1"
           reactionsEnabled="0"
           emitMetadata="0"
-          inputPosition="top"
-          theme={theme === "dark" ? "transparent_dark" : "light"}
+          inputPosition="bottom"
           lang="en"
+          theme={`${base}/giscus.css`}
         />
       </div>
-    </div>
-  )
-}
-
-export function GiscusSkeleton() {
-  return (
-    <div className="flex flex-col">
-      <div className="mb-[23px] h-[28px] w-[35%] animate-pulse rounded-sm bg-foreground/5" />
-      <div className="h-[234px] w-full animate-pulse rounded-sm bg-foreground/5" />
     </div>
   )
 }
