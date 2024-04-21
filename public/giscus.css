@@ -14,10 +14,10 @@ main {
 /* #region light */
 main {
   --background: 0 0% 100%;
-  --foreground: 240 4% 5%;
+  --foreground: 0 0% 5%;
+  --muted-small-text: 240 4% 45%;
+  --muted-large-text: 240 4% 55%;
   --border: 0 0% 80%;
-  --muted-small-text: 240 4% 30%;
-  --muted-large-text: 240 4% 40%;
 
   --color-prettylights-syntax-comment: #6e7781;
   --color-prettylights-syntax-constant: #0550ae;
@@ -113,9 +113,9 @@ main .pagination-loader-container {
   main {
     --background: 240 4% 8%;
     --foreground: 0 0% 85%;
-    --border: 0 0% 17%;
     --muted-small-text: 0 0% 50%;
     --muted-large-text: 0 0% 39%;
+    --border: 0 0% 17%;
 
     --color-prettylights-syntax-comment: #8b949e;
     --color-prettylights-syntax-constant: #79c0ff;

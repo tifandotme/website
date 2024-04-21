@@ -53,6 +53,9 @@ export const SandPackCSS = () => {
       border-width: 1px 1px 1px 0;
       border-color: hsl(var(--codeblock-background));
     }
+    .sp-preview-iframe {
+      user-select: none;
+    }
     a[title^="Open in CodeSandbox"] {
       padding: 0 !important;
       width: 28px;
