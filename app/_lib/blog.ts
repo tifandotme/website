@@ -15,11 +15,11 @@ function extractHeadings(source: string) {
   const matches = lines.filter((line) => {
     if (line.startsWith("```")) isInsideCodeBlock = !isInsideCodeBlock
     if (isInsideCodeBlock) return false
-    return /^\s*#\s.*/.test(line)
+    return /^\s*##\s.*/.test(line)
   })
 
   return matches.map((line) => {
-    const text = line.replace(/^(\s*#\s*)/, "")
+    const text = line.replace(/^(\s*##\s*)/, "")
     return {
       text,
       slug: slugify(text),

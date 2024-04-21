@@ -1,7 +1,8 @@
-import type { Metadata, Viewport } from "next"
+import type { Metadata } from "next"
 import { fonts } from "./_lib/fonts"
 import "./globals.css"
 import { PreloadResources } from "./preload"
+import { SandPackCSS } from "./sandpack-css"
 
 export const metadata: Metadata = {
   metadataBase:
@@ -40,23 +41,12 @@ export const metadata: Metadata = {
   other: { "darkreader-lock": "_" },
 }
 
-export const viewport: Viewport = {
-  themeColor: [
-    {
-      color: "hsl(240 4% 8%)",
-      media: "(prefers-color-scheme: dark)",
-    },
-    {
-      color: "hsl(0 0% 100%)",
-      media: "(prefers-color-scheme: light)",
-    },
-  ],
-  colorScheme: "dark light",
-}
-
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
+      <head>
+        <SandPackCSS />
+      </head>
       <body className={fonts.map((font) => font.variable).join(" ")}>
         {children}
         {process.env.VERCEL_ENV === "production" && (

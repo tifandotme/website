@@ -10,9 +10,6 @@ import rehypeExternalLinks, {
 import rehypePrettyCode, {
   type Options as PrettyCodeOptions,
 } from "rehype-pretty-code"
-import rehypeShiftHeading, {
-  type Options as ShiftHeadingOptions,
-} from "rehype-shift-heading"
 import rehypeSlug from "rehype-slug"
 import { visit } from "unist-util-visit"
 
@@ -55,16 +52,11 @@ export const mdxOptions: MDXOptions = {
             // discard prose-a styles
             "font-inherit text-inherit no-underline",
 
-            "-ml-[1em] pl-[1em] before:absolute before:-ml-[1em] before:font-mono before:font-extralight before:text-transparent before:content-['#'] before:hover:text-muted-darker",
+            "-ml-[1em] pl-[1em] before:absolute before:-ml-[1em] before:font-mono before:font-extralight before:text-transparent md:before:content-['#'] before:hover:text-muted-darker",
           ],
+          tabIndex: -1,
         },
       } satisfies AutolinkHeadingsOptions,
-    ],
-    [
-      rehypeShiftHeading,
-      {
-        shift: 1,
-      } satisfies ShiftHeadingOptions,
     ],
     [
       rehypeExternalLinks,

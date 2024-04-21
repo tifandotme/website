@@ -25,6 +25,9 @@
     --muted-small-text: 0 0% 50%;
     --muted-large-text: 0 0% 39%;
   }
+  html {
+    color-scheme: dark;
+  }
 }
 
 @layer base {
