@@ -100,9 +100,9 @@ export function Projects() {
               </div>
 
               <ul className="flex flex-wrap items-center gap-1 text-sm text-muted">
-                <li className="select-none rounded-full bg-[hsl(0,0%,90%)] px-2.5 py-0.5 hover:bg-[hsl(0,0%,85%)] dark:bg-[hsl(0,0%,12%)] dark:hover:bg-[hsl(0,0%,16%)]">
+                <li>
                   <a
-                    className="flex items-center gap-1"
+                    className="flex select-none items-center gap-1 rounded-full bg-[hsl(0,0%,90%)] px-2.5 py-0.5 hover:bg-[hsl(0,0%,85%)] dark:bg-[hsl(0,0%,12%)] dark:hover:bg-[hsl(0,0%,16%)]"
                     rel="noopener noreferrer"
                     target="_blank"
                     href={`${project.repoUrl}/stargazers`}
