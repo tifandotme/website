@@ -4,9 +4,9 @@ import { Posts } from "./posts"
 
 export default async function HomePage() {
   const externalLinks = [
-    { href: "https://www.linkedin.com/in/tifandotme", label: "LinkedIn" },
-    { href: "https://github.com/tifandotme", label: "GitHub" },
-    { href: "https://twitter.com/tifandotme", label: "Twitter" },
+    { href: "https://tifan.me/li", label: "LinkedIn" },
+    { href: "https://tifan.me/gh", label: "GitHub" },
+    { href: "https://tifan.me/x", label: "Twitter" },
   ] as const
 
   const posts = await getAllPosts()
@@ -18,13 +18,10 @@ export default async function HomePage() {
           Tifan Dwi Avianto
         </h1>
         <p>
-          My ambition is to create <em>efficient</em> and <em>elegant</em>{" "}
-          software solutions that can make a meaningful and positive impact on
-          people&apos;s lives.
-        </p>
-        <p>
-          Outside of programming, I&apos;m also passionate about{" "}
-          <em>science fiction</em> and <em>philosophy</em>.
+          I love building <em>polished</em> user interfaces and <em>elegant</em>{" "}
+          software systems. In pursuit of my goal to empower people with
+          meaningful digital experiences, I document my insights and learnings
+          along the way.
         </p>
         <ul className="flex flex-wrap gap-3" aria-label="External links">
           {externalLinks.map((link) => (
@@ -34,6 +31,7 @@ export default async function HomePage() {
                 href={link.href}
                 rel="noopener noreferrer"
                 target="_blank"
+                data-umami-event={`${link.label} link`}
               >
                 {link.label}
                 <Icon id="external" className="size-4 text-muted-darker/80" />

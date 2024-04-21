@@ -27,6 +27,7 @@ export function Posts({ posts }: PostsProps) {
           onClick={() => {
             setIsEnglishOnly((prev) => !prev)
           }}
+          data-umami-event="English Only toggle"
         >
           <span
             className="relative inline-flex items-center justify-center"
