@@ -28,6 +28,10 @@
       "destination": "https://github.com/tifandotme/:slug*"
     },
     {
+      "source": "/um",
+      "destination": "https://analytics.tifan.me/share/OMfqGwzpav271Lia/tifan.me"
+    },
+    {
       "source": "/gpg",
       "destination": "https://github.com/tifandotme.gpg"
     }
