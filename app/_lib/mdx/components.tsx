@@ -1,23 +1,17 @@
 import type { MDXRemoteProps } from "next-mdx-remote/rsc"
 import Image, { type ImageProps } from "next/image"
 import { getPlaiceholder } from "plaiceholder"
-import React, { type ComponentProps } from "react"
+import React from "react"
 import {
-  QuotedTweet,
-  TweetActions,
-  TweetBody,
-  TweetHeader,
-  TweetInReplyTo,
-  TweetInfo,
-  TweetMedia,
-  TweetReplies,
-  TweetContainer as _TweetContainer,
-  enrichTweet,
+  EmbeddedTweet,
+  TweetContainer,
   type TwitterComponents,
 } from "react-tweet"
 import { getTweet } from "react-tweet/api"
 import { cn } from "../utils"
 import { CopyButton } from "./copy"
+import { Sandpack } from "./sandpack"
+import styles from "./tweet.module.css"
 
 type MDXComponents = MDXRemoteProps["components"]
 
@@ -49,15 +43,17 @@ export const components: MDXComponents = {
     return null
   },
   Image: async ({
+    bleed = false,
     caption,
-    src: publicId,
     width = 768,
-    className,
+    src: publicId,
     alt,
+    className,
     ...props
   }: {
-    width?: number
+    bleed?: boolean
     caption?: string
+    width?: number
   } & ImageProps) => {
     try {
       const {
@@ -83,7 +79,8 @@ export const components: MDXComponents = {
       return (
         <figure
           className={cn(
-            "justify-self-center max-md:-mx-6 max-sm:-mx-4",
+            "mx-[calc(var(--post-padding)*-1)]",
+            bleed ? "!col-span-full" : "justify-self-center",
             className,
           )}
         >
@@ -95,6 +92,7 @@ export const components: MDXComponents = {
             alt={alt}
             src={publicId}
             sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 75vw, (max-width: 1440px) 60vw, 53vw"
+            className="w-full"
             {...props}
           />
           {caption && (
@@ -111,52 +109,33 @@ export const components: MDXComponents = {
   },
   Tweet: async ({ id }: { id: string }) => {
     try {
-      const TweetContainer = (
-        props: ComponentProps<typeof _TweetContainer>,
-      ) => (
-        <_TweetContainer
-          className={cn(
-            "not-prose justify-self-center !transition-none [--tweet-bg-color-hover:hsl(var(--muted-large-text)/.025)] [--tweet-bg-color:transparent] [--tweet-border:1px_solid_hsl(var(--border))] [--tweet-color-blue-secondary-hover:hsl(var(--muted-large-text)/.05)] [--tweet-quoted-bg-color-hover:hsl(var(--muted-large-text)/.05)] [&_*]:!transition-none",
-            props.className,
-          )}
-          {...props}
-        />
-      )
-
-      const t = await getTweet(id)
-      if (!t) {
-        return (
-          <TweetContainer>
-            <div className="flex flex-col items-center py-3">
-              <p className="text-xl">Tweet not found</p>
-            </div>
-          </TweetContainer>
-        )
-      }
-
-      const tweet = enrichTweet(t)
+      const tweet = await getTweet(id)
       const components: TwitterComponents = {
-        AvatarImg: (props) => <Image {...props} alt="Avatar" unoptimized />,
-        MediaImg: (props) => <Image {...props} alt="Avatar" unoptimized fill />,
+        AvatarImg: (props) => (
+          <Image {...props} alt="Tweet Avatar" unoptimized />
+        ),
+        MediaImg: (props) => (
+          <Image {...props} alt="Tweet Media" unoptimized fill />
+        ),
       }
 
       return (
-        <TweetContainer>
-          <TweetHeader tweet={tweet} components={components} />
-          {tweet.in_reply_to_status_id_str && <TweetInReplyTo tweet={tweet} />}
-          <TweetBody tweet={tweet} />
-          {tweet.mediaDetails?.length ? (
-            <TweetMedia tweet={tweet} components={components} />
-          ) : null}
-          {tweet.quoted_tweet && <QuotedTweet tweet={tweet.quoted_tweet} />}
-          <TweetInfo tweet={tweet} />
-          <TweetActions tweet={tweet} />
-          <TweetReplies tweet={tweet} />
-        </TweetContainer>
+        <div className={cn("not-prose flex justify-center", styles.tweet)}>
+          {tweet ? (
+            <EmbeddedTweet tweet={tweet} components={components} />
+          ) : (
+            <TweetContainer className="flex flex-col items-center py-3">
+              <p className="text-[1.0625rem]">Tweet not found</p>
+            </TweetContainer>
+          )}
+        </div>
       )
     } catch (err) {
       console.error(err instanceof Error ? err.message : "An error occured")
       return null
     }
+  },
+  Sandpack: (props: React.ComponentProps<typeof Sandpack>) => {
+    return <Sandpack {...props} />
   },
 }

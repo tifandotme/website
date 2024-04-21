@@ -1,0 +1,33 @@
+.tweet :global(.react-tweet-theme) {
+  --tweet-container-margin: 1.25rem 0;
+
+  --tweet-body-font-size: 1.0625rem;
+  --tweet-font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --tweet-twitter-icon-color: hsl(var(--muted-large-text));
+
+  --tweet-bg-color: transparent;
+  --tweet-bg-color-hover: var(--tweet-bg-color);
+  --tweet-border: 1px solid hsl(var(--border));
+
+  --tweet-font-color: hsl(var(--foreground));
+  --tweet-font-color-secondary: hsl(var(--muted-small-text));
+
+  --tweet-quoted-bg-color-hover: hsl(var(--muted-large-text) / 0.05);
+
+  --tweet-color-red-primary: hsl(var(--muted-large-text));
+  --tweet-color-red-primary-hover: hsl(var(--muted-large-text) / 0.05);
+
+  --tweet-color-green-primary: var(--tweet-font-color);
+  --tweet-color-green-primary-hover: transparent;
+
+  --tweet-color-blue-primary: hsl(var(--muted-large-text));
+  --tweet-color-blue-primary-hover: hsl(var(--muted-large-text));
+  --tweet-color-blue-secondary: var(--tweet-font-color);
+  --tweet-color-blue-secondary-hover: hsl(var(--muted-large-text) / 0.05);
+
+  & * {
+    transition: none;
+  }
+}
