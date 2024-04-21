@@ -87,6 +87,10 @@ const config = {
               fontWeight: defaultTheme.fontWeight.normal,
               textUnderlineOffset: "1px",
             },
+            figure: {
+              marginTop: "1.25rem",
+              marginBottom: "1.25rem",
+            },
             "--tw-prose-body": "hsl(var(--foreground))",
             "--tw-prose-headings": "hsl(var(--heading))",
             "--tw-prose-lead": colors.zinc[600],
@@ -103,7 +107,6 @@ const config = {
             "--tw-prose-pre-bg": "var(--codeblock)",
             "--tw-prose-th-borders": colors.zinc[300],
             "--tw-prose-td-borders": colors.zinc[200],
-
             "--tw-prose-invert-body": "hsl(var(--foreground))",
             "--tw-prose-invert-headings": "hsl(var(--heading))",
             "--tw-prose-invert-lead": colors.zinc[400],
