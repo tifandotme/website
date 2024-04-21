@@ -56,7 +56,7 @@ export default async function PostPage({
   if (!post) notFound()
 
   return (
-    <main className="relative mx-auto max-w-screen-2xl px-4 pb-14 pt-16 sm:px-6">
+    <main className="relative mx-auto max-w-screen-2xl px-[--post-padding] pb-14 pt-16 [--post-padding:1rem] sm:[--post-padding:1.5rem]">
       <Back className="fixed -mt-2 ml-2 max-lg:hidden" />
       {post.headings.length !== 0 && (
         <ul

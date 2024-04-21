@@ -23,10 +23,10 @@ code[data-theme*=" "] span {
 
 [data-rehype-pretty-code-figure] {
   /* adjust to match the padding-x of <main> element */
-  @apply [--codeblock-padding:1rem] sm:[--codeblock-padding:1.5rem];
+  @apply [--codeblock-padding:var(--post-padding)];
   --line-numbering-width: 3rem;
 
-  @apply my-4 overflow-hidden bg-[hsl(var(--codeblock-background))] text-sm leading-6 text-[hsl(var(--foreground))] max-md:!-mx-[var(--codeblock-padding)] [h2+&]:mt-0 [h3+&]:mt-0;
+  @apply !-mx-[var(--codeblock-padding)] my-5 overflow-hidden bg-[hsl(var(--codeblock-background))] text-sm leading-6 text-[hsl(var(--foreground))] [h2+&]:mt-0 [h3+&]:mt-0;
 }
 
 [data-rehype-pretty-code-title] {
