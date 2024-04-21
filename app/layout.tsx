@@ -51,9 +51,10 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         {children}
         {process.env.VERCEL_ENV === "production" && (
           <script
-            data-website-id="8f49618f-b08d-4168-9bd2-003e22eb4cb4"
-            src="https://analytics.tifan.me/script.js"
             defer
+            src="/stats/script.js"
+            data-website-id="8f49618f-b08d-4168-9bd2-003e22eb4cb4"
+            data-cache="true"
           />
         )}
         <PreloadResources />

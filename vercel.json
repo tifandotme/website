@@ -35,5 +35,11 @@
       "source": "/gpg",
       "destination": "https://github.com/tifandotme.gpg"
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/stats/:match*",
+      "destination": "https://analytics.tifan.me/:match*"
+    }
   ]
 }
