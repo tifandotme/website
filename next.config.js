@@ -19,4 +19,20 @@ const config = {
   },
 }
 
+if (process.env.NODE_ENV === "development") {
+  config.headers = async () => {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "*",
+          },
+        ],
+      },
+    ]
+  }
+}
+
 export default withPlaiceholder(config)

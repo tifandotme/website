@@ -1,20 +1,18 @@
 {
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "module": "ESNext", // https://devblogs.microsoft.com/typescript/announcing-typescript-5-4/#support-for-require-calls-in---moduleresolution-bundler-and---module-preserve
+    "target": "ES2017",
+    "module": "Preserve",
 
     "allowJs": true,
     "checkJs": true,
 
-    "moduleResolution": "bundler",
     "noEmit": true,
     "incremental": true,
     "skipLibCheck": true,
     "isolatedModules": true,
     "jsx": "preserve",
 
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
 
@@ -34,9 +32,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.js",
-    "**/*.mjs",
-    "**/*.cjs"
+    "**/*.js"
   ],
   "exclude": ["node_modules"]
 }
