@@ -17,22 +17,71 @@ const config = {
     loader: "custom",
     loaderFile: "./app/loader.js",
   },
-}
-
-if (process.env.NODE_ENV === "development") {
-  config.headers = async () => {
+  transpilePackages: ["next-mdx-remote"],
+  async redirects() {
     return [
+      {
+        source: "/stats",
+        destination:
+          "https://analytics.tifan.me/share/SX2sAACvSvOn6ZHI/tifan.me",
+        permanent: true,
+      },
+    ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/umami/:match*",
+        destination: "https://analytics.tifan.me/:match*",
+      },
+      {
+        source: "/gpg",
+        destination: "https://github.com/tifandotme.gpg",
+      },
+    ]
+  },
+  async headers() {
+    return [
+      {
+        source: "/:all*(ttf|otf|woff|woff2)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
       {
         source: "/(.*)",
         headers: [
           {
-            key: "Access-Control-Allow-Origin",
-            value: "*",
+            key: "Referrer-Policy",
+            value: "origin-when-cross-origin",
+          },
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "X-DNS-Prefetch-Control",
+            value: "on",
+          },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=31536000; includeSubDomains; preload",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
           },
         ],
       },
     ]
-  }
+  },
 }
 
 export default withPlaiceholder(config)

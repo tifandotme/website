@@ -4,9 +4,9 @@ import { Posts } from "./posts"
 
 export default async function HomePage() {
   const externalLinks = [
-    { href: "https://tifan.me/li", label: "LinkedIn" },
-    { href: "https://tifan.me/gh", label: "GitHub" },
-    { href: "https://tifan.me/x", label: "Twitter" },
+    { href: "https://www.linkedin.com/in/tifandotme", label: "LinkedIn" },
+    { href: "https://github.com/tifandotme", label: "GitHub" },
+    { href: "https://x.com/tifandotme", label: "Twitter" },
   ] as const
 
   const posts = await getAllPosts()

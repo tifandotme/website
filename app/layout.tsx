@@ -52,7 +52,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         {process.env.VERCEL_ENV === "production" && (
           <script
             defer
-            src="/stats/script.js"
+            src="/umami/script.js"
             data-website-id="8f49618f-b08d-4168-9bd2-003e22eb4cb4"
             data-cache="true"
           />
