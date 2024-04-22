@@ -76,6 +76,15 @@ const config = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
           },
+          // to allow loading /giscus.css
+          ...(process.env.NODE_ENV === "development"
+            ? [
+                {
+                  key: "Access-Control-Allow-Origin",
+                  value: "*",
+                },
+              ]
+            : []),
         ],
       },
     ]

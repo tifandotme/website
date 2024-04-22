@@ -48,9 +48,9 @@ export function Giscus() {
           inputPosition="bottom"
           lang="en"
           theme={
-            process.env.NODE_ENV === "development"
+            (process.env.NODE_ENV === "development"
               ? `http://localhost:${process.env.PORT || 3000}`
-              : "https://tifan.me" + "/giscus.css"
+              : "https://tifan.me") + "/giscus.css"
           }
         />
       </div>
