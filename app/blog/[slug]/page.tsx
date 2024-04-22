@@ -118,10 +118,8 @@ export default async function PostPage({
             CC BY-NC-SA 4.0
           </a>
           <span>2023-present</span>
-          <span className="inline-flex items-center gap-2">
-            <span className="text-[170%] leading-none">©</span>
-            <span>Tifan Dwi Avianto</span>
-          </span>
+          <span className="text-[170%]">©</span>
+          <span>Tifan Dwi Avianto</span>
         </div>
 
         <Giscus />

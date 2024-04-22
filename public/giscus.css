@@ -225,9 +225,6 @@ button {
 }
 
 /* vertical gaps */
-.gsc-timeline {
-  gap: 2rem;
-}
 .gsc-timeline:not(.hidden) {
   margin-bottom: 2rem;
 }
