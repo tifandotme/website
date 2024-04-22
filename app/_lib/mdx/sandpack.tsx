@@ -14,7 +14,6 @@ export function Sandpack({
         resizablePanels: false,
         editorWidthPercentage: 60,
         editorHeight: 400,
-        autorun: process.env.VERCEL_ENV === "production",
         ...options,
       }}
       theme={{

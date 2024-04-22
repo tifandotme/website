@@ -5,12 +5,7 @@ import { PreloadResources } from "./preload"
 import { SandPackCSS } from "./sandpack-css"
 
 export const metadata: Metadata = {
-  metadataBase:
-    process.env.VERCEL_ENV === "production"
-      ? new URL(`https://tifan.me`)
-      : process.env.VERCEL_URL
-        ? new URL(`https://${process.env.VERCEL_URL}`)
-        : new URL(`http://localhost:${process.env.PORT || 3000}`),
+  metadataBase: new URL(`https://tifan.me`),
   title: {
     template: "%s — Tifan Dwi Avianto",
     default: "Tifan Dwi Avianto — Software Engineer",
@@ -49,15 +44,14 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
       </head>
       <body className={fonts.map((font) => font.variable).join(" ")}>
         {children}
-        {process.env.VERCEL_ENV === "production" && (
-          <script
-            defer
-            src="/umami/script.js"
-            data-website-id="8f49618f-b08d-4168-9bd2-003e22eb4cb4"
-            data-cache="true"
-          />
-        )}
         <PreloadResources />
+        <script
+          defer
+          src="/umami/script.js"
+          data-website-id="8f49618f-b08d-4168-9bd2-003e22eb4cb4"
+          data-domains="tifan.me"
+          data-cache="true"
+        />
         <noscript>
           <style>{`.no-js {display: none;}`}</style>
         </noscript>

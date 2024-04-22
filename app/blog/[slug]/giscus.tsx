@@ -26,11 +26,6 @@ export function Giscus() {
     }
   }, [])
 
-  const base =
-    process.env.NODE_ENV === "development"
-      ? `http://localhost:${process.env.PORT || 3000}`
-      : "https://tifan.me"
-
   return (
     <div
       className="no-js not-prose relative -mx-px mt-32 print:hidden"
@@ -52,7 +47,11 @@ export function Giscus() {
           emitMetadata="0"
           inputPosition="bottom"
           lang="en"
-          theme={`${base}/giscus.css`}
+          theme={
+            process.env.NODE_ENV === "development"
+              ? `http://localhost:${process.env.PORT || 3000}`
+              : "https://tifan.me" + "/giscus.css"
+          }
         />
       </div>
     </div>

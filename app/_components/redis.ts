@@ -1,14 +1,14 @@
 "use server"
 
-const url = process.env.KV_REST_API_URL as string
-const token = process.env.KV_REST_API_TOKEN as string
+const URL = process.env.KV_REST_API_URL as string
+const TOKEN = process.env.KV_REST_API_TOKEN as string
 
 export async function fetchViews(slug: string, increment = false) {
   try {
-    const res = await fetch(url, {
+    const res = await fetch(URL, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${TOKEN}`,
       },
       body: JSON.stringify(
         increment ? ["HINCRBY", "views", slug, 1] : ["HGET", "views", slug],

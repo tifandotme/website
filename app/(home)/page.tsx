@@ -2,13 +2,13 @@ import { Icon } from "../_components/icon"
 import { getAllPosts } from "../_lib/blog"
 import { Posts } from "./posts"
 
-export default async function HomePage() {
-  const externalLinks = [
-    { href: "https://www.linkedin.com/in/tifandotme", label: "LinkedIn" },
-    { href: "https://github.com/tifandotme", label: "GitHub" },
-    { href: "https://x.com/tifandotme", label: "Twitter" },
-  ] as const
+const EXTERNAL_LINKS = [
+  { href: "https://www.linkedin.com/in/tifandotme", label: "LinkedIn" },
+  { href: "https://github.com/tifandotme", label: "GitHub" },
+  { href: "https://x.com/tifandotme", label: "Twitter" },
+]
 
+export default async function HomePage() {
   const posts = await getAllPosts()
 
   return (
@@ -24,7 +24,7 @@ export default async function HomePage() {
           along the way.
         </p>
         <ul className="flex flex-wrap gap-3" aria-label="External links">
-          {externalLinks.map((link) => (
+          {EXTERNAL_LINKS.map((link) => (
             <li key={link.href}>
               <a
                 className="-my-1.5 inline-flex min-w-9 items-center gap-px py-1.5 text-muted hover:underline hover:underline-offset-1"

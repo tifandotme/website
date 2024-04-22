@@ -2,7 +2,6 @@ import withPlaiceholder from "@plaiceholder/next"
 
 /** @type {import("next").NextConfig} */
 const config = {
-  reactStrictMode: false,
   logging: {
     fetches: {
       fullUrl: true,
@@ -17,7 +16,6 @@ const config = {
     loader: "custom",
     loaderFile: "./app/loader.js",
   },
-  transpilePackages: ["next-mdx-remote"],
   async redirects() {
     return [
       {

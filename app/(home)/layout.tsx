@@ -2,9 +2,9 @@ import Link from "next/link"
 import React from "react"
 import { Icon } from "../_components/icon"
 
-export default function HomeLayout({ children }: React.PropsWithChildren) {
-  const navItems = [{ href: "/projects", label: "Projects" }] as const
+const NAV_LINKS = [{ href: "/projects", label: "Projects" }]
 
+export default function HomeLayout({ children }: React.PropsWithChildren) {
   return (
     <>
       <header
@@ -21,7 +21,7 @@ export default function HomeLayout({ children }: React.PropsWithChildren) {
         </Link>
         <hr className="h-[19px] w-px bg-muted/30" aria-hidden="true" />
         <ul className="inline-flex gap-6">
-          {navItems.map((item) => (
+          {NAV_LINKS.map((item) => (
             <li key={item.href}>
               <Link
                 className="-mx-2 -my-2.5 flex select-none items-center px-2 py-2.5 text-[103%] font-bold text-muted-darker/90 hover:text-foreground"
