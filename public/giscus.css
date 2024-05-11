@@ -11,7 +11,6 @@ main {
   padding-right: 1px;
 }
 
-/* #region light */
 main {
   --background: 0 0% 100%;
   --foreground: 0 0% 5%;
@@ -106,9 +105,7 @@ main {
 main .pagination-loader-container {
   background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
 }
-/* #endregion */
 
-/* #region dark */
 @media (prefers-color-scheme: dark) {
   main {
     --background: 240 4% 8%;
@@ -206,7 +203,6 @@ main .pagination-loader-container {
     background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg");
   }
 }
-/* #endregion */
 
 /* reply reaction */
 .gsc-reactions-menu,
@@ -249,10 +245,10 @@ button {
   & .btn {
     color: var(--color-fg-muted);
     padding: 0 1rem;
-  }
-  & .btn:hover {
-    color: var(--color-fg-default);
-    background-color: unset;
+    &:hover {
+      color: var(--color-fg-default);
+      background-color: unset;
+    }
   }
 }
 .BtnGroup-item--selected {
@@ -288,15 +284,10 @@ button {
 }
 
 /* margins/paddings */
-.gsc-comment-box-tabs {
-  & > :first-child {
-    margin-top: 0 !important;
-    margin-inline-start: unset !important;
-    margin-inline-end: unset !important;
-  }
-  & > :last-child {
-    margin-top: 0;
-  }
+.gsc-comment-box-tabs > div {
+  margin-top: 0 !important;
+  margin-inline-start: unset !important;
+  margin-inline-end: unset !important;
 }
 .gsc-comment-box-main {
   margin: 0.5rem 0 0 0;
