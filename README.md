@@ -5,6 +5,7 @@ My personal website
 ## TODOs
 
 - [ ] Enlist to blogs.gn and ooh.directory
+- [ ] Use Partial Prerendering?
 
 ## Tech Stack
 
