@@ -15,6 +15,7 @@ const config = {
     "no-undef": "off",
     "@next/next/no-html-link-for-pages": "off",
     "tailwindcss/classnames-order": "off",
+    "tailwindcss/no-custom-classname": "off",
   },
   overrides: [
     {
@@ -28,7 +29,6 @@ const config = {
   settings: {
     tailwindcss: {
       callees: ["cn"],
-      whitelist: ["no-js"],
     },
   },
 }
