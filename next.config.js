@@ -2,9 +2,6 @@ import withPlaiceholder from "@plaiceholder/next"
 
 /** @type {import("next").NextConfig} */
 const config = {
-  experimental: {
-    reactCompiler: true,
-  },
   logging: {
     fetches: {
       fullUrl: true,
@@ -80,14 +77,14 @@ const config = {
             value: "camera=(), microphone=(), geolocation=()",
           },
           // To allow for loading /giscus.css in development mode
-          ...(process.env.NODE_ENV === "development"
-            ? [
-                {
-                  key: "Access-Control-Allow-Origin",
-                  value: "*",
-                },
-              ]
-            : []),
+          ...(process.env.NODE_ENV === "development" ?
+            [
+              {
+                key: "Access-Control-Allow-Origin",
+                value: "*",
+              },
+            ]
+          : []),
         ],
       },
     ]

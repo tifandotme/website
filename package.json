@@ -9,11 +9,10 @@
     "lint": "eslint --ext ts,tsx --report-unused-disable-directives --max-warnings 0 app"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^2.14.2",
+    "@codesandbox/sandpack-react": "^2.14.5",
     "@giscus/react": "^3.0.0",
     "@plaiceholder/next": "^3.0.0",
-    "babel-plugin-react-compiler": "^0.0.0-experimental-938cd9a-20240601",
-    "next": "^15.0.0-canary.14",
+    "next": "15.0.0-canary.55",
     "next-mdx-remote": "^5.0.0",
     "plaiceholder": "^3.0.0",
     "react": "npm:react@rc",
@@ -23,22 +22,22 @@
     "rehype-external-links": "^3.0.0",
     "rehype-pretty-code": "^0.13.2",
     "rehype-slug": "^6.0.0",
-    "shiki": "^1.6.2"
+    "shiki": "^1.10.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
-    "@types/node": "^20",
+    "@types/node": "^20.14.9",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "eslint": "^8",
-    "eslint-config-next": "^14.2.3",
+    "eslint-config-next": "15.0.0-canary.55",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-mdx": "^3.1.5",
-    "eslint-plugin-tailwindcss": "^3.17.3",
-    "postcss": "^8.4.38",
-    "prettier-plugin-tailwindcss": "^0.6.1",
+    "eslint-plugin-tailwindcss": "^3.17.4",
+    "postcss": "^8.4.39",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.4",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.3"
   },
   "overrides": {
     "react": "npm:react@rc",
