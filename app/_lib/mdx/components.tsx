@@ -16,7 +16,6 @@ import styles from "./tweet.module.css"
 type MDXComponents = MDXRemoteProps["components"]
 
 export const components: MDXComponents = {
-  // @ts-ignore
   pre: ({ raw, children, ...props }) => {
     return (
       <pre {...props}>
@@ -61,9 +60,9 @@ export const components: MDXComponents = {
         <figure
           className={cn(
             "mx-[calc(var(--post-padding)*-1)]",
-            width >= 768
-              ? "!col-span-full [&_img]:w-full"
-              : "justify-self-center",
+            width >= 768 ?
+              "!col-span-full [&_img]:w-full"
+            : "justify-self-center",
             className,
           )}
         >
@@ -103,13 +102,12 @@ export const components: MDXComponents = {
 
       return (
         <div className={cn("not-prose flex justify-center", styles.tweet)}>
-          {tweet ? (
+          {tweet ?
             <EmbeddedTweet tweet={tweet} components={components} />
-          ) : (
-            <TweetContainer className="flex flex-col items-center py-3">
+          : <TweetContainer className="flex flex-col items-center py-3">
               <p className="text-[1.0625rem]">Tweet not found</p>
             </TweetContainer>
-          )}
+          }
         </div>
       )
     } catch (err) {

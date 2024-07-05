@@ -59,7 +59,7 @@ export function Posts({ posts }: PostsProps) {
                 </h2>
                 <span className="inline-flex items-center gap-5 leading-7 text-muted-darker md:flex-row-reverse">
                   <time
-                    className="whitespace-nowrap "
+                    className="whitespace-nowrap"
                     dateTime={post.publishedAt}
                   >
                     {formatDateDynamic(post.publishedAt)}

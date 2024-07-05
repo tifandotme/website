@@ -68,7 +68,6 @@ Notice the `Record<number, string>`, this is important to tell TypeScript that t
 
 This is because TypeScript expects the index signature to be `keyof typeof translations`. This is one of those roadblocks that I encountered when I first tried to solve this problem. I know, TypeScript can be a double-edged sword.
 
-
 ### Step 2. Converting hundreds, tens, and ones
 
 We'll start from the lowest scale component up until 999. We will not touch the thousands and up yet. Create a function named `convert` like so:

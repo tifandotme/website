@@ -28,7 +28,7 @@ export const mdxOptions: MDXOptions = {
       })
     },
     [
-      rehypePrettyCode as any,
+      rehypePrettyCode,
       {
         theme: {
           dark: JSON.parse(

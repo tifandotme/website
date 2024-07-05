@@ -72,13 +72,12 @@ export function Views({
       {...props}
     >
       <Icon id="eye" className="absolute left-0 size-[1em]" />
-      {views === undefined ? (
+      {views === undefined ?
         <LoadingDots className="ml-[1.5em]" />
-      ) : (
-        <span className="ml-[1.3em]" ref={ref}>
+      : <span className="ml-[1.3em]" ref={ref}>
           {views}
         </span>
-      )}
+      }
     </span>
   )
 }
