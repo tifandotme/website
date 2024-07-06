@@ -5,7 +5,7 @@ import { Posts } from "./posts"
 const EXTERNAL_LINKS = [
   { href: "https://www.linkedin.com/in/tifandotme", label: "LinkedIn" },
   { href: "https://github.com/tifandotme", label: "GitHub" },
-  { href: "https://x.com/tifandotme", label: "Twitter" },
+  { href: "https://x.com/tifandotme", label: "X" },
 ]
 
 export default async function HomePage() {
