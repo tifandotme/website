@@ -19,9 +19,9 @@ const config = {
   async redirects() {
     return [
       {
-        source: "/stats",
+        source: "/analytics",
         destination:
-          "https://analytics.tifan.me/share/SX2sAACvSvOn6ZHI/tifan.me",
+          "https://analytics.tifan.me/share/dHm1BNZCKGcLOy6g/tifan.me",
         permanent: true,
       },
     ]
