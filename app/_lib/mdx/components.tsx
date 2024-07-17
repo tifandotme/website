@@ -16,6 +16,8 @@ import styles from "./tweet.module.css"
 type MDXComponents = MDXRemoteProps["components"]
 
 export const components: MDXComponents = {
+  // TODO check if we still need ts-ignore in Next.js v15
+  // @ts-ignore
   pre: ({ raw, children, ...props }) => {
     return (
       <pre {...props}>

@@ -4,7 +4,7 @@
 const config = {
   extends: [
     "next/core-web-vitals",
-    "next/typescript",
+    // "next/typescript", // TODO check if this is needed in Next.js v15
     "plugin:tailwindcss/recommended",
     "prettier",
   ],
