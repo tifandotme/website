@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import { useState } from "react"
 import { Icon } from "../../_components/icon"
 import { cn } from "../utils"
 
@@ -9,7 +9,7 @@ interface CopyButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 export function CopyButton({ text, className, ...props }: CopyButtonProps) {
-  const [isCopied, setIsCopied] = React.useState(false)
+  const [isCopied, setIsCopied] = useState(false)
 
   const copy = async () => {
     await navigator.clipboard.writeText(text)

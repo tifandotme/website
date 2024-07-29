@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import { useEffect, useRef, useState } from "react"
 import { cn } from "../_lib/utils"
 import { Icon } from "./icon"
 import { fetchViews } from "./redis"
@@ -16,9 +16,9 @@ export function Views({
   className,
   ...props
 }: ViewsProps) {
-  const [views, setViews] = React.useState<number | null | undefined>(undefined)
+  const [views, setViews] = useState<number | null | undefined>(undefined)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (typeof window === "undefined") {
       return
     }
@@ -42,8 +42,8 @@ export function Views({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const ref = React.useRef<HTMLSpanElement>(null)
-  React.useEffect(() => {
+  const ref = useRef<HTMLSpanElement>(null)
+  useEffect(() => {
     if (!views || !increment) return
     ref.current?.animate(
       {

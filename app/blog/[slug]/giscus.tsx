@@ -1,13 +1,13 @@
 "use client"
 
 import GiscusReact from "@giscus/react"
-import React from "react"
+import { useEffect, useState } from "react"
 import { cn } from "../../_lib/utils"
 
 export function Giscus() {
-  const [isLoading, setIsLoading] = React.useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (typeof window === "undefined") return
 
     const handleMessage = (event: MessageEvent) => {

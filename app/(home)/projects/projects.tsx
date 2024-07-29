@@ -2,7 +2,7 @@
 
 import type { Metadata } from "next"
 import Image from "next/image"
-import React from "react"
+import { useState, useEffect } from "react"
 import { Icon } from "../../_components/icon"
 import { cn, formatDate, slugify } from "../../_lib/utils"
 import projects from "./data"
@@ -14,11 +14,11 @@ export const metadata: Metadata = {
 }
 
 export function Projects() {
-  const [data, setData] = React.useState(projects)
-  const [isPending, setIsPending] = React.useState(true)
-  const [sortBy, setSortBy] = React.useState<"date" | "stars">("date")
+  const [data, setData] = useState(projects)
+  const [isPending, setIsPending] = useState(true)
+  const [sortBy, setSortBy] = useState<"date" | "stars">("date")
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isPending) return
     setData((data) =>
       data.toSorted((a, b) => {
@@ -28,7 +28,7 @@ export function Projects() {
     )
   }, [isPending, sortBy])
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetch = async () => {
       setData(
         await Promise.all(

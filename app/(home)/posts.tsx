@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import React from "react"
+import { useState } from "react"
 import { Icon } from "../_components/icon"
 import { Views } from "../_components/views"
 import { getAllPosts } from "../_lib/blog"
@@ -14,7 +14,7 @@ interface PostsProps {
 }
 
 export function Posts({ posts }: PostsProps) {
-  const [isEnglishOnly, setIsEnglishOnly] = React.useState<boolean | null>(null)
+  const [isEnglishOnly, setIsEnglishOnly] = useState<boolean | null>(null)
 
   return (
     <>
