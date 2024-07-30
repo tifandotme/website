@@ -6,4 +6,8 @@ updates:
       interval: "weekly"
     ignore:
       - dependency-name: "eslint"
-        versions: ["9.x"]
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@types/eslint"
+        update-types: ["version-update:semver-major"]
