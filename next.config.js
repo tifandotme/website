@@ -16,6 +16,9 @@ const config = {
     loader: "custom",
     loaderFile: "./app/loader.js",
   },
+  experimental: {
+    reactCompiler: true,
+  },
   async redirects() {
     return [
       {
