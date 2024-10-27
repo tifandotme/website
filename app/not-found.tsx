@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { Icon } from "./_components/icon"
 
 export const metadata: Metadata = {
@@ -11,13 +12,13 @@ export default function NotFound() {
       <h1 className="text-xl font-semibold text-foreground">
         Sorry, this page isn&apos;t available
       </h1>
-      <a
+      <Link
         className="inline-flex flex-row items-center justify-center gap-3 p-2.5 text-muted hover:text-foreground"
         href="/"
       >
         <Icon id="arrow-left" className="size-4" aria-hidden="true" />
         Back to homepage
-      </a>
+      </Link>
     </main>
   )
 }
