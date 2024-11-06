@@ -12,6 +12,13 @@ const config = {
       "2xl": "1440px",
     },
     extend: {
+      keyframes: {
+        "opacity-pulse": {
+          "0%": { opacity: "0.2" },
+          "20%": { opacity: "1" },
+          "100%": { opacity: "0.2" },
+        },
+      },
       fontFamily: {
         sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
         mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],

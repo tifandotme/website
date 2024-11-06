@@ -87,31 +87,16 @@ function LoadingDots({
   ...props
 }: React.HTMLAttributes<HTMLSpanElement>) {
   return (
-    <>
-      <style jsx>{`
-        @keyframes loading {
-          0% {
-            opacity: 0.2;
-          }
-          20% {
-            opacity: 1;
-          }
-          to {
-            opacity: 0.2;
-          }
-        }
-      `}</style>
-      <span
-        className={cn(
-          "inline-flex items-center [--loading-dots-size:4px]",
-          className,
-        )}
-        {...props}
-      >
-        <span className="mx-px inline-block size-[var(--loading-dots-size)] animate-[loading_0.7s_ease-in-out_infinite] rounded-full bg-current" />
-        <span className="mx-px inline-block size-[var(--loading-dots-size)] animate-[loading_0.7s_ease-in-out_0.2s_infinite] rounded-full bg-current" />
-        <span className="mx-px inline-block size-[var(--loading-dots-size)] animate-[loading_0.7s_ease-in-out_0.4s_infinite] rounded-full bg-current" />
-      </span>
-    </>
+    <span
+      className={cn(
+        "inline-flex items-center [--loading-dots-size:4px]",
+        className,
+      )}
+      {...props}
+    >
+      <span className="mx-px inline-block size-[var(--loading-dots-size)] animate-[opacity-pulse_0.7s_ease-in-out_infinite] rounded-full bg-current" />
+      <span className="mx-px inline-block size-[var(--loading-dots-size)] animate-[opacity-pulse_0.7s_ease-in-out_0.2s_infinite] rounded-full bg-current" />
+      <span className="mx-px inline-block size-[var(--loading-dots-size)] animate-[opacity-pulse_0.7s_ease-in-out_0.4s_infinite] rounded-full bg-current" />
+    </span>
   )
 }
