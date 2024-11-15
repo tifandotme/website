@@ -2,6 +2,9 @@ import withPlaiceholder from "@plaiceholder/next"
 
 /** @type {import("next").NextConfig} */
 const config = {
+  experimental: {
+    reactCompiler: true,
+  },
   logging: {
     fetches: {
       fullUrl: true,
@@ -15,9 +18,6 @@ const config = {
     ],
     loader: "custom",
     loaderFile: "./app/loader.js",
-  },
-  experimental: {
-    reactCompiler: true,
   },
   async redirects() {
     return [

@@ -3,6 +3,10 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "target": "ES2017",
     "module": "Preserve",
+    // ^ also implies:
+    // "moduleResolution": "bundler",
+    // "esModuleInterop": true,
+    // "resolveJsonModule": true,
 
     "allowJs": true,
     "checkJs": true,
