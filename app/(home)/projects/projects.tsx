@@ -53,7 +53,7 @@ export function Projects() {
           className="my-1 inline-flex cursor-default items-center gap-2 p-3 text-muted-darker hover:text-foreground data-[active=true]:text-foreground"
           type="button"
           onClick={() => {
-            sortBy === "stars" && setSortBy("date")
+            if (sortBy === "stars") setSortBy("date")
           }}
           title="Sort by date"
           disabled={isPending}
@@ -67,7 +67,7 @@ export function Projects() {
           className="my-1 inline-flex cursor-default items-center gap-2 p-3 text-muted-darker hover:text-foreground data-[active=true]:text-foreground"
           type="button"
           onClick={() => {
-            sortBy === "date" && setSortBy("stars")
+            if (sortBy === "date") setSortBy("stars")
           }}
           title="Sort by stars"
           disabled={isPending}
