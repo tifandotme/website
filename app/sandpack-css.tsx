@@ -32,6 +32,7 @@ export const SandPackCSS = () => {
       --punctuation: #24292e;
       --tag: #22863a;
       --comment: #6a737d;
+      /* TODO change to GitHub Dark */
       /* Grubber */
       @media (prefers-color-scheme: dark) {
         --keyword: #ffdd33;

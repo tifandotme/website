@@ -1,6 +1,4 @@
 import type { MDXRemoteProps } from "next-mdx-remote/rsc"
-import fs from "node:fs"
-import path from "node:path"
 import rehypeAutolinkHeadings, {
   type Options as AutolinkHeadingsOptions,
 } from "rehype-autolink-headings"
@@ -31,12 +29,7 @@ export const mdxOptions: MDXOptions = {
       rehypePrettyCode,
       {
         theme: {
-          dark: JSON.parse(
-            fs.readFileSync(
-              path.join(process.cwd(), "app/_lib/mdx/grubber.json"),
-              "utf8",
-            ),
-          ),
+          dark: "github-dark-default",
           light: "github-light-default",
         },
         keepBackground: false,
