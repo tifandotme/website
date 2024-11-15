@@ -6,7 +6,7 @@ const EXTERNAL_LINKS = [
   { href: "https://www.linkedin.com/in/tifandotme", label: "LinkedIn" },
   { href: "https://github.com/tifandotme", label: "GitHub" },
   { href: "https://x.com/tifandotme", label: "X" },
-]
+] as const
 
 export default async function HomePage() {
   const posts = await getAllPosts()
