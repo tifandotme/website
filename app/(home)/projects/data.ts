@@ -1,4 +1,4 @@
-const projects: Project[] = [
+const PROJECTS: Project[] = [
   {
     name: "Portfolio",
     description:
@@ -47,9 +47,7 @@ const projects: Project[] = [
   },
 ]
 
-// #region
-
-type Project = {
+type Project = Readonly<{
   name: string
   description: string
   /**
@@ -63,13 +61,9 @@ type Project = {
    * Cloudinary Public ID. Ensure that the image's aspect ratio is 16:10.
    */
   image?: string
-}
+}>
 
-export default projects
-  .map((project) => ({
-    ...project,
-    stars: 0,
-  }))
-  .sort((a, b) => Intl.Collator().compare(b.updatedAt, a.updatedAt))
-
-// #endregion
+export default PROJECTS.map((project) => ({
+  ...project,
+  stars: 0,
+})).sort((a, b) => Intl.Collator().compare(b.updatedAt, a.updatedAt))
