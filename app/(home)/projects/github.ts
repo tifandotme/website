@@ -5,6 +5,10 @@
 
 const TOKEN = process.env.GITHUB_ACCESS_TOKEN
 
+if (!TOKEN) {
+  throw new Error("GITHUB_ACCESS_TOKEN is not set")
+}
+
 export async function fetchStargazersCount(repoUrl: string) {
   try {
     const res = await fetch(
