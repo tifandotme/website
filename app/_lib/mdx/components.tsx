@@ -16,7 +16,6 @@ import styles from "./tweet.module.css"
 type MDXComponents = MDXRemoteProps["components"]
 
 export const components: MDXComponents = {
-  // @ts-expect-error raw is a custom prop
   pre: ({ raw, children, ...props }) => {
     return (
       <pre {...props}>
