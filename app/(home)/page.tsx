@@ -19,9 +19,21 @@ export default async function HomePage() {
         </h1>
         <p>
           I love building <em>polished</em> user interfaces and <em>elegant</em>{" "}
-          software systems. In pursuit of my goal to empower people with
-          meaningful digital experiences, I document my insights and learnings
-          along the way.
+          software systems. I share practical insights and technical solutions
+          that help developers create more impactful digital experiences.
+        </p>
+        <p>
+          I currently work as a software engineer at{" "}
+          <a
+            className="inline-flex items-center gap-px hover:underline hover:underline-offset-1"
+            href="https://delosaqua.com/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Delos
+            <Icon id="external" className="size-4 text-muted-darker/80" />
+          </a>{" "}
+          towards modernizing the aquaculture industry in Indonesia.
         </p>
         <ul className="flex flex-wrap gap-3" aria-label="External links">
           {EXTERNAL_LINKS.map((link) => (
