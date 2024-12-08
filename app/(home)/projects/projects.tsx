@@ -2,7 +2,7 @@
 
 import type { Metadata } from "next"
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Icon } from "../../_components/icon"
 import { cn, formatDate, slugify } from "../../_lib/utils"
 import projects from "./data"
