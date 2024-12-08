@@ -18,6 +18,7 @@ export async function fetchStargazersCount(repoUrl: string) {
           Accept: "application/vnd.github+json",
           Authorization: `Bearer ${TOKEN}`,
         },
+        cache: "force-cache",
         next: {
           revalidate: 60 * 60 * 24, // 1 day
         },
