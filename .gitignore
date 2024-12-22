@@ -31,3 +31,6 @@ next-env.d.ts
 
 # unlighthouse
 .unlighthouse
+
+#mise
+mise.toml
