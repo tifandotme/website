@@ -76,7 +76,7 @@ export function ToggleableEmail() {
           <Icon id="lock" className="size-[1em] translate-y-1" />
           <span>Show email</span>
         </>
-      : <a className="font-semibold hover:underline" href={`mailto:${EMAIL}`}>
+      : <a className="font-bold hover:underline" href={`mailto:${EMAIL}`}>
           {EMAIL}
         </a>
       }
