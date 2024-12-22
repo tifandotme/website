@@ -7,6 +7,7 @@ import { Icon } from "../../_components/icon"
 import { cn } from "../../_lib/utils"
 
 const EMAIL = process.env.NEXT_PUBLIC_EMAIL as string
+const STORAGE_KEY = "email-unlocked"
 
 type EmailVisibilityState = {
   isHidden: boolean
@@ -25,7 +26,12 @@ export function ToggleableEmail() {
 
   useEffect(() => {
     if (process.env.NODE_ENV !== "development") {
-      setState((prev) => ({ ...prev, isRendered: true }))
+      const isVerified = localStorage.getItem(STORAGE_KEY) === "true"
+      setState((prev) => ({
+        ...prev,
+        isRendered: true,
+        isHidden: !isVerified,
+      }))
     }
   }, [])
 
@@ -46,6 +52,7 @@ export function ToggleableEmail() {
   }
 
   const handleCaptchaVerify = () => {
+    localStorage.setItem(STORAGE_KEY, "true")
     setState((prev) => ({ ...prev, isHidden: false }))
   }
 
