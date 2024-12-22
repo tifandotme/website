@@ -3,6 +3,7 @@ import React from "react"
 import { Icon } from "../_components/icon"
 
 const NAV_LINKS = [
+  { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
 ] as const
 
