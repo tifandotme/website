@@ -1,6 +1,8 @@
 # tifan.me &nbsp; <picture><img alt="GitHub Commit Activity (Month)" src="https://img.shields.io/github/commit-activity/m/tifandotme/website" /></picture>
 
-My personal website
+My personal website.
+
+See how to [exclude my own visits](https://umami.is/docs/exclude-my-own-visits) in analytics.
 
 ## TODOs
 
