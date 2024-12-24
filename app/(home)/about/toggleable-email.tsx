@@ -36,7 +36,6 @@ export function ToggleableEmail() {
   }, [])
 
   useEffect(() => {
-    console.log("isLoading", state.isLoading)
     if (state.isLoading) {
       document.body.style.cursor = "wait"
     } else {
@@ -54,6 +53,8 @@ export function ToggleableEmail() {
   const handleCaptchaVerify = () => {
     localStorage.setItem(STORAGE_KEY, "true")
     setState((prev) => ({ ...prev, isHidden: false }))
+
+    console.log("you've helped stop skynet from hacking my email 🙏")
   }
 
   const handleCaptchaOpen = () => {
@@ -64,7 +65,7 @@ export function ToggleableEmail() {
     <button
       type="button"
       className={cn(
-        "-m-0.5 inline-flex gap-0.5 p-0.5",
+        "inline",
         state.isHidden &&
           "mx-0.5 bg-muted-darker/20 px-1 text-foreground/70 hover:cursor-pointer hover:bg-muted-darker/30",
         state.isLoading && "pointer-events-none",
@@ -73,8 +74,11 @@ export function ToggleableEmail() {
     >
       {state.isHidden ?
         <>
-          <Icon id="lock" className="size-[1em] translate-y-1" />
-          <span>Show email</span>
+          <Icon
+            id="eye-closed"
+            className="align-center mr-1.5 inline size-[1em] -translate-y-px group-hover:hidden"
+          />
+          <span>show email</span>
         </>
       : <a className="font-bold hover:underline" href={`mailto:${EMAIL}`}>
           {EMAIL}
