@@ -35,8 +35,7 @@ export default function AboutPage() {
         </p>
         <p>
           I live in <strong>Jakarta (UTC+7)</strong>. When I&apos;m not coding,
-          you can find me indulging in mystery/sci-fi books and movies or
-          playing indie video games.
+          you can find me indulging in mystery/sci-fi books and movies.
         </p>
         <p>
           Ready to discuss your next project? Send me a message at:{" "}
