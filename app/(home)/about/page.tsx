@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import Image from "next/image"
+import { CloudinaryImage } from "../../_components/cloudinary-image"
 import { Icon } from "../../_components/icon"
 import { ToggleableEmail } from "./toggleable-email"
 
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "About",
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
   return (
     <>
       <article className="[&_p]:container-md mb-10 space-y-5 [&_p]:text-[105%]">
@@ -41,20 +41,18 @@ export default function AboutPage() {
           Ready to discuss your next project? Send me a message at:{" "}
           <ToggleableEmail />.
         </p>
-        <section className="container-lg grid grid-cols-1 gap-4 md:grid-cols-[2fr,1fr]">
-          <Image
+        <section className="container-lg !mt-8 grid grid-cols-1 gap-4 md:grid-cols-[2fr,1fr]">
+          <CloudinaryImage
             className="border"
-            width={1600}
-            height={900}
-            src="blog/potrait-shrimp-pond"
+            publicId="blog/potrait-shrimp-pond"
+            width={770}
             alt="Potrait of Tifan Dwi Avianto"
             sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 25vw"
           />
-          <Image
+          <CloudinaryImage
             className="h-full border object-cover object-right"
-            width={500}
-            height={500}
-            src="blog/potrait-presentation"
+            publicId="blog/potrait-presentation"
+            width={770}
             alt="Potrait of Tifan Dwi Avianto"
             sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 25vw"
           />
