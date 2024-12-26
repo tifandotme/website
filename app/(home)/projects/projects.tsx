@@ -155,7 +155,7 @@ export function Projects() {
 
             {project.image && (
               <Image
-                className="h-fit w-full max-w-[400px] basis-4/12 border max-lg:self-center"
+                className="h-fit w-full max-w-[400px] border max-lg:self-center"
                 width={1600}
                 height={1000}
                 src={project.image}
