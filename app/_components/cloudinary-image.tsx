@@ -23,6 +23,7 @@ export async function CloudinaryImage({
       Buffer.from(
         await fetch(
           `https://res.cloudinary.com/tifan/$w_${width}/t_1/${publicId}`,
+          { cache: "force-cache" },
         ).then((res) => res.arrayBuffer()),
       ),
       { size: 10 },
@@ -32,6 +33,7 @@ export async function CloudinaryImage({
       Buffer.from(
         await fetch(
           `https://res.cloudinary.com/tifan/t_placeholder/${publicId}`,
+          { cache: "force-cache" },
         ).then((res) => res.arrayBuffer()),
       ),
       { size: 10 },
