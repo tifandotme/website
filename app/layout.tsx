@@ -45,13 +45,15 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
       <body className={fonts.map((font) => font.variable).join(" ")}>
         {children}
         <PreloadResources />
-        <script
-          defer
-          src="/umami/script.js"
-          data-website-id="8f49618f-b08d-4168-9bd2-003e22eb4cb4"
-          data-domains="tifan.me"
-          data-cache="true"
-        />
+        {process.env.NODE_ENV === "production" && (
+          <script
+            defer
+            src="/umami/script.js"
+            data-website-id="8f49618f-b08d-4168-9bd2-003e22eb4cb4"
+            data-domains="tifan.me"
+            data-cache="true"
+          />
+        )}
         <noscript>
           <style>{`.no-js {display: none;}`}</style>
         </noscript>

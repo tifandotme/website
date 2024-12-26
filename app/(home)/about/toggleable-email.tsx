@@ -26,11 +26,10 @@ export function ToggleableEmail() {
 
   useEffect(() => {
     if (process.env.NODE_ENV !== "development") {
-      const isVerified = localStorage.getItem(STORAGE_KEY) === "true"
       setState((prev) => ({
         ...prev,
         isRendered: true,
-        isHidden: !isVerified,
+        isHidden: localStorage.getItem(STORAGE_KEY) !== "true",
       }))
     }
   }, [])
@@ -53,8 +52,6 @@ export function ToggleableEmail() {
   const handleCaptchaVerify = () => {
     localStorage.setItem(STORAGE_KEY, "true")
     setState((prev) => ({ ...prev, isHidden: false }))
-
-    console.log("you've helped stop skynet from hacking my email 🙏")
   }
 
   const handleCaptchaOpen = () => {
