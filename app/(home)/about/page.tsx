@@ -47,14 +47,14 @@ export default async function AboutPage() {
             publicId="blog/potrait-shrimp-pond"
             width={770}
             alt="Potrait of Tifan Dwi Avianto"
-            sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 25vw"
+            sizes="(max-width: 768px) 100vw, 67vw"
           />
           <CloudinaryImage
             className="h-full border object-cover object-right"
             publicId="blog/potrait-presentation"
             width={770}
             alt="Potrait of Tifan Dwi Avianto"
-            sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 32vw, 25vw"
+            sizes="(max-width: 768px) 100vw, 33vw"
           />
         </section>
       </article>
