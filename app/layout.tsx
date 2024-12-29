@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { fonts } from "./_lib/fonts"
+import { FloatingUmamiIndicator } from "./floating-umami-indicator"
 import "./globals.css"
 import { PreloadResources } from "./preload"
 import { SandPackCSS } from "./sandpack-css"
@@ -46,13 +47,16 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         {children}
         <PreloadResources />
         {process.env.NODE_ENV === "production" && (
-          <script
-            defer
-            src="/umami/script.js"
-            data-website-id="8f49618f-b08d-4168-9bd2-003e22eb4cb4"
-            data-domains="tifan.me"
-            data-cache="true"
-          />
+          <>
+            <script
+              defer
+              src="/umami/script.js"
+              data-website-id="8f49618f-b08d-4168-9bd2-003e22eb4cb4"
+              data-domains="tifan.me"
+              data-cache="true"
+            />
+            <FloatingUmamiIndicator />
+          </>
         )}
         <noscript>
           <style>{`.no-js {display: none;}`}</style>
