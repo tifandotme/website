@@ -8,6 +8,7 @@ See how to [exclude my own visits](https://umami.is/docs/exclude-my-own-visits) 
 
 - [ ] Enlist to blogs.gn and ooh.directory
 - [ ] Use Partial Prerendering?
+- [ ] Render placeholder image when fetching failed
 
 ## Tech Stack
 
