@@ -2,10 +2,7 @@ import Link from "next/link"
 import React from "react"
 import { Icon } from "../_components/icon"
 
-const NAV_LINKS = [
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-] as const
+const NAV_LINKS = [{ href: "/projects", label: "Projects" }] as const
 
 export default function HomeLayout({ children }: React.PropsWithChildren) {
   return (
