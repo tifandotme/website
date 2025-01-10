@@ -20,7 +20,8 @@ export default async function AboutPage() {
           applications with <strong>React Native</strong>.
         </p>
         <p>
-          As a software engineer at{" "}
+          I live in <strong>Jakarta (UTC+7)</strong>, currently work as Software
+          Engineer at{" "}
           <a
             className="inline-flex items-center gap-px hover:underline hover:underline-offset-1"
             href="https://delosaqua.com/"
@@ -30,12 +31,8 @@ export default async function AboutPage() {
             Delos
             <Icon id="external" className="size-4 text-muted-darker/80" />
           </a>
-          , I&apos;m currently working towards modernizing the aquaculture
-          industry in Indonesia.
-        </p>
-        <p>
-          I live in <strong>Jakarta (UTC+7)</strong>. When I&apos;m not coding,
-          you can find me indulging in mystery/sci-fi books and movies.
+          . When I&apos;m not coding, you can find me indulging in
+          mystery/sci-fi books and movies.
         </p>
         <p>
           Ready to discuss your next project? Send me a message at:{" "}
