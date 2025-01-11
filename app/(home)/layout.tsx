@@ -15,19 +15,19 @@ export default function HomeLayout({ children }: React.PropsWithChildren) {
         aria-label="Navigation"
       >
         <Link
-          className="-m-2.5 flex min-h-10 p-2.5 text-muted-darker/50 hover:text-foreground"
+          className="-m-2.5 flex h-11 min-h-10 p-2.5 text-muted-darker/90 hover:text-foreground"
           href="/"
           title="Homepage"
           draggable="false"
         >
-          <Icon id="logo" className="size-6 self-center" />
+          <Icon id="home" className="size-5 self-center" />
         </Link>
         <hr className="h-[19px] w-px bg-muted/30" aria-hidden="true" />
         <ul className="inline-flex gap-6">
           {NAV_LINKS.map((item) => (
             <li key={item.href}>
               <Link
-                className="-mx-2 -my-2.5 flex select-none items-center px-2 py-2.5 text-[103%] font-bold text-muted-darker/90 hover:text-foreground"
+                className="-mx-2 flex h-11 select-none items-center px-2 text-[103%] font-bold text-muted-darker/90 hover:text-foreground"
                 href={item.href}
                 draggable="false"
               >
