@@ -1,4 +1,5 @@
 import typography from "@tailwindcss/typography"
+import animate from "tailwindcss-animate"
 import colors from "tailwindcss/colors"
 import defaultTheme from "tailwindcss/defaultTheme"
 
@@ -143,7 +144,7 @@ const config = {
     // https://stackoverflow.com/questions/56755439/modifying-hover-in-tailwindcss/72323247#72323247
     hoverOnlyWhenSupported: true,
   },
-  plugins: [typography],
+  plugins: [typography, animate],
 }
 
 export default config
