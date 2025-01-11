@@ -7,6 +7,7 @@ import { getAllPosts, getPostBySlug } from "../../_lib/blog"
 import { cn, formatDate } from "../../_lib/utils"
 import { Giscus } from "./giscus"
 import "./post.css"
+import { TableOfContents } from "./toc"
 
 export const dynamic = "force-static"
 
@@ -54,75 +55,91 @@ export default async function PostPage(props: {
   if (!post) notFound()
 
   return (
-    <main className="relative mx-auto max-w-screen-2xl px-[--post-padding] pb-14 pt-16 [--post-padding:1rem] sm:[--post-padding:1.5rem]">
-      <Back className="fixed -mt-2 ml-2 max-lg:hidden" />
-      {post.headings.length !== 0 && (
-        <ul
-          className="fixed bottom-14 ml-5 w-[180px] max-xl:hidden min-[1320px]:w-[210px]"
-          aria-label="Table of Contents"
-        >
-          {post.headings.map((heading) => (
-            <li key={heading.slug}>
-              <a
-                className="block cursor-default py-1 text-sm font-medium leading-5 text-muted hover:text-black dark:hover:text-foreground"
-                href={`#${heading.slug}`}
-              >
-                {heading.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <article
-        className={cn(
-          "prose mx-auto max-w-screen-md dark:prose-invert",
-
-          // NOTE because prose elements are now grid items, vertical margins will not collapse
-          "grid grid-cols-[min(65ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
-        )}
+    <>
+      <main
+        className="relative mx-auto max-w-screen-2xl px-[--post-padding] pb-14 pt-16 [--post-padding:1rem] sm:[--post-padding:1.5rem]"
+        vaul-drawer-wrapper=""
       >
-        <Back className="not-prose mb-10 lg:hidden" />
+        <Back className="fixed translate-x-1 p-3 max-xl:hidden" />
 
-        <header className="not-prose !col-span-full mb-12 space-y-2 [&+*]:mt-0">
-          <section
-            className="inline-flex flex-wrap gap-3 font-mono font-medium leading-none text-muted"
+        {post.headings.length !== 0 && (
+          <ul
+            className="fixed bottom-14 ml-5 w-[180px] max-xl:hidden min-[1320px]:w-[210px]"
+            aria-label="Table of Contents"
+          >
+            {post.headings.map((heading) => (
+              <li key={heading.slug}>
+                <a
+                  className="-mx-3 flex h-9 cursor-default items-center px-3 text-sm font-medium text-muted hover:bg-muted-darker/10 hover:text-black dark:hover:text-foreground"
+                  href={`#${heading.slug}`}
+                >
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <article
+          className={cn(
+            "prose mx-auto max-w-screen-md dark:prose-invert",
+
+            // NOTE because prose elements are now grid items, vertical margins will not collapse
+            "grid grid-cols-[min(65ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
+          )}
+        >
+          <header className="not-prose !col-span-full mb-12 space-y-2 [&+*]:mt-0">
+            <section
+              className="inline-flex flex-wrap gap-3 font-mono font-medium leading-none text-muted"
+              aria-hidden="true"
+            >
+              <time dateTime={post.publishedAt} title="Published date">
+                {formatDate(post.publishedAt, { fullMonth: true })}
+              </time>
+              <span className="no-js inline-block size-[3px] self-center rounded-full bg-muted-darker/60" />
+              <Views
+                className="no-js"
+                slug={post.slug}
+                increment={process.env.NODE_ENV === "production"}
+              />
+            </section>
+            <h1 className="font-heading text-[clamp(3rem,1rem+3.125vw,3.4rem)] leading-tight text-[hsl(var(--heading))]">
+              {post.title}
+            </h1>
+          </header>
+
+          {post.content}
+
+          <div
+            className="not-prose mx-auto inline-flex w-full flex-wrap items-center gap-3 font-mono text-sm font-semibold uppercase leading-none text-muted-darker"
             aria-hidden="true"
           >
-            <time dateTime={post.publishedAt} title="Published date">
-              {formatDate(post.publishedAt, { fullMonth: true })}
-            </time>
-            <span className="no-js inline-block size-[3px] self-center rounded-full bg-muted-darker/60" />
-            <Views className="no-js" slug={post.slug} increment />
-          </section>
-          <h1 className="font-heading text-[clamp(3rem,1rem+3.125vw,3.4rem)] leading-tight text-[hsl(var(--heading))]">
-            {post.title}
-          </h1>
-        </header>
+            <a
+              href="https://creativecommons.org/licenses/by-nc/4.0/"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="hover:underline"
+              tabIndex={-1}
+            >
+              CC BY-NC-SA 4.0
+            </a>
+            <span>2023-present</span>
+            <span className="text-[170%]">©</span>
+            <span>Tifan Dwi Avianto</span>
+          </div>
 
-        {post.content}
+          <Giscus />
+        </article>
+      </main>
 
-        <div
-          className="not-prose mx-auto inline-flex w-full flex-wrap items-center gap-2 font-mono text-sm font-semibold uppercase leading-none text-muted-darker"
-          aria-hidden="true"
-        >
-          <a
-            href="https://creativecommons.org/licenses/by-nc/4.0/"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="hover:underline"
-            tabIndex={-1}
-          >
-            CC BY-NC-SA 4.0
-          </a>
-          <span>2023-present</span>
-          <span className="text-[170%]">©</span>
-          <span>Tifan Dwi Avianto</span>
-        </div>
+      <aside className="fixed inset-x-0 bottom-0 z-10 mx-auto mb-4 flex h-14 w-fit max-w-screen-md select-none items-center gap-4 rounded-full border bg-background px-3 py-2 shadow-xl brightness-110 xl:hidden">
+        <Back className="p-3" />
 
-        <Giscus />
-      </article>
-    </main>
+        <hr className="h-6 border-r border-muted-darker/20" />
+
+        <TableOfContents headings={post.headings} />
+      </aside>
+    </>
   )
 }
 
@@ -133,7 +150,7 @@ function Back({
   return (
     <Link
       className={cn(
-        "-m-3 w-fit rounded-full p-3 text-muted-darker hover:bg-muted-darker/10 hover:text-foreground print:hidden",
+        "text-muted hover:text-foreground print:hidden",
         // NOTE margin class names from props will need to take into account the existing negative margins
         className,
       )}
