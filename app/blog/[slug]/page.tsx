@@ -57,7 +57,7 @@ export default async function PostPage(props: {
   return (
     <>
       <main
-        className="relative mx-auto max-w-screen-2xl px-[--post-padding] pb-14 pt-16 [--post-padding:1rem] sm:[--post-padding:1.5rem]"
+        className="relative mx-auto max-w-screen-2xl px-[--post-padding] pb-24 pt-16 [--post-padding:1rem] sm:[--post-padding:1.5rem]"
         vaul-drawer-wrapper=""
       >
         <Back className="fixed translate-x-1 p-3 max-xl:hidden" />
