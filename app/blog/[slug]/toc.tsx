@@ -97,24 +97,31 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
             "fixed inset-x-0 bottom-0 z-50 flex h-auto max-h-[50vh] flex-col rounded-t-3xl border-t-2 bg-background pb-7",
 
             position.y > 0 &&
-              "!bg-gradient-to-t from-background from-80% to-muted/10 to-95%",
+              "border-muted-darker/90 bg-gradient-to-t from-background from-80% to-muted-darker/50 dark:border-border dark:to-muted/10",
           )}
         >
           <div
             className={cn(
               "mx-auto my-3 h-1.5 w-[80px] shrink-0 rounded-full bg-muted-darker/30",
 
-              position.y > 0 && "bg-muted-darker/50",
+              position.y > 0 && "bg-background/50 dark:bg-muted-darker/50",
             )}
           />
           <DrawerPrimitive.Title className="mb-7 text-center text-xl font-bold">
             Table of Contents
           </DrawerPrimitive.Title>
           <ul ref={drawerScrollableEl} className="overflow-y-auto px-3">
-            {headings.map((heading) => (
+            {[
+              ...headings,
+
+              ...Array.from({ length: 10 }, (_, i) => ({
+                text: `Heading ${i + 1}`,
+                slug: `heading-${i + 1}`,
+              })),
+            ].map((heading) => (
               <li key={heading.slug}>
                 <a
-                  className="flex cursor-default focus:bg-muted-darker/10 focus:outline-none items-center justify-center text-balance px-3 py-2.5 text-center leading-6 hover:bg-muted-darker/10"
+                  className="flex cursor-default items-center justify-center text-balance px-3 py-2.5 text-center leading-6 hover:bg-muted-darker/10 focus:bg-muted-darker/10 focus:outline-none"
                   href={`#${heading.slug}`}
                   onClick={() => setIsOpen(false)}
                 >
