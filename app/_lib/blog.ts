@@ -124,9 +124,23 @@ async function validate(frontmatter: Frontmatter, file: string) {
 
   for (const prop of requiredProperties) {
     if (!frontmatter[prop]) {
-      throw new Error(
-        `Missing or invalid frontmatter: ${prop}. Value: ${frontmatter[prop]} (${file})`,
-      )
+      throw new Error(`Missing frontmatter property: ${prop} in ${file}`)
     }
+  }
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(frontmatter.publishedAt)) {
+    throw new Error(
+      `Invalid date format for publishedAt in ${file}. Expected YYYY-MM-DD`,
+    )
+  }
+
+  if (isNaN(new Date(frontmatter.publishedAt).getTime())) {
+    throw new Error(`Invalid date value for publishedAt in ${file}`)
+  }
+
+  if (!["en", "id"].includes(frontmatter.lang)) {
+    throw new Error(
+      `Invalid language '${frontmatter.lang}' in ${file}. Expected 'en' or 'id'`,
+    )
   }
 }
