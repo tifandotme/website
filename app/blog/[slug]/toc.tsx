@@ -111,14 +111,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
             Table of Contents
           </DrawerPrimitive.Title>
           <ul ref={drawerScrollableEl} className="overflow-y-auto px-3">
-            {[
-              ...headings,
-
-              ...Array.from({ length: 10 }, (_, i) => ({
-                text: `Heading ${i + 1}`,
-                slug: `heading-${i + 1}`,
-              })),
-            ].map((heading) => (
+            {headings.map((heading) => (
               <li key={heading.slug}>
                 <a
                   className="flex cursor-default items-center justify-center text-balance px-3 py-2.5 text-center leading-6 hover:bg-muted-darker/10 focus:bg-muted-darker/10 focus:outline-none"
