@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next"
 import { getAllPosts } from "./_lib/blog"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const routes = ["", "/projects"].map((route) => ({
+  const routes = ["", "/about", "/projects"].map((route) => ({
     url: `https://tifan.me${route}`,
     lastModified: new Date().toISOString().split("T")[0],
   }))

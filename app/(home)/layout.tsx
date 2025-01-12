@@ -2,6 +2,7 @@ import Link from "next/link"
 import React from "react"
 import { Icon } from "../_components/icon"
 
+// Don't forget to also update sitemap routes
 const NAV_LINKS = [
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
