@@ -48,7 +48,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
           <Button onClick={() => setIsOpen(true)} />
         </DialogPrimitive.Trigger>
         <DialogPrimitive.Portal>
-          <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-white/70 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 dark:bg-black/70" />
+          <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 dark:bg-black/70" />
           {/* match duration to .5s with vaul drawer */}
           <DialogPrimitive.Content className="fixed left-1/2 top-1/2 z-50 flex max-h-[80vh] w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-7 border bg-background p-6 shadow-lg duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]">
             <DialogPrimitive.Title className="text-lg font-bold leading-none tracking-tight">
@@ -59,7 +59,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
               {headings.map((heading) => (
                 <li key={heading.slug}>
                   <a
-                    className="flex cursor-default items-center text-balance px-3 py-2.5 leading-6 hover:bg-muted-darker/10"
+                    className="flex cursor-default items-center text-balance px-3 py-2.5 leading-6 hover:bg-muted-darker/10 focus:bg-muted-darker/10 focus:outline-none"
                     href={`#${heading.slug}`}
                     onClick={() => setIsOpen(false)}
                   >
@@ -69,7 +69,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
               ))}
             </ul>
 
-            <DialogPrimitive.Close className="focus:ring-ring absolute right-5 top-6 -m-2.5 rounded-full p-2.5 text-muted ring-offset-background transition-opacity hover:bg-muted-darker/10 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none">
+            <DialogPrimitive.Close className="absolute right-5 top-6 -m-2.5 rounded-full p-2.5 text-muted transition-opacity hover:bg-muted-darker/10 hover:opacity-100 disabled:pointer-events-none">
               <Icon id="cross" className="size-5" />
               <span className="sr-only">Close</span>
             </DialogPrimitive.Close>
@@ -91,8 +91,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
         <Button onClick={() => setIsOpen(true)} />
       </DrawerPrimitive.Trigger>
       <DrawerPrimitive.Portal>
-        {/* TODO test light mode bg if implemented */}
-        <DrawerPrimitive.Overlay className="fixed inset-0 z-50 bg-white/70 dark:bg-black/70" />
+        <DrawerPrimitive.Overlay className="fixed inset-0 z-50 bg-black/50 dark:bg-black/70" />
         <DrawerPrimitive.Content
           className={cn(
             "fixed inset-x-0 bottom-0 z-50 flex h-auto max-h-[50vh] flex-col rounded-t-3xl border-t-2 bg-background pb-7",
@@ -115,7 +114,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
             {headings.map((heading) => (
               <li key={heading.slug}>
                 <a
-                  className="flex cursor-default items-center justify-center text-balance px-3 py-2.5 text-center leading-6 hover:bg-muted-darker/10"
+                  className="flex cursor-default focus:bg-muted-darker/10 focus:outline-none items-center justify-center text-balance px-3 py-2.5 text-center leading-6 hover:bg-muted-darker/10"
                   href={`#${heading.slug}`}
                   onClick={() => setIsOpen(false)}
                 >
@@ -137,7 +136,7 @@ function Button({
   return (
     <button
       className={cn(
-        "-mx-1 inline-flex items-center justify-center px-4 py-3 leading-none text-muted outline-none hover:text-foreground",
+        "-mx-1 inline-flex items-center justify-center px-4 py-3 leading-none text-muted hover:text-foreground",
         className,
       )}
       {...props}
