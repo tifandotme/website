@@ -1,13 +1,18 @@
 import { useLayoutEffect, useState } from "react"
 
+const INITIAL_POSITION = {
+  x: 0,
+  y: 0,
+}
+
 export function useScroll(el: HTMLElement | null) {
-  const [position, setPosition] = useState({
-    x: 0,
-    y: 0,
-  })
+  const [position, setPosition] = useState(INITIAL_POSITION)
 
   useLayoutEffect(() => {
-    if (!el) return
+    if (!el) {
+      setPosition(INITIAL_POSITION)
+      return
+    }
 
     const handleScroll = () => {
       setPosition({
