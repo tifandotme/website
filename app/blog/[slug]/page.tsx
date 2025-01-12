@@ -159,16 +159,13 @@ function Back({
 }: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
     <Link
-      className={cn(
-        "text-muted hover:text-foreground print:hidden",
-        // NOTE margin class names from props will need to take into account the existing negative margins
-        className,
-      )}
+      className={cn("text-muted hover:text-foreground print:hidden", className)}
       href="/"
-      title="Back"
+      title="Homepage"
+      draggable="false"
       {...props}
     >
-      <Icon id="arrow-left" className="size-5" />
+      <Icon id="home" className="size-5 stroke-[1.5px]" />
     </Link>
   )
 }
