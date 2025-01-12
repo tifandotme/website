@@ -1,10 +1,11 @@
 "use client"
 
 import * as DialogPrimitive from "@radix-ui/react-dialog"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Drawer as DrawerPrimitive } from "vaul"
 import { Icon } from "../../_components/icon"
 import { useMediaQuery } from "../../_hooks/use-media-query"
+import { useScroll } from "../../_hooks/use-scroll"
 import { cn } from "../../_lib/utils"
 
 interface TableOfContentsProps {
@@ -12,32 +13,53 @@ interface TableOfContentsProps {
 }
 
 export function TableOfContents({ headings }: TableOfContentsProps) {
+  const drawerScrollableEl = useRef<HTMLUListElement | null>(null)
+
   const [isOpen, setIsOpen] = useState(false)
+  const [isContentReady, setIsContentReady] = useState(false)
+
+  const { position } = useScroll(
+    isContentReady ? drawerScrollableEl.current : null,
+  )
+
   const isDesktop = useMediaQuery("(min-width: 768px)")
 
   useEffect(() => {
     setIsOpen(false)
   }, [isDesktop])
 
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open)
+    if (!open) {
+      setIsContentReady(false)
+    }
+  }
+
+  const handleAnimationEnd = (open: boolean) => {
+    if (open) {
+      setIsContentReady(true)
+    }
+  }
+
   if (isDesktop) {
     return (
-      <DialogPrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
+      <DialogPrimitive.Root open={isOpen} onOpenChange={handleOpenChange}>
         <DialogPrimitive.Trigger asChild>
           <Button onClick={() => setIsOpen(true)} />
         </DialogPrimitive.Trigger>
         <DialogPrimitive.Portal>
-          <DialogPrimitive.Overlay className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-background/70" />
+          <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-background/70 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
           {/* match duration to .5s with vaul drawer */}
-          <DialogPrimitive.Content className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-7 border bg-background p-6 shadow-lg duration-500">
+          <DialogPrimitive.Content className="fixed left-1/2 top-1/2 z-50 flex max-h-[80vh] w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-7 border bg-background p-6 shadow-lg duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]">
             <DialogPrimitive.Title className="text-lg font-bold leading-none tracking-tight">
               Table of Contents
             </DialogPrimitive.Title>
 
-            <ul>
+            <ul className="-mx-3 overflow-y-auto">
               {headings.map((heading) => (
                 <li key={heading.slug}>
                   <a
-                    className="-mx-3 flex h-10 cursor-default items-center px-3 hover:bg-muted-darker/10"
+                    className="flex cursor-default items-center text-balance px-3 py-2.5 leading-6 hover:bg-muted-darker/10"
                     href={`#${heading.slug}`}
                     onClick={() => setIsOpen(false)}
                   >
@@ -60,7 +82,8 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
   return (
     <DrawerPrimitive.Root
       open={isOpen}
-      onOpenChange={setIsOpen}
+      onOpenChange={handleOpenChange}
+      onAnimationEnd={handleAnimationEnd}
       setBackgroundColorOnScale={false}
       shouldScaleBackground
     >
@@ -69,16 +92,26 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
       </DrawerPrimitive.Trigger>
       <DrawerPrimitive.Portal>
         <DrawerPrimitive.Overlay className="fixed inset-0 z-50 bg-background/70" />
-        <DrawerPrimitive.Content className="fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col border-t-2 bg-background px-5 pb-7">
-          <div className="mx-auto my-4 h-2 w-[100px] rounded-full bg-muted-darker/30" />
-          <DrawerPrimitive.Title className="mb-7 text-center text-lg font-bold">
+        <DrawerPrimitive.Content
+          className={cn(
+            "fixed inset-x-0 bottom-0 z-50 flex h-auto max-h-[50vh] flex-col rounded-t-3xl border-t-2 bg-background pb-7",
+
+            position.y > 0 &&
+              "!bg-gradient-to-t from-background from-80% to-muted/5 to-95%",
+          )}
+        >
+          <div className="mx-auto my-3 h-2 w-[80px] shrink-0 rounded-full bg-muted-darker/30" />
+          <DrawerPrimitive.Title className="mb-7 text-center text-xl font-bold">
             Table of Contents
           </DrawerPrimitive.Title>
-          <ul>
+          <ul
+            ref={drawerScrollableEl}
+            className="overflow-y-auto bg-background px-3"
+          >
             {headings.map((heading) => (
               <li key={heading.slug}>
                 <a
-                  className="flex h-11 cursor-default items-center justify-center hover:bg-muted-darker/10"
+                  className="flex cursor-default items-center justify-center text-balance px-3 py-2.5 text-center leading-6 hover:bg-muted-darker/10"
                   href={`#${heading.slug}`}
                   onClick={() => setIsOpen(false)}
                 >
@@ -103,7 +136,6 @@ function Button({
         "-mx-1 inline-flex items-center justify-center px-4 py-3 leading-none text-muted outline-none hover:text-foreground",
         className,
       )}
-      aria-label="Table of Contents"
       {...props}
     >
       <Icon id="list" className="mr-2 size-5" />
