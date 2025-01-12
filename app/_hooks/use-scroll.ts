@@ -23,5 +23,5 @@ export function useScroll(el: HTMLElement | null) {
     }
   }, [el])
 
-  return { position, scrollTo: window.scrollTo }
+  return { position }
 }
