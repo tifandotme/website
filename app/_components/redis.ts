@@ -27,7 +27,7 @@ export async function fetchViews(slug: string, increment = false) {
     }
 
     const result = (await res.json()).result as string | null
-    return Number(result)
+    return result === null ? null : Number(result)
   } catch (err) {
     console.error(err instanceof Error ? err.message : "An error occured")
     return null
