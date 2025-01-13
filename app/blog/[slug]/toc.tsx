@@ -86,6 +86,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
       onAnimationEnd={handleAnimationEnd}
       setBackgroundColorOnScale={false}
       shouldScaleBackground
+      autoFocus
     >
       <DrawerPrimitive.Trigger asChild>
         <Button onClick={() => setIsOpen(true)} />
@@ -94,7 +95,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
         <DrawerPrimitive.Overlay className="fixed inset-0 z-50 bg-black/50 dark:bg-black/70" />
         <DrawerPrimitive.Content
           className={cn(
-            "fixed inset-x-0 bottom-0 z-50 flex h-auto max-h-[50vh] flex-col rounded-t-3xl border-t-2 bg-background pb-7",
+            "fixed inset-x-0 bottom-0 z-50 flex h-auto max-h-[50vh] flex-col rounded-t-3xl border-t-2 bg-background pb-7 outline-none",
 
             position.y > 0 &&
               "border-muted-darker/90 bg-gradient-to-t from-background from-80% to-muted-darker/50 dark:border-border dark:to-muted/10",
