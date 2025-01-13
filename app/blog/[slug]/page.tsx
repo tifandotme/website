@@ -56,6 +56,24 @@ export default async function PostPage(props: {
 
   return (
     <>
+      <aside
+        className={cn(
+          "fixed bottom-4 z-10 mx-auto flex size-14 max-w-screen-md select-none items-center justify-center gap-4 rounded-full border bg-background shadow-xl brightness-110 xl:hidden dark:shadow-black/40",
+
+          post.headings.length !== 0 ? "inset-x-0 w-fit px-3" : "right-4",
+        )}
+      >
+        <Back className="p-3" />
+
+        {post.headings.length !== 0 && (
+          <>
+            <hr className="h-6 border-r" />
+
+            <TableOfContents headings={post.headings} />
+          </>
+        )}
+      </aside>
+
       <main
         className="relative mx-auto max-w-screen-2xl px-[--post-padding] pb-24 pt-16 [--post-padding:1rem] sm:[--post-padding:1.5rem]"
         vaul-drawer-wrapper=""
@@ -131,24 +149,6 @@ export default async function PostPage(props: {
           <Giscus />
         </article>
       </main>
-
-      <aside
-        className={cn(
-          "fixed bottom-4 z-10 mx-auto flex size-14 max-w-screen-md select-none items-center justify-center gap-4 rounded-full border bg-background shadow-xl brightness-110 xl:hidden dark:shadow-black/40",
-
-          post.headings.length !== 0 ? "inset-x-0 w-fit px-3" : "right-4",
-        )}
-      >
-        <Back className="p-3" />
-
-        {post.headings.length !== 0 && (
-          <>
-            <hr className="h-6 border-r" />
-
-            <TableOfContents headings={post.headings} />
-          </>
-        )}
-      </aside>
     </>
   )
 }
