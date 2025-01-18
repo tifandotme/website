@@ -20,8 +20,8 @@ export default async function AboutPage() {
           applications with <strong>React Native</strong>.
         </p>
         <p>
-          I live in <strong>Jakarta (UTC+7)</strong>, currently work as Software
-          Engineer at{" "}
+          I live in <strong>Jakarta (UTC+7)</strong> and currently work as a
+          Software Engineer at{" "}
           <a
             className="inline-flex items-center gap-px hover:underline hover:underline-offset-1"
             href="https://delosaqua.com/"
