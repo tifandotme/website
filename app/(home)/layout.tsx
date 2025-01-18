@@ -21,7 +21,7 @@ export default function HomeLayout({ children }: React.PropsWithChildren) {
           title="Homepage"
           draggable="false"
         >
-          <Icon id="home" className="size-5 self-center stroke-[2.5px]" />
+          <Icon id="home" className="size-5 self-center stroke-[2.3px]" />
         </Link>
         <hr className="h-[19px] w-px bg-muted/30" aria-hidden="true" />
         <ul className="inline-flex gap-6">
