@@ -18,7 +18,7 @@ export function Posts({ posts }: PostsProps) {
 
   return (
     <>
-      <div className="container-md mb-1">
+      <div className="container-md no-js mb-1">
         <button
           className="-mx-2 flex cursor-default items-center gap-1 px-2 py-2.5 text-muted hover:text-foreground"
           type="button"

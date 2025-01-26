@@ -34,7 +34,7 @@ export default async function AboutPage() {
           . When I&apos;m not coding, you can find me indulging in
           mystery/sci-fi books and movies.
         </p>
-        <p>
+        <p className="no-js">
           Ready to discuss your next project? Send me a message at:{" "}
           <ToggleableEmail />.
         </p>

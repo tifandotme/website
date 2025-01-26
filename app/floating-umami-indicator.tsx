@@ -19,7 +19,7 @@ export function FloatingUmamiIndicator() {
 
   return createPortal(
     <div
-      className="fixed bottom-4 left-4 z-50 select-none py-1 text-sm leading-6"
+      className="fixed bottom-4 left-4 z-10 select-none py-1 text-sm leading-6"
       role="status"
       aria-live="polite"
     >

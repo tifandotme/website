@@ -46,7 +46,7 @@ export function Projects() {
   return (
     <>
       <section
-        className="mb-10 flex justify-center gap-3 border-b border-[hsl(0,0%,90%)] bg-[hsl(0,0%,97%)] lg:mb-20 dark:border-[hsl(0,0%,12%)] dark:bg-[hsl(240,5%,11%)]"
+        className="no-js flex justify-center gap-3 border-b border-[hsl(0,0%,90%)] bg-[hsl(0,0%,97%)] lg:mb-20 dark:border-[hsl(0,0%,12%)] dark:bg-[hsl(240,5%,11%)]"
         role="menu"
       >
         <button
@@ -79,7 +79,7 @@ export function Projects() {
         </button>
       </section>
 
-      <section className="container-lg space-y-20">
+      <section className="container-lg mt-10 space-y-20">
         {data.map((project) => (
           <article
             className="flex gap-x-10 gap-y-5 max-lg:flex-col"

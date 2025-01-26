@@ -150,7 +150,7 @@ function Button({
   return (
     <button
       className={cn(
-        "-mx-1 inline-flex items-center justify-center px-4 py-3 leading-none text-muted hover:text-foreground",
+        "no-js -mx-1 inline-flex items-center justify-center px-4 py-3 leading-none text-muted hover:text-foreground",
         className,
       )}
       {...props}

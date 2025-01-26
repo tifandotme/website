@@ -67,7 +67,7 @@ export default async function PostPage(props: {
 
         {post.headings.length !== 0 && (
           <>
-            <hr className="h-6 border-r" />
+            <hr className="no-js h-6 border-r" />
 
             <TableOfContents headings={post.headings} />
           </>
