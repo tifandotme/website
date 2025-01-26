@@ -1,3 +1,5 @@
+@reference "../../globals.css";
+
 :root {
   --codeblock-background: 240 4% 92%;
   --codeblock-title: 240 6% 92%;
@@ -13,11 +15,29 @@
 
 /* code block */
 
+/*
+https://stackoverflow.com/a/78648560/24575076
+
 code[data-theme*=" "],
 code[data-theme*=" "] span {
   color: var(--shiki-light);
   @media (prefers-color-scheme: dark) {
     color: var(--shiki-dark);
+  }
+}
+*/
+
+@media (prefers-color-scheme: dark) {
+  pre code[data-theme],
+  pre code[data-theme] span {
+    color: var(--shiki-dark);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  pre code[data-theme],
+  pre code[data-theme] span {
+    color: var(--shiki-light);
   }
 }
 

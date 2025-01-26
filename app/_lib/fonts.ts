@@ -5,23 +5,23 @@ import localFont from "next/font/local"
 
 const fontSans = Nunito_Sans({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--nunito-sans",
 })
 
 const fontItalic = Newsreader({
   subsets: ["latin"],
-  variable: "--font-italic",
+  variable: "--newsreader",
   style: "italic",
 })
 
 const fontHeading = Imbue({
   subsets: ["latin"],
-  variable: "--font-heading",
+  variable: "--imbue",
 })
 
 const Commit_Mono = localFont({
   src: "./commitmono-v143.woff2", // relative to where localFont is invoked
-  variable: "--font-mono",
+  variable: "--commitmono",
 })
 
 export const fonts = [fontSans, fontItalic, fontHeading, Commit_Mono]

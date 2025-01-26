@@ -2,7 +2,6 @@
 
 import { Sandpack as _Sandpack } from "@codesandbox/sandpack-react"
 import React from "react"
-import { fontFamily } from "tailwindcss/defaultTheme"
 
 export function Sandpack({
   options,
@@ -44,8 +43,8 @@ export function Sandpack({
           },
         },
         font: {
-          body: ["var(--font-sans)", ...fontFamily.sans].join(", "),
-          mono: ["var(--font-mono)", ...fontFamily.mono].join(", "),
+          body: "var(--font-sans)",
+          mono: "var(--font-mono)",
           size: "0.875rem",
           lineHeight: "1.25rem",
         },
