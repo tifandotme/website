@@ -48,9 +48,22 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
           <Button onClick={() => setIsOpen(true)} />
         </DialogPrimitive.Trigger>
         <DialogPrimitive.Portal>
-          <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 dark:bg-black/70" />
-          {/* match duration to .5s with vaul drawer */}
-          <DialogPrimitive.Content className="fixed left-1/2 top-1/2 z-50 flex max-h-[80vh] w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-7 border bg-background p-6 shadow-lg duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]">
+          <DialogPrimitive.Overlay
+            className={cn(
+              // base
+              "fixed inset-0 z-50 overflow-y-auto bg-black/50 dark:bg-black/70",
+              // transition
+              "data-[state=open]:animate-dialogOverlayShow",
+            )}
+          />
+          <DialogPrimitive.Content
+            className={cn(
+              // base
+              "fixed left-1/2 top-1/2 z-50 flex w-[80vw] max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-7 overflow-y-auto border bg-background p-6 shadow-lg",
+              // transition
+              "data-[state=open]:animate-dialogContentShow",
+            )}
+          >
             <DialogPrimitive.Title className="text-lg font-bold leading-none tracking-tight">
               Table of Contents
             </DialogPrimitive.Title>

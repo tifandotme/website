@@ -1,5 +1,4 @@
 import typography from "@tailwindcss/typography"
-import animate from "tailwindcss-animate"
 import colors from "tailwindcss/colors"
 import defaultTheme from "tailwindcss/defaultTheme"
 
@@ -14,11 +13,28 @@ const config = {
     },
     extend: {
       keyframes: {
-        "opacity-pulse": {
+        opacityPulse: {
           "0%": { opacity: "0.2" },
           "20%": { opacity: "1" },
           "100%": { opacity: "0.2" },
         },
+        dialogOverlayShow: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        dialogContentShow: {
+          from: {
+            opacity: "0",
+            transform: "translate(-50%, -45%) scale(0.95)",
+          },
+          to: { opacity: "1", transform: "translate(-50%, -50%) scale(1)" },
+        },
+      },
+      animation: {
+        dialogOverlayShow:
+          "dialogOverlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+        dialogContentShow:
+          "dialogContentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
@@ -144,7 +160,7 @@ const config = {
     // https://stackoverflow.com/questions/56755439/modifying-hover-in-tailwindcss/72323247#72323247
     hoverOnlyWhenSupported: true,
   },
-  plugins: [typography, animate],
+  plugins: [typography],
 }
 
 export default config
