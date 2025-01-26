@@ -6,6 +6,8 @@ See how to [exclude my own visits](https://umami.is/docs/exclude-my-own-visits) 
 
 ## TODOs
 
+- [ ] Use shiki directly instead of relying on rehype-pretty-code
+- [ ] Migrate to TW v4
 - [ ] Enlist to blogs.gn and ooh.directory
 - [ ] Use Partial Prerendering?
 - [ ] Render placeholder image when fetching failed
