@@ -58,7 +58,7 @@ export default async function PostPage(props: {
     <>
       <aside
         className={cn(
-          "fixed bottom-4 z-10 mx-auto flex size-14 max-w-screen-md select-none items-center justify-center gap-4 rounded-full border bg-background shadow-xl brightness-110 xl:hidden dark:shadow-black/40",
+          "fixed bottom-4 z-20 mx-auto flex size-14 max-w-screen-md select-none items-center justify-center gap-4 rounded-full border bg-background shadow-xl brightness-110 xl:hidden dark:shadow-black/40",
 
           post.headings.length !== 0 ? "inset-x-0 w-fit px-3" : "right-4",
         )}
