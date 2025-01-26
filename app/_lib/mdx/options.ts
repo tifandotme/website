@@ -45,7 +45,7 @@ export const mdxOptions: MDXOptions = {
             // discard prose-a styles
             "font-inherit text-inherit no-underline",
 
-            "-ml-[1em] pl-[1em] before:absolute before:-ml-[1em] before:font-mono before:font-extralight before:text-transparent md:before:content-['#'] before:hover:text-muted-darker",
+            "-ml-[1em] pl-[1em] before:absolute before:-ml-[1em] before:font-mono before:font-extralight before:text-transparent md:before:content-['#'] hover:before:text-muted-darker",
           ],
           tabIndex: -1,
         },

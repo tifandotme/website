@@ -64,7 +64,7 @@ export function ToggleableEmail() {
       className={cn(
         "inline",
         state.isHidden &&
-          "mx-0.5 select-none bg-muted-darker/20 px-1 text-foreground/70 hover:cursor-pointer hover:bg-muted-darker/30",
+          "mx-0.5 bg-muted-darker/20 px-1 text-foreground/70 select-none hover:cursor-pointer hover:bg-muted-darker/30",
         state.isLoading && "pointer-events-none",
       )}
       onClick={handleCaptchaClick}

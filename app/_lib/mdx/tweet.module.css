@@ -2,8 +2,7 @@
   --tweet-container-margin: 1.25rem 0;
 
   --tweet-body-font-size: 1.0625rem;
-  --tweet-font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --tweet-font-family: var(--font-sans);
 
   --tweet-twitter-icon-color: hsl(var(--muted-large-text));
 
