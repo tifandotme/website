@@ -1,3 +1,5 @@
+@reference "../../globals.css";
+
 :root {
   --codeblock-background: 240 4% 92%;
   --codeblock-title: 240 6% 92%;
@@ -13,11 +15,29 @@
 
 /* code block */
 
+/*
+https://stackoverflow.com/a/78648560/24575076
+
 code[data-theme*=" "],
 code[data-theme*=" "] span {
   color: var(--shiki-light);
   @media (prefers-color-scheme: dark) {
     color: var(--shiki-dark);
+  }
+}
+*/
+
+@media (prefers-color-scheme: dark) {
+  pre code[data-theme],
+  pre code[data-theme] span {
+    color: var(--shiki-dark);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  pre code[data-theme],
+  pre code[data-theme] span {
+    color: var(--shiki-light);
   }
 }
 
@@ -67,4 +87,120 @@ pre > code {
 
 [data-highlighted-chars] {
   @apply bg-[hsl(var(--codeblock-highlight))] px-[5px] py-[2px] font-semibold;
+}
+
+@plugin "@tailwindcss/typography";
+
+@utility prose {
+  :where(:not(.not-prose, .not-prose *)) {
+    --tw-prose-body: hsl(var(--foreground));
+    --tw-prose-headings: hsl(var(--heading));
+    --tw-prose-links: hsl(var(--foreground));
+    --tw-prose-bold: hsl(var(--bold));
+    --tw-prose-counters: hsl(var(--color-zinc-500));
+    --tw-prose-bullets: hsl(var(--color-zinc-300));
+    --tw-prose-hr: hsl(var(--border));
+    --tw-prose-quotes: hsl(var(--foreground));
+    --tw-prose-quote-borders: hsl(var(--color-zinc-300));
+    --tw-prose-captions: hsl(var(--color-zinc-500));
+    --tw-prose-code: hsl(var(--foreground));
+    --tw-prose-pre-code: hsl(var(--color-zinc-200));
+    --tw-prose-pre-bg: var(--codeblock);
+    --tw-prose-th-borders: hsl(var(--color-zinc-300));
+    --tw-prose-td-borders: hsl(var(--color-zinc-200));
+
+    --tw-prose-invert-body: hsl(var(--foreground));
+    --tw-prose-invert-headings: hsl(var(--heading));
+    --tw-prose-invert-links: hsl(var(--foreground));
+    --tw-prose-invert-bold: hsl(var(--bold));
+    --tw-prose-invert-counters: hsl(var(--color-zinc-400));
+    --tw-prose-invert-bullets: hsl(var(--color-zinc-600));
+    --tw-prose-invert-hr: hsl(var(--border));
+    --tw-prose-invert-quotes: hsl(var(--foreground));
+    --tw-prose-invert-quote-borders: hsl(var(--color-zinc-700));
+    --tw-prose-invert-captions: hsl(var(--color-zinc-400));
+    --tw-prose-invert-code: hsl(var(--foreground));
+    --tw-prose-invert-pre-code: hsl(var(--color-zinc-300));
+    --tw-prose-invert-pre-bg: var(--codeblock);
+    --tw-prose-invert-th-borders: hsl(var(--color-zinc-600));
+    --tw-prose-invert-td-borders: hsl(var(--color-zinc-700));
+
+    &:where(h2)::before {
+      display: block;
+      marginbottom: 1rem;
+      height: 3px;
+      width: 1.5rem;
+      background: hsl(var(--foreground));
+      content: "";
+    }
+
+    &:where(h2) {
+      font-family: var(--font-heading);
+      font-size: var(--text-4xl);
+      line-height: var(--text-4xl-line-height);
+      letter-spacing: var(--tracking-wide);
+      font-weight: var(--font-weight-normal);
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &:where(h3) {
+      margin-top: 1.3rem;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--text-xl);
+      line-height: var(--text-xl--line-height);
+    }
+
+    &:where(blockquote p:last-of-type) {
+      margin-bottom: 0;
+    }
+
+    &:where(blockquote p:first-of-type) {
+      margin-top: 0;
+      &::before {
+        content: none;
+      }
+    }
+
+    &:where(blockquote p:last-of-type)::after {
+      content: none;
+    }
+
+    &:where(p + p),
+    &:where(blockquote + p),
+    &:where(ol),
+    &:where(ul) {
+      margin-top: 0;
+    }
+
+    &:where(blockquote) {
+      margin-top: 0;
+      font-weight: var(--font-weight-normal);
+    }
+
+    &:where(pre) {
+      content: none;
+    }
+
+    &:where(code) {
+      font-weight: var(--font-weight-extrabold);
+      color: hsl(var(--bold)) !important;
+      &::before {
+        content: none;
+      }
+      &::after {
+        content: none;
+      }
+    }
+
+    &:where(a) {
+      font-weight: var(--font-weight-normal);
+      text-underline-offset: 1px;
+    }
+
+    &:where(figure) {
+      margin-top: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+  }
 }

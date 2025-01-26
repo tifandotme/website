@@ -94,9 +94,9 @@ function LoadingDots({
       )}
       {...props}
     >
-      <span className="mx-px inline-block size-[var(--loading-dots-size)] animate-[opacityPulse_0.7s_ease-in-out_infinite] rounded-full bg-current" />
-      <span className="mx-px inline-block size-[var(--loading-dots-size)] animate-[opacityPulse_0.7s_ease-in-out_0.2s_infinite] rounded-full bg-current" />
-      <span className="mx-px inline-block size-[var(--loading-dots-size)] animate-[opacityPulse_0.7s_ease-in-out_0.4s_infinite] rounded-full bg-current" />
+      <span className="mx-px inline-block size-[var(--loading-dots-size)] animate-[opacity-pulse_0.7s_ease-in-out_infinite] rounded-full bg-current" />
+      <span className="mx-px inline-block size-[var(--loading-dots-size)] animate-[opacity-pulse_0.7s_ease-in-out_0.2s_infinite] rounded-full bg-current" />
+      <span className="mx-px inline-block size-[var(--loading-dots-size)] animate-[opacity-pulse_0.7s_ease-in-out_0.4s_infinite] rounded-full bg-current" />
     </span>
   )
 }

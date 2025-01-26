@@ -32,7 +32,7 @@ export function Giscus() {
       aria-hidden="true"
     >
       {isLoading && (
-        <div className="h-[220px] w-full animate-pulse rounded-sm bg-foreground/10" />
+        <div className="h-[220px] w-full animate-pulse rounded-xs bg-foreground/10" />
       )}
       <div className={cn(isLoading && "absolute top-0 w-full opacity-0")}>
         <GiscusReact

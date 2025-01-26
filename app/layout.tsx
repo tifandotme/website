@@ -39,11 +39,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang="en">
+    <html lang="en" className={fonts.map((font) => font.variable).join(" ")}>
       <head>
         <SandPackCSS />
       </head>
-      <body className={fonts.map((font) => font.variable).join(" ")}>
+      <body>
         {children}
         <PreloadResources />
         {process.env.NODE_ENV === "production" && (
