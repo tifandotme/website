@@ -22,7 +22,13 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const params = await props.params
   const post = await getPostBySlug(params.slug)
-  if (!post) notFound()
+
+  if (!post) {
+    return {
+      title: "Not Found",
+      description: "The page you're looking for doesn't exist.",
+    }
+  }
 
   return {
     title: post.title,

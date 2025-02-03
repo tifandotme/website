@@ -31,18 +31,28 @@ function extractHeadings(source: string) {
  * Return paths to all MDX files in a directory and its subdirectories.
  */
 function findMDXFiles(dir: string): string[] {
-  return fs
-    .readdirSync(path.join(process.cwd(), dir), {
-      recursive: true,
-      encoding: "utf-8",
-    })
-    .filter(
-      (file) =>
-        path.extname(file) === ".mdx" &&
-        // prefix with `_` to exclude from build, essentially making it a draft
-        !file.split("/").pop()!.startsWith("_"),
-    )
-    .map((file) => path.join(dir, file))
+  const contentPath = path.join(process.cwd(), dir)
+
+  try {
+    if (!fs.existsSync(contentPath)) {
+      return []
+    }
+
+    return fs
+      .readdirSync(contentPath, {
+        recursive: true,
+        encoding: "utf-8",
+      })
+      .filter(
+        (file) =>
+          path.extname(file) === ".mdx" &&
+          !file.split("/").pop()!.startsWith("_"),
+      )
+      .map((file) => path.join(dir, file))
+  } catch (error) {
+    console.error(`Error reading directory ${dir}:`, error)
+    return []
+  }
 }
 
 /**
