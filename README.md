@@ -6,6 +6,7 @@ See how to [exclude my own visits](https://umami.is/docs/exclude-my-own-visits) 
 
 ## Writing Guide
 
+- Prefix .mdx files with "\_" to exclude from build, essentially making it a draft
 - Supports GitHub Flavored Markdown <https://github.github.com/gfm>
 - Headings starts at `h2` until `h4`
 
