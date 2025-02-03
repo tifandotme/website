@@ -476,18 +476,20 @@ https://gist.github.com/tifandotme/d90989a4e50be70d121af627e02584f9
       }
 
       /* codeblock */
+      &:where(div.pre-wrapper) {
+        margin-block: calc(var(--spacing) * 5);
+        margin-inline: calc(-1 * var(--post-padding));
+      }
       &:where(pre) {
         background-color: var(--prose-pre-bg);
         overflow-x: auto;
         padding: var(--post-padding);
-        margin-block: calc(var(--spacing) * 5);
-        margin-inline: calc(-1 * var(--post-padding));
 
         font-weight: var(--font-weight-normal);
         font-size: var(--text-sm);
         line-height: calc(var(--spacing) * 5); /* 20px in GitHub web */
       }
-      &:where(*:has(+ pre)) {
+      &:where(*:has(+ div.pre-wrapper)) {
         margin-bottom: unset !important;
       }
       /* so codeblock wont be affected by inline code styles */
@@ -512,9 +514,6 @@ https://gist.github.com/tifandotme/d90989a4e50be70d121af627e02584f9
   }
 
   .shiki {
-    /* copy button is absolute positioned */
-    position: relative;
-
     & span {
       color: var(--shiki-light);
     }

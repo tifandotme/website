@@ -5,14 +5,20 @@ import { Icon } from "../../_components/icon"
 import { cn } from "../utils"
 
 interface CopyButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  text: string
+  source: string
+  lang: string
 }
 
-export function CopyButton({ text, className, ...props }: CopyButtonProps) {
+export function CopyButton({
+  source,
+  lang,
+  className,
+  ...props
+}: CopyButtonProps) {
   const [isCopied, setIsCopied] = useState(false)
 
   const copy = async () => {
-    await navigator.clipboard.writeText(text)
+    await navigator.clipboard.writeText(source)
     setIsCopied(true)
 
     setTimeout(() => {
@@ -21,25 +27,32 @@ export function CopyButton({ text, className, ...props }: CopyButtonProps) {
   }
 
   return (
-    <button
-      type="button"
-      disabled={isCopied}
-      onClick={copy}
-      data-copied={isCopied}
-      className={cn(
-        "no-js absolute top-0 right-0 z-10 inline-flex size-10 cursor-default items-center justify-center text-muted-darker data-[copied=false]:hover:text-foreground print:hidden",
-        className,
-      )}
-      title="Copy code"
-      {...props}
-    >
-      <Icon
-        id={isCopied ? "check" : "copy"}
+    <>
+      <button
+        type="button"
+        disabled={isCopied}
+        onClick={copy}
+        data-copied={isCopied}
         className={cn(
-          isCopied ? "size-5" : "size-4",
-          "bg-[var(--prose-pre-bg)]",
+          "peer no-js absolute top-0 right-0 z-10 size-11 cursor-default items-center justify-center text-muted-darker group-hover:inline-flex data-[copied=false]:hover:text-foreground data-[copied=true]:inline-flex! max-md:inline-flex md:hidden print:hidden",
+          className,
         )}
-      />
-    </button>
+        title="Copy code"
+        {...props}
+      >
+        <Icon
+          id={isCopied ? "check" : "copy"}
+          className={cn(
+            isCopied ? "size-6" : "size-5",
+            "bg-[var(--prose-pre-bg)]",
+          )}
+        />
+      </button>
+
+      {/* language label */}
+      <span className="absolute top-0 right-2 text-right text-sm leading-7 text-muted group-hover:hidden peer-data-[copied=true]:hidden max-md:hidden">
+        {lang}
+      </span>
+    </>
   )
 }

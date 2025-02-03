@@ -12,16 +12,28 @@ import remarkGfm, { type Options as RemarkGfmOptions } from "remark-gfm"
 import type { ShikiTransformer } from "shiki"
 
 /**
- * Add source code to each `pre` element
+ * Add source code data to `pre` elements
  * @see `./components.tsx` and `./copy.tsx`
  */
 function transformerCopyButton(): ShikiTransformer {
   return {
     root() {
-      this.pre.properties["raw"] = this.source
+      this.pre.properties["source"] = this.source
         .split("\n")
+        // remove transformer notations
         .map((line) => line.replace(/\s*\/\/\s*\[!.*?\]\s*$/, ""))
         .join("\n")
+    },
+  }
+}
+
+/**
+ * Add language label data to `pre` elements
+ */
+function transformerLanguageLabel(): ShikiTransformer {
+  return {
+    root() {
+      this.pre.properties["lang"] = this.options.lang
     },
   }
 }
@@ -48,6 +60,7 @@ export const mdxOptions: MDXOptions = {
           },
           transformerMetaHighlight(),
           transformerCopyButton(),
+          transformerLanguageLabel(),
         ],
 
         defaultColor: false,

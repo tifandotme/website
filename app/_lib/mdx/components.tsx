@@ -118,12 +118,16 @@ export const components: MDXComponents = {
       className: cn("col-span-full!", children.props.className),
     })
   },
-  pre: ({ raw, children, ...props }) => {
+  pre: ({ source, lang, children, ...props }) => {
+    console.log(this)
     return (
-      <pre {...props}>
-        {children}
-        <CopyButton text={raw} />
-      </pre>
+      // copy button is absolute positioned, so we need the parent to be relative
+      // we also can't use `pre` as parent because the button somehow get scrolled horizontally
+      // `group` is used to make sure the button is only visible when hovered
+      <div className="pre-wrapper group relative">
+        <CopyButton source={source} lang={lang} />
+        <pre {...props}>{children}</pre>
+      </div>
     )
   },
 }
