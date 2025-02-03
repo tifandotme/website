@@ -56,10 +56,10 @@ export default async function PostPage(props: {
 
   return (
     <>
+      {/* floating bottom bar */}
       <aside
         className={cn(
-          "fixed bottom-4 z-20 mx-auto flex size-14 max-w-screen-md select-none items-center justify-center gap-4 rounded-full border bg-background shadow-xl brightness-110 xl:hidden dark:shadow-black/40",
-
+          "fixed bottom-4 z-20 mx-auto flex size-14 max-w-screen-md items-center justify-center gap-4 rounded-full border bg-background shadow-xl brightness-110 select-none xl:hidden dark:shadow-black/40 print:hidden",
           post.headings.length !== 0 ? "inset-x-0 w-fit px-3" : "right-4",
         )}
       >
@@ -74,15 +74,36 @@ export default async function PostPage(props: {
         )}
       </aside>
 
+      {/* fancy gradient */}
+      <div
+        className={cn(
+          // base
+          "absolute inset-0 -z-1 max-md:hidden print:hidden",
+          // size and position
+          "-mx-[10vw] h-[30rem] -translate-x-52 px-[10vw]",
+          // color
+          "bg-[radial-gradient(ellipse_at_top,--alpha(var(--color-blue-400)/45%)_20%,--alpha(var(--color-blue-400)/35%)_40%,transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,--alpha(var(--color-blue-400)/10%)_20%,--alpha(var(--color-blue-400)/7.5%)_40%,transparent_70%)]",
+        )}
+      />
+      <div
+        className={cn(
+          "absolute inset-0 -z-1 md:hidden print:hidden",
+          // size and position
+          "h-[35rem] dark:h-[30rem]",
+          // color
+          "bg-gradient-to-b from-blue-300/90 to-transparent dark:from-blue-400/10",
+        )}
+      />
+
       <main
-        className="relative mx-auto max-w-screen-2xl px-[--post-padding] pb-24 pt-16 [--post-padding:1rem] sm:[--post-padding:1.5rem]"
+        className="relative mx-auto max-w-(--breakpoint-2xl) px-(--post-padding) py-16 [--post-padding:1rem] max-xl:pb-24 sm:[--post-padding:1.5rem]"
         vaul-drawer-wrapper=""
       >
-        <Back className="fixed translate-x-1 p-3 max-xl:hidden" />
+        <Back className="fixed -translate-y-1 translate-x-1 p-3 max-xl:hidden" />
 
         {post.headings.length !== 0 && (
           <ul
-            className="fixed bottom-14 ml-5 w-[180px] max-xl:hidden min-[1320px]:w-[210px]"
+            className="fixed bottom-14 ml-5 w-[180px] max-xl:hidden min-[1320px]:w-[210px] print:hidden"
             aria-label="Table of Contents"
           >
             {post.headings.map((heading) => (
@@ -100,15 +121,15 @@ export default async function PostPage(props: {
 
         <article
           className={cn(
-            "prose mx-auto max-w-screen-md dark:prose-invert",
+            "prose mx-auto max-w-(--breakpoint-md)",
 
             // NOTE because prose elements are now grid items, vertical margins will not collapse
-            "grid grid-cols-[min(65ch,100%),1fr] [&>*]:col-span-full md:[&>*]:col-[1/auto]",
+            "grid grid-cols-[min(65ch,100%)_1fr] *:col-span-full md:*:col-[1/auto]",
           )}
         >
-          <header className="not-prose !col-span-full mb-12 space-y-2 [&+*]:mt-0">
+          <header className="not-prose mb-32 [&+*]:mt-0">
             <section
-              className="inline-flex flex-wrap gap-3 font-mono font-medium leading-none text-muted"
+              className="mb-6 inline-flex flex-wrap gap-3 font-mono leading-none font-medium text-muted"
               aria-hidden="true"
             >
               <time dateTime={post.publishedAt} title="Published date">
@@ -121,15 +142,16 @@ export default async function PostPage(props: {
                 increment={process.env.NODE_ENV === "production"}
               />
             </section>
-            <h1 className="font-heading text-[clamp(3rem,1rem+3.125vw,3.4rem)] leading-tight text-[hsl(var(--heading))]">
+            <h1 className="mb-5 font-heading text-[clamp(3.2rem,1rem+3.125vw,3.6rem)] leading-tight text-[var(--prose-headings)]">
               {post.title}
             </h1>
+            <p className="text-xl">{post.description}</p>
           </header>
 
           {post.content}
 
           <div
-            className="not-prose mx-auto inline-flex w-full flex-wrap items-center gap-3 font-mono text-sm font-semibold uppercase leading-none text-muted-darker"
+            className="not-prose mx-auto inline-flex w-full flex-wrap items-center gap-3 font-mono text-sm leading-none font-semibold text-muted-darker uppercase"
             aria-hidden="true"
           >
             <a

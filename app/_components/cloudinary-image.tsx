@@ -3,7 +3,7 @@ import "server-only"
 import Image, { type ImageProps } from "next/image"
 import { getPlaiceholder } from "plaiceholder"
 
-type CloudinaryImageProps = Omit<
+export type CloudinaryImageProps = Omit<
   ImageProps,
   "src" | "height" | "placeholder" | "blurDataURL"
 > & {

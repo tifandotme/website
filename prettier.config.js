@@ -2,6 +2,7 @@
 const tailwindConfig = {
   tailwindFunctions: ["cn"],
   tailwindAttributes: ["className", "class"],
+  tailwindStylesheet: "./app/globals.css",
 }
 
 /** @type {import("prettier").Options} */

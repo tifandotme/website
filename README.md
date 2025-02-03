@@ -4,13 +4,21 @@ My personal website.
 
 See how to [exclude my own visits](https://umami.is/docs/exclude-my-own-visits) in analytics.
 
+## Writing Guide
+
+- Supports GitHub Flavored Markdown <https://github.github.com/gfm>
+- Headings starts at `h2` until `h4`
+
 ## TODOs
 
-- [ ] Migrate to Shiki v2 and use it directly instead of relying on rehype-pretty-code
-- [ ] Migrate to TW v4
-- [ ] Enlist to blogs.gn and ooh.directory
-- [ ] Use Partial Prerendering?
+- [ ] Ensure `eslint-plugin-tailwindcss` work with TW v4 (<https://github.com/francoismassart/eslint-plugin-tailwindcss/issues/325>)
+- [ ] Change Sandpack dark mode theme to GitHub Dark
 - [ ] Render placeholder image when fetching failed
+- [ ] Enlist to blogs.gn and ooh.directory
+- [ ] Migrate to BiomeJS?
+- [ ] Use Partial Prerendering?
+
+> also read TODO comments
 
 ## Tech Stack
 

@@ -13,13 +13,13 @@ interface TableOfContentsProps {
 }
 
 export function TableOfContents({ headings }: TableOfContentsProps) {
-  const drawerScrollableEl = useRef<HTMLUListElement | null>(null)
+  const drawerScrollableRef = useRef<HTMLUListElement | null>(null)
 
   const [isOpen, setIsOpen] = useState(false)
   const [isContentReady, setIsContentReady] = useState(false)
 
   const { position } = useScroll(
-    isContentReady ? drawerScrollableEl.current : null,
+    isContentReady ? drawerScrollableRef.current : null,
   )
 
   const isDesktop = useMediaQuery("(min-width: 768px)")
@@ -53,18 +53,18 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
               // base
               "fixed inset-0 z-50 overflow-y-auto bg-black/50 dark:bg-black/70",
               // transition
-              "data-[state=open]:animate-dialogOverlayShow",
+              "data-[state=open]:animate-dialog-overlay-show",
             )}
           />
           <DialogPrimitive.Content
             className={cn(
               // base
-              "fixed left-1/2 top-1/2 z-50 flex w-[80vw] max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-7 overflow-y-auto border bg-background p-6 shadow-lg",
+              "fixed top-1/2 left-1/2 z-50 flex w-[80vw] max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-7 overflow-y-auto border bg-background p-6 shadow-lg",
               // transition
-              "data-[state=open]:animate-dialogContentShow",
+              "data-[state=open]:animate-dialog-content-show",
             )}
           >
-            <DialogPrimitive.Title className="text-lg font-bold leading-none tracking-tight">
+            <DialogPrimitive.Title className="text-lg leading-none font-bold tracking-tight">
               Table of Contents
             </DialogPrimitive.Title>
 
@@ -72,7 +72,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
               {headings.map((heading) => (
                 <li key={heading.slug}>
                   <a
-                    className="flex cursor-default items-center text-balance px-3 py-2.5 leading-6 hover:bg-muted-darker/10 focus:bg-muted-darker/10 focus:outline-none"
+                    className="flex cursor-default items-center px-3 py-2.5 leading-6 text-balance hover:bg-muted-darker/10 focus:bg-muted-darker/10 focus:outline-hidden"
                     href={`#${heading.slug}`}
                     onClick={() => setIsOpen(false)}
                   >
@@ -82,7 +82,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
               ))}
             </ul>
 
-            <DialogPrimitive.Close className="absolute right-5 top-6 -m-2.5 rounded-full p-2.5 text-muted transition-opacity hover:bg-muted-darker/10 hover:opacity-100 disabled:pointer-events-none">
+            <DialogPrimitive.Close className="absolute top-6 right-5 -m-2.5 rounded-full p-2.5 text-muted transition-opacity hover:bg-muted-darker/10 hover:opacity-100 disabled:pointer-events-none">
               <Icon id="cross" className="size-5" />
               <span className="sr-only">Close</span>
             </DialogPrimitive.Close>
@@ -108,10 +108,10 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
         <DrawerPrimitive.Overlay className="fixed inset-0 z-50 bg-black/50 dark:bg-black/70" />
         <DrawerPrimitive.Content
           className={cn(
-            "fixed inset-x-0 bottom-0 z-50 flex h-auto max-h-[50vh] flex-col rounded-t-3xl border-t-2 bg-background pb-7 outline-none",
+            "fixed inset-x-0 bottom-0 z-50 flex h-auto max-h-[50vh] flex-col rounded-t-3xl border-t-2 bg-background pb-7 outline-hidden",
 
             position.y > 0 &&
-              "border-muted-darker/90 bg-gradient-to-t from-background from-80% to-muted-darker/50 dark:border-border dark:to-muted/10",
+              "border-muted-darker/90 bg-linear-to-t from-background from-80% to-muted-darker/50 dark:border-border dark:to-muted/10",
           )}
         >
           <div
@@ -124,11 +124,11 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
           <DrawerPrimitive.Title className="mb-7 text-center text-xl font-bold">
             Table of Contents
           </DrawerPrimitive.Title>
-          <ul ref={drawerScrollableEl} className="overflow-y-auto px-3">
+          <ul ref={drawerScrollableRef} className="overflow-y-auto px-3">
             {headings.map((heading) => (
               <li key={heading.slug}>
                 <a
-                  className="flex cursor-default items-center justify-center text-balance px-3 py-2.5 text-center leading-6 hover:bg-muted-darker/10 focus:bg-muted-darker/10 focus:outline-none"
+                  className="flex cursor-default items-center justify-center px-3 py-2.5 text-center leading-6 text-balance hover:bg-muted-darker/10 focus:bg-muted-darker/10 focus:outline-hidden"
                   href={`#${heading.slug}`}
                   onClick={() => setIsOpen(false)}
                 >

@@ -18,7 +18,7 @@ export function Posts({ posts }: PostsProps) {
 
   return (
     <>
-      <div className="container-md no-js mb-1">
+      <div className="no-js container-md mb-1">
         <button
           className="-mx-2 flex cursor-default items-center gap-1 px-2 py-2.5 text-muted hover:text-foreground"
           type="button"
@@ -54,7 +54,7 @@ export function Posts({ posts }: PostsProps) {
               href={post.url}
             >
               <div className="flex flex-col justify-between md:flex-row md:items-start md:gap-2">
-                <h2 className="text-[105%] font-semibold leading-7">
+                <h2 className="text-[105%] leading-7 font-semibold">
                   {post.title}
                 </h2>
                 <span className="inline-flex items-center gap-5 leading-7 text-muted-darker md:flex-row-reverse">

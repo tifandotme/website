@@ -2,30 +2,30 @@
   --tweet-container-margin: 1.25rem 0;
 
   --tweet-body-font-size: 1.0625rem;
-  --tweet-font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --tweet-font-family: var(--font-sans);
 
-  --tweet-twitter-icon-color: hsl(var(--muted-large-text));
+  --tweet-twitter-icon-color: var(--color-muted-darker);
 
   --tweet-bg-color: transparent;
   --tweet-bg-color-hover: var(--tweet-bg-color);
-  --tweet-border: 1px solid hsl(var(--border));
+  --tweet-border: 1px solid var(--color-border);
 
-  --tweet-font-color: hsl(var(--foreground));
-  --tweet-font-color-secondary: hsl(var(--muted-small-text));
+  --tweet-font-color: var(--color-foreground);
+  --tweet-font-color-secondary: var(--color-muted);
 
-  --tweet-quoted-bg-color-hover: hsl(var(--muted-large-text) / 0.05);
+  /* TODO confirm 0.05 opacity, was using hsl */
+  --tweet-quoted-bg-color-hover: oklch(var(--muted-darker) / 0.05);
 
-  --tweet-color-red-primary: hsl(var(--muted-large-text));
-  --tweet-color-red-primary-hover: hsl(var(--muted-large-text) / 0.05);
+  --tweet-color-red-primary: var(--color-muted-darker);
+  --tweet-color-red-primary-hover: oklch(var(--muted-darker) / 0.05);
 
   --tweet-color-green-primary: var(--tweet-font-color);
   --tweet-color-green-primary-hover: transparent;
 
-  --tweet-color-blue-primary: hsl(var(--muted-large-text));
-  --tweet-color-blue-primary-hover: hsl(var(--muted-large-text));
+  --tweet-color-blue-primary: var(--color-muted-darker);
+  --tweet-color-blue-primary-hover: var(--color-muted-darker);
   --tweet-color-blue-secondary: var(--tweet-font-color);
-  --tweet-color-blue-secondary-hover: hsl(var(--muted-large-text) / 0.05);
+  --tweet-color-blue-secondary-hover: oklch(var(--muted-darker) / 0.05);
 
   & * {
     transition: none;

@@ -12,10 +12,10 @@ main {
 }
 
 main {
+  /* TODO @reference from globals.css ? */
   --background: 0 0% 100%;
   --foreground: 0 0% 5%;
-  --muted-small-text: 240 4% 45%;
-  --muted-large-text: 240 4% 55%;
+  --muted-darker: 240 4% 55%;
   --border: 0 0% 80%;
 
   --color-prettylights-syntax-comment: #6e7781;
@@ -54,9 +54,9 @@ main {
   --color-btn-border: hsl(var(--border));
   --color-btn-shadow: 0 0 transparent;
   --color-btn-inset-shadow: 0 0 transparent;
-  --color-btn-hover-bg: hsl(var(--muted-large-text) / 20%);
+  --color-btn-hover-bg: hsl(var(--muted-darker) / 20%);
   --color-btn-hover-border: transparent;
-  --color-btn-active-bg: hsl(var(--muted-large-text) / 20%);
+  --color-btn-active-bg: hsl(var(--muted-darker) / 20%);
   --color-btn-active-border: var(--color-btn-border);
   --color-btn-selected-bg: var(--color-btn-active-bg);
 
@@ -78,8 +78,8 @@ main {
   --color-segmented-control-button-selected-border: hsl(var(--border));
 
   --color-fg-default: hsl(var(--foreground));
-  --color-fg-muted: hsl(var(--muted-large-text));
-  --color-fg-subtle: hsl(var(--muted-large-text) / 80%);
+  --color-fg-muted: hsl(var(--muted-darker));
+  --color-fg-subtle: hsl(var(--muted-darker) / 80%);
   --color-canvas-default: transparent;
   --color-canvas-overlay: hsl(var(--background) / 90%);
   --color-canvas-inset: transparent;
@@ -110,8 +110,7 @@ main .pagination-loader-container {
   main {
     --background: 240 4% 8%;
     --foreground: 0 0% 85%;
-    --muted-small-text: 0 0% 50%;
-    --muted-large-text: 0 0% 39%;
+    --muted-darker: 0 0% 39%;
     --border: 0 0% 17%;
 
     --color-prettylights-syntax-comment: #8b949e;
@@ -150,9 +149,9 @@ main .pagination-loader-container {
     --color-btn-border: hsl(var(--border));
     --color-btn-shadow: 0 0 transparent;
     --color-btn-inset-shadow: 0 0 transparent;
-    --color-btn-hover-bg: hsl(var(--muted-large-text) / 20%);
+    --color-btn-hover-bg: hsl(var(--muted-darker) / 20%);
     --color-btn-hover-border: transparent;
-    --color-btn-active-bg: hsl(var(--muted-large-text) / 20%);
+    --color-btn-active-bg: hsl(var(--muted-darker) / 20%);
     --color-btn-active-border: var(--color-btn-border);
     --color-btn-selected-bg: var(--color-btn-active-bg);
 
@@ -174,8 +173,8 @@ main .pagination-loader-container {
     --color-segmented-control-button-selected-border: hsl(var(--border));
 
     --color-fg-default: hsl(var(--foreground));
-    --color-fg-muted: hsl(var(--muted-large-text));
-    --color-fg-subtle: hsl(var(--muted-large-text) / 80%);
+    --color-fg-muted: hsl(var(--muted-darker));
+    --color-fg-subtle: hsl(var(--muted-darker) / 80%);
     --color-canvas-default: transparent;
     --color-canvas-overlay: hsl(var(--background) / 90%);
     --color-canvas-inset: transparent;

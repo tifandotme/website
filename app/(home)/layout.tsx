@@ -12,7 +12,7 @@ export default function HomeLayout({ children }: React.PropsWithChildren) {
   return (
     <>
       <header
-        className="container-md flex items-center gap-6 py-14 sm:pb-20 sm:pt-24 md:pt-32"
+        className="container-md flex items-center gap-6 py-14 sm:pt-24 sm:pb-20 md:pt-32"
         aria-label="Navigation"
       >
         <Link
@@ -28,7 +28,7 @@ export default function HomeLayout({ children }: React.PropsWithChildren) {
           {NAV_LINKS.map((item) => (
             <li key={item.href}>
               <Link
-                className="-mx-2 flex h-11 select-none items-center px-2 text-[103%] font-bold text-muted-darker/90 hover:text-foreground"
+                className="-mx-2 flex h-11 items-center px-2 text-[103%] font-bold text-muted-darker/90 select-none hover:text-foreground"
                 href={item.href}
                 draggable="false"
               >

@@ -27,7 +27,7 @@ export function CopyButton({ text, className, ...props }: CopyButtonProps) {
       onClick={copy}
       data-copied={isCopied}
       className={cn(
-        "no-js absolute right-0 top-0 z-10 inline-flex size-10 cursor-default items-center justify-center text-muted-darker data-[copied=false]:hover:text-foreground print:hidden",
+        "no-js absolute top-0 right-0 z-10 inline-flex size-10 cursor-default items-center justify-center text-muted-darker data-[copied=false]:hover:text-foreground print:hidden",
         className,
       )}
       title="Copy code"
@@ -37,7 +37,7 @@ export function CopyButton({ text, className, ...props }: CopyButtonProps) {
         id={isCopied ? "check" : "copy"}
         className={cn(
           isCopied ? "size-5" : "size-4",
-          "bg-[hsl(var(--codeblock-background))]",
+          "bg-[var(--prose-pre-bg)]",
         )}
       />
     </button>

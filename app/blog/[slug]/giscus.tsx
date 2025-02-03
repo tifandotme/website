@@ -5,10 +5,13 @@ import { useEffect, useState } from "react"
 import { cn } from "../../_lib/utils"
 
 export function Giscus() {
+  const [origin, setOrigin] = useState("https://tifan.me")
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     if (typeof window === "undefined") return
+
+    setOrigin(window.location.origin)
 
     const handleMessage = (event: MessageEvent) => {
       if (event.origin !== "https://giscus.app") return
@@ -32,7 +35,7 @@ export function Giscus() {
       aria-hidden="true"
     >
       {isLoading && (
-        <div className="h-[220px] w-full animate-pulse rounded-sm bg-foreground/10" />
+        <div className="h-[220px] w-full animate-pulse rounded-xs bg-foreground/10" />
       )}
       <div className={cn(isLoading && "absolute top-0 w-full opacity-0")}>
         <GiscusReact
@@ -47,11 +50,7 @@ export function Giscus() {
           emitMetadata="0"
           inputPosition="bottom"
           lang="en"
-          theme={
-            (process.env.NODE_ENV === "development" ?
-              `http://localhost:${process.env.PORT ?? 3000}`
-            : "https://tifan.me") + "/giscus.css"
-          }
+          theme={`${origin}/giscus.css`}
         />
       </div>
     </div>

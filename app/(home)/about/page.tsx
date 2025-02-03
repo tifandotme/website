@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default async function AboutPage() {
   return (
     <>
-      <article className="[&_p]:container-md mb-10 space-y-5 [&_p]:text-[105%]">
+      <article className="mb-10 space-y-5 [&_p]:container-md [&_p]:text-[105%]">
         <h1 className="container-md text-xl font-bold">Beyond the Resume</h1>
         <p>
           I specialize in building full-stack web applications using{" "}
@@ -38,7 +38,7 @@ export default async function AboutPage() {
           Ready to discuss your next project? Send me a message at:{" "}
           <ToggleableEmail />.
         </p>
-        <section className="container-lg !mt-8 grid grid-cols-1 gap-4 md:grid-cols-[2fr,1fr]">
+        <section className="container-lg mt-8! grid grid-cols-1 gap-4 md:grid-cols-[2fr_1fr]">
           <CloudinaryImage
             className="border"
             publicId="blog/potrait-shrimp-pond"
