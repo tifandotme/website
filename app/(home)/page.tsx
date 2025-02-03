@@ -14,7 +14,7 @@ export default async function HomePage() {
   return (
     <>
       <article className="container-md mb-20 space-y-5 text-[105%]">
-        <h1 className="font-heading text-4xl font-medium tracking-wider">
+        <h1 className="font-heading text-4xl tracking-wide">
           Tifan Dwi Avianto
         </h1>
         <p>

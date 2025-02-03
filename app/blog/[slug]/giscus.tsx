@@ -5,10 +5,13 @@ import { useEffect, useState } from "react"
 import { cn } from "../../_lib/utils"
 
 export function Giscus() {
+  const [origin, setOrigin] = useState("https://tifan.me")
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     if (typeof window === "undefined") return
+
+    setOrigin(window.location.origin)
 
     const handleMessage = (event: MessageEvent) => {
       if (event.origin !== "https://giscus.app") return
@@ -47,11 +50,7 @@ export function Giscus() {
           emitMetadata="0"
           inputPosition="bottom"
           lang="en"
-          theme={
-            (process.env.NODE_ENV === "development" ?
-              `http://localhost:${process.env.PORT ?? 3000}`
-            : "https://tifan.me") + "/giscus.css"
-          }
+          theme={`${origin}/giscus.css`}
         />
       </div>
     </div>

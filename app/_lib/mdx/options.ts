@@ -1,3 +1,5 @@
+import rehypeShiki, { type RehypeShikiOptions } from "@shikijs/rehype"
+import { transformerMetaHighlight } from "@shikijs/transformers"
 import type { MDXRemoteProps } from "next-mdx-remote/rsc"
 import rehypeAutolinkHeadings, {
   type Options as AutolinkHeadingsOptions,
@@ -5,35 +7,54 @@ import rehypeAutolinkHeadings, {
 import rehypeExternalLinks, {
   type Options as ExternalLinksOptions,
 } from "rehype-external-links"
-import rehypePrettyCode, {
-  type Options as PrettyCodeOptions,
-} from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
-import { visit } from "unist-util-visit"
+import remarkGfm, { type Options as RemarkGfmOptions } from "remark-gfm"
+import type { ShikiTransformer } from "shiki"
+
+/**
+ * Add source code to each `pre` element
+ * @see `./components.tsx` and `./copy.tsx`
+ */
+function transformerCopyButton(): ShikiTransformer {
+  return {
+    root() {
+      // copy button is absolute positioned
+      this.addClassToHast(this.pre, "relative")
+
+      this.pre.properties["raw"] = this.source
+        .split("\n")
+        .map((line) => line.replace(/\s*\/\/\s*\[!.*?\]\s*$/, ""))
+        .join("\n")
+    },
+  }
+}
 
 type MDXOptions = NonNullable<MDXRemoteProps["options"]>["mdxOptions"]
 
 export const mdxOptions: MDXOptions = {
   rehypePlugins: [
-    () => (tree) => {
-      visit(tree, (node) => {
-        if (node?.type === "element" && node?.tagName === "pre") {
-          const [codeEl] = node.children
-          if (codeEl.tagName !== "code") return
-
-          node.__meta__ = codeEl.children?.[0].value
-        }
-      })
-    },
+    [remarkGfm, {} satisfies RemarkGfmOptions],
     [
-      rehypePrettyCode,
+      rehypeShiki,
       {
-        theme: {
-          dark: "github-dark-default",
+        themes: {
           light: "github-light-default",
+          dark: "github-dark-default",
         },
-        keepBackground: false,
-      } satisfies PrettyCodeOptions,
+        // transformers: https://shiki.style/packages/transformers
+        // if want to add line numbers: https://github.com/shikijs/shiki/issues/3#issuecomment-830564854
+        transformers: [
+          {
+            preprocess() {
+              this.options.tabindex = false
+            },
+          },
+          transformerMetaHighlight(),
+          transformerCopyButton(),
+        ],
+
+        defaultColor: false,
+      } satisfies RehypeShikiOptions,
     ],
     [rehypeSlug], // must be before autolink headings
     [
@@ -79,23 +100,5 @@ export const mdxOptions: MDXOptions = {
         rel: ["nofollow", "noopener"],
       } satisfies ExternalLinksOptions,
     ],
-    () => (tree) => {
-      visit(tree, (node) => {
-        if (node?.type === "element" && node?.tagName === "figure") {
-          if (!("data-rehype-pretty-code-figure" in node.properties)) {
-            return
-          }
-
-          const [preEl] = node.children
-          if (preEl.tagName !== "pre") {
-            return
-          }
-
-          preEl.properties["raw"] = node.__meta__
-          delete preEl.properties["tabIndex"]
-          node.properties["className"] = "relative"
-        }
-      })
-    },
   ],
 }

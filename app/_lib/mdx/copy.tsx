@@ -37,7 +37,7 @@ export function CopyButton({ text, className, ...props }: CopyButtonProps) {
         id={isCopied ? "check" : "copy"}
         className={cn(
           isCopied ? "size-5" : "size-4",
-          "bg-[hsl(var(--codeblock-background))]",
+          "bg-[var(--prose-pre-bg)]",
         )}
       />
     </button>

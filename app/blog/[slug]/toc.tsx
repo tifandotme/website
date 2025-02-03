@@ -13,13 +13,13 @@ interface TableOfContentsProps {
 }
 
 export function TableOfContents({ headings }: TableOfContentsProps) {
-  const drawerScrollableEl = useRef<HTMLUListElement | null>(null)
+  const drawerScrollableRef = useRef<HTMLUListElement | null>(null)
 
   const [isOpen, setIsOpen] = useState(false)
   const [isContentReady, setIsContentReady] = useState(false)
 
   const { position } = useScroll(
-    isContentReady ? drawerScrollableEl.current : null,
+    isContentReady ? drawerScrollableRef.current : null,
   )
 
   const isDesktop = useMediaQuery("(min-width: 768px)")
@@ -124,7 +124,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
           <DrawerPrimitive.Title className="mb-7 text-center text-xl font-bold">
             Table of Contents
           </DrawerPrimitive.Title>
-          <ul ref={drawerScrollableEl} className="overflow-y-auto px-3">
+          <ul ref={drawerScrollableRef} className="overflow-y-auto px-3">
             {headings.map((heading) => (
               <li key={heading.slug}>
                 <a
