@@ -21,15 +21,15 @@ https://gist.github.com/tifandotme/d90989a4e50be70d121af627e02584f9
     --prose-headings: oklch(27.47% 0.006 286);
     --prose-links: var(--color-foreground);
     --prose-bold: oklch(24.39% 0.005 286.02);
-    --prose-counters: var(--color-slate-700);
-    --prose-bullets: var(--color-slate-700);
+    --prose-counters: var(--color-neutral-700);
+    --prose-bullets: var(--color-neutral-700);
     --prose-hr: var(--color-border);
     --prose-quotes: var(--color-foreground);
-    --prose-quote-borders: var(--color-slate-300);
-    --prose-captions: var(--color-slate-500);
-    --prose-th-borders: var(--color-slate-400);
-    --prose-td-borders: var(--color-slate-400);
-    --prose-code: var(--color-slate-400);
+    --prose-quote-borders: var(--color-neutral-400);
+    --prose-captions: var(--color-muted);
+    --prose-th-borders: var(--color-neutral-400);
+    --prose-td-borders: var(--color-neutral-400);
+    --prose-code: var(--color-neutral-700);
 
     --prose-pre-bg: oklch(93.73% 0.0013 286.37);
     --prose-pre-line-highlight: oklch(92.09% 0.0027 286.35);
@@ -44,7 +44,7 @@ https://gist.github.com/tifandotme/d90989a4e50be70d121af627e02584f9
       --prose-hr: var(--color-border);
       --prose-quotes: var(--color-foreground);
       --prose-quote-borders: var(--color-slate-700);
-      --prose-captions: var(--color-slate-400);
+      --prose-captions: var(--color-muted);
       --prose-th-borders: var(--color-slate-700);
       --prose-td-borders: var(--color-slate-700);
       --prose-code: var(--color-slate-400);
@@ -68,6 +68,21 @@ https://gist.github.com/tifandotme/d90989a4e50be70d121af627e02584f9
         font-size: 1.25em;
         line-height: 1.6;
         margin-bottom: 1.2em;
+      }
+
+      /* footnotes */
+      &:where(sup) {
+        & > a {
+          text-decoration: none;
+          &::before {
+            content: "[";
+          }
+          &::after {
+            content: "]";
+          }
+        }
+        color: var(--prose-bold);
+        font-size: var(--text-sm);
       }
 
       /* links */
@@ -185,6 +200,17 @@ https://gist.github.com/tifandotme/d90989a4e50be70d121af627e02584f9
         margin-bottom: 0.5em !important;
       }
 
+      /* task list */
+      &:where(ul.contains-task-list) {
+        list-style-type: none;
+        padding-inline-start: unset;
+
+        & input[type="checkbox"] {
+          margin-right: 0.5em;
+          padding-block: 0.25em;
+        }
+      }
+
       /* blockquote */
       &:where(blockquote) {
         font-weight: var(--font-weight-medium);
@@ -196,11 +222,14 @@ https://gist.github.com/tifandotme/d90989a4e50be70d121af627e02584f9
         margin-bottom: 1.6em;
         padding-inline-start: 1em;
       }
-      &:where(blockquote p:first-of-type)::before {
+      /* &:where(blockquote p:first-of-type)::before {
         content: open-quote;
       }
       &:where(blockquote p:last-of-type)::after {
         content: close-quote;
+      } */
+      &:where(blockquote *:last-child) {
+        margin-bottom: 0;
       }
 
       /* headings */
@@ -298,6 +327,9 @@ https://gist.github.com/tifandotme/d90989a4e50be70d121af627e02584f9
         line-height: 1.7142857;
 
         grid-column: 1 / -1 !important;
+      }
+      &:where(*:has(+ table)) {
+        margin-bottom: unset !important;
       }
 
       &:where(thead) {

@@ -58,6 +58,7 @@ export default async function PostPage(props: {
 }) {
   const params = await props.params
   const post = await getPostBySlug(params.slug)
+
   if (!post) notFound()
 
   return (
@@ -84,11 +85,11 @@ export default async function PostPage(props: {
       <div
         className={cn(
           // base
-          "absolute inset-0 -z-1 max-md:hidden print:hidden",
+          "absolute -z-1 max-md:hidden print:hidden",
           // size and position
-          "-mx-[10vw] h-[30rem] -translate-x-52 px-[10vw]",
+          "top-0 left-[-22rem] h-[30rem] w-[calc(100%+20rem)]",
           // color
-          "bg-[radial-gradient(ellipse_at_top,--alpha(var(--color-blue-400)/45%)_20%,--alpha(var(--color-blue-400)/35%)_40%,transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,--alpha(var(--color-blue-400)/10%)_20%,--alpha(var(--color-blue-400)/7.5%)_40%,transparent_70%)]",
+          "bg-[radial-gradient(ellipse_at_top,--alpha(var(--color-amber-400)/25%)_20%,--alpha(var(--color-amber-400)/15%)_40%,transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,--alpha(var(--color-blue-400)/10%)_20%,--alpha(var(--color-blue-400)/7.5%)_40%,transparent_70%)]",
         )}
       />
       <div
