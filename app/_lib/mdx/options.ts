@@ -18,9 +18,6 @@ import type { ShikiTransformer } from "shiki"
 function transformerCopyButton(): ShikiTransformer {
   return {
     root() {
-      // copy button is absolute positioned
-      this.addClassToHast(this.pre, "relative")
-
       this.pre.properties["raw"] = this.source
         .split("\n")
         .map((line) => line.replace(/\s*\/\/\s*\[!.*?\]\s*$/, ""))

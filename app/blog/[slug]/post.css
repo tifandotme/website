@@ -480,6 +480,9 @@ https://gist.github.com/tifandotme/d90989a4e50be70d121af627e02584f9
   }
 
   .shiki {
+    /* copy button is absolute positioned */
+    position: relative;
+
     & span {
       color: var(--shiki-light);
     }
