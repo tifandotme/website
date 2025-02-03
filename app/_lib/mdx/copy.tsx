@@ -50,7 +50,7 @@ export function CopyButton({
       </button>
 
       {/* language label */}
-      <span className="absolute top-0 right-2 text-right text-sm leading-7 text-muted group-hover:hidden peer-data-[copied=true]:hidden max-md:hidden">
+      <span className="selection-none absolute top-0 right-2 text-right text-sm leading-7 text-muted group-hover:hidden peer-data-[copied=true]:hidden max-md:hidden">
         {lang}
       </span>
     </>

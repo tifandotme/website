@@ -98,7 +98,7 @@ export default async function PostPage(props: {
           // size and position
           "h-[35rem] dark:h-[30rem]",
           // color
-          "bg-gradient-to-b from-blue-300/90 to-transparent dark:from-blue-400/10",
+          "bg-gradient-to-b from-amber-400/25 to-transparent dark:from-blue-400/10",
         )}
       />
 

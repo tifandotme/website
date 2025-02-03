@@ -25,13 +25,13 @@ https://gist.github.com/tifandotme/d90989a4e50be70d121af627e02584f9
     --prose-bullets: var(--color-neutral-700);
     --prose-hr: var(--color-border);
     --prose-quotes: var(--color-foreground);
-    --prose-quote-borders: var(--color-neutral-400);
+    --prose-quote-borders: var(--color-neutral-300);
     --prose-captions: var(--color-muted);
     --prose-th-borders: var(--color-neutral-400);
     --prose-td-borders: var(--color-neutral-400);
     --prose-code: var(--color-neutral-700);
 
-    --prose-pre-bg: oklch(93.73% 0.0013 286.37);
+    --prose-pre-bg: oklch(96.73% 0.0013 286.37);
     --prose-pre-line-highlight: oklch(92.09% 0.0027 286.35);
 
     @media (prefers-color-scheme: dark) {
