@@ -1,7 +1,5 @@
-import { Imbue, Newsreader, Nunito_Sans } from "next/font/google"
+import { Instrument_Serif, Newsreader, Nunito_Sans } from "next/font/google"
 import localFont from "next/font/local"
-
-// https://github.com/seek-oss/capsize/pull/192
 
 const fontSans = Nunito_Sans({
   subsets: ["latin"],
@@ -14,9 +12,10 @@ const fontItalic = Newsreader({
   style: "italic",
 })
 
-const fontHeading = Imbue({
+const fontHeading = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--imbue",
+  variable: "--instrument-serif",
+  weight: "400",
 })
 
 const Commit_Mono = localFont({
