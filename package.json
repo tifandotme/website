@@ -26,8 +26,8 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
-    "@shikijs/rehype": "^2.2.0",
-    "@shikijs/transformers": "^2.2.0",
+    "@shikijs/rehype": "^2.3.1",
+    "@shikijs/transformers": "^2.3.1",
     "@tailwindcss/postcss": "^4.0.3",
     "@types/eslint": "^9",
     "@types/node": "^22",
