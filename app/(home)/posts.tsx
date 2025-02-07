@@ -16,6 +16,10 @@ interface PostsProps {
 export function Posts({ posts }: PostsProps) {
   const [isEnglishOnly, setIsEnglishOnly] = useState<boolean | null>(null)
 
+  if (posts.length === 0) {
+    return null
+  }
+
   return (
     <>
       <div className="no-js container-md mb-1">
