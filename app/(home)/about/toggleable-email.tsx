@@ -6,8 +6,15 @@ import { createPortal } from "react-dom"
 import { Icon } from "../../_components/icon"
 import { cn } from "../../_lib/utils"
 
-const EMAIL = process.env.NEXT_PUBLIC_EMAIL as string
 const STORAGE_KEY = "email-unlocked"
+
+const EMAIL = process.env["NEXT_PUBLIC_EMAIL"]
+const HCAPTCHA_SITE_KEY = process.env["NEXT_PUBLIC_HCAPTCHA_SITE_KEY"]
+if (!EMAIL || !HCAPTCHA_SITE_KEY) {
+  throw new Error(
+    "NEXT_PUBLIC_EMAIL or NEXT_PUBLIC_HCAPTCHA_SITE_KEY is not set",
+  )
+}
 
 type EmailVisibilityState = {
   isHidden: boolean
@@ -77,8 +84,8 @@ export function ToggleableEmail() {
           />
           <span>show email</span>
         </>
-      : <a className="font-bold hover:underline" href={`mailto:${EMAIL}`}>
-          {EMAIL}
+      : <a className="font-bold hover:underline" href={`mailto:${EMAIL!}`}>
+          {EMAIL!}
         </a>
       }
 
@@ -88,7 +95,7 @@ export function ToggleableEmail() {
             ref={captchaRef}
             cleanup
             size="invisible"
-            sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY as string}
+            sitekey={HCAPTCHA_SITE_KEY!}
             onOpen={handleCaptchaOpen}
             onVerify={handleCaptchaVerify}
           />,

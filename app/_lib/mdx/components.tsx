@@ -70,7 +70,7 @@ export const components: MDXComponents = {
       }
 
       return (
-        <div className={cn("not-prose flex justify-center", styles.tweet)}>
+        <div className={cn("not-prose flex justify-center", styles["tweet"])}>
           {tweet ?
             <EmbeddedTweet tweet={tweet} components={components} />
           : <TweetContainer className="flex flex-col items-center py-3">
@@ -115,7 +115,7 @@ export const components: MDXComponents = {
     }
 
     return React.cloneElement(children, {
-      className: cn("col-span-full!", children.props.className),
+      className: cn("col-span-full!", children.props.className) ?? "",
     })
   },
   pre: ({ source, lang, children, ...props }) => {

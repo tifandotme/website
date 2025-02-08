@@ -3,8 +3,7 @@
 // NOTE rate limit for authenticated user is 5000 req/hour
 // https://docs.github.com/en/rest/overview/rate-limits-for-the-rest-api?apiVersion=2022-11-28#primary-rate-limit-for-authenticated-users
 
-const TOKEN = process.env.GITHUB_ACCESS_TOKEN
-
+const TOKEN = process.env["GITHUB_ACCESS_TOKEN"]
 if (!TOKEN) {
   throw new Error("GITHUB_ACCESS_TOKEN is not set")
 }
@@ -16,7 +15,7 @@ export async function fetchStargazersCount(repoUrl: string) {
       {
         headers: {
           Accept: "application/vnd.github+json",
-          Authorization: `Bearer ${TOKEN}`,
+          Authorization: `Bearer ${TOKEN!}`,
         },
         cache: "force-cache",
         next: {

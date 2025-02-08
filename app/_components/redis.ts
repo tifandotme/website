@@ -1,18 +1,17 @@
 "use server"
 
-const URL = process.env.KV_REST_API_URL as string
-const TOKEN = process.env.KV_REST_API_TOKEN as string
-
+const URL = process.env["NEXT_PUBLIC_HCAPTCHA_SITE_KEY"]
+const TOKEN = process.env["KV_REST_API_TOKEN"]
 if (!URL || !TOKEN) {
-  throw new Error("KV_REST_API_URL and KV_REST_API_TOKEN are not set")
+  throw new Error("KV_REST_API_URL or KV_REST_API_TOKEN is not set")
 }
 
 export async function fetchViews(slug: string, increment = false) {
   try {
-    const res = await fetch(URL, {
+    const res = await fetch(URL!, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${TOKEN}`,
+        Authorization: `Bearer ${TOKEN!}`,
       },
       body: JSON.stringify(
         increment ? ["HINCRBY", "views", slug, 1] : ["HGET", "views", slug],

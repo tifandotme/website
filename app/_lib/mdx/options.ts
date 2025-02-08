@@ -38,7 +38,9 @@ function transformerLanguageLabel(): ShikiTransformer {
   }
 }
 
-type MDXOptions = NonNullable<MDXRemoteProps["options"]>["mdxOptions"]
+type MDXOptions = NonNullable<
+  NonNullable<MDXRemoteProps["options"]>["mdxOptions"]
+>
 
 export const mdxOptions: MDXOptions = {
   rehypePlugins: [
