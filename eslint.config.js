@@ -1,4 +1,6 @@
+// @ts-expect-error not typed
 import { FlatCompat } from "@eslint/eslintrc"
+// @ts-expect-error not typed
 import eslintConfigPrettier from "eslint-config-prettier"
 import mdx from "eslint-plugin-mdx"
 // import tailwind from "eslint-plugin-tailwindcss"

@@ -21,7 +21,6 @@
         "@shikijs/rehype": "^2.3.2",
         "@shikijs/transformers": "^2.3.2",
         "@tailwindcss/postcss": "^4.0.4",
-        "@types/eslint": "^9",
         "@types/node": "^22",
         "@types/react": "^19",
         "@types/react-dom": "^19",
@@ -31,7 +30,6 @@
         "eslint-config-prettier": "^10.0.1",
         "eslint-plugin-mdx": "^3.1.5",
         "eslint-plugin-tailwindcss": "^3.18.0",
-        "postcss": "^8",
         "prettier-plugin-tailwindcss": "^0.6.11",
         "rehype-autolink-headings": "^7.1.0",
         "rehype-external-links": "^3.0.0",
@@ -318,8 +316,6 @@
     "@types/concat-stream": ["@types/concat-stream@2.0.3", "", { "dependencies": { "@types/node": "*" } }, "sha512-3qe4oQAPNwVNwK4C9c8u+VJqv9kez+2MR4qJpoPFfXtgxxif1QbFusvXzK0/Wra2VX07smostI2VMmJNSpZjuQ=="],
 
     "@types/debug": ["@types/debug@4.1.12", "", { "dependencies": { "@types/ms": "*" } }, "sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ=="],
-
-    "@types/eslint": ["@types/eslint@9.6.1", "", { "dependencies": { "@types/estree": "*", "@types/json-schema": "*" } }, "sha512-FXx2pKgId/WyYo2jXw63kk7/+TY7u7AziEJxJAnSFzHlqTAS3Ync6SvgYAN/k4/PQpnnVuzoMuVnByKK2qp0ag=="],
 
     "@types/estree": ["@types/estree@1.0.6", "", {}, "sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw=="],
 

@@ -4,6 +4,7 @@ import withPlaiceholder from "@plaiceholder/next"
 const config = {
   experimental: {
     reactCompiler: true,
+    typedEnv: true,
   },
   logging: {
     fetches: {
